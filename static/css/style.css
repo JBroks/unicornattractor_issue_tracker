@@ -1,3 +1,8 @@
 form {
     width: 50%;
 }
+
+/* Set height to 100vh to get a full height tab on the left side of a page */
+.aside {
+    height: 100vh;
+}

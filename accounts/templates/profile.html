@@ -1,3 +1,72 @@
-{% extends 'base.html' %} {% block page_title %}{{ user }}'s Profile{% endblock %} {% block page_heading %}{{ user }}'s Profile{% endblock %} {% block content %}
-<p>{{ profile.email }}</p>
+{% extends 'base.html' %} {% block page_title %}{{ user }}'s Profile{% endblock %} {% block content %}
+
+<div class="row">
+
+    <!-- Aside element containing user photo, personal info and activity as well as edit/delete profile buttons -->
+    <aside>
+        <div class="col-md-3 col-sm-4 aside">
+            <!-- Profile photo container -->
+            <div class="row">
+                <div class="col-sm-12">Photo</div>
+            </div>
+            <!-- Personal info container -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>Personal info</h5>
+                    <p>Full name: {{ profile.first_name }} {{ profile.last_name }}</p>
+                    <p>Username: {{ profile.username }}</p>
+                    <p>Email: {{ profile.email }}</p>
+                </div>
+            </div>
+            <!-- Activity summary container -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>Activity</h5>
+                    <p>Posts: ??</p>
+                    <p>Tickets: ??</p>
+                    <p>Comments: ??</p>
+                </div>
+            </div>
+            <!-- Buttons container -->
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button>Edit account</button>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <button>Delete account</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main section of the profile containing user activity information -->
+    <section>
+        <div class="col-md-9 col-sm-8">
+            <!-- User profile heading and last seen info -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
+                    <p>last seen: ??</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="nav nav-pills nav-justified">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">My tickets ()</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My posts ()</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My comments ()</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
 {% endblock %}
