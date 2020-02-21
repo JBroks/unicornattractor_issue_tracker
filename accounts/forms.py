@@ -84,6 +84,7 @@ class UserRegistrationForm(UserCreationForm):
         return password2
       
 class UserChangeForm(forms.ModelForm):
+    
     first_name = forms.CharField(
         label="First name",
         min_length=2,

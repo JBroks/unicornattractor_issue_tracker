@@ -66,9 +66,8 @@ def registration(request):
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
-    date_joined = User.objects.get(date_joined=request.user.date_joined)
     
-    args = {"profile": user, "date_joined": date_joined}
+    args = {"profile": user}
     
     return render(request, 'profile.html', args)
 
@@ -85,7 +84,7 @@ def edit_profile(request):
             
     else:
         edit_form = UserChangeForm(instance=request.user)
+        
         args = {'edit_form': edit_form }
         
     return render(request, 'edit_profile.html', args)
-    
