@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from accounts.forms import UserLoginForm, UserRegistrationForm
+from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm
 
 
 @login_required
@@ -32,7 +32,10 @@ def login(request):
                 login_form.add_error(None, "Your username or password is incorrect")
     else:
         login_form = UserLoginForm()
-    return render(request, 'login.html', {'login_form': login_form})
+        
+        args = {'login_form': login_form}
+        
+    return render(request, 'login.html', args)
 
 
 def registration(request):
@@ -55,10 +58,34 @@ def registration(request):
                 messages.error(request, "Unable to register your account at this time")
     else:
         registration_form = UserRegistrationForm()
-    return render(request, 'registration.html', {
-        "registration_form": registration_form})
+        
+        args = {"registration_form": registration_form}
+        
+    return render(request, 'registration.html', args)
 
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {"profile": user})
+    date_joined = User.objects.get(date_joined=request.user.date_joined)
+    
+    args = {"profile": user, "date_joined": date_joined}
+    
+    return render(request, 'profile.html', args)
+
+def edit_profile(request):
+    
+    if request.method == 'POST':
+        edit_form = UserChangeForm(request.POST, instance=request.user)
+        
+        if edit_form.is_valid():
+            edit_form.save()
+            messages.success(request, "Your profile has been successfully \
+                              updated!")
+            return redirect(reverse('profile'))
+            
+    else:
+        edit_form = UserChangeForm(instance=request.user)
+        args = {'edit_form': edit_form }
+        
+    return render(request, 'edit_profile.html', args)
+    

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 
 
@@ -82,3 +82,36 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Passwords must match")
         
         return password2
+      
+class UserChangeForm(forms.ModelForm):
+    first_name = forms.CharField(
+        label="First name",
+        min_length=2,
+        max_length=50,
+        widget=forms.TextInput,
+        required=True)
+    
+    last_name = forms.CharField(
+        label="Last name",
+        min_length=2,
+        max_length=50,
+        widget=forms.TextInput,
+        required=True) 
+    
+    email = forms.CharField(
+        label="Email",
+        min_length=2,
+        max_length=50,
+        widget=forms.EmailInput,
+        required=True) 
+
+    username = forms.CharField(
+        label="Username",
+        min_length=5,
+        max_length=25,
+        widget=forms.TextInput,
+        required=True) 
+    
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'username']
