@@ -7,16 +7,12 @@ dj-database-url==0.5.0
 Django==1.11.24
 django-forms-bootstrap==3.1.0
 django-last-seen==0.3
-docker==4.1.0
 docutils==0.15.2
 httplib2==0.9.2
 Jinja2==2.10.3
 jinja2-time==0.2.0
 Pillow==7.0.0
 psycopg2-binary==2.8.4
-pyasn1-modules==0.2.1
-pygobject==3.26.1
-PyJWT==1.5.3
 pytz==2019.3
 PyYAML==5.2
 s3transfer==0.2.1
