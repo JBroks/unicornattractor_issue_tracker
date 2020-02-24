@@ -3,7 +3,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm
-
+from .models import UserProfile
 
 @login_required
 def logout(request):
@@ -33,9 +33,7 @@ def login(request):
     else:
         login_form = UserLoginForm()
         
-        args = {'login_form': login_form}
-        
-    return render(request, 'login.html', args)
+    return render(request, 'login.html', {'login_form': login_form})
 
 
 def registration(request):
@@ -59,17 +57,13 @@ def registration(request):
     else:
         registration_form = UserRegistrationForm()
         
-        args = {"registration_form": registration_form}
-        
-    return render(request, 'registration.html', args)
+    return render(request, 'registration.html', {"registration_form": registration_form})
 
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
     
-    args = {"profile": user}
-    
-    return render(request, 'profile.html', args)
+    return render(request, 'profile.html', {"profile": user})
 
 def edit_profile(request):
     
@@ -85,6 +79,4 @@ def edit_profile(request):
     else:
         edit_form = UserChangeForm(instance=request.user)
         
-        args = {'edit_form': edit_form }
-        
-    return render(request, 'edit_profile.html', args)
+    return render(request, 'edit_profile.html', {'edit_form': edit_form })
