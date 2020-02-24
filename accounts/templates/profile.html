@@ -7,15 +7,15 @@
         <div class="col-md-3 col-sm-4 aside">
             <!-- Profile photo container -->
             <div class="row">
-                <div class="col-sm-12"><img class="rounded" src="{{ profile.userprofile.image.url }}" alt="{{ profile.username }}"></div>
+                <div class="col-sm-12"><img class="rounded profile-image" src="{{ user.userprofile.image.url }}" alt="{{ user.username }}"></div>
             </div>
             <!-- Personal info container -->
             <div class="row">
                 <div class="col-sm-12">
                     <h5>Personal info</h5>
-                    <p>Full name: {{ profile.first_name }} {{ profile.last_name }}</p>
-                    <p>Username: {{ profile.username }}</p>
-                    <p>Email: {{ profile.email }}</p>
+                    <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
+                    <p>Username: {{ user.username }}</p>
+                    <p>Email: {{ user.email }}</p>
                 </div>
             </div>
             <!-- Activity summary container -->
@@ -45,9 +45,9 @@
             <!-- User profile heading and last seen info -->
             <div class="row">
                 <div class="col-sm-12">
-                    <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
-                    <p>Joined: {{ profile.date_joined }}</p>
-                    <p>Last seen: {{ profile.last_login }}</p>
+                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                    <p>Joined: {{ user.date_joined }}</p>
+                    <p>Last seen: {{ user.last_login }}</p>
                 </div>
             </div>
             <div class="row">

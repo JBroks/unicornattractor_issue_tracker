@@ -6,3 +6,9 @@ form {
 .aside {
     height: 100vh;
 }
+
+/* Set max size of profile images */
+.profile-image {
+    max-width: 300px;
+    max-height: 300px;
+}
