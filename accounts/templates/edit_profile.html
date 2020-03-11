@@ -9,6 +9,7 @@
         {% csrf_token %}
         {{ edit_form | as_bootstrap }}
         <button type="submit" class="btn btn-default">Save</button>
+        <button class="btn btn-default"><a href="{% url 'profile' %}">Cancel</a></button>
     </form>
 </div>
 {% endblock %}

@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
+from django.utils.safestring import mark_safe
 
 
 class UserLoginForm(forms.Form):
@@ -112,7 +113,7 @@ class UserChangeForm(forms.ModelForm):
         max_length=25,
         widget=forms.TextInput,
         required=True) 
-    
+        
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'username']
