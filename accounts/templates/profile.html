@@ -7,7 +7,14 @@
         <div class="col-md-3 col-sm-4 aside">
             <!-- Profile photo container -->
             <div class="row">
-                <div class="col-sm-12"><img class="rounded profile-image" src="{{ user.userprofile.image.url }}" alt="{{ user.username }}"></div>
+                <div class="col-sm-12">
+                {% if user.userprofile.image %}
+                {{ object.image_url|default_if_none:'#' }}
+                <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image">
+                {% else %}
+                 <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image">
+                {% endif %}
+                </div>
             </div>
             <!-- Personal info container -->
             <div class="row">
@@ -30,10 +37,10 @@
             <!-- Buttons container -->
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <button><a href="{% url 'edit_profile' %}">Update profile</a></button></button>
+                    <button><a href="{% url 'edit_profile' %}">Update profile</a></button>
                 </div>
                 <div class="col-sm-12 text-center">
-                    <button>Delete account</button>
+                    <a href="">Delete account</a>
                 </div>
             </div>
         </div>
