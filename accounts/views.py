@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm
+from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm
 from .models import UserProfile
 
 @login_required
@@ -57,14 +57,16 @@ def registration(request):
     else:
         registration_form = UserRegistrationForm()
         
-    return render(request, 'registration.html', {"registration_form": registration_form})
+    return render(request, 'registration.html', {"registration_form": 
+                    registration_form})
 
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
     
-    return render(request, 'profile.html', {"profile": user})
+    return render(request, 'profile.html', {"user": user})
 
+@login_required
 def edit_profile(request):
     
     if request.method == 'POST':
@@ -80,3 +82,19 @@ def edit_profile(request):
         edit_form = UserChangeForm(instance=request.user)
         
     return render(request, 'edit_profile.html', {'edit_form': edit_form })
+
+@login_required    
+def delete_account(request):
+    
+    if request.method == 'POST':
+        delete_form = UserDeleteForm(request.POST, instance=request.user)
+        
+        if delete_form.is_valid():
+            user = request.user
+            user.delete()
+            messages.info(request, 'Your account has been deleted.')
+            return redirect('logout')
+    else:
+        delete_form = UserDeleteForm(instance=request.user)
+
+    return render(request, 'delete_account.html', {'delete_form': delete_form})
