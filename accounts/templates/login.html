@@ -4,9 +4,10 @@
 
 {% block page_title %}Login Page{% endblock %}
 
-{% block page_heading %}User Login{% endblock %}
-
 {% block content %}
+
+<h1>{% block page_heading %}User Login{% endblock %}</h1>
+
     <form method="post">
         {% csrf_token %}
         {{ login_form | as_bootstrap }}
