@@ -1,14 +1,28 @@
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px; /*height of the footer*/
+}
+
 form {
     width: 50%;
 }
 
-/* Set height to 100vh to get a full height tab on the left side of a page */
+/* Set height to 100vh to get a full height tab on the left side of a page 
 .aside {
     height: 100vh;
-}
+}*/
 
 /* Set max size of profile images */
 .profile-image {
     max-width: 200px;
     max-height: 200px;
+}
+
+/* Set sticky footer at the bottom of a page */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
