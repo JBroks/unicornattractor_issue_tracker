@@ -12,6 +12,8 @@ def add_ticket(request):
         add_ticket_form = AddTicketForm(request.POST)
 
         if add_ticket_form.is_valid():
+            add_ticket_form.instance.user = request.user
+            add_ticket_form.instance.ticket_status = "Open"
             add_ticket_form.save()
             messages.success(request, "You have successfully submitted your \
                                 ticket!")
