@@ -9,28 +9,28 @@ class Ticket(models.Model):
     
     '''
     TYPE_CHOICES = (
-        ("B", "Bug"),
-        ("F", "Feature"),
+        ("Bug", "Bug"),
+        ("Feature", "Feature"),
         )
     
     STATUS_CHOICES = (
-        ("OP", "Open"),
-        ("IP", "In Progres"),
-        ("CO", "Completed"),
-        ("CL", "Closed"),
+        ("Open", "Open"),
+        ("In Progress", "In Progress"),
+        ("Completed", "Completed"),
+        ("Closed", "Closed"),
         )
     
-    user_id = models.ForeignKey(
+    user = models.ForeignKey(
         User, 
         null=True, 
         on_delete=models.CASCADE)
         
     ticket_type = models.CharField(
-        max_length=1, 
+        max_length=7, 
         choices=TYPE_CHOICES)
         
     ticket_status = models.CharField(
-        max_length=2, 
+        max_length=11, 
         choices=STATUS_CHOICES)
     
     subject = models.CharField(
@@ -49,6 +49,6 @@ class Ticket(models.Model):
         
     def __str__(self):
         return "#{0} [{1} - {2}] - {3}".format(
-            self.id, self.ticket_type, self.ticket_status, self.title)
+            self.id, self.ticket_type, self.ticket_status, self.subject)
         
     
