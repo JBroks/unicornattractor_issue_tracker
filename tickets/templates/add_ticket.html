@@ -1,4 +1,10 @@
-{% extends 'base.html' %} {% block page_title %} Add ticket {% endblock %} {% block content %}
+{% extends 'base.html' %} 
+
+{% load bootstrap_tags %} 
+
+{% block page_title %} Add ticket {% endblock %} 
+
+{% block content %}
 
 <!-- Content container -->
 <section class="content-container">
@@ -6,9 +12,11 @@
     <h1>{% block page_heading %}Report a bug or propose a new feature{% endblock %}</h1>
 
     <form method="post">
-        {% csrf_token %} {{ add_ticket_form | as_bootstrap }}
+        {% csrf_token %} 
+        {{ add_ticket_form | as_bootstrap }}
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
-
+ 
 </section>
+
 {% endblock %}
