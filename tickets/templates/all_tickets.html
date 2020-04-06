@@ -7,7 +7,7 @@
       <th>#</th>
       <th>Subject</th>
       <th>Type</th>
-      <th>Buttons</th>
+      <th>Actions</th>
       <th>Date created</th>
     </tr>
   </thead>
@@ -16,19 +16,22 @@
       <tr>
         <td>
             {% if ticket.ticket_status == "Open" %}
-                <i class="fa fa-hourglass-o" aria-hidden="true"></i>
+                <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i>
             {% elif ticket.ticket_status == "In Progress" %}
-                <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+                <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i>
             {% elif ticket.ticket_status == "Completed" %}
-                <i class="fa fa-hourglass" aria-hidden="true"></i>
+                <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i>
             {% elif ticket.ticket_status == "Closed" %}
-                <i class="fa fa-close" aria-hidden="true"></i>
+                <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i>
             {% endif %}
             </td>
         <td>{{ ticket.id }}</td>
         <td>{{ ticket.subject }}</td>
         <td>{{ ticket.ticket_type }}</td>
-        <td></td>
+        <td>
+          <a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a>
+          <a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
         <td>{{ ticket.date_created }}</td>
       </tr>
     {% endfor %}
