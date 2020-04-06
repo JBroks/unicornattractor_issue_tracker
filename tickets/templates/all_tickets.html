@@ -1,3 +1,50 @@
 {% extends 'base.html' %} {% block page_title %} All tickets {% endblock %} {% block content %}
+ 
+ <table class="table">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>#</th>
+      <th>Subject</th>
+      <th>Type</th>
+      <th>Buttons</th>
+      <th>Date created</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ticket in tickets %}
+      <tr>
+        <td>{{ ticket.ticket_status }}</td>
+        <td>{{ ticket.id }}</td>
+        <td>{{ ticket.subject }}</td>
+        <td>{{ ticket.ticket_type }}</td>
+        <td></td>
+        <td>{{ ticket.date_created }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
+{% if tickets.has_other_pages %}
+  <ul class="pagination">
+    {% if tickets.has_previous %}
+      <li><a href="?page={{ tickets.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in tickets.paginator.page_range %}
+      {% if tickets.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if tickets.has_next %}
+      <li><a href="?page={{ tickets.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+ 
 {% endblock %}
