@@ -6,8 +6,13 @@ from django.utils import timezone
 
 class Ticket(models.Model):
     '''
-    
+    Enable user to submit a ticket with a choice of ticket type (bug or feature)
+    Status choice - default status will be set to "Open" and admin will be able
+    update it.
+    Auto_now_add used to add date and time when ticket was created, and auto_now
+    used to add date and time when ticket was updated / edited.
     '''
+    
     TYPE_CHOICES = (
         ("Bug", "Bug"),
         ("Feature", "Feature"),
@@ -42,13 +47,18 @@ class Ticket(models.Model):
         blank=False)
         
     date_created = models.DateTimeField(
+        blank=False,
+        null=False,
         auto_now_add=True)
         
     date_updated = models.DateTimeField(
-        auto_now=True)
+        blank=False,
+        null=False,
+        auto_now=True,
+        )
         
     def __str__(self):
-        return "#{0} [{1} - {2}] - {3}".format(
-            self.id, self.ticket_type, self.ticket_status, self.subject)
+        return "Ticket #{0} [{1}] {2} - {3}".format(
+            self.id, self.ticket_status, self.ticket_type, self.subject)
         
     
