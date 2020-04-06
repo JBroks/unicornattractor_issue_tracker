@@ -14,7 +14,17 @@
   <tbody>
     {% for ticket in tickets %}
       <tr>
-        <td>{{ ticket.ticket_status }}</td>
+        <td>
+            {% if ticket.ticket_status == "Open" %}
+                <i class="fa fa-hourglass-o" aria-hidden="true"></i>
+            {% elif ticket.ticket_status == "In Progress" %}
+                <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+            {% elif ticket.ticket_status == "Completed" %}
+                <i class="fa fa-hourglass" aria-hidden="true"></i>
+            {% elif ticket.ticket_status == "Closed" %}
+                <i class="fa fa-close" aria-hidden="true"></i>
+            {% endif %}
+            </td>
         <td>{{ ticket.id }}</td>
         <td>{{ ticket.subject }}</td>
         <td>{{ ticket.ticket_type }}</td>
