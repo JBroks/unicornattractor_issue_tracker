@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from tickets.models import Ticket
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from tickets.forms import AddTicketForm
-from .filters import TicketFilter
 
 
 # Create your views here.
@@ -35,11 +34,9 @@ def all_tickets(request):
     View all tickets in a form of paginated table.
     Enable user to filter tickets by type, status and / or user who added it
     '''
-    
-    
+
     tickets_list = Ticket.objects.all()
-    #filtered_tickets = TicketFilter(request.GET, queryset=tickets_list)
-    
+
     page = request.GET.get('page', 1)
     
     # Paginate tickets
@@ -50,9 +47,8 @@ def all_tickets(request):
         tickets = paginator.page(1)
     except EmptyPage:
         tickets = paginator.page(paginator.num_pages)
-    
-    return render(request, 'all_tickets.html', {'tickets': tickets} )
-    
+        
+    return render(request, 'all_tickets.html', {'tickets': tickets })      
 def edit_ticket(request):
     return render(request, 'edit_ticket.html')
 
