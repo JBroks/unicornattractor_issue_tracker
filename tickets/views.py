@@ -42,20 +42,22 @@ def all_tickets(request):
     
     qs = Ticket.objects.all()
     
-    page = request.GET.get('page', 1)
-    
     # Queries
     type_filter_query = request.GET.get('ticket_type')
     status_filter_query = request.GET.get('ticket_status')
     
-    if (type_filter_query and status_filter_query) is True and (type_filter_query and status_filter_query) != "Select...":
-        qs = qs.filter(ticket_type__ticket_type = type_filter_query).filter(ticket_status__ticket_status = status_filter_query)
-    elif type_filter_query and type_filter_query != "Select...":
-       qs = qs.filter(ticket_type__ticket_type = type_filter_query)
+    # Filter queryset
+    if type_filter_query and type_filter_query != "Select...":
+        if status_filter_query and status_filter_query != "Select...":
+           qs = qs.filter(ticket_type__iexact = type_filter_query, ticket_status__iexact = status_filter_query).order_by('ticket_type')
+        else:
+            qs = qs.filter(ticket_type__iexact = type_filter_query)
     elif status_filter_query and status_filter_query != "Select...":
-        qs = qs.filter(ticket_status__name = status_filter_query)
+        qs = qs.filter(ticket_status__iexact = status_filter_query)
     else:
         qs
+        
+    page = request.GET.get('page', 1)
     
     # Paginate tickets
     paginator = Paginator(qs, 4)
