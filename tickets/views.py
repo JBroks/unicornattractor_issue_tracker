@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from tickets.models import Ticket
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from tickets.forms import AddTicketForm
-from .filters import TicketFilter
-from django.views.generic import ListView
 
 # Create your views here.
 
