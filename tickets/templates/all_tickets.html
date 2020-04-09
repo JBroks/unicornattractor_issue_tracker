@@ -1,71 +1,94 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} All tickets {% endblock %} {% block content %}
 
-{% load bootstrap_tags %} 
+<section class="content-container">
 
-{% block page_title %} All tickets {% endblock %} {% block content %}
- 
- <!-- Filter fields -->
+  <h1 class="text-center">View all reported bugs and requested features</h1>
 
- 
- <!-- Table containing all / filtered tickets -->
- 
- <table class="table">
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>#</th>
-      <th>Subject</th>
-      <th>Type</th>
-      <th colspan=3></th>
-      <th>Date created</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for ticket in tickets %}
-      <tr>
-        <td>
-            {% if ticket.ticket_status == "Open" %}
-                <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i>
-            {% elif ticket.ticket_status == "In Progress" %}
-                <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i>
-            {% elif ticket.ticket_status == "Completed" %}
-                <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i>
-            {% elif ticket.ticket_status == "Closed" %}
-                <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i>
-            {% endif %}
-            </td>
-        <td>{{ ticket.id }}</td>
-        <td>{{ ticket.subject }}</td>
-        <td>{{ ticket.ticket_type }}</td>
-        <td><a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
-        <td><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-        <td><a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-        <td>{{ ticket.date_created }}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+  <!-- Filter fields -->
+  <section id="filter-section">
+    <form method="GET" action="." class="mx-auto">
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label for="ticket_type">Ticket type</label>
+          <select class="form-control" id="ticket_type" name="ticket_type">
+            <option selected>Select...</option>
+      {% for type in types_list %}
+      <option value="{{ type }}">{{ type }}</option>
+      {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="ticket_status">Ticket status</label>
+          <select class="form-control" id="ticket_status" name="ticket_status">
+      <option selected>Select...</option>
+      {% for status in status_list %}
+      <option value="{{ status }}">{{ status }}</option>
+      {% endfor %}
+    </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Apply Filter</button>
+    </form>
+  </section>
 
-{% if tickets.has_other_pages %}
-  <ul class="pagination">
-    {% if tickets.has_previous %}
-      <li><a href="?page={{ tickets.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in tickets.paginator.page_range %}
-      {% if tickets.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if tickets.has_next %}
-      <li><a href="?page={{ tickets.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
- 
+  <!-- Table containing all / filtered tickets -->
+  <section id="table-section">
+    <div class="row">
+      <div class="col-sm-12 px-5">
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>#</th>
+              <th>Subject</th>
+              <th>Type</th>
+              <th colspan=3></th>
+              <th>Date created</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ticket in tickets %}
+            <tr>
+              <td>
+                {% if ticket.ticket_status == "Open" %}
+                <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
+                <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
+                <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
+                <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
+              </td>
+              <td>{{ ticket.id }}</td>
+              <td>{{ ticket.subject }}</td>
+              <td>{{ ticket.ticket_type }}</td>
+              <td><a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
+              <td><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+              <td><a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              <td>{{ ticket.date_created }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% if tickets.has_other_pages %}
+        <ul class="pagination">
+          {% if tickets.has_previous %}
+          <li><a href="?page={{ tickets.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+          {% endif %} {% for i in tickets.paginator.page_range %} {% if tickets.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
+          </li>
+          {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %} {% endfor %} {% if tickets.has_next %}
+          <li><a href="?page={{ tickets.next_page_number }}">&raquo;</a></li>
+          {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+</section>
 {% endblock %}
