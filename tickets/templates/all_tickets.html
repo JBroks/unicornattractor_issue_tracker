@@ -27,8 +27,13 @@
     </select>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Apply Filter</button>
-      <button id="reset" class="btn btn-primary">Reset</button>
+
+      <!-- Form butttons -->
+      <div class="row">
+        <div class="col-md-6 col-sm-12 d-flex justify-content-center"><button type="submit" class="btn btn-success">Apply Filter</button></div>
+        <div class="col-md-6 col-sm-12 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset</button></div>
+      </div>
+
     </form>
   </section>
 
@@ -87,6 +92,14 @@
           {% endif %}
         </ul>
         {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section id="add-ticket-button">
+    <div class="row">
+      <div class="col-sm-12 d-flex justify-content-end pr-5">
+        <button class="btn btn-link btn-lg"><i data-toggle="tooltip" data-placement="bottom" title="Add ticket" class="fa fa-plus-circle" aria-hidden="true"></i></button>
       </div>
     </div>
   </section>
