@@ -3,77 +3,73 @@
 <div class="row">
 
     <!-- Aside element containing user photo, personal info and activity as well as edit/delete profile buttons -->
-    <aside>
-        <div class="col-md-3 col-sm-4 aside">
-            <!-- Profile photo container -->
-            <div class="row">
-                <div class="col-sm-12">
+
+    <div class="col-md-3 col-sm-4 aside">
+        <!-- Profile photo container -->
+        <div class="row">
+            <div class="col-sm-12">
                 {% if user.userprofile.image %}
-                <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image">
-                {% else %}
-                 <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image">
-                {% endif %}
-                </div>
-            </div>
-            <!-- Personal info container -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <h5>Personal info</h5>
-                    <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
-                    <p>Username: {{ user.username }}</p>
-                    <p>Email: {{ user.email }}</p>
-                </div>
-            </div>
-            <!-- Activity summary container -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <h5>Activity</h5>
-                    <p>Posts: ??</p>
-                    <p>Tickets: ??</p>
-                    <p>Comments: ??</p>
-                </div>
-            </div>
-            <!-- Buttons container -->
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <button><a href="{% url 'edit_profile' %}">Update profile</a></button>
-                </div>
-                <div class="col-sm-12 text-center">
-                    <a href="{% url 'delete_account' %}">Delete account</a>
-                </div>
+                <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image"> {% else %}
+                <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image"> {% endif %}
             </div>
         </div>
-    </aside>
+        <!-- Personal info container -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h5>Personal info</h5>
+                <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
+                <p>Username: {{ user.username }}</p>
+                <p>Email: {{ user.email }}</p>
+            </div>
+        </div>
+        <!-- Activity summary container -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h5>Activity</h5>
+                <p>Posts: ??</p>
+                <p>Tickets: {{ ticket_count }}</p>
+                <p>Comments: ??</p>
+            </div>
+        </div>
+        <!-- Buttons container -->
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button><a href="{% url 'edit_profile' %}">Update profile</a></button>
+            </div>
+            <div class="col-sm-12 text-center">
+                <a href="{% url 'delete_account' %}">Delete account</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Main section of the profile containing user activity information -->
-    <section>
-        <div class="col-md-9 col-sm-8">
-            <!-- User profile heading and last seen info -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                    <p>Joined: {{ user.date_joined }}</p>
-                    <p>Last seen: {{ user.last_login }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <ul class="nav nav-pills nav-justified">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">My tickets ()</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">My posts ()</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">My comments ()</a>
-                        </li>
-                    </ul>
-                </div>
+    
+    <div class="col-md-9 col-sm-8">
+        <!-- User profile heading and last seen info -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                <p>Joined: {{ user.date_joined }}</p>
+                <p>Last seen: {{ user.last_login }}</p>
             </div>
         </div>
-    </section>
-
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills nav-justified">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">My tickets ()</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My posts ()</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My comments ()</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 {% endblock %}
