@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -10,9 +10,12 @@ from django.db.models import Count
 # Create your views here.
 
 @login_required
-def add_ticket(request):
+def add_or_edit_ticket(request, pk=None):
+    
+    ticket = get_object_or_404(Ticket, pk=pk) if pk else None
+    
     if request.method == "POST":
-        add_ticket_form = AddTicketForm(request.POST)
+        add_ticket_form = AddTicketForm(request.POST, request.FILES, instance=ticket)
 
         if add_ticket_form.is_valid():
             add_ticket_form.instance.user = request.user
@@ -20,12 +23,12 @@ def add_ticket(request):
             add_ticket_form.save()
             messages.success(request, "You have successfully submitted your \
                                 ticket!")
-            return redirect(all_tickets)
+            return redirect(all_tickets, ticket.pk)
         else:
                 messages.error(request, "Something went wrong. Please try again.")
             
     else:
-        add_ticket_form = AddTicketForm()
+        add_ticket_form = AddTicketForm(instance=ticket)
     
     return render(request, 'add_ticket.html', {'add_ticket_form': add_ticket_form} )
   
@@ -72,7 +75,7 @@ def all_tickets(request):
     args = {'tickets': tickets, 
             'types_list': types_list, 
             'status_list': status_list }
-            
+        
     return render(request, 'all_tickets.html', args )
        
 def edit_ticket(request):

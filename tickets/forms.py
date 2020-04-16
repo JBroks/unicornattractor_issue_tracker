@@ -5,7 +5,8 @@ from django.core.exceptions import ValidationError
 
 class AddTicketForm(forms.ModelForm):
     '''
-    
+    Ticket form that enables user to select ticket type, and type in ticket
+    subject and description
     '''
     TYPE_CHOICES = [(i,i) for i in ["Feature", "Bug"] ]
     

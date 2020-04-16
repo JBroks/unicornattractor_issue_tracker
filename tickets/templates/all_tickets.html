@@ -66,7 +66,7 @@
               <td>{{ ticket.subject }}</td>
               <td>{{ ticket.ticket_type }}</td>
               <td><a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
-              <td><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+              <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
               <td><a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
               <td>{{ ticket.date_created }}</td>
             </tr>

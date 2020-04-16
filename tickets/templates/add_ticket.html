@@ -1,10 +1,13 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Add ticket {% endblock %} {% block content %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Ticket form {% endblock %} {% block content %}
 
 <!-- Content container -->
 <section class="content-container">
-
+    {% if request.get_full_path == "/tickets/new/" %}
     <h1 class="text-center">Report a bug or propose a new feature</h1>
-
+    {% else %}
+    <h1 class="text-center">Edit ticket</h1>
+    {% endif %}
+    
     <section id="add-ticket-section">
         <!-- Add ticket form -->
         <form method="post" class="mx-auto">
