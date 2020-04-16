@@ -57,6 +57,9 @@ class Ticket(models.Model):
         auto_now=True,
         )
         
+    class Meta:
+        ordering = ['-id']
+        
     def __str__(self):
         return "Ticket #{0} [{1}] {2} - {3}".format(
             self.id, self.ticket_status, self.ticket_type, self.subject)
