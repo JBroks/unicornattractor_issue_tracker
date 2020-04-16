@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm
 from .models import UserProfile
 from tickets.models import Ticket
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def logout(request):
@@ -67,7 +68,24 @@ def user_profile(request):
     
     ticket_count = Ticket.objects.filter(user=request.user).count()
     
-    return render(request, 'profile.html', {"user": user, 'ticket_count': ticket_count })
+    user_tickets = Ticket.objects.filter(user=request.user)
+    
+    page = request.GET.get('page', 1)
+    
+    # Paginate tickets
+    paginator = Paginator(user_tickets, 4)
+    try:
+        user_tickets = paginator.page(page)
+    except PageNotAnInteger:
+        user_tickets = paginator.page(1)
+    except EmptyPage:
+        user_tickets = paginator.page(paginator.num_pages)
+   
+    args = {"user": user,
+            "ticket_count": ticket_count,
+            "user_tickets": user_tickets }
+            
+    return render(request, 'profile.html', args)
 
 @login_required
 def edit_profile(request):
@@ -99,5 +117,5 @@ def delete_account(request):
             return redirect('logout')
     else:
         delete_form = UserDeleteForm(instance=request.user)
-
+    
     return render(request, 'delete_account.html', {'delete_form': delete_form})
