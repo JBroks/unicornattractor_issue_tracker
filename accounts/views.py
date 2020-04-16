@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm
 from .models import UserProfile
+from tickets.models import Ticket
 
 @login_required
 def logout(request):
@@ -64,7 +65,9 @@ def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
     
-    return render(request, 'profile.html', {"user": user})
+    ticket_count = Ticket.objects.filter(user=request.user).count()
+    
+    return render(request, 'profile.html', {"user": user, 'ticket_count': ticket_count })
 
 @login_required
 def edit_profile(request):
