@@ -73,7 +73,7 @@ def user_profile(request):
     page = request.GET.get('page', 1)
     
     # Paginate tickets
-    paginator = Paginator(user_tickets, 4)
+    paginator = Paginator(user_tickets, 10)
     try:
         user_tickets = paginator.page(page)
     except PageNotAnInteger:

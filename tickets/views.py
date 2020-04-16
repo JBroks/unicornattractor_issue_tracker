@@ -61,15 +61,19 @@ def all_tickets(request):
     page = request.GET.get('page', 1)
     
     # Paginate tickets
-    paginator = Paginator(qs, 4)
+    paginator = Paginator(qs, 10)
     try:
         tickets = paginator.page(page)
     except PageNotAnInteger:
         tickets = paginator.page(1)
     except EmptyPage:
         tickets = paginator.page(paginator.num_pages)
-    
-    return render(request, 'all_tickets.html', {'tickets': tickets, 'types_list': types_list, 'status_list': status_list})
+        
+    args = {'tickets': tickets, 
+            'types_list': types_list, 
+            'status_list': status_list }
+            
+    return render(request, 'all_tickets.html', args )
        
 def edit_ticket(request):
     return render(request, 'edit_ticket.html')
@@ -79,7 +83,3 @@ def view_ticket(request):
 '''
 def delete_ticket(request):
 '''
-
-def ticket_count(request):
-    ticket_count = Ticket.objects.filter(user=request.user).count()
-    return render(request, 'profile.html', {'ticket_count': ticket_count})
