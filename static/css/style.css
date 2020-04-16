@@ -9,11 +9,6 @@ form {
     width: 50%;
 }
 
-/* Set height to 100vh to get a full height tab on the left side of a page 
-.aside {
-    height: 100vh;
-}*/
-
 /* Set max size of profile images */
 .profile-image {
     max-width: 200px;
@@ -28,6 +23,12 @@ footer {
   height: 100px;
 }
 
+/* Increse size of add ticket to make it more prominent */
 .btn-lg {
     font-size: 2rem;
+}
+
+/* Remove top border for the first row in the table */
+.table tr:first-child td {
+  border-top: none;
 }
