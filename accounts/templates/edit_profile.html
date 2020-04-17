@@ -1,15 +1,30 @@
-{% extends 'base.html' %}
-{% load bootstrap_tags %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %}Edit Profile{% endblock %} {% block content %}
 
-{% block page_title %}Edit Profile{% endblock %}
+<!-- Page content container (BEGINNING) -->
+<section class="content-container">
 
-{% block content %}
-<div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ edit_form | as_bootstrap }}
-        <button type="submit" class="btn btn-default">Save</button>
-        <button class="btn btn-default"><a href="{% url 'profile' %}">Cancel</a></button>
-    </form>
-</div>
+    <!-- Form container (BEGINNING) -->
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Edit profile form (BEGINNING) -->
+            <form method="POST" class="mx-auto">
+
+                <!-- Form heading (BEGINNING) -->
+                <h2 class="text-center">Edit profile details</h2>
+                <!-- Form heading (END) -->
+
+                {% csrf_token %} {{ edit_form | as_bootstrap }}
+                <button type="submit" class="btn btn-default">Save</button>
+                <button class="btn btn-default"><a href="{% url 'profile' %}">Cancel</a></button>
+            </form>
+            <!-- Edit profile form (END) -->
+
+        </div>
+    </div>
+    <!-- Form container (END) -->
+
+</section>
+<!-- Page content container (END) -->
+
 {% endblock %}
