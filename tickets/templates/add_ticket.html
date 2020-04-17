@@ -8,7 +8,7 @@
 
         <!-- Add ticket form (BEGINNING) -->
         <form method="post" class="mx-auto">
-            
+
             <!-- Form heading (different for add new ticket and prefilled / edit form) (BEGINNING) -->
             {% if request.get_full_path == "/tickets/new/" %}
             <h2 class="text-center">Report a bug or propose a new feature</h2>
@@ -17,11 +17,20 @@
             {% endif %}
             <!-- Form heading (different for add new ticket and prefilled / edit form) (END) -->
 
-            {% csrf_token %}
-            {{ add_ticket_form | as_bootstrap }}
-            
-            <button type="submit" class="btn btn-default">Submit</button>
-            
+            {% csrf_token %} {{ add_ticket_form | as_bootstrap }}
+    
+            <!-- Button container (BEGINNING) -->
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    {% if request.get_full_path == "/tickets/new/" %}
+                    <button type="submit" class="btn btn-default">Submit</button>
+                    {% else %}
+                    <button type="submit" class="btn btn-default">Save</button>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Button container (END) -->
+
         </form>
         <!-- Add ticket form (END) -->
 
