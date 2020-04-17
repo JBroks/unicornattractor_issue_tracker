@@ -23,7 +23,7 @@ def add_or_edit_ticket(request, pk=None):
             add_ticket_form.save()
             messages.success(request, "You have successfully submitted your \
                                 ticket!")
-            return redirect(all_tickets, ticket.pk)
+            return redirect(all_tickets)
         else:
                 messages.error(request, "Something went wrong. Please try again.")
             
