@@ -1,47 +1,69 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} All tickets {% endblock %} {% block content %}
 
+<!-- Page content container (BEGINNING) -->
 <section class="content-container">
 
+  <!-- Page heading (BEGINNING) -->
   <h1 class="text-center">View all reported bugs and requested features</h1>
+  <!-- Page heading (END) -->
 
-  <!-- Filter fields -->
+  <!-- Filter fields section (BEGINNING) -->
   <section id="filter-section">
+
     <form method="GET" action="." class="mx-auto">
+
+      <!-- Row containing filters (BEGINNING) -->
       <div class="row">
+
+        <!-- Ticket type select menu (BEGINNING) -->
         <div class="form-group col-sm-6">
           <label for="ticket_type">Ticket type</label>
           <select class="form-control" id="ticket_type" name="ticket_type">
             <option selected>Select...</option>
-      {% for type in types_list %}
-      <option value="{{ type }}">{{ type }}</option>
-      {% endfor %}
+            {% for type in types_list %}
+            <option value="{{ type }}">{{ type }}</option>
+            {% endfor %}
           </select>
         </div>
+        <!-- Ticket type select menu (END) -->
+
+        <!-- Ticket status select menu (BEGINNING) -->
         <div class="form-group col-sm-6">
           <label for="ticket_status">Ticket status</label>
           <select class="form-control" id="ticket_status" name="ticket_status">
-      <option selected>Select...</option>
-      {% for status in status_list %}
-      <option value="{{ status }}">{{ status }}</option>
-      {% endfor %}
-    </select>
+            <option selected>Select...</option>
+            {% for status in status_list %}
+            <option value="{{ status }}">{{ status }}</option>
+            {% endfor %}
+          </select>
         </div>
-      </div>
+        <!-- Ticket status select menu (END) -->
 
-      <!-- Form butttons -->
+      </div>
+      <!-- Row containing filters (END) -->
+
+      <!-- Form butttons (BEGINNING) -->
       <div class="row">
         <div class="col-md-6 col-sm-12 d-flex justify-content-center"><button type="submit" class="btn btn-success">Apply Filter</button></div>
         <div class="col-md-6 col-sm-12 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset</button></div>
       </div>
+      <!-- Form butttons (END) -->
 
     </form>
-  </section>
 
-  <!-- Table containing all / filtered tickets -->
+  </section>
+  <!-- Filter fields section (END) -->
+
+  <!-- Section containing table with all / filtered tickets (BEGINNING) -->
   <section id="table-section">
+
     <div class="row">
       <div class="col-sm-12 px-5">
+
+        <!-- Table containing tickets (BEGINNING) -->
         <table class="table text-center">
+
+          <!-- Table heading (BEGINNING) -->
           <thead>
             <tr>
               <th>Status</th>
@@ -52,9 +74,15 @@
               <th>Date created</th>
             </tr>
           </thead>
+          <!-- Table heading (END) -->
+
+          <!-- Table body (BEGINNING) -->
           <tbody>
+
             {% for ticket in tickets %}
             <tr>
+
+              <!-- Column containnig font awesome icons indication ticket status (BEGINNING) -->
               <td>
                 {% if ticket.ticket_status == "Open" %}
                 <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
@@ -62,18 +90,30 @@
                 <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
                 <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
               </td>
+              <!-- Column containnig font awesome icons indication ticket status (END) -->
+
               <td>{{ ticket.id }}</td>
               <td>{{ ticket.subject }}</td>
               <td>{{ ticket.ticket_type }}</td>
+
+              <!-- Columns containnig action buttons for edit / view / delete ticket (BEGINNING) -->
               <td><a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
               <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
               <td><a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              <!-- Columns containnig action buttons for edit / view / delete ticket (END) -->
+
               <td>{{ ticket.date_created }}</td>
+
             </tr>
             {% endfor %}
-          </tbody>
-        </table>
 
+          </tbody>
+          <!-- Table body (END) -->
+
+        </table>
+        <!-- Table containing tickets (END) -->
+
+        <!-- Pagination buttons (BEGINNING) -->
         {% if tickets.has_other_pages %}
         <ul class="pagination">
           {% if tickets.has_previous %}
@@ -92,17 +132,29 @@
           {% endif %}
         </ul>
         {% endif %}
+        <!-- Pagination buttons (END) -->
+
       </div>
     </div>
-  </section>
 
+  </section>
+  <!-- Section containing table with all / filtered tickets (END) -->
+
+  <!-- Add ticket button section (BEGINNING) -->
   <section id="add-ticket-button">
+    
+    <!-- Add ticket button container (BEGINNING) -->
     <div class="row">
       <div class="col-sm-12 d-flex justify-content-end pr-5">
         <button class="btn btn-link btn-lg"><a href="{% url 'add_ticket' %}"><i data-toggle="tooltip" data-placement="bottom" title="Add ticket" class="fa fa-plus-circle" aria-hidden="true"></i></a></button>
       </div>
     </div>
+    <!-- Add ticket button container (END) -->
+
   </section>
+  <!-- Add ticket button section (END) -->
 
 </section>
+<!-- Page content container (END) -->
+
 {% endblock %}

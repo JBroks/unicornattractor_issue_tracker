@@ -1,138 +1,157 @@
 {% extends 'base.html' %} {% block page_title %}{{ user }}'s Profile{% endblock %} {% block content %}
 
-<div class="row">
+<!-- Page content container (BEGINNING) -->
+<section class="content-container">
 
-    <!-- Aside element containing user photo, personal info and activity as well as edit/delete profile buttons -->
+    <div class="row">
 
-    <div class="col-md-3 col-sm-4 aside">
-        <!-- Profile photo container -->
-        <div class="row">
-            <div class="col-sm-12">
-                {% if user.userprofile.image %}
-                <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image"> {% else %}
-                <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image"> {% endif %}
+        <!-- Aside element containing user photo, personal info and activity as well as edit/delete profile buttons (BEGINNING) -->
+        <div class="col-md-3 col-sm-4 aside">
+
+            <!-- Profile photo container (BEGINNING)-->
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if user.userprofile.image %}
+                    <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image"> {% else %}
+                    <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image"> {% endif %}
+                </div>
             </div>
+            <!-- Profile photo container (END)-->
+
+            <!-- Personal info container (BEGINNING)-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>Personal info</h5>
+                    <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
+                    <p>Username: {{ user.username }}</p>
+                    <p>Email: {{ user.email }}</p>
+                </div>
+            </div>
+            <!-- Personal info container (END)-->
+
+            <!-- Activity summary container (BEGINNING)-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>Activity</h5>
+                    <p>Posts: ??</p>
+                    <p>Tickets: {{ ticket_count }}</p>
+                    <p>Comments: ??</p>
+                </div>
+            </div>
+            <!-- Activity summary container (END)-->
+
+            <!-- Buttons container (BEGINNING)-->
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button><a href="{% url 'edit_profile' %}">Update profile</a></button>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <a href="{% url 'delete_account' %}">Delete account</a>
+                </div>
+            </div>
+            <!-- Buttons container (END)-->
+
         </div>
-        <!-- Personal info container -->
-        <div class="row">
-            <div class="col-sm-12">
-                <h5>Personal info</h5>
-                <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
-                <p>Username: {{ user.username }}</p>
-                <p>Email: {{ user.email }}</p>
-            </div>
-        </div>
-        <!-- Activity summary container -->
-        <div class="row">
-            <div class="col-sm-12">
-                <h5>Activity</h5>
-                <p>Posts: ??</p>
-                <p>Tickets: {{ ticket_count }}</p>
-                <p>Comments: ??</p>
-            </div>
-        </div>
-        <!-- Buttons container -->
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <button><a href="{% url 'edit_profile' %}">Update profile</a></button>
-            </div>
-            <div class="col-sm-12 text-center">
-                <a href="{% url 'delete_account' %}">Delete account</a>
-            </div>
-        </div>
-    </div>
+        <!-- Aside element containing user photo, personal info and activity as well as edit/delete profile buttons (END) -->
 
-    <!-- Main section of the profile containing user activity information -->
+        <!-- Main section of the profile containing user activity information (BEGINNING) -->
+        <div class="col-md-9 col-sm-8">
 
-    <div class="col-md-9 col-sm-8">
-        <!-- User profile heading and last seen info -->
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                <p>Joined: {{ user.date_joined }}</p>
-                <p>Last seen: {{ user.last_login }}</p>
+            <!-- User profile heading and last seen info (BEGINNING) -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                    <p>Joined: {{ user.date_joined }}</p>
+                    <p>Last seen: {{ user.last_login }}</p>
+                </div>
             </div>
-        </div>
+            <!-- User profile heading and last seen info (END) -->
 
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">My tickets ({{ ticket_count }})</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">My posts ()</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">My comments ()</a>
-            </li>
-        </ul>
-        
-        <!-- Pills content (BEGINNING)-->
-        <div class="tab-content" id="pills-tabContent">
-            
-            <!-- Pill containing user tickets table (BEGINNING) -->
-            <div class="tab-pane fade show active" id="pills-tickets" role="tabpanel" aria-labelledby="pills-tickets-tab">
-                
-                <!-- User tickets table (BEGINNING) -->    
-                <table class="table text-center">
-                    <tbody class="tickets-table">
-                        {% for ticket in user_tickets %}
-                        <tr>
-                            <td>
-                                {% if ticket.ticket_status == "Open" %}
-                                <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
-                                <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
-                                <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
-                                <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
-                            </td>
-                            <td>{{ ticket.id }}</td>
-                            <td>{{ ticket.subject }}</td>
-                            <td>{{ ticket.ticket_type }}</td>
-                            <td><a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
-                            <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-                            <td><a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <!-- User tickets table (END) -->  
+            <!-- Pills navigation buttons (BEGINNING) -->
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">My tickets ({{ ticket_count }})</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">My posts ()</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">My comments ()</a>
+                </li>
+            </ul>
+            <!-- Pills navigation buttons (END) -->
 
-                <!-- User tickets pagination buttons (BEGINNING)-->
-                {% if user_tickets.has_other_pages %}
-                <ul class="pagination">
-                    {% if user_tickets.has_previous %}
-                    <li><a href="?page={{ user_tickets.previous_page_number }}">&laquo;</a></li>
-                    {% else %}
-                    <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %} {% for i in user_tickets.paginator.page_range %} {% if user_tickets.number == i %}
-                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
-                    </li>
-                    {% else %}
-                    <li><a href="?page={{ i }}">{{ i }}</a></li>
-                    {% endif %} {% endfor %} {% if user_tickets.has_next %}
-                    <li><a href="?page={{ user_tickets.next_page_number }}">&raquo;</a></li>
-                    {% else %}
-                    <li class="disabled"><span>&raquo;</span></li>
+            <!-- Pills content (BEGINNING)-->
+            <div class="tab-content" id="pills-tabContent">
+
+                <!-- Pill containing user tickets table (BEGINNING) -->
+                <div class="tab-pane fade show active" id="pills-tickets" role="tabpanel" aria-labelledby="pills-tickets-tab">
+
+                    <!-- User tickets table (BEGINNING) -->
+                    <table class="table text-center">
+                        <tbody class="tickets-table">
+                            {% for ticket in user_tickets %}
+                            <tr>
+                                <td>
+                                    {% if ticket.ticket_status == "Open" %}
+                                    <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
+                                    <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
+                                    <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
+                                    <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
+                                </td>
+                                <td>{{ ticket.id }}</td>
+                                <td>{{ ticket.subject }}</td>
+                                <td>{{ ticket.ticket_type }}</td>
+                                <td><a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
+                                <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                                <td><a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- User tickets table (END) -->
+
+                    <!-- User tickets pagination buttons (BEGINNING)-->
+                    {% if user_tickets.has_other_pages %}
+                    <ul class="pagination">
+                        {% if user_tickets.has_previous %}
+                        <li><a href="?page={{ user_tickets.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %} {% for i in user_tickets.paginator.page_range %} {% if user_tickets.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
+                        </li>
+                        {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %} {% endfor %} {% if user_tickets.has_next %}
+                        <li><a href="?page={{ user_tickets.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
                     {% endif %}
-                </ul>
-                {% endif %}
-                <!-- User tickets pagination buttons (END)-->
+                    <!-- User tickets pagination buttons (END)-->
+
+                </div>
+                <!-- Pill containing user tickets table (END) -->
+
+                <!-- Pill containing user posts table (BEGINNING) -->
+                <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">...</div>
+                <!-- Pill containing user posts table (END) -->
+
+                <!-- Pill containing user comments table (BEGINNING) -->
+                <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">...</div>
+                <!-- Pill containing user comments table (END) -->
 
             </div>
-            <!-- Pill containing user tickets table (END) -->
-            
-            <!-- Pill containing user posts table (BEGINNING) -->
-            <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">...</div>
-            <!-- Pill containing user posts table (END) -->
-            
-            <!-- Pill containing user comments table (BEGINNING) -->
-            <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">...</div>
-            <!-- Pill containing user comments table (END) -->
-            
+            <!-- Pills content (END)-->
+
         </div>
-        <!-- Pills content (END)-->
-        
+        <!-- Main section of the profile containing user activity information (END) -->
+
     </div>
 
-</div>
+</section>
+<!-- Page content container (END) -->
 
 {% endblock %}

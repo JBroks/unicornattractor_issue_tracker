@@ -1,21 +1,30 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Ticket form {% endblock %} {% block content %}
 
-<!-- Content container -->
+<!-- Page content container (BEGINNING) -->
 <section class="content-container">
+    
+    <!-- Page heading (different for add new ticket and prefilled / edit form) (BEGINNING) -->
     {% if request.get_full_path == "/tickets/new/" %}
     <h1 class="text-center">Report a bug or propose a new feature</h1>
     {% else %}
     <h1 class="text-center">Edit ticket</h1>
     {% endif %}
+    <!-- Page heading (different for add new ticket and prefilled / edit form) (END) -->
     
+    <!-- Section containing the ticket form (BEGINNING) -->
     <section id="add-ticket-section">
-        <!-- Add ticket form -->
+        
+        <!-- Add ticket form (BEGINNING) -->
         <form method="post" class="mx-auto">
             {% csrf_token %} {{ add_ticket_form | as_bootstrap }}
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
+        <!-- Add ticket form (END) -->
+        
     </section>
+    <!-- Section containing the ticket form (BEGINNING) -->
 
 </section>
+<!-- Page content container (END) -->
 
 {% endblock %}
