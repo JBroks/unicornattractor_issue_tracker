@@ -44,8 +44,8 @@
 
       <!-- Form butttons (BEGINNING) -->
       <div class="row">
-        <div class="col-md-6 col-sm-12 d-flex justify-content-center"><button type="submit" class="btn btn-success">Apply Filter</button></div>
-        <div class="col-md-6 col-sm-12 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset</button></div>
+        <div class="col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-success">Apply Filter</button></div>
+        <div class="col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset</button></div>
       </div>
       <!-- Form butttons (END) -->
 
@@ -58,6 +58,8 @@
   <section id="table-section">
 
     <div class="row">
+
+      <!-- Table container (BEGINNING) -->
       <div class="col-sm-12 px-5">
 
         <!-- Table containing tickets (BEGINNING) -->
@@ -73,7 +75,7 @@
               <th colspan=3></th>
               <th>Added by</th>
               <th>Date created</th>
-              
+
             </tr>
           </thead>
           <!-- Table heading (END) -->
@@ -97,7 +99,7 @@
               <td>{{ ticket.id }}</td>
               <td>{{ ticket.subject }}</td>
               <td>{{ ticket.ticket_type }}</td>
-              
+
               <!-- Columns containnig action buttons for edit / view / delete ticket (BEGINNING) -->
               <td><a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
               {% if request.user == ticket.user %}
@@ -108,7 +110,7 @@
               <td></td>
               {% endif %}
               <!-- Columns containnig action buttons for edit / view / delete ticket (END) -->
-              
+
               <td>{{ ticket.user }}</td>
               <td>{{ ticket.date_created }}</td>
 
@@ -121,28 +123,38 @@
         </table>
         <!-- Table containing tickets (END) -->
 
+      </div>
+      <!-- Table container (END) -->
+
+      <!-- Pagination navigation container (BEGINNING) -->
+      <div class="col-sm-12 d-flex justify-content-center">
+
         <!-- Pagination buttons (BEGINNING) -->
         {% if tickets.has_other_pages %}
-        <ul class="pagination">
-          {% if tickets.has_previous %}
-          <li><a href="?page={{ tickets.previous_page_number }}">&laquo;</a></li>
-          {% else %}
-          <li class="disabled"><span>&laquo;</span></li>
-          {% endif %} {% for i in tickets.paginator.page_range %} {% if tickets.number == i %}
-          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
-          </li>
-          {% else %}
-          <li><a href="?page={{ i }}">{{ i }}</a></li>
-          {% endif %} {% endfor %} {% if tickets.has_next %}
-          <li><a href="?page={{ tickets.next_page_number }}">&raquo;</a></li>
-          {% else %}
-          <li class="disabled"><span>&raquo;</span></li>
-          {% endif %}
-        </ul>
+        <nav aria-label="Table navigation">
+          <ul class="pagination">
+            {% if tickets.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ tickets.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            {% endif %} {% for i in tickets.paginator.page_range %} {% if tickets.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+            </li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %} {% endfor %} {% if tickets.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ tickets.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+            {% endif %}
+          </ul>
+        </nav>
         {% endif %}
         <!-- Pagination buttons (END) -->
 
       </div>
+      <!-- Pagination navigation container (END) -->
+
     </div>
 
   </section>
