@@ -2,18 +2,25 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Ticket
 from django.core.exceptions import ValidationError
+from itertools import chain
 
 class AddTicketForm(forms.ModelForm):
     '''
     Ticket form that enables user to select ticket type, and type in ticket
     subject and description
     '''
-    TYPE_CHOICES = [(i,i) for i in ["Feature", "Bug"] ]
+   
+    TYPES = list(chain(["--- Please select type ---"],
+                        Ticket.objects.order_by().values_list('ticket_type',
+                        flat=True).distinct()
+                        ))
+
+    TYPE_CHOICES = [(i,i) for i in TYPES ]
     
     ticket_type = forms.ChoiceField(
+        choices=TYPE_CHOICES,
         label='Ticket type',
-        choices=TYPE_CHOICES, 
-        required=False)
+        required=True)
         
     subject = forms.CharField(
         label="Subject",
