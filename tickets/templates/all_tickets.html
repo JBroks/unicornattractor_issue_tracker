@@ -17,8 +17,8 @@
 
         <!-- Ticket type select menu (BEGINNING) -->
         <div class="form-group col-sm-6">
-          <label for="ticket_type">Ticket type</label>
-          <select class="form-control" id="ticket_type" name="ticket_type">
+          <label for="ticket-type">Ticket type</label>
+          <select class="form-control" id="ticket-type" name="ticket-type">
             <option selected>Select...</option>
             {% for type in types_list %}
             <option value="{{ type }}">{{ type }}</option>
@@ -29,8 +29,8 @@
 
         <!-- Ticket status select menu (BEGINNING) -->
         <div class="form-group col-sm-6">
-          <label for="ticket_status">Ticket status</label>
-          <select class="form-control" id="ticket_status" name="ticket_status">
+          <label for="ticket-status">Ticket status</label>
+          <select class="form-control" id="ticket-status" name="ticket-status">
             <option selected>Select...</option>
             {% for status in status_list %}
             <option value="{{ status }}">{{ status }}</option>
@@ -63,7 +63,7 @@
       <div class="col-sm-12 px-5">
 
         <!-- Table containing tickets (BEGINNING) -->
-        <table class="table text-center">
+        <table id="ticket-table" class="table text-center">
 
           <!-- Table heading (BEGINNING) -->
           <thead>
@@ -101,7 +101,7 @@
               <td>{{ ticket.ticket_type }}</td>
 
               <!-- Columns containnig action buttons for edit / view / delete ticket (BEGINNING) -->
-              <td><a href="#" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
+              <td><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
               {% if request.user == ticket.user %}
               <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
               <td><a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
