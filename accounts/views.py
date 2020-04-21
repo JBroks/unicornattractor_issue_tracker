@@ -62,9 +62,10 @@ def registration(request):
     return render(request, 'registration.html', {"registration_form": 
                     registration_form})
 
-def user_profile(request):
+def user_profile(request, username):
     """The user's profile page"""
-    user = User.objects.get(email=request.user.email)
+
+    user = User.objects.get(username=request.user.username)
     
     ticket_count = Ticket.objects.filter(user=request.user).count()
     
