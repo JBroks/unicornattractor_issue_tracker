@@ -109,7 +109,6 @@ def delete_account(request):
     
     if request.method == 'POST':
         delete_form = UserDeleteForm(request.POST, instance=request.user)
-        
         if delete_form.is_valid():
             user = request.user
             user.delete()

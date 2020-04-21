@@ -46,13 +46,55 @@
                     <button><a href="{% url 'edit_profile' %}">Update profile</a></button>
                 </div>
                 <div class="col-sm-12 text-center">
-                    <a href="{% url 'delete_account' %}">Delete account</a>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteModal">Delete account</button>
                 </div>
             </div>
             <!-- Buttons container (END)-->
 
         </div>
         <!-- Aside element containing user photo, personal info and activity as well as edit/delete profile buttons (END) -->
+
+        <!-- Delete Account Modal (BEGINNING)-->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    
+                    <!-- Modal header (BEGINNING) -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete User Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- Modal header (END) -->
+                    
+                    <!-- Delete user account form (BEGINNING) -->
+                    <form action="{% url 'delete_account' %}" method="post" id="user-form">
+                        {% csrf_token %}
+                        
+                        <!-- Modal body (BEGINNING) -->
+                        <div class="form-group my-0 modal-body">
+                            <p class="my-0">Are you sure you want to delete your account? This will permanently delete your profile and any content you have generated.</p>
+                            {{ form }}
+                        </div>
+                        <!-- Modal body (END) -->
+                        
+                        <!-- Modal footer: Confirm delete and cancel button container (BEGINNING) -->
+                        <div class="form-group my-0 modal-footer">
+
+                            <button class="btn btn-danger" type="submit">Delete Account</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                        </div>
+                        <!-- Modal footer: Confirm delete and cancel button container (END) -->
+
+                    </form>
+                    <!-- Delete user account form (END) -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Delete Account Modal (END)-->
 
         <!-- Main section of the profile containing user activity information (BEGINNING) -->
         <div class="col-md-9 col-sm-8">

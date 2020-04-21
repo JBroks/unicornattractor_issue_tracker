@@ -32,3 +32,8 @@ footer {
 .table tr:first-child td {
   border-top: none;
 }
+
+/* Set width for the form contained within a modal */
+#user-form {
+  width: 100%;
+}
