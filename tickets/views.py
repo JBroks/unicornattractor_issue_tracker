@@ -100,6 +100,16 @@ def view_ticket(request, pk):
     
     return render(request, 'view_ticket.html', {'ticket': ticket})
     
-'''
-def delete_ticket(request):
-'''
+
+def delete_ticket(request, pk):
+    
+    ticket= get_object_or_404(Ticket, pk=pk)
+
+    author= ticket.user.username
+
+    if request.method == "POST" and request.user.is_authenticated and request.user.username == author:
+        ticket.delete()
+        messages.success(request, "Ticket successfully deleted!")
+        return redirect(reverse('all_tickets'))
+    
+    return render(request, 'delete_ticket.html', {'ticket': ticket})
