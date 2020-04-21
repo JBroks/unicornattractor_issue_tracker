@@ -89,8 +89,9 @@ def user_profile(request, username):
     return render(request, 'profile.html', args)
 
 @login_required
-def edit_profile(request):
+def edit_profile(request, username):
     
+    username = User.objects.get(username=request.user.username)
     if request.method == 'POST':
         edit_form = UserChangeForm(request.POST, instance=request.user)
         
