@@ -2,7 +2,7 @@
 /**
  * Function to initialize all tooltips on a page
  **/
-$(function () {
+$(function() {
   $('[data-toggle="tooltip"]').tooltip()
 });
 
@@ -12,7 +12,13 @@ $(function () {
  * Onclick functions for the ticket type and status filters.
  * Function that clears the filters after reset button is clicked by a user
  **/
-$('#reset').click(function(){
-    $("#ticket_type").val($("#ticket_type option:first").val());
-    $("#ticket_status").val($("#ticket_status option:first").val());
+$('#reset').click(function() {
+  $("#ticket-type").val($("#ticket-type option:first").val());
+  $("#ticket-status").val($("#ticket-status option:first").val());
+});
+
+
+$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+  e.target // newly activated tab
+  e.relatedTarget // previous active tab
 });
