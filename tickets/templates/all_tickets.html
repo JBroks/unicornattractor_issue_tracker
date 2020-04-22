@@ -130,7 +130,7 @@
                     <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-danger"><a href="{% url 'delete_ticket' ticket.id %}">Delete</a>
+                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     </button>
                   </div>
