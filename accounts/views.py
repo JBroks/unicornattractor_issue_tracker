@@ -92,6 +92,7 @@ def user_profile(request, username):
 def edit_profile(request, username):
     
     username = User.objects.get(username=request.user.username)
+    
     if request.method == 'POST':
         edit_form = UserChangeForm(request.POST, instance=request.user)
         

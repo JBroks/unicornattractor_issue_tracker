@@ -43,7 +43,7 @@
             <!-- Buttons container (BEGINNING)-->
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <button><a href="{% url 'edit_profile' user.username %}">Update profile</a></button>
+                    <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}">Update profile</a></button>
                 </div>
                 <div class="col-sm-12 text-center">
                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteModal">Delete account</button>
@@ -58,7 +58,7 @@
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    
+
                     <!-- Modal header (BEGINNING) -->
                     <div class="modal-header">
                         <h5 class="modal-title" id="deleteModalLabel">Delete User Account</h5>
@@ -67,18 +67,18 @@
                         </button>
                     </div>
                     <!-- Modal header (END) -->
-                    
+
                     <!-- Delete user account form (BEGINNING) -->
                     <form action="{% url 'delete_account' %}" method="post" id="user-form">
                         {% csrf_token %}
-                        
+
                         <!-- Modal body (BEGINNING) -->
                         <div class="form-group my-0 modal-body">
                             <p class="my-0">Are you sure you want to delete your account? This will permanently delete your profile and any content you have generated.</p>
                             {{ form }}
                         </div>
                         <!-- Modal body (END) -->
-                        
+
                         <!-- Modal footer: Confirm delete and cancel button container (BEGINNING) -->
                         <div class="form-group my-0 modal-footer">
 
@@ -144,10 +144,33 @@
                                 <td>{{ ticket.id }}</td>
                                 <td>{{ ticket.subject }}</td>
                                 <td>{{ ticket.ticket_type }}</td>
-                                <td><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
-                                <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-                                <td><a href="#" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                <td><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-secondary" aria-hidden="true"></i></a></td>
+                                <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i></a></td>
+                                <td><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                             </tr>
+
+                            <!-- Delete Ticket Modal -->
+                            <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Delete Ticket Modal -->
+
                             {% endfor %}
                         </tbody>
                     </table>
