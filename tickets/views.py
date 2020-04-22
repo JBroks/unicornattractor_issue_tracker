@@ -103,13 +103,11 @@ def view_ticket(request, pk):
 
 def delete_ticket(request, pk):
     
-    ticket= get_object_or_404(Ticket, pk=pk)
+    ticket = get_object_or_404(Ticket, pk=pk)
 
-    author= ticket.user.username
+    author= ticket.user
 
-    if request.method == "POST" and request.user.is_authenticated and request.user.username == author:
-        ticket.delete()
-        messages.success(request, "Ticket successfully deleted!")
-        return redirect(reverse('all_tickets'))
-    
-    return render(request, 'delete_ticket.html', {'ticket': ticket})
+    if request.user.is_authenticated and request.user == author:
+            ticket.delete()
+            messages.success(request, "Ticket successfully deleted!")
+            return redirect(reverse('all_tickets'))

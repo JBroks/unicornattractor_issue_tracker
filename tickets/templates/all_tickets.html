@@ -104,7 +104,7 @@
               <td><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
               {% if request.user == ticket.user %}
               <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-              <td><a href="{% url 'delete_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              <td><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></span></td>
               {% else %}
               <td></td>
               <td></td>
@@ -113,8 +113,32 @@
 
               <td>{{ ticket.user }}</td>
               <td>{{ ticket.date_created }}</td>
-
+              
             </tr>
+            
+            <!-- Delete Ticket Modal -->
+            <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger"><a href="{% url 'delete_ticket' ticket.id %}">Delete</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Delete Ticket Modal -->
+            
             {% endfor %}
 
           </tbody>
