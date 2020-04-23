@@ -5,120 +5,94 @@
 
     <div class="row">
 
-        <!-- Aside element containing user photo, personal info and activity as well as edit/delete profile buttons (BEGINNING) -->
-        <div class="col-md-3 col-sm-4 aside">
+        <!-- Profile photo container (BEGINNING)-->
+        <div class="col-md-3 col-sm-12 d-flex justify-content-center d-none d-sm-block">
+            {% if user.userprofile.image %}
+            <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image"> {% else %}
+            <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image"> {% endif %}
+        </div>
+        <!-- Profile photo container (END)-->
 
-            <!-- Profile photo container (BEGINNING)-->
+        <!-- User profile heading and last seen info (BEGINNING) -->
+        <div class="col-md-8 col-sm-12">
             <div class="row">
-                <div class="col-sm-12">
-                    {% if user.userprofile.image %}
-                    <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image"> {% else %}
-                    <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image"> {% endif %}
+                <div class="col-sm-12 d-flex justify-content-center d-none d-sm-block">
+                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                </div>
+                <div class="col-sm-12 d-flex justify-content-center d-none d-sm-block">
+                    <p>Joined: {{ user.date_joined }}</p>
+                </div>
+                <div class="col-sm-12 d-flex justify-content-center d-none d-sm-block">
+                    <p>Last seen: {{ user.last_login }}</p>
                 </div>
             </div>
-            <!-- Profile photo container (END)-->
+        </div>
+        <!-- User profile heading and last seen info (END) -->
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3 col-sm-12">
 
             <!-- Personal info container (BEGINNING)-->
-            <div class="row">
+            <div class="row d-none d-sm-block">
                 <div class="col-sm-12">
-                    <h5>Personal info</h5>
-                    <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
-                    <p>Username: {{ user.username }}</p>
-                    <p>Email: {{ user.email }}</p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5>Personal info</h5>
+                        </div>
+                        <div class="col-sm-12">
+                            <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p>Username: {{ user.username }}</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p>Email: {{ user.email }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Personal info container (END)-->
 
             <!-- Activity summary container (BEGINNING)-->
-            <div class="row">
+            <div class="row d-none d-sm-block">
                 <div class="col-sm-12">
-                    <h5>Activity</h5>
-                    <p>Posts: ??</p>
-                    <p>Tickets: {{ ticket_count }}</p>
-                    <p>Comments: ??</p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5>Activity</h5>
+                        </div>
+                        <div class="col-sm-12">
+                            <p>Posts: ??</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p>Tickets: {{ ticket_count }}</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p>Comments: ??</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Activity summary container (END)-->
-
-            <!-- Buttons container (BEGINNING)-->
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}">Update profile</a></button>
-                </div>
-                <div class="col-sm-12 text-center">
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteModal">Delete account</button>
-                </div>
-            </div>
-            <!-- Buttons container (END)-->
-
+            
         </div>
-        <!-- Aside element containing user photo, personal info and activity as well as edit/delete profile buttons (END) -->
 
-        <!-- Delete Account Modal (BEGINNING)-->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
 
-                    <!-- Modal header (BEGINNING) -->
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Delete User Account</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <!-- Modal header (END) -->
-
-                    <!-- Delete user account form (BEGINNING) -->
-                    <form action="{% url 'delete_account' %}" method="post" id="user-form">
-                        {% csrf_token %}
-
-                        <!-- Modal body (BEGINNING) -->
-                        <div class="form-group my-0 modal-body">
-                            <p class="my-0">Are you sure you want to delete your account? This will permanently delete your profile and any content you have generated.</p>
-                            {{ form }}
-                        </div>
-                        <!-- Modal body (END) -->
-
-                        <!-- Modal footer: Confirm delete and cancel button container (BEGINNING) -->
-                        <div class="form-group my-0 modal-footer">
-
-                            <button class="btn btn-danger" type="submit">Delete Account</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-                        </div>
-                        <!-- Modal footer: Confirm delete and cancel button container (END) -->
-
-                    </form>
-                    <!-- Delete user account form (END) -->
-
-                </div>
-            </div>
-        </div>
-        <!-- Delete Account Modal (END)-->
-
-        <!-- Main section of the profile containing user activity information (BEGINNING) -->
-        <div class="col-md-9 col-sm-8">
-
-            <!-- User profile heading and last seen info (BEGINNING) -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                    <p>Joined: {{ user.date_joined }}</p>
-                    <p>Last seen: {{ user.last_login }}</p>
-                </div>
-            </div>
-            <!-- User profile heading and last seen info (END) -->
+        <div class="col-md-8 col-sm-12">
+            <h3>User content</h3>
 
             <!-- Pills navigation buttons (BEGINNING) -->
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">My tickets ({{ ticket_count }})</a>
+                    <a class="nav-link active" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">Tickets ({{ ticket_count }})</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">My posts ()</a>
+                    <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts ()</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">My comments ()</a>
+                    <a class="nav-link" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Comments ()</a>
                 </li>
             </ul>
             <!-- Pills navigation buttons (END) -->
@@ -130,23 +104,22 @@
                 <div class="tab-pane fade show active" id="pills-tickets" role="tabpanel" aria-labelledby="pills-tickets-tab">
 
                     <!-- User tickets table (BEGINNING) -->
-                    <table class="table text-center">
+                    <table class="table">
                         <tbody class="tickets-table">
                             {% for ticket in user_tickets %}
                             <tr>
-                                <td>
+                                <td class="text-center">
                                     {% if ticket.ticket_status == "Open" %}
                                     <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
                                     <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
                                     <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
                                     <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
                                 </td>
-                                <td>{{ ticket.id }}</td>
-                                <td>{{ ticket.subject }}</td>
-                                <td>{{ ticket.ticket_type }}</td>
-                                <td><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-secondary" aria-hidden="true"></i></a></td>
-                                <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i></a></td>
-                                <td><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                <td>Ticket #{{ ticket.id }}: {{ ticket.subject }}</td>
+                                <td class="text-center">{{ ticket.ticket_type }}</td>
+                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-secondary" aria-hidden="true"></i></a></td>
+                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i></a></td>
+                                <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                             </tr>
 
                             <!-- Delete Ticket Modal -->
@@ -163,7 +136,7 @@
                                             <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a>
+                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                         </div>
                                     </div>
@@ -212,9 +185,66 @@
             <!-- Pills content (END)-->
 
         </div>
-        <!-- Main section of the profile containing user activity information (END) -->
 
     </div>
+
+    <!-- Buttons container (BEGINNING)-->
+    <div class="row pt-5">
+        <div class="col-md-3 col-sm-12 text-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}">Update profile</a></button>
+                </div>
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteModal">Delete account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Buttons container (END)-->
+
+
+    <!-- Delete Account Modal (BEGINNING)-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <!-- Modal header (BEGINNING) -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete User Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <!-- Modal header (END) -->
+
+                <!-- Delete user account form (BEGINNING) -->
+                <form action="{% url 'delete_account' %}" method="post" id="user-form">
+                    {% csrf_token %}
+
+                    <!-- Modal body (BEGINNING) -->
+                    <div class="form-group my-0 modal-body">
+                        <p class="my-0">Are you sure you want to delete your account? This will permanently delete your profile and any content you have generated.</p>
+                        {{ form }}
+                    </div>
+                    <!-- Modal body (END) -->
+
+                    <!-- Modal footer: Confirm delete and cancel button container (BEGINNING) -->
+                    <div class="form-group my-0 modal-footer">
+
+                        <button class="btn btn-danger" type="submit">Delete Account</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                    </div>
+                    <!-- Modal footer: Confirm delete and cancel button container (END) -->
+
+                </form>
+                <!-- Delete user account form (END) -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Delete Account Modal (END)-->
 
 </section>
 <!-- Page content container (END) -->
