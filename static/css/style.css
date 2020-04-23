@@ -25,7 +25,7 @@ footer {
 
 /* Increse size of add ticket to make it more prominent */
 .btn-lg {
-    font-size: 2rem;
+    font-size: 4rem;
 }
 
 /* Remove top border for the first row in the table */
