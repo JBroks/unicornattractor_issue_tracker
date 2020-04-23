@@ -56,8 +56,8 @@ def all_tickets(request):
     qs = Ticket.objects.all()
     
     # Queries
-    type_filter_query = request.GET.get('ticket_type')
-    status_filter_query = request.GET.get('ticket_status')
+    type_filter_query = request.GET.get('ticket-type')
+    status_filter_query = request.GET.get('ticket-status')
     
     # Filter queryset
     if type_filter_query and type_filter_query != "Select...":
@@ -106,7 +106,6 @@ def delete_ticket(request, pk):
     ticket = get_object_or_404(Ticket, pk=pk)
 
     author= ticket.user
-
     if request.user.is_authenticated and request.user == author:
             ticket.delete()
             messages.success(request, "Ticket successfully deleted!")
