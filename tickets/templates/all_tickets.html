@@ -16,7 +16,7 @@
       <div class="row">
 
         <!-- Ticket type select menu (BEGINNING) -->
-        <div class="form-group col-sm-6">
+        <div class="form-group col-md-6 col-sm-12">
           <label for="ticket-type">Ticket type</label>
           <select class="form-control" id="ticket-type" name="ticket-type">
             <option selected>Select...</option>
@@ -28,7 +28,7 @@
         <!-- Ticket type select menu (END) -->
 
         <!-- Ticket status select menu (BEGINNING) -->
-        <div class="form-group col-sm-6">
+        <div class="form-group col-md-6 col-sm-12">
           <label for="ticket-status">Ticket status</label>
           <select class="form-control" id="ticket-status" name="ticket-status">
             <option selected>Select...</option>
@@ -44,8 +44,8 @@
 
       <!-- Reset buttton (BEGINNING) -->
       <div class="row">
-        <div class="col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-success">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
-        <div class="col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset  <i class="fa fa-refresh" aria-hidden="true"></i></button></div>
+        <div class="form-group col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-success">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
+        <div class="form-group col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset  <i class="fa fa-refresh" aria-hidden="true"></i></button></div>
       </div>
       <!-- Reset buttton (END) -->
 
@@ -57,10 +57,10 @@
   <!-- Section containing table with all / filtered tickets (BEGINNING) -->
   <section id="table-section">
 
-    <div class="row px-5">
+    <div class="row px-md-5 px-sm-2">
 
       <!-- Table container (BEGINNING) -->
-      <div class="col-sm-12 px-5">
+      <div class="col-sm-12">
 
         <!-- Table containing tickets (BEGINNING) -->
         <table id="ticket-table" class="table text-center">
@@ -69,12 +69,10 @@
           <thead>
             <tr>
               <th>Status</th>
-              <th>#</th>
-              <th>Subject</th>
+              <th>Ticket</th>
               <th>Type</th>
-              <th colspan=3></th>
-              <th>Added by</th>
-              <th>Date created</th>
+              <th class="d-none d-md-table-cell" colspan=3></th>
+              <th class="d-none d-md-table-cell">Date created</th>
 
             </tr>
           </thead>
@@ -96,23 +94,21 @@
               </td>
               <!-- Column containnig font awesome icons indication ticket status (END) -->
 
-              <td>{{ ticket.id }}</td>
-              <td>{{ ticket.subject }}</td>
+              <td>Ticket #{{ ticket.id }}: {{ ticket.subject }}</td>
               <td>{{ ticket.ticket_type }}</td>
 
               <!-- Columns containnig action buttons for edit / view / delete ticket (BEGINNING) -->
-              <td><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-secondary" aria-hidden="true"></i></a></td>
+              <td class="d-none d-md-table-cell"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-secondary" aria-hidden="true"></i></a></td>
               {% if request.user == ticket.user %}
-              <td><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i></a></td>
-              <td><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+              <td class="d-none d-md-table-cell"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i></a></td>
+              <td class="d-none d-md-table-cell"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
               {% else %}
-              <td></td>
-              <td></td>
+              <td class="d-none d-md-table-cell"></td>
+              <td class="d-none d-md-table-cell"></td>
               {% endif %}
               <!-- Columns containnig action buttons for edit / view / delete ticket (END) -->
-
-              <td>{{ ticket.user }}</td>
-              <td>{{ ticket.date_created }}</td>
+              
+              <td class="d-none d-md-table-cell">{{ ticket.date_created }}</td>
 
             </tr>
 
