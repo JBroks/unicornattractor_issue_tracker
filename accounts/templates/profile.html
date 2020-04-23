@@ -76,23 +76,36 @@
                 </div>
             </div>
             <!-- Activity summary container (END)-->
-            
+
+            <!-- Buttons container - hidden only on small devices (BEGINNING)-->
+            <div class="row pt-5  d-none d-sm-block">
+                <div class="col-sm-12 text-center">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}">Update profile</a></button>
+                        </div>
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteModal">Delete account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Buttons container - hidden only on small devices (END)-->
+
         </div>
 
-
         <div class="col-md-8 col-sm-12">
-            <h3>User content</h3>
 
             <!-- Pills navigation buttons (BEGINNING) -->
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills mb-3 flex-column flex-sm-row" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">Tickets ({{ ticket_count }})</a>
+                    <a class="nav-link active flex-sm-fill text-sm-center" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">Tickets ({{ ticket_count }})</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts ()</a>
+                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts ()</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Comments ()</a>
+                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Comments ()</a>
                 </li>
             </ul>
             <!-- Pills navigation buttons (END) -->
@@ -188,9 +201,9 @@
 
     </div>
 
-    <!-- Buttons container (BEGINNING)-->
-    <div class="row pt-5">
-        <div class="col-md-3 col-sm-12 text-center">
+    <!-- Buttons container - showing only on small devices (BEGINNING)-->
+    <div class="row pt-5 d-block d-sm-none">
+        <div class="col-sm-12 text-center">
             <div class="row">
                 <div class="col-sm-12">
                     <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}">Update profile</a></button>
@@ -201,8 +214,7 @@
             </div>
         </div>
     </div>
-    <!-- Buttons container (END)-->
-
+    <!-- Buttons container - showing only on small devices  (END)-->
 
     <!-- Delete Account Modal (BEGINNING)-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
