@@ -128,7 +128,7 @@
                                     <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
                                     <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
                                 </td>
-                                <td>Ticket #{{ ticket.id }}: {{ ticket.subject }}</td>
+                                <td><a href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
                                 <td class="text-center">{{ ticket.ticket_type }}</td>
                                 <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-secondary" aria-hidden="true"></i></a></td>
                                 <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i></a></td>

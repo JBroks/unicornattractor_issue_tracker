@@ -94,7 +94,7 @@
               </td>
               <!-- Column containnig font awesome icons indication ticket status (END) -->
 
-              <td>Ticket #{{ ticket.id }}: {{ ticket.subject }}</td>
+              <td><a href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
               <td>{{ ticket.ticket_type }}</td>
 
               <!-- Columns containnig action buttons for edit / view / delete ticket (BEGINNING) -->
