@@ -1,16 +1,16 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} All tickets {% endblock %} {% block content %}
 
+<!-- Page heading (BEGINNING) -->
+  <h1 class="text-center mb-0 py-5">View all reported bugs and requested features</h1>
+  <!-- Page heading (END) -->
+  
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
 
-  <!-- Page heading (BEGINNING) -->
-  <h1 class="text-center">View all reported bugs and requested features</h1>
-  <!-- Page heading (END) -->
-
   <!-- Filter fields section (BEGINNING) -->
-  <section id="filter-section">
+  <section id="filter-section" class="py-4">
 
-    <form method="GET" action="." class="mx-auto">
+    <form method="GET" class="mx-auto">
 
       <!-- Row containing filters (BEGINNING) -->
       <div class="row">
@@ -42,12 +42,12 @@
       </div>
       <!-- Row containing filters (END) -->
 
-      <!-- Form butttons (BEGINNING) -->
+      <!-- Reset buttton (BEGINNING) -->
       <div class="row">
-        <div class="col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-success">Apply Filter</button></div>
-        <div class="col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset</button></div>
+        <div class="col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-success">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
+        <div class="col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset  <i class="fa fa-refresh" aria-hidden="true"></i></button></div>
       </div>
-      <!-- Form butttons (END) -->
+      <!-- Reset buttton (END) -->
 
     </form>
 
@@ -57,7 +57,7 @@
   <!-- Section containing table with all / filtered tickets (BEGINNING) -->
   <section id="table-section">
 
-    <div class="row">
+    <div class="row px-5">
 
       <!-- Table container (BEGINNING) -->
       <div class="col-sm-12 px-5">
@@ -113,9 +113,9 @@
 
               <td>{{ ticket.user }}</td>
               <td>{{ ticket.date_created }}</td>
-              
+
             </tr>
-            
+
             <!-- Delete Ticket Modal -->
             <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -138,7 +138,7 @@
               </div>
             </div>
             <!-- Delete Ticket Modal -->
-            
+
             {% endfor %}
 
           </tbody>
@@ -189,7 +189,7 @@
 
     <!-- Add ticket button container (BEGINNING) -->
     <div class="row">
-      <div class="col-sm-12 d-flex justify-content-end pr-5">
+      <div class="col-sm-4 offset-sm-8 d-flex justify-content-center px-5">
         <button class="btn btn-link btn-lg"><a href="{% url 'add_ticket' %}"><i data-toggle="tooltip" data-placement="bottom" title="Add ticket" class="fa fa-plus-circle" aria-hidden="true"></i></a></button>
       </div>
     </div>
