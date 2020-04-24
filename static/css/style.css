@@ -38,6 +38,22 @@ footer {
   width: 100%;
 }
 
+/* Styling for ticket summary list to create nice layout where text is aligned */
+#ticket-summary-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#ticket-summary-list i {
+  float: left;
+}
+
+#ticket-summary-list span {
+  display: block;
+  padding-left: 50px;
+}
+
 @media only screen and (max-width: 600px) {
   form {
     width: 80%;
