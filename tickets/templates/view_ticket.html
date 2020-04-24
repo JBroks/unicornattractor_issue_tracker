@@ -77,14 +77,27 @@
             <!-- Ticket description and upvote button container (BEGINNING) -->
             <div class="col-md-8 col-sm-12">
 
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ ticket.subject }}</h5>
-                        <h6 class="card-subtitle mb-2"><img src="" class="card-img-top" alt="Ticket's author image">{{ ticket.user }}</h6>
-                        <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted">{{ ticket.date_updated }}</h6>
-                        <p class="card-text">{{ ticket.description }}</p>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ ticket.subject }}</h5>
+                                <h6 class="card-subtitle mb-2"><img src="" class="card-img-top" alt="Ticket's author image">{{ ticket.user }}</h6>
+                                <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted">{{ ticket.date_updated }}</h6>
+                                <p class="card-text">{{ ticket.description }}</p>
+                            </div>
+                            <div class="card-footer bg-transparent text-right"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i>...</div>
+                        </div>
                     </div>
-                    <div class="card-footer bg-transparent text-right"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i>...</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <span>Would you like to support development of this feature? </br> Click Upvote button and donate a minimum of $5.</span>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button class="btn btn-success"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</button>
+                    </div>
                 </div>
 
             </div>
