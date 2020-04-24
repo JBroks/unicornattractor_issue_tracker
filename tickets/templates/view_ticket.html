@@ -2,64 +2,134 @@
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
-    
-    <div class="row">
-        
-        <!-- Ticket summary info (aside on large screens) and update & delete ticket buttons container (BEGINNING) -->
-        <div class="col-md-4 col-sm-12">
-            
-            <div class="row">
-                <div class="col-sm-12">Ticket details</div>
+
+    <section id="ticket-section">
+        <div class="row">
+
+            <!-- Ticket summary info (aside on large screens) and update & delete ticket buttons container (BEGINNING) -->
+            <div class="col-md-4 col-sm-12">
+
+                <!-- Ticket details (BEGINNING) -->
+                <h4>Ticket #{{ ticket.id }}</h4>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span>Type: {{ ticket.ticket_type }}</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <span>Author: {{ ticket.user }}</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <span>Created: {{ ticket.date_created }}</span>
+                    </div>
+                </div>
+                <!-- Ticket details (END) -->
+
+                <!-- Ticket summary info and page activity (BEGINNING) -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ol id="ticket-summary-list">
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span>In: <a href="{% url 'view_ticket' ticket.id %}">{{ ticket.subject }}</a></span></li>
+                            <li><i class="fa fa-users" aria-hidden="true"></i> <span>... participants</span></li>
+                            <li><i class="fa fa-comments" aria-hidden="true"></i> <span>... replies</span></li>
+                            <li><i class="fa fa-user" aria-hidden="true"></i> <span>Last reply from: ...</span></li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Last activity: ...</span></li>
+                            <li><i class="fa fa-money" aria-hidden="true"></i> <span>Total donations: ...</span></li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- Ticket summary info and page activity (END) -->
+
+                <!-- Ticket edit and delete buttons (BEGINNING) -->
+                {% if request.user == ticket.user %}
+                <div class="row">
+                    <div class="col-sm-12"><button class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i><a class="text-reset text-decoration-none" href="{% url 'edit_ticket' ticket.id %}"> Edit</a></button></div>
+                    <div class="col-sm-12"><a class="text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}">Delete</a></div>
+                </div>
+                {% endif %}
+                <!-- Ticket edit and delete buttons (END) -->
+
+                <!-- Delete Ticket Modal -->
+                <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Delete Ticket Modal -->
+
             </div>
-            
-            <div class="row">
-                <div class="col-sm-12">Ticket update buttons</div>
+            <!-- Ticket summary info (aside on large screens) and update & delete ticket buttons container (END) -->
+
+            <!-- Ticket description and upvote button container (BEGINNING) -->
+            <div class="col-md-8 col-sm-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ticket.subject }}</h5>
+                        <h6 class="card-subtitle mb-2"><img src="" class="card-img-top" alt="Ticket's author image">{{ ticket.user }}</h6>
+                        <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted">{{ ticket.date_updated }}</h6>
+                        <p class="card-text">{{ ticket.description }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent text-right"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i>...</div>
+                </div>
+
             </div>
-            
+            <!-- Ticket description and upvote button container (END) -->
+
         </div>
-        <!-- Ticket summary info (aside on large screens) and update & delete ticket buttons container (END) -->
-        
-        <!-- Ticket description and upvote button container (BEGINNING) -->
-        <div class="col-md-8 col-sm-12">
-            Ticket description
+
+    </section>
+
+    <section id="comments-section">
+        <div class="row">
+
+            <!-- Leave a comment form container (BEGINNING) -->
+            <div class="col-md-8 offset-md-4 col-sm-12">
+                Leave a comment
+
+            </div>
+            <!-- Leave a comment form container (END) -->
+
         </div>
-        <!-- Ticket description and upvote button container (END) -->
-        
-    </div>
-    
-    <div class="row">
-        
-        <!-- Leave a comment form container (BEGINNING) -->
-        <div class="col-md-8 offset-md-4 col-sm-12">
-            Leave a comment
-            
+
+        <div class="row">
+
+            <!-- Comment counter container (BEGINNING) -->
+            <div class="col-md-8 offset-md-4 col-sm-12">
+
+                Counter
+            </div>
+            <!-- Comment counter form container (END) -->
+
         </div>
-        <!-- Leave a comment form container (END) -->
-        
-    </div>
-    
-     <div class="row">
-        
-        <!-- Comment counter container (BEGINNING) -->
-        <div class="col-md-8 offset-md-4 col-sm-12">
-            
-            Counter
+
+        <div class="row">
+
+            <!-- Comments cards container (BEGINNING) -->
+            <div class="col-md-8 offset-md-4 col-sm-12">
+                Cards
+
+            </div>
+            <!-- Comments cards container (END) -->
+
         </div>
-        <!-- Comment counter form container (END) -->
-        
-    </div>
-    
-    <div class="row">
-        
-        <!-- Comments cards container (BEGINNING) -->
-        <div class="col-md-8 offset-md-4 col-sm-12">
-            Cards
-            
-        </div>
-        <!-- Comments cards container (END) -->
-        
-    </div>
-    
+
+    </section>
+
 </section>
 <!-- Page content container (END) -->
 {% endblock %}
