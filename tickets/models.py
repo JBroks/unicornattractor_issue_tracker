@@ -64,4 +64,55 @@ class Ticket(models.Model):
         return "Ticket #{0} [{1}] {2} - {3}".format(
             self.id, self.ticket_status, self.ticket_type, self.subject)
         
+class Upvote(models.Model):
+    '''
+    Enables users to upvote tickets
+    '''
     
+    ticket = models.ForeignKey(
+        Ticket,
+        null=True,
+        on_delete=models.CASCADE)
+    
+    user = models.ForeignKey(
+        User, 
+        null=True, 
+        on_delete=models.CASCADE)
+    
+    date_created = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now_add=True)
+    
+    def __str__(self):
+        return "Ticket #{0} upvoted by {1}".format(
+            self.ticket.id, self.user.username)
+            
+class Donation(models.Model):
+    '''
+    Enables users to donate an amount of their choice in order to prioritise
+    development of any feature
+    '''
+    
+    ticket = models.ForeignKey(
+        Ticket,
+        null=True,
+        on_delete=models.CASCADE)
+    
+    user = models.ForeignKey(
+        User, 
+        null=True, 
+        on_delete=models.CASCADE)
+    
+    donation_amount = models.IntegerField(
+        blank=False,
+        default=0)
+        
+    date_created = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now_add=True)
+    
+    def __str__(self):
+        return "€{0} donated by {1}".format(
+            self.donation_amount, self.user.username)
