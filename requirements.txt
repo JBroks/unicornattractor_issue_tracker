@@ -44,6 +44,7 @@ PyYAML==5.2
 s3transfer==0.2.1
 SecretStorage==2.3.1
 six==1.13.0
+stripe==2.46.0
 sqlparse==0.3.1
 urllib3==1.25.7
 Werkzeug==0.16.0
