@@ -46,15 +46,8 @@ class PaymentForm(forms.Form):
     prioritise the feature of their choice
     '''
     
-    AMOUNT_CHOICES = [(i,i) for i in range (5,150,10)]
     MONTH_CHOICES = [(i,i) for i in range (1,12)]
     YEAR_CHOICES = [(i,i) for i in range (2020, 2040)]
-    
-    donation_amount = forms.ChoiceField(
-        label="Amount",
-        choices=AMOUNT_CHOICES,
-        required=False
-        )
 
     credit_card_number = forms.CharField(
         label="Credit card number",
@@ -78,6 +71,20 @@ class PaymentForm(forms.Form):
         widget=forms.HiddenInput)
         
 class DonationForm(forms.ModelForm):
+    '''
+    Allows user to select a donation amount 
+    User is offered a selection of amounts in array from 5 to 150,
+    with increments of 10
+    '''
+    
+    AMOUNT_CHOICES = [(i,i) for i in range (5,150,10)]
+    
+    donation_amount = forms.ChoiceField(
+        label="Amount",
+        choices=AMOUNT_CHOICES,
+        required=False
+        )
+    
     class Meta:
         model = Donation
-        fields = ('ticket', 'user', 'donation_amount')
+        fields = ('donation_amount',)

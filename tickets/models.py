@@ -103,7 +103,7 @@ class Donation(models.Model):
         User, 
         null=True, 
         on_delete=models.CASCADE)
-    
+        
     donation_amount = models.IntegerField(
         blank=False,
         default=0)
@@ -111,7 +111,7 @@ class Donation(models.Model):
     date_created = models.DateTimeField(
         blank=False,
         null=False,
-        default=timezone.now)
+        auto_now_add=True)
     
     def __str__(self):
         return "€{0} donated by {1}".format(
