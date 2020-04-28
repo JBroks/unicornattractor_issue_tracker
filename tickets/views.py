@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.utils import timezone
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from tickets.models import Ticket
+from tickets.models import Ticket, Upvote, Donation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from tickets.forms import AddTicketForm
+from tickets.forms import AddTicketForm, PaymentForm, DonationForm
 from django.db.models import Count
+from django.conf import settings
+import stripe
 
 # Create your views here.
+
+# Import the Stripe secret API key
+stripe_api_key = settings.STRIPE_SECRET
 
 @login_required
 def add_or_edit_ticket(request, pk=None):
@@ -31,7 +37,7 @@ def add_or_edit_ticket(request, pk=None):
             add_ticket_form.save()
             messages.success(request, "You have successfully submitted your \
                                 ticket!")
-            return redirect(all_tickets)
+            return redirect('all_tickets')
         else:
                 messages.error(request, "Something went wrong. Please try again.")
             
@@ -69,7 +75,7 @@ def all_tickets(request):
         qs = qs.filter(ticket_status__iexact = status_filter_query)
     else:
         qs
-        
+    
     page = request.GET.get('page', 1)
     
     # Paginate tickets
@@ -99,8 +105,8 @@ def view_ticket(request, pk):
     ticket = get_object_or_404(Ticket, pk=pk)
     
     return render(request, 'view_ticket.html', {'ticket': ticket})
-    
 
+@login_required
 def delete_ticket(request, pk):
     
     ticket = get_object_or_404(Ticket, pk=pk)
@@ -110,3 +116,53 @@ def delete_ticket(request, pk):
             ticket.delete()
             messages.success(request, "Ticket successfully deleted!")
             return redirect(reverse('all_tickets'))
+          
+@login_required
+def upvote(request, pk):
+    
+    ticket = get_object_or_404(Ticket, pk=pk)
+    
+    if request.method == "POST":
+        payment_form = PaymentForm(request.POST)
+        donation_form = DonationForm(request.POST, instance=ticket)
+        
+        if payment_form.is_valid() and donation_form.is_valid():
+            
+            # Amount donated
+            donation_amount = int(request.POST.get("donation_amount"))
+            
+            try:
+                # Charge customer using Stripe API
+                customer = stripe.Charge.create(
+                    amount=int(donation_amount * 100),
+                    currency="EUR",
+                    description=request.user.email,
+                    card = payment_form.cleaned_data['stripe_id']
+                )
+            except stripe.error.CardError:
+                # If card is declined display the error message
+                messages.error(request, "Your card was declined!")
+            
+            # Payment was successful
+            if customer.paid:
+                donation_form.instance.user = request.user
+                donation_form.instance.ticket = request.ticket
+                donation_form.instance.amount_donated = request.amount_donated
+                donation_form.save
+                
+                # Create an upvote for the feature
+                Upvote.objects.create(ticket_id=ticket.pk,
+                                      user_id=request.user.id)
+                
+                messages.error(request, "Your have successfully donated!")
+                
+            # If payment didn't go through
+            else:
+                messages.error(request, "Unable to process the payment.")
+        else:
+            messages.error(request, "We were unable to take a payment with that card!")
+    else:
+        payment_form = PaymentForm()
+        
+    return redirect('view_ticket', {'ticket': ticket})
+          
