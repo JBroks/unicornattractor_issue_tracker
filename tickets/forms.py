@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Ticket
+from .models import Ticket, Donation, Upvote
 from django.core.exceptions import ValidationError
 from itertools import chain
 
@@ -40,7 +40,7 @@ class AddTicketForm(forms.ModelForm):
         model = Ticket
         fields = ["ticket_type", "subject", "description"]
         
-class DonationForm(forms.Form):
+class PaymentForm(forms.Form):
     '''
     Donation form that enables user to select the amount to donate in order to 
     prioritise the feature of their choice
@@ -77,3 +77,7 @@ class DonationForm(forms.Form):
     stripe_id = forms.CharField(
         widget=forms.HiddenInput)
         
+class DonationForm(forms.ModelForm):
+    class Meta:
+        model = Donation
+        fields = ('ticket', 'user', 'donation_amount')

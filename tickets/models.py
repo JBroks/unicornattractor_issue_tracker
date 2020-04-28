@@ -111,7 +111,7 @@ class Donation(models.Model):
     date_created = models.DateTimeField(
         blank=False,
         null=False,
-        auto_now_add=True)
+        default=timezone.now)
     
     def __str__(self):
         return "€{0} donated by {1}".format(
