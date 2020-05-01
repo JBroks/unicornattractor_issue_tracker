@@ -104,7 +104,17 @@ def view_ticket(request, pk):
     # Retrive the ticket
     ticket = get_object_or_404(Ticket, pk=pk)
     
-    return render(request, 'view_ticket.html', {'ticket': ticket})
+    # Allows to retrive both forms inside the modal
+    donation_form = DonationForm()
+    payment_form = PaymentForm()
+    
+    args = {
+        'ticket': ticket, 
+        'donation_form': donation_form, 
+        'payment_form': payment_form
+    }
+    
+    return render(request, 'view_ticket.html', args)
 
 @login_required
 def delete_ticket(request, pk):
@@ -129,7 +139,7 @@ def upvote(request, pk):
         if payment_form.is_valid() and donation_form.is_valid():
             
             # Amount donated
-            donation_amount = int(request.POST.get("donation_amount"))
+            donation_amount = int(request.POST.get("donation-amount"))
             
             try:
                 # Charge customer using Stripe API
@@ -163,6 +173,12 @@ def upvote(request, pk):
             messages.error(request, "We were unable to take a payment with that card!")
     else:
         payment_form = PaymentForm()
-        
-    return redirect('view_ticket', {'ticket': ticket})
+    
+    args = {
+        'ticket': ticket,
+        'donation_form': donation_form,
+        'payment_form': payment_form
+    }
+    
+    return redirect('view_ticket', args)
           
