@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block page_title %} View ticket {% endblock %} {% block content %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} View ticket {% endblock %} {% block content %}
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
@@ -54,17 +54,14 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
                                 <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                </button>
+                                <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -90,16 +87,54 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (BEGINNING) -->
+                {% if user.is_authenticated and user != ticket.user and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed"  %}
 
                 <div class="row">
                     <div class="col-sm-12 text-center">
                         <span>Would you like to support development of this feature? </br> Click Upvote button and donate a minimum of $5.</span>
                     </div>
                     <div class="col-sm-12 text-center">
-                        <button class="btn btn-success"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#upvoteModal"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</button>
                     </div>
                 </div>
 
+
+                <!-- Downvote section - show if user already upvoted and wants to remove their vote (BEGINNING) -->
+
+
+                <!-- Downvote section - show if user already upvoted and wants to remove their vote (END) -->
+
+
+                {% endif %}
+                <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (END) -->
+                
+                <!-- Upvote Ticket Modal -->
+                
+                <div class="modal fade" id="upvoteModal" tabindex="-1" role="dialog" aria-labelledby="upvoteTicketModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="upvoteTicketModalLabel">Your donation supports new feature development</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{% url 'upvote' ticket.pk %}" method="POST" class="mx-auto">
+                                    <p>Pledge your support today so that we can prioritize your favourite features.</p>
+                                    {% csrf_token %}
+                                    {{ donation_form | as_bootstrap }}
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary"><a class="text-reset text-decoration-none">Donate</a></button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upvote Ticket Modal -->
+                
             </div>
             <!-- Ticket description and upvote button container (END) -->
 
