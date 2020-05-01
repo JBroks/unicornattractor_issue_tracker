@@ -13,7 +13,7 @@ import stripe
 # Create your views here.
 
 # Import the Stripe secret API key
-stripe_api_key = settings.STRIPE_SECRET
+stripe.api_key = settings.STRIPE_SECRET
 
 @login_required
 def add_or_edit_ticket(request, pk=None):
@@ -134,12 +134,12 @@ def upvote(request, pk):
     
     if request.method == "POST":
         payment_form = PaymentForm(request.POST)
-        donation_form = DonationForm(request.POST, instance=ticket)
+        donation_form = DonationForm(request.POST)
         
         if payment_form.is_valid() and donation_form.is_valid():
             
             # Amount donated
-            donation_amount = int(request.POST.get("donation-amount"))
+            donation_amount = int(request.POST.get("donation_amount"))
             
             try:
                 # Charge customer using Stripe API
@@ -147,7 +147,7 @@ def upvote(request, pk):
                     amount=int(donation_amount * 100),
                     currency="EUR",
                     description=request.user.email,
-                    card = payment_form.cleaned_data['stripe_id']
+                    card = payment_form.cleaned_data['stripe_id'],
                 )
             except stripe.error.CardError:
                 # If card is declined display the error message
@@ -156,9 +156,9 @@ def upvote(request, pk):
             # Payment was successful
             if customer.paid:
                 donation_form.instance.user = request.user
-                donation_form.instance.ticket = request.ticket
-                donation_form.instance.amount_donated = request.amount_donated
-                donation_form.save
+                donation_form.instance.donation_amount = donation_amount
+                donation_form.instance.ticket = ticket
+                donation_form.save()
                 
                 # Create an upvote for the feature
                 Upvote.objects.create(ticket_id=ticket.pk,
@@ -173,12 +173,14 @@ def upvote(request, pk):
             messages.error(request, "We were unable to take a payment with that card!")
     else:
         payment_form = PaymentForm()
+        donation_form = DonationForm()
     
     args = {
         'ticket': ticket,
         'donation_form': donation_form,
-        'payment_form': payment_form
+        'payment_form': payment_form,
+        'publishable': settings.STRIPE_PUBLISHABLE
     }
     
-    return redirect('view_ticket', args)
+    return render(request, 'view_ticket.html', args)
           
