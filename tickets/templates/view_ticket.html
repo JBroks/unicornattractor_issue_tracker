@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} View ticket {% endblock %} {% block content %}
+{% extends 'base.html' %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block page_title %} View ticket {% endblock %} {% block content %}
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
@@ -124,6 +124,7 @@
                                     <p>Pledge your support today so that we can prioritize your favourite features.</p>
                                     {% csrf_token %}
                                     {{ donation_form | as_bootstrap }}
+                                    {{ payment_form | as_bootstrap }}
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -181,3 +182,19 @@
 </section>
 <!-- Page content container (END) -->
 {% endblock %}
+
+{% block js %}
+<!-- Stripe API js tag -->
+<script src="https://js.stripe.com/v2/"></script>
+
+<!-- Stripe publishable key -->
+<script>
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+
+<!-- Stripe custome js -->
+<script src="{% static 'js/stripe.js' %}"></script>
+
+{% endblock js %}
