@@ -108,10 +108,17 @@ def view_ticket(request, pk):
     donation_form = DonationForm()
     payment_form = PaymentForm()
     
+    # Check if user upvoted ticket
+    try:
+        has_voted = Upvote.objects.get(user=request.user, ticket=ticket)
+    except Upvote.DoesNotExist:
+        has_voted = None
+    
     args = {
         'ticket': ticket, 
         'donation_form': donation_form, 
-        'payment_form': payment_form
+        'payment_form': payment_form,
+        'has_voted': has_voted
     }
     
     return render(request, 'view_ticket.html', args)
