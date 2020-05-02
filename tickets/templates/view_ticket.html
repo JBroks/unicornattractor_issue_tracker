@@ -87,10 +87,12 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (BEGINNING) -->
-                {% if user.is_authenticated and user != ticket.user and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed"  %}
 
+                <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (BEGINNING) -->
+                {% if user.is_authenticated and user != ticket.user and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed" %} 
+                
+                <!-- If user didnt upvote display the upvote & donate button (BEGINNING) -->
+                {% if has_voted is None and ticket.ticket_type == "Feature" %}
                 <div class="row">
                     <div class="col-sm-12 text-center">
                         <span>Would you like to support development of this feature? </br> Click Upvote button and donate a minimum of $5.</span>
@@ -99,19 +101,30 @@
                         <button class="btn btn-success" data-toggle="modal" data-target="#upvoteModal"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</button>
                     </div>
                 </div>
+                <!-- If user didnt upvote display the upvote & donate button (END) -->
+                
+                {% elif has_voted is None and ticket.ticket_type == "Bug" %}
+                <p>Upvote for bug</p>
+                
+                 <!-- If user already upvoted and wants to remove their vote show downvote button (BEGINNING) -->
+                {% else %}
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <span>You no longer want to support of this ticket</br> Click Donwvote button to remove your vote.</span>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button class="btn btn-success"><i class="fa fa-arrow-down" aria-hidden="true"></i> Downvote</button>
+                    </div>
+                </div>
 
-
-                <!-- Downvote section - show if user already upvoted and wants to remove their vote (BEGINNING) -->
-
-
-                <!-- Downvote section - show if user already upvoted and wants to remove their vote (END) -->
-
-
+                <!-- If user already upvoted and wants to remove their vote show downvote button (END) -->
+                
+                {% endif %}
                 {% endif %}
                 <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (END) -->
-                
+
                 <!-- Upvote Ticket Modal -->
-                
+
                 <div class="modal fade" id="upvoteModal" tabindex="-1" role="dialog" aria-labelledby="upvoteTicketModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -120,22 +133,34 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{% url 'upvote' ticket.pk %}" method="POST" class="mx-auto">
+                                <form role="form" action="{% url 'upvote' ticket.pk %}" id="payment-form" method="POST" class="mx-auto">
                                     <p>Pledge your support today so that we can prioritize your favourite features.</p>
                                     {% csrf_token %}
-                                    {{ donation_form | as_bootstrap }}
-                                    {{ payment_form | as_bootstrap }}
+
+                                    <div id="credit-card-errors" style="display: none;">
+                                        <div class="alert-message block-message error" id="stripe-error-message"></div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        {{ donation_form | as_bootstrap }}
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        {{ payment_form | as_bootstrap }}
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <button type="submit" class="btn btn-primary" id="submit_payment_btn" type="submit" value="Submit Payment"><a class="text-reset text-decoration-none">Donate</a></button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+
                                 </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary"><a class="text-reset text-decoration-none">Donate</a></button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Upvote Ticket Modal -->
-                
+
             </div>
             <!-- Ticket description and upvote button container (END) -->
 
@@ -181,16 +206,14 @@
 
 </section>
 <!-- Page content container (END) -->
-{% endblock %}
-
-{% block js %}
+{% endblock %} {% block js %}
 <!-- Stripe API js tag -->
 <script src="https://js.stripe.com/v2/"></script>
 
 <!-- Stripe publishable key -->
 <script>
     //<![CDATA[
-        Stripe.publishableKey = '{{ publishable }}';
+    Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
 
