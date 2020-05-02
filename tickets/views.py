@@ -133,13 +133,35 @@ def delete_ticket(request, pk):
             ticket.delete()
             messages.success(request, "Ticket successfully deleted!")
             return redirect(reverse('all_tickets'))
-          
+'''
 @login_required
 def upvote(request, pk):
     
     ticket = get_object_or_404(Ticket, pk=pk)
     
-    if request.method == "POST":
+    # Create an upvote for the bug
+    Upvote.objects.create(ticket_id=ticket.pk, user_id=request.user.id)
+    
+    return render(request, 'view_ticket.html', { 'ticket': ticket })
+'''
+
+@login_required
+def upvote(request, pk):
+    
+    ticket = get_object_or_404(Ticket, pk=pk)
+    
+    # Check if user upvoted ticket
+    try:
+        has_voted = Upvote.objects.get(user=request.user, ticket=ticket)
+    except Upvote.DoesNotExist:
+        has_voted = None
+    
+    if has_voted is None and ticket.ticket_type == "Bug":
+       Upvote.objects.create(ticket_id=ticket.pk, user_id=request.user.id) 
+       messages.success(request, "Your have successfully upvoted the ticket!")
+       return redirect('view_ticket', pk)
+    
+    if has_voted is None and request.method == "POST":
         payment_form = PaymentForm(request.POST)
         donation_form = DonationForm(request.POST)
         
@@ -169,13 +191,16 @@ def upvote(request, pk):
                 
                 # Create an upvote for the feature
                 Upvote.objects.create(ticket_id=ticket.pk,
-                                      user_id=request.user.id)
+                                        user_id=request.user.id)
                 
-                messages.error(request, "Your have successfully donated!")
+                messages.success(request, "Your have successfully donated!")
+                return redirect('view_ticket', pk)
                 
             # If payment didn't go through
             else:
                 messages.error(request, "Unable to process the payment.")
+        
+        # Forms not valid
         else:
             messages.error(request, "We were unable to take a payment with that card!")
     else:

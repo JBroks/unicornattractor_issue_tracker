@@ -104,7 +104,14 @@
                 <!-- If user didnt upvote display the upvote & donate button (END) -->
                 
                 {% elif has_voted is None and ticket.ticket_type == "Bug" %}
-                <p>Upvote for bug</p>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <span>Are you experiencing the same issue? </br> Click Upvote button to prioritize this bug and we will fix it for free.</span>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button type="button" class="btn btn-success"><a href="{% url 'upvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a></button>
+                    </div>
+                </div>
                 
                  <!-- If user already upvoted and wants to remove their vote show downvote button (BEGINNING) -->
                 {% else %}
