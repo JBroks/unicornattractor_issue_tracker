@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from tickets.models import Ticket, Upvote, Donation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from tickets.forms import AddTicketForm, PaymentForm, DonationForm
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.conf import settings
 import stripe
 
@@ -119,13 +119,21 @@ def view_ticket(request, pk):
         has_donated = Donation.objects.get(user=request.user, ticket=ticket)
     except Donation.DoesNotExist:
         has_donated = None
-        
+    
+    # Count all upvotes for a ticket
+    upvote_count = Upvote.objects.filter(ticket=ticket).count()
+    
+    # Get a sum of donations for a given ticket
+    total_donations = Donation.objects.filter(ticket=ticket).aggregate(Sum('donation_amount'))['donation_amount__sum']
+    
     args = {
         'ticket': ticket, 
         'donation_form': donation_form, 
         'payment_form': payment_form,
         'has_voted': has_voted,
-        'has_donated': has_donated
+        'has_donated': has_donated,
+        'upvote_count': upvote_count,
+        'total_donations': total_donations
     }
     
     return render(request, 'view_ticket.html', args)

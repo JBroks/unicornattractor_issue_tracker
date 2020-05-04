@@ -30,10 +30,10 @@
                         <ol id="ticket-summary-list">
                             <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span>In: <a href="{% url 'view_ticket' ticket.id %}">{{ ticket.subject }}</a></span></li>
                             <li><i class="fa fa-users" aria-hidden="true"></i> <span>... participants</span></li>
-                            <li><i class="fa fa-comments" aria-hidden="true"></i> <span>... replies</span></li>
-                            <li><i class="fa fa-user" aria-hidden="true"></i> <span>Last reply from: ...</span></li>
+                            <li><i class="fa fa-comments" aria-hidden="true"></i> <span>... comments</span></li>
+                            <li><i class="fa fa-user" aria-hidden="true"></i> <span>Last comment from: ...</span></li>
                             <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Last activity: ...</span></li>
-                            <li><i class="fa fa-money" aria-hidden="true"></i> <span>Total donations: ...</span></li>
+                            <li><i class="fa fa-money" aria-hidden="true"></i> <span>Total donations: &euro;{{ total_donations }}</span></li>
                         </ol>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                                 <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted"><small>{{ ticket.date_updated }}</small></h6>
                                 <p class="card-text">{{ ticket.description }}</p>
                             </div>
-                            <div class="card-footer bg-transparent text-right"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i>...</div>
+                            <div class="card-footer bg-transparent text-right"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i>{{ upvote_count }}</div>
                         </div>
                     </div>
                 </div>
