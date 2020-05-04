@@ -114,11 +114,18 @@ def view_ticket(request, pk):
     except Upvote.DoesNotExist:
         has_voted = None
     
+    # Check if user donated money for the feature
+    try:
+        has_donated = Donation.objects.get(user=request.user, ticket=ticket)
+    except Donation.DoesNotExist:
+        has_donated = None
+        
     args = {
         'ticket': ticket, 
         'donation_form': donation_form, 
         'payment_form': payment_form,
-        'has_voted': has_voted
+        'has_voted': has_voted,
+        'has_donated': has_donated
     }
     
     return render(request, 'view_ticket.html', args)
@@ -142,6 +149,9 @@ def upvote(request, pk):
     '''
     Allows user to upvote the ticket and donate (for features only)
     If user upvoted already they won't be allowed to vote again
+    Also if user upvoted and donated for the feature they won't be allowed to 
+    downvote and upvote ticket again for the saem ticket, so function will check
+    it by using has_voted and has_donated
     Stripe API used to charge a user's credit card
     '''
     
@@ -152,13 +162,19 @@ def upvote(request, pk):
         has_voted = Upvote.objects.get(user=request.user, ticket=ticket)
     except Upvote.DoesNotExist:
         has_voted = None
+        
+    # Check if user donated money for the feature
+    try:
+        has_donated = Donation.objects.get(user=request.user, ticket=ticket)
+    except Donation.DoesNotExist:
+        has_donated = None
     
-    if has_voted is None and ticket.ticket_type == "Bug":
+    if has_voted is None and (ticket.ticket_type == "Bug" or has_donated is not None):
        Upvote.objects.create(ticket_id=ticket.pk, user_id=request.user.id) 
        messages.success(request, "Your have successfully upvoted the ticket!")
        return redirect('view_ticket', pk)
     
-    if has_voted is None and request.method == "POST":
+    if has_voted is None and has_donated is None and request.method == "POST":
         payment_form = PaymentForm(request.POST)
         donation_form = DonationForm(request.POST)
         

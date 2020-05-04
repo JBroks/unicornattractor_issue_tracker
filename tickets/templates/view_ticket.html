@@ -80,7 +80,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ ticket.subject }}</h5>
                                 <h6 class="card-subtitle mb-2"><img src="" class="card-img-top" alt="Ticket's author image">{{ ticket.user }}</h6>
-                                <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted">{{ ticket.date_updated }}</h6>
+                                <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted"><small>{{ ticket.date_updated }}</small></h6>
                                 <p class="card-text">{{ ticket.description }}</p>
                             </div>
                             <div class="card-footer bg-transparent text-right"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i>...</div>
@@ -89,32 +89,41 @@
                 </div>
 
                 <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (BEGINNING) -->
-                {% if user.is_authenticated and user != ticket.user and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed" %} 
-                
+                {% if user.is_authenticated and user != ticket.user and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed" %} {% if has_voted is None %} {% if ticket.ticket_type == "Feature"%} {% if has_donated is None %}
                 <!-- If user didnt upvote display the upvote & donate button (BEGINNING) -->
-                {% if has_voted is None and ticket.ticket_type == "Feature" %}
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <span>Would you like to support development of this feature? </br> Click Upvote button and donate a minimum of $5.</span>
+                        <span>Would you like to support development of this feature? </br> Click the 'Upvote' button and donate a minimum of $5.</span>
                     </div>
                     <div class="col-sm-12 text-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#upvoteModal"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</button>
                     </div>
                 </div>
                 <!-- If user didnt upvote display the upvote & donate button (END) -->
-                
-                {% elif has_voted is None and ticket.ticket_type == "Bug" %}
+                {% else %}
+                <!-- If user already voted and donated and then removed their upvote - user can add their upvote again however won't be allowed to donate again (BEGINNING) -->
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <span>Are you experiencing the same issue? </br> Click Upvote button to prioritize this bug and we will fix it for free.</span>
+                        <span>Would you like to support development of this feature? </br> Click the 'Upvote' button below.</span>
                     </div>
                     <div class="col-sm-12 text-center">
                         <button type="button" class="btn btn-success"><a href="{% url 'upvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a></button>
                     </div>
                 </div>
-                
-                 <!-- If user already upvoted and wants to remove their vote show downvote button (BEGINNING) -->
-                {% else %}
+                <!-- If user already voted and donated and then removed their upvote - User can add their upvote again however won't be allowed to donate again (END) -->
+                {% endif %} {% else %}
+                <!-- Upvoting Bugs does not include donation (BEGINNING) -->
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <span>Are you experiencing the same issue? </br> Click the 'Upvote' button to prioritize this bug and we will fix it for free.</span>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button type="button" class="btn btn-success"><a href="{% url 'upvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a></button>
+                    </div>
+                </div>
+                <!-- Upvoting Bugs does not include donation (END) -->
+                {% endif %} {% else %}
+                <!-- If user already upvoted and wants to remove their vote show downvote button (BEGINNING) -->
                 <div class="row">
                     <div class="col-sm-12 text-center">
                         <span>You no longer want to support of this ticket</br> Click Donwvote button to remove your vote.</span>
@@ -123,11 +132,8 @@
                         <button class="btn btn-success"><a href="{% url 'downvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-down" aria-hidden="true"></i> Downvote</a></button>
                     </div>
                 </div>
-
                 <!-- If user already upvoted and wants to remove their vote show downvote button (END) -->
-                
-                {% endif %}
-                {% endif %}
+                {% endif %} {% endif %}
                 <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (END) -->
 
                 <!-- Upvote Ticket Modal -->
