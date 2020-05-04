@@ -120,7 +120,7 @@
                         <span>You no longer want to support of this ticket</br> Click Donwvote button to remove your vote.</span>
                     </div>
                     <div class="col-sm-12 text-center">
-                        <button class="btn btn-success"><i class="fa fa-arrow-down" aria-hidden="true"></i> Downvote</button>
+                        <button class="btn btn-success"><a href="{% url 'downvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-down" aria-hidden="true"></i> Downvote</a></button>
                     </div>
                 </div>
 

@@ -125,28 +125,25 @@ def view_ticket(request, pk):
 
 @login_required
 def delete_ticket(request, pk):
+    '''
+    Allows user to delete their ticket
+    '''
     
     ticket = get_object_or_404(Ticket, pk=pk)
-
     author= ticket.user
+    
     if request.user.is_authenticated and request.user == author:
             ticket.delete()
             messages.success(request, "Ticket successfully deleted!")
             return redirect(reverse('all_tickets'))
-'''
-@login_required
-def upvote(request, pk):
-    
-    ticket = get_object_or_404(Ticket, pk=pk)
-    
-    # Create an upvote for the bug
-    Upvote.objects.create(ticket_id=ticket.pk, user_id=request.user.id)
-    
-    return render(request, 'view_ticket.html', { 'ticket': ticket })
-'''
 
 @login_required
 def upvote(request, pk):
+    '''
+    Allows user to upvote the ticket and donate (for features only)
+    If user upvoted already they won't be allowed to vote again
+    Stripe API used to charge a user's credit card
+    '''
     
     ticket = get_object_or_404(Ticket, pk=pk)
     
@@ -215,4 +212,22 @@ def upvote(request, pk):
     }
     
     return render(request, 'view_ticket.html', args)
+
+@login_required
+def downvote(request, pk):
+    
+    ticket = get_object_or_404(Ticket, pk=pk)
+    
+    # Check if user upvoted ticket
+    try:
+        has_voted = Upvote.objects.get(user=request.user, ticket=ticket)
+    except Upvote.DoesNotExist:
+        has_voted = None
+    
+    if request.user.is_authenticated and has_voted is not None:
+        upvote = Upvote.objects.get(ticket_id=ticket.pk,
+                                        user_id=request.user.id)
+        upvote.delete()
+        messages.success(request, "Your upvote has been removed!")
+        return redirect('view_ticket', pk)
           
