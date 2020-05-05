@@ -43,7 +43,7 @@ class Ticket(models.Model):
         blank=False)
         
     description = models.TextField(
-        max_length=3000,
+        max_length=30000,
         blank=False)
         
     date_created = models.DateTimeField(
@@ -114,5 +114,40 @@ class Donation(models.Model):
         auto_now_add=True)
     
     def __str__(self):
-        return "€{0} donated by {1}".format(
-            self.donation_amount, self.user.username)
+        return "€{0} donated by {1} for ticket #{2}".format(
+            self.donation_amount, self.user.username, self.ticket.id)
+            
+class Comment(models.Model):
+    '''
+    Enables users to comment on a given ticket, put forward their suggestion
+    and ideas on how to fix an issue, or just express their opinions
+    '''
+    
+    ticket = models.ForeignKey(
+        Ticket,
+        null=True,
+        on_delete=models.CASCADE)
+    
+    user = models.ForeignKey(
+        User, 
+        null=True, 
+        on_delete=models.CASCADE)
+        
+    comment = models.TextField(
+        max_length=8000,
+        blank=False)
+        
+    date_created = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now_add=True)
+        
+    date_updated = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now=True,
+        )
+    
+    def __str__(self):
+        return "Comment #{0} added by {1} for ticket #{2}".format(
+            self.id, self.user.username, self.ticket.id)
