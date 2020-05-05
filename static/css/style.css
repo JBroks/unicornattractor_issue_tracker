@@ -39,6 +39,13 @@ footer {
     font-size: 4rem;
 }
 
+/* Overwrite bootstrap class to place fixed 'add-ticket' button to the right */
+.fixed-bottom { 
+  bottom: 20px; 
+  right: 20px;
+  left: auto;
+}
+
 /* Remove top border for the first row in the table */
 .table tr:first-child td {
   border-top: none;
