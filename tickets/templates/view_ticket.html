@@ -73,7 +73,7 @@
 
             <!-- Ticket description and upvote button container (BEGINNING) -->
             <div class="col-md-8 col-sm-12">
-                
+
                 <!-- Ticket card (BEGINNING) -->
                 <div class="row">
                     <div class="col-sm-12">
@@ -89,13 +89,10 @@
                     </div>
                 </div>
                 <!-- Ticket card (END) -->
-                
+
                 <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (BEGINNING) -->
-                {% if user.is_authenticated and user != ticket.user and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed" %} 
-                
-                {% if has_voted is None %} 
-                {% if ticket.ticket_type == "Feature"%} 
-                
+                {% if user.is_authenticated and user != ticket.user and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed" %} {% if has_voted is None %} {% if ticket.ticket_type == "Feature"%}
+
                 <!-- If user didn't upvote display the upvote & donate button (BEGINNING) -->
                 {% if has_donated is None %}
                 <div class="row">
@@ -107,7 +104,7 @@
                     </div>
                 </div>
                 <!-- If user didnt upvote display the upvote & donate button (END) -->
-                
+
                 <!-- If user already voted and donated and then removed their upvote - user can add their upvote again however won't be allowed to donate again (BEGINNING) -->
                 {% else %}
                 <div class="row">
@@ -120,7 +117,7 @@
                 </div>
                 {% endif %}
                 <!-- If user already voted and donated and then removed their upvote - User can add their upvote again however won't be allowed to donate again (END) -->
-                
+
                 <!-- Upvoting Bugs does not include donation (BEGINNING) -->
                 {% else %}
                 <div class="row">
@@ -131,9 +128,9 @@
                         <button type="button" class="btn btn-success"><a href="{% url 'upvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a></button>
                     </div>
                 </div>
-                {% endif %} 
+                {% endif %}
                 <!-- Upvoting Bugs does not include donation (END) -->
-                
+
                 <!-- If user already upvoted and wants to remove their vote show downvote button (BEGINNING) -->
                 {% else %}
                 <div class="row">
@@ -146,7 +143,7 @@
                 </div>
                 {% endif %}
                 <!-- If user already upvoted and wants to remove their vote show downvote button (END) -->
-                
+
                 {% endif %}
                 <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (END) -->
 
@@ -192,30 +189,49 @@
 
         </div>
     </section>
-    
+
     <!-- Comments section (BEGINNING) -->
     <section id="comments-section">
-        <div class="row">
 
-            <!-- Leave a comment form container (BEGINNING) -->
-            <div class="col-md-8 offset-md-4 col-sm-12">
-                Leave a comment
-
+        <!-- Comments section heading -->
+        <div class="row text-center">
+            <div class="form-group col-md-8 offset-md-4 col-sm-12">
+                <hr>
+                <h5 class="center">Share your opinion, ideas ...</h5>
             </div>
-            <!-- Leave a comment form container (END) -->
-
         </div>
 
+        <!-- Leave a comment form container (BEGINNING) -->
         <div class="row">
 
-            <!-- Comment counter container (BEGINNING) -->
-            <div class="col-md-8 offset-md-4 col-sm-12">
+            <div class="form-group col-md-8 offset-md-4 col-sm-12 d-flex justify-content-center">
+                <form action="" method="POST" id="comment-form">
+                    
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label for="commentTextarea" class="font-weight-bold">Leave a comment</label>
+                            <textarea class="form-control" id="commentTextarea" rows="5"></textarea>
+                        </div>
+                    </div>
 
-                Counter
+                    <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-md-start justify-content-center">
+                            <button type="submit" name="action" class="btn btn-primary">Post comment</button>
+                        </div>
+                    </div>
+                    
+                </form>
             </div>
-            <!-- Comment counter form container (END) -->
-
         </div>
+        <!-- Leave a comment form container (END) -->
+        
+        <!-- Comment counter container (BEGINNING) -->
+        <div class="row">
+            <div class="col-md-8 offset-md-4 col-sm-12">
+                <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Comments (<span id="counter">...</span>)</h5>
+            </div>
+        </div>
+        <!-- Comment counter form container (END) -->
 
         <div class="row">
 
@@ -247,5 +263,4 @@
 
 <!-- Stripe custome js -->
 <script src="{% static 'js/stripe.js' %}"></script>
-
 {% endblock js %}
