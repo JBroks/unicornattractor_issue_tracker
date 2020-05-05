@@ -68,7 +68,8 @@ def all_tickets(request):
     # Filter queryset
     if type_filter_query and type_filter_query != "Select...":
         if status_filter_query and status_filter_query != "Select...":
-           qs = qs.filter(ticket_type__iexact = type_filter_query, ticket_status__iexact = status_filter_query).order_by('ticket_type')
+           qs = qs.filter(ticket_type__iexact = type_filter_query,
+           ticket_status__iexact = status_filter_query).order_by('ticket_type')
         else:
             qs = qs.filter(ticket_type__iexact = type_filter_query)
     elif status_filter_query and status_filter_query != "Select...":
@@ -124,8 +125,14 @@ def view_ticket(request, pk):
     upvote_count = Upvote.objects.filter(ticket=ticket).count()
     
     # Get a sum of donations for a given ticket
-    total_donations = Donation.objects.filter(ticket=ticket).aggregate(Sum('donation_amount'))['donation_amount__sum']
+    total_donations = Donation.objects.filter(ticket=ticket
+                    ).aggregate(Sum('donation_amount'))['donation_amount__sum']
     
+    if total_donations is None:
+        total_donations = 0
+    else:
+        total_donations
+
     args = {
         'ticket': ticket, 
         'donation_form': donation_form, 
