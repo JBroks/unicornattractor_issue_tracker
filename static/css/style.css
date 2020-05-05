@@ -9,6 +9,17 @@ form {
     width: 50%;
 }
 
+/* Disable textarea so user cannot resize it and increase width of form 
+   containing the comment form */
+textarea {
+    width: 80%;
+    resize: none;
+  }
+
+#comment-form {
+  width: 100%;
+}  
+
 /* Set max size of profile images */
 .profile-image {
     max-width: 200px;
@@ -58,4 +69,7 @@ footer {
   form {
     width: 80%;
 }
+  textarea {
+    width: 100%;
+  }
 }
