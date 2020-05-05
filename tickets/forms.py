@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Ticket, Donation, Upvote
+from .models import Ticket, Donation, Upvote, Comment
 from django.core.exceptions import ValidationError
 from itertools import chain
 
@@ -47,7 +47,7 @@ class PaymentForm(forms.Form):
     '''
     
     MONTH_CHOICES = [(i,i) for i in range (1,12)]
-    YEAR_CHOICES = [(i,i) for i in range (2020, 2040)]
+    YEAR_CHOICES = [(i,i) for i in range (2021, 2040)]
 
     credit_card_number = forms.CharField(
         label="Credit card number",
@@ -88,3 +88,16 @@ class DonationForm(forms.ModelForm):
     class Meta:
         model = Donation
         fields = ('donation_amount',)
+
+class AddTCommentForm(forms.ModelForm):
+
+    comment = forms.CharField(
+        label="Description",
+        min_length=20,
+        max_length=8000,
+        widget=forms.Textarea(),
+        required=True)
+    
+    class Meta:
+        model = Comment
+        fields = ["comment"]
