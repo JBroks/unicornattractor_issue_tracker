@@ -271,11 +271,11 @@ def downvote(request, pk):
 @login_required
 def add_or_edit_comment(request, pk):
     
-    # Retrive the ticket if exists
-    ticket = get_object_or_404(Ticket, pk=pk) if pk else None
+    # Retrive the comment if exists
+    comment = get_object_or_404(Comment, pk=pk) if pk else None
     
     if request.method == "POST":
-        add_comment_form = AddCommentForm(request.POST, request.FILES, instance=ticket)
+        add_comment_form = AddCommentForm(request.POST, request.FILES, instance=comment)
 
         if add_comment_form.is_valid():
             add_comment_form.instance.user = request.user
@@ -286,7 +286,7 @@ def add_or_edit_comment(request, pk):
                 messages.error(request, "Something went wrong. Please try again.")
             
     else:
-        add_comment_form = AddCommentForm(instance=ticket)
+        add_comment_form = AddCommentForm(instance=comment)
     
     return render(request, 'view_ticket.html', {'add_comment_form': add_comment_form} )
     
