@@ -3,9 +3,9 @@ from django.utils import timezone
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from tickets.models import Ticket, Upvote, Donation
+from tickets.models import Ticket, Upvote, Donation, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from tickets.forms import AddTicketForm, PaymentForm, DonationForm
+from tickets.forms import AddTicketForm, PaymentForm, DonationForm, AddCommentForm
 from django.db.models import Count, Sum
 from django.conf import settings
 import stripe
@@ -105,9 +105,10 @@ def view_ticket(request, pk):
     # Retrive the ticket
     ticket = get_object_or_404(Ticket, pk=pk)
     
-    # Allows to retrive both forms inside the modal
+    # Allows to retrive forms on the view ticket page
     donation_form = DonationForm()
     payment_form = PaymentForm()
+    comment_form = AddCommentForm()
     
     # Check if user upvoted ticket
     try:
@@ -132,7 +133,10 @@ def view_ticket(request, pk):
         total_donations = 0
     else:
         total_donations
-
+    
+    # Retrive all comments for a given ticket
+    comments = Comment.objects.filter(ticket_id=ticket.pk)
+    
     args = {
         'ticket': ticket, 
         'donation_form': donation_form, 
@@ -140,7 +144,9 @@ def view_ticket(request, pk):
         'has_voted': has_voted,
         'has_donated': has_donated,
         'upvote_count': upvote_count,
-        'total_donations': total_donations
+        'total_donations': total_donations,
+        'comments': comments,
+        'comment_form': comment_form
     }
     
     return render(request, 'view_ticket.html', args)
@@ -261,4 +267,26 @@ def downvote(request, pk):
         upvote.delete()
         messages.success(request, "Your upvote has been removed!")
         return redirect('view_ticket', pk)
-          
+
+@login_required
+def add_or_edit_comment(request, pk):
+    
+    # Retrive the ticket if exists
+    ticket = get_object_or_404(Ticket, pk=pk) if pk else None
+    
+    if request.method == "POST":
+        add_comment_form = AddCommentForm(request.POST, request.FILES, instance=ticket)
+
+        if add_comment_form.is_valid():
+            add_comment_form.instance.user = request.user
+            add_comment_form.save()
+            messages.success(request, "Thanks for sharing your thoughts!")
+            return redirect('view_ticket', pk)
+        else:
+                messages.error(request, "Something went wrong. Please try again.")
+            
+    else:
+        add_comment_form = AddCommentForm(instance=ticket)
+    
+    return render(request, 'view_ticket.html', {'add_comment_form': add_comment_form} )
+    
