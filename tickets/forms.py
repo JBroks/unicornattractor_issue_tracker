@@ -92,7 +92,7 @@ class DonationForm(forms.ModelForm):
 class AddCommentForm(forms.ModelForm):
 
     comment = forms.CharField(
-        label="Description",
+        label="Leave a comment",
         min_length=20,
         max_length=8000,
         widget=forms.Textarea(),
@@ -100,4 +100,4 @@ class AddCommentForm(forms.ModelForm):
     
     class Meta:
         model = Comment
-        fields = ["comment"]
+        fields = ('comment',)
