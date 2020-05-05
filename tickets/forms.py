@@ -89,7 +89,7 @@ class DonationForm(forms.ModelForm):
         model = Donation
         fields = ('donation_amount',)
 
-class AddTCommentForm(forms.ModelForm):
+class AddCommentForm(forms.ModelForm):
 
     comment = forms.CharField(
         label="Description",
