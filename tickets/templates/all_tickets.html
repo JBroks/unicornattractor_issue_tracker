@@ -177,19 +177,9 @@
   </section>
   <!-- Section containing table with all / filtered tickets (END) -->
 
-  <!-- Add ticket button section (BEGINNING) -->
-  <section id="add-ticket-button">
-
-    <!-- Add ticket button container (BEGINNING) -->
-    <div class="row d-none d-sm-block">
-      <div class="col-sm-12 d-flex justify-content-end pr-5">
-        <button class="btn btn-link btn-lg"><a href="{% url 'add_ticket' %}"><i data-toggle="tooltip" data-placement="bottom" title="Add ticket" class="fa fa-plus-circle" aria-hidden="true"></i></a></button>
-      </div>
-    </div>
-    <!-- Add ticket button container (END) -->
-
-  </section>
-  <!-- Add ticket button section (END) -->
+  <!-- Add ticket button container (BEGINNING) -->
+      <button class="btn btn-link btn-lg fixed-bottom"><a href="{% url 'add_ticket' %}"><i data-toggle="tooltip" data-placement="bottom" title="Add ticket" class="fa fa-plus-circle" aria-hidden="true"></i></a></button>
+  <!-- Add ticket button container (END) -->
 
 </section>
 <!-- Page content container (END) -->
