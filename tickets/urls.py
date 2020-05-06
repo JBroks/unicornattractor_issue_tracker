@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from tickets.views import add_or_edit_ticket, all_tickets, view_ticket, delete_ticket, upvote, downvote, add_or_edit_comment, delete_ticket
+from tickets.views import add_or_edit_ticket, all_tickets, view_ticket, delete_ticket, upvote, downvote, add_or_edit_comment, delete_comment
 
 urlpatterns = [
     url(r'^$', all_tickets, name="all_tickets"),
