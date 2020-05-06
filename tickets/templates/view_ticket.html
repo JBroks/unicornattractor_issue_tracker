@@ -29,9 +29,9 @@
                     <div class="col-sm-12">
                         <ol id="ticket-summary-list">
                             <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span>In: <a href="{% url 'view_ticket' ticket.id %}">{{ ticket.subject }}</a></span></li>
-                            <li><i class="fa fa-users" aria-hidden="true"></i> <span>... participants</span></li>
-                            <li><i class="fa fa-comments" aria-hidden="true"></i> <span>... comments</span></li>
-                            <li><i class="fa fa-user" aria-hidden="true"></i> <span>Last comment from: ...</span></li>
+                            <li><i class="fa fa-users" aria-hidden="true"></i> <span>{{ user_commented_count }} {% if user_commented_count == 1 %} participant {% else %} participants {% endif %}</span></li>
+                            <li><i class="fa fa-comments" aria-hidden="true"></i> <span>{{ comment_count }} {% if comment_count == 1 %} comment {% else %} comments {% endif %}</span></li>
+                            <li><i class="fa fa-user" aria-hidden="true"></i> <span>Last commented by: ...</span></li>
                             <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Last activity: ...</span></li>
                             <li><i class="fa fa-money" aria-hidden="true"></i> <span>Total donations: &euro;{{ total_donations }}</span></li>
                         </ol>

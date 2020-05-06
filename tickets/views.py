@@ -120,6 +120,11 @@ def view_ticket(request, pk):
     upvote_count = Upvote.objects.filter(ticket=ticket).count()
     comment_count = Comment.objects.filter(ticket=ticket).count()
     
+    # Count users involved in discussion around a given ticket
+    user_commented_count = len(Comment.objects.filter(ticket=ticket
+                            ).order_by().values_list('user', flat=True
+                            ).distinct())
+    
     # Get a sum of donations for a given ticket
     total_donations = Donation.objects.filter(ticket=ticket
                     ).aggregate(Sum('donation_amount'))['donation_amount__sum']
@@ -145,7 +150,8 @@ def view_ticket(request, pk):
         'total_donations': total_donations,
         'comments': comments,
         'comment_form': comment_form,
-        'comment_count': comment_count
+        'comment_count': comment_count,
+        'user_commented_count': user_commented_count
     }
     return render(request, 'view_ticket.html', context)
 
