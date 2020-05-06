@@ -122,8 +122,9 @@ def view_ticket(request, pk):
     except Donation.DoesNotExist:
         has_donated = None
     
-    # Count all upvotes for a ticket
+    # Count all upvotes / commments for a ticket
     upvote_count = Upvote.objects.filter(ticket=ticket).count()
+    comment_count = Comment.objects.filter(ticket=ticket).count()
     
     # Get a sum of donations for a given ticket
     total_donations = Donation.objects.filter(ticket=ticket
@@ -149,7 +150,8 @@ def view_ticket(request, pk):
         'upvote_count': upvote_count,
         'total_donations': total_donations,
         'comments': comments,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'comment_count': comment_count
     }
     return render(request, 'view_ticket.html', context)
 
