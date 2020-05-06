@@ -163,10 +163,14 @@ def delete_ticket(request, pk):
             ticket.delete()
             messages.success(request, "Ticket successfully deleted!")
             return redirect(reverse('all_tickets'))
+    else:
+        messages.error(request, "Error! You don't have a permission to \
+                        delete this comment.")
+        return redirect('view_ticket', ticket.pk)
 
 def record_exist_check(Model, user, ticket):
     '''
-    Helper fnuction that will check if record for a given user and ticket 
+    Helper function that will check if record for a given user and ticket 
     already exist in a given model
     '''
     try:
@@ -295,3 +299,20 @@ def add_or_edit_comment(request, ticket_pk, pk=None):
         'comment_form': comment_form
     }
     return render(request, 'view_ticket.html', context)
+
+@login_required
+def delete_comment(request, ticket_pk, pk):
+    
+    # Retrive the comment and ticket if exists
+    ticket = get_object_or_404(Ticket, pk=ticket_pk)
+    comment = get_object_or_404(Comment, pk=pk)
+    author= comment.user
+    
+    if request.user.is_authenticated and request.user == author:
+            ticket.delete()
+            messages.success(request, "Comment successfully deleted!")
+            return redirect('view_ticket', ticket.pk)
+    else:
+        messages.error(request, "Error! You don't have a permission to \
+                        delete this comment.")
+        return redirect('view_ticket', ticket.pk)
