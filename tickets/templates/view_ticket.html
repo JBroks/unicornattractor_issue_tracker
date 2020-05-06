@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block page_title %} View ticket {% endblock %} {% block content %}
 
 <!-- Page content container (BEGINNING) -->
-<section class="content-container">
+<section class="content-container pt-4 px-5">
 
     <section id="ticket-section">
         <div class="row">
@@ -75,7 +75,7 @@
             <div class="col-md-8 col-sm-12">
 
                 <!-- Ticket card (BEGINNING) -->
-                <div class="row">
+                <div class="row pt-5">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
@@ -95,11 +95,11 @@
 
                 <!-- If user didn't upvote display the upvote & donate button (BEGINNING) -->
                 {% if has_donated is None %}
-                <div class="row">
+                <div class="row py-4">
                     <div class="col-sm-12 text-center">
                         <span>Would you like to support development of this feature? </br> Click the 'Upvote' button and donate a minimum of $5.</span>
                     </div>
-                    <div class="col-sm-12 text-center">
+                    <div class="col-sm-12 pt-3 text-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#upvoteModal"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</button>
                     </div>
                 </div>
@@ -107,11 +107,11 @@
 
                 <!-- If user already voted and donated and then removed their upvote - user can add their upvote again however won't be allowed to donate again (BEGINNING) -->
                 {% else %}
-                <div class="row">
+                <div class="row py-4">
                     <div class="col-sm-12 text-center">
                         <span>Would you like to support development of this feature? </br> Click the 'Upvote' button below.</span>
                     </div>
-                    <div class="col-sm-12 text-center">
+                    <div class="col-sm-12 pt-3 text-center">
                         <button type="button" class="btn btn-success"><a href="{% url 'upvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a></button>
                     </div>
                 </div>
@@ -120,11 +120,11 @@
 
                 <!-- Upvoting Bugs does not include donation (BEGINNING) -->
                 {% else %}
-                <div class="row">
+                <div class="row py-4">
                     <div class="col-sm-12 text-center">
                         <span>Are you experiencing the same issue? </br> Click the 'Upvote' button to prioritize this bug and we will fix it for free.</span>
                     </div>
-                    <div class="col-sm-12 text-center">
+                    <div class="col-sm-12 pt-3 text-center">
                         <button type="button" class="btn btn-success"><a href="{% url 'upvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a></button>
                     </div>
                 </div>
@@ -133,11 +133,11 @@
 
                 <!-- If user already upvoted and wants to remove their vote show downvote button (BEGINNING) -->
                 {% else %}
-                <div class="row">
+                <div class="row py-4">
                     <div class="col-sm-12 text-center">
                         <span>You no longer want to support of this ticket</br> Click the 'Downvote' button to remove your vote.</span>
                     </div>
-                    <div class="col-sm-12 text-center">
+                    <div class="col-sm-12 pt-3 text-center">
                         <button class="btn btn-success"><a href="{% url 'downvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-down" aria-hidden="true"></i> Downvote</a></button>
                     </div>
                 </div>
@@ -196,8 +196,8 @@
         <!-- Comments section heading -->
         <div class="row text-center">
             <div class="form-group col-md-8 offset-md-4 col-sm-12">
-                <hr>
-                <h5 class="center">Share your opinion, ideas ...</h5>
+                <hr class="mx-5">
+                <h5 class="center pt-3">Share your opinion, ideas ...</h5>
             </div>
         </div>
 
@@ -225,7 +225,7 @@
         <!-- Leave a comment form container (END) -->
         
         <!-- Comment counter container (BEGINNING) -->
-        <div class="row">
+        <div class="row py-3">
             <div class="col-md-8 offset-md-4 col-sm-12">
                 <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Comments (<span id="counter">{{ comment_count }}</span>)</h5>
             </div>
