@@ -135,7 +135,10 @@ def view_ticket(request, pk):
         total_donations
     
     # Retrive all comments for a given ticket
-    comments = Comment.objects.filter(ticket_id=ticket.pk)
+    try:
+        comments = Comment.objects.filter(ticket_id=ticket.pk)
+    except Comment.DoesNotExist:
+        comments = None
     
     args = {
         'ticket': ticket, 
@@ -269,24 +272,29 @@ def downvote(request, pk):
         return redirect('view_ticket', pk)
 
 @login_required
-def add_or_edit_comment(request, pk):
+def add_or_edit_comment(request, ticket_pk, pk=None):
     
-    # Retrive the comment if exists
+    # Retrive the comment and ticket if exists
+    ticket = get_object_or_404(Ticket, pk=ticket_pk)
     comment = get_object_or_404(Comment, pk=pk) if pk else None
-    
-    if request.method == "POST":
-        add_comment_form = AddCommentForm(request.POST, request.FILES, instance=comment)
 
-        if add_comment_form.is_valid():
-            add_comment_form.instance.user = request.user
-            add_comment_form.save()
+    if request.method == "POST":
+        comment_form = AddCommentForm(request.POST, request.FILES, instance=comment)
+
+        if comment_form.is_valid():
+            comment_form.instance.user = request.user
+            comment_form.instance.ticket = ticket
+            comment_form.save()
             messages.success(request, "Thanks for sharing your thoughts!")
-            return redirect('view_ticket', pk)
+            return redirect('view_ticket', ticket.pk)
         else:
-                messages.error(request, "Something went wrong. Please try again.")
+            messages.error(request, "Something went wrong. Please try again.")
             
     else:
-        add_comment_form = AddCommentForm(instance=comment)
+        comment_form = AddCommentForm(instance=comment)
     
-    return render(request, 'view_ticket.html', {'add_comment_form': add_comment_form} )
+    args = {
+        'comment_form': comment_form
+    }
     
+    return render(request, 'view_ticket.html', args )
