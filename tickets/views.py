@@ -125,6 +125,9 @@ def view_ticket(request, pk):
                             ).order_by().values_list('user', flat=True
                             ).distinct())
     
+    # Retrive last comment
+    last_comment = Comment.objects.latest('date_created')
+    
     # Get a sum of donations for a given ticket
     total_donations = Donation.objects.filter(ticket=ticket
                     ).aggregate(Sum('donation_amount'))['donation_amount__sum']
@@ -151,7 +154,8 @@ def view_ticket(request, pk):
         'comments': comments,
         'comment_form': comment_form,
         'comment_count': comment_count,
-        'user_commented_count': user_commented_count
+        'user_commented_count': user_commented_count,
+        'last_comment': last_comment
     }
     return render(request, 'view_ticket.html', context)
 
