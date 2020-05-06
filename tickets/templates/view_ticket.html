@@ -205,12 +205,11 @@
         <div class="row">
 
             <div class="form-group col-md-8 offset-md-4 col-sm-12 d-flex justify-content-center">
-                <form action="" method="POST" id="comment-form">
-                    
+                <form action="{% url 'add_comment' ticket.pk %}" method="POST" id="comment-form">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            <label for="commentTextarea" class="font-weight-bold">Leave a comment</label>
-                            <textarea class="form-control" id="commentTextarea" rows="5"></textarea>
+                            {{ comment_form | as_bootstrap }}
                         </div>
                     </div>
 
