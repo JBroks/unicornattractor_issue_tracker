@@ -210,13 +210,13 @@
                 <form action="{% url 'add_comment' ticket.pk %}" method="POST" id="comment-form">
                     {% csrf_token %}
                     <div class="row">
-                        <div class="form-group col-sm-12">
+                        <div class="form-group col-sm-12 mb-0">
                             {{ comment_form | as_bootstrap }}
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-12 d-flex justify-content-md-end justify-content-center">
+                        <div class="col-sm-12 d-flex justify-content-end">
                             <button type="submit" name="action" class="btn btn-primary">Post comment</button>
                         </div>
                     </div>
@@ -243,26 +243,43 @@
             <div class="col-md-8 offset-md-4 col-sm-12">
                 {% for comment in comments %}
 
-                <div class="row">
+                <div class="row py-3">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-md-3 d-none d-sm-block"><img class="card-img-top" src="..." alt="Card image cap"></div>
-                                    <div class="col-md-5 col-sm-12">
-                                        <h5 class="card-title">Card title</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                    <div class="col-lg-1 col-md-2 d-none d-sm-block pr-0 text-right">{% if user.userprofile.image %}
+                                        <img class="img-thumbnail rounded-circle card-image" src="{{ comment.user.user.userprofile.image.url }}" alt="Comment card image"> {% else %}
+                                        <img class="img-thumbnail rounded-circle card-image" src="/media/profile_image/default.png" alt="Comment card image"> {% endif %}
                                     </div>
-                                    <div class="col-md-4 col-sm-12">
+                                    
+                                    <!-- Layout of edit / delete buttons only on small devices (BEGINNING) -->
+                                    <div class="col-sm-12 d-block d-sm-none">
                                         <div class="card-block text-right">
-                                            <span data-toggle="modal" data-target="#editCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary fa-lg" aria-hidden="true"></i></a></span>
+                                            <span class="pr-3" data-toggle="modal" data-target="#editCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary fa-lg" aria-hidden="true"></i></a></span>
                                             <span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
                                         </div>
                                     </div>
+                                    <!-- Layout of edit / delete buttons only on small devices (END) -->
+                                    
+                                    <div class="col-lg-8 col-md-7 col-sm-12">
+                                        <h5 class="card-title">{{ comment.user }}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ comment.date_updated }}</h6>
+                                    </div>
+                                    
+                                    <!-- Layout of edit / delete buttons only on medium and large devices (BEGINNING) -->
+                                    <div class="col-md-3 d-none d-sm-block">
+                                        <div class="card-block text-right">
+                                            <span class="pr-3" data-toggle="modal" data-target="#editCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary fa-lg" aria-hidden="true"></i></a></span>
+                                            <span class="pr-3" data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
+                                        </div>
+                                    </div>
+                                    <!-- Layout of edit / delete buttons only on medium and large devices (END) -->
                                 </div>
+                                
                             </div>
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text">{{ comment.comment }}</p>
                                 <p class="card-text text-right"><small class="text-muted">Read more</small></p>
                             </div>
                         </div>
