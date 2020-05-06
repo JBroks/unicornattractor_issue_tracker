@@ -192,7 +192,7 @@
 
     <!-- Comments section (BEGINNING) -->
     <section id="comments-section">
-        
+
         <!-- Comment counter container (BEGINNING) -->
         <div class="row pt-5 pb-3">
             <div class="col-md-8 offset-md-4 col-sm-12">
@@ -220,14 +220,14 @@
                             <button type="submit" name="action" class="btn btn-primary">Post comment</button>
                         </div>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
         <!-- Leave a comment form container (END) -->
 
         <div class="row">
-            
+
             <!-- Ticket edit and delete buttons - hidden only on small devices (BEGINNING) -->
             <div class="col-md-4 d-none d-sm-block">
                 {% if request.user == ticket.user %}
@@ -238,10 +238,43 @@
                 {% endif %}
             </div>
             <!-- Ticket edit and delete buttons - hidden only on small devices (END) -->
-            
+
             <!-- Comments cards container (BEGINNING) -->
             <div class="col-md-8 offset-md-4 col-sm-12">
-                Cards
+                {% for comment in comments %}
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-3 d-none d-sm-block"><img class="card-img-top" src="..." alt="Card image cap"></div>
+                                    <div class="col-md-5 col-sm-12">
+                                        <h5 class="card-title">Card title</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card-block text-right">
+                                            <span data-toggle="modal" data-target="#editCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary fa-lg" aria-hidden="true"></i></a></span>
+                                            <span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text text-right"><small class="text-muted">Read more</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- If no comments for the review display paragraph with information about it (BEGINNING) -->
+                {% empty %}
+
+                <p>No comments yet. Be the first to comment.</p>
+                <!-- If no comments for the review display paragraph with information about it (END) -->
+                {% endfor %}
 
             </div>
             <!-- Comments cards container (END) -->
