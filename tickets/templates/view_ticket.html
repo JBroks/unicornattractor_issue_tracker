@@ -226,9 +226,8 @@
         </div>
         <!-- Leave a comment form container (END) -->
 
-        <div class="row">
-
-            <!-- Ticket edit and delete buttons - hidden only on small devices (BEGINNING) -->
+        <!-- Ticket edit and delete buttons - hidden only on small devices (BEGINNING) -->
+        <div class="row align-items-end">
             <div class="col-md-4 d-none d-sm-block">
                 {% if request.user == ticket.user %}
                 <div class="row">
@@ -240,9 +239,8 @@
             <!-- Ticket edit and delete buttons - hidden only on small devices (END) -->
 
             <!-- Comments cards container (BEGINNING) -->
-            <div class="col-md-8 offset-md-4 col-sm-12">
+            <div class="col-md-8 col-sm-12">
                 {% for comment in comments %}
-
                 <div class="row py-3">
                     <div class="col-sm-12">
                         <div class="card">
