@@ -31,22 +31,22 @@
                             <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span>In: <a href="{% url 'view_ticket' ticket.id %}">{{ ticket.subject }}</a></span></li>
                             <li><i class="fa fa-users" aria-hidden="true"></i> <span>{{ user_commented_count }} {% if user_commented_count == 1 %} participant {% else %} participants {% endif %}</span></li>
                             <li><i class="fa fa-comments" aria-hidden="true"></i> <span>{{ comment_count }} {% if comment_count == 1 %} comment {% else %} comments {% endif %}</span></li>
-                            <li><i class="fa fa-user" aria-hidden="true"></i> <span>Last commented by: ...</span></li>
-                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Last activity: ...</span></li>
+                            <li><i class="fa fa-user" aria-hidden="true"></i> <span>Last commented by: {{ last_comment.user }}</span></li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Last activity: {{ last_comment.date_updated }}</span></li>
                             <li><i class="fa fa-money" aria-hidden="true"></i> <span>Total donations: &euro;{{ total_donations }}</span></li>
                         </ol>
                     </div>
                 </div>
                 <!-- Ticket summary info and page activity (END) -->
 
-                <!-- Ticket edit and delete buttons (BEGINNING) -->
+                <!-- Ticket edit and delete buttons - showing only on small devices (BEGINNING) -->
                 {% if request.user == ticket.user %}
-                <div class="row">
-                    <div class="col-sm-12"><button class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i><a class="text-reset text-decoration-none" href="{% url 'edit_ticket' ticket.id %}"> Edit</a></button></div>
-                    <div class="col-sm-12"><a class="text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}">Delete</a></div>
+                <div class="row d-block d-sm-none">
+                    <div class="col-sm-12 d-flex justify-content-center"><button class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i><a class="text-reset text-decoration-none" href="{% url 'edit_ticket' ticket.id %}"> Edit</a></button></div>
+                    <div class="col-sm-12 d-flex justify-content-center"><a class="text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}">Delete</a></div>
                 </div>
                 {% endif %}
-                <!-- Ticket edit and delete buttons (END) -->
+                <!-- Ticket edit and delete buttons  - showing only on small devices (END) -->
 
                 <!-- Delete Ticket Modal -->
                 <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
@@ -75,7 +75,7 @@
             <div class="col-md-8 col-sm-12">
 
                 <!-- Ticket card (BEGINNING) -->
-                <div class="row pt-5">
+                <div class="row pt-5 pb-3">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
@@ -95,7 +95,7 @@
 
                 <!-- If user didn't upvote display the upvote & donate button (BEGINNING) -->
                 {% if has_donated is None %}
-                <div class="row py-4">
+                <div class="row">
                     <div class="col-sm-12 text-center">
                         <span>Would you like to support development of this feature? </br> Click the 'Upvote' button and donate a minimum of $5.</span>
                     </div>
@@ -107,7 +107,7 @@
 
                 <!-- If user already voted and donated and then removed their upvote - user can add their upvote again however won't be allowed to donate again (BEGINNING) -->
                 {% else %}
-                <div class="row py-4">
+                <div class="row">
                     <div class="col-sm-12 text-center">
                         <span>Would you like to support development of this feature? </br> Click the 'Upvote' button below.</span>
                     </div>
@@ -120,7 +120,7 @@
 
                 <!-- Upvoting Bugs does not include donation (BEGINNING) -->
                 {% else %}
-                <div class="row py-4">
+                <div class="row">
                     <div class="col-sm-12 text-center">
                         <span>Are you experiencing the same issue? </br> Click the 'Upvote' button to prioritize this bug and we will fix it for free.</span>
                     </div>
@@ -133,7 +133,7 @@
 
                 <!-- If user already upvoted and wants to remove their vote show downvote button (BEGINNING) -->
                 {% else %}
-                <div class="row py-4">
+                <div class="row">
                     <div class="col-sm-12 text-center">
                         <span>You no longer want to support of this ticket</br> Click the 'Downvote' button to remove your vote.</span>
                     </div>
@@ -192,14 +192,16 @@
 
     <!-- Comments section (BEGINNING) -->
     <section id="comments-section">
-
-        <!-- Comments section heading -->
-        <div class="row text-center">
-            <div class="form-group col-md-8 offset-md-4 col-sm-12">
-                <hr class="mx-5">
-                <h5 class="center pt-3">Share your opinion, ideas ...</h5>
+        
+        <!-- Comment counter container (BEGINNING) -->
+        <div class="row pt-5 pb-3">
+            <div class="col-md-8 offset-md-4 col-sm-12">
+                <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Comments (<span id="counter">{{ comment_count }}</span>)</h5>
+                <h6>Start a discussion. Share your thoughts.</h6>
+                <hr>
             </div>
         </div>
+        <!-- Comment counter form container (END) -->
 
         <!-- Leave a comment form container (BEGINNING) -->
         <div class="row">
@@ -214,7 +216,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-12 d-flex justify-content-md-start justify-content-center">
+                        <div class="col-sm-12 d-flex justify-content-md-end justify-content-center">
                             <button type="submit" name="action" class="btn btn-primary">Post comment</button>
                         </div>
                     </div>
@@ -223,17 +225,20 @@
             </div>
         </div>
         <!-- Leave a comment form container (END) -->
-        
-        <!-- Comment counter container (BEGINNING) -->
-        <div class="row py-3">
-            <div class="col-md-8 offset-md-4 col-sm-12">
-                <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Comments (<span id="counter">{{ comment_count }}</span>)</h5>
-            </div>
-        </div>
-        <!-- Comment counter form container (END) -->
 
         <div class="row">
-
+            
+            <!-- Ticket edit and delete buttons - hidden only on small devices (BEGINNING) -->
+            <div class="col-md-4 d-none d-sm-block">
+                {% if request.user == ticket.user %}
+                <div class="row">
+                    <div class="col-sm-12 d-flex justify-content-center"><button class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i><a class="text-reset text-decoration-none" href="{% url 'edit_ticket' ticket.id %}"> Edit</a></button></div>
+                    <div class="col-sm-12 d-flex justify-content-center"><a class="text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}">Delete</a></div>
+                </div>
+                {% endif %}
+            </div>
+            <!-- Ticket edit and delete buttons - hidden only on small devices (END) -->
+            
             <!-- Comments cards container (BEGINNING) -->
             <div class="col-md-8 offset-md-4 col-sm-12">
                 Cards
