@@ -29,8 +29,8 @@ def add_or_edit_ticket(request, pk=None):
     ticket = get_object_or_404(Ticket, pk=pk) if pk else None
     
     if request.method == "POST":
-        add_ticket_form = AddTicketForm(request.POST, request.FILES, instance=ticket)
-
+        add_ticket_form = AddTicketForm(request.POST, request.FILES,
+                                        instance=ticket)
         if add_ticket_form.is_valid():
             add_ticket_form.instance.user = request.user
             add_ticket_form.instance.ticket_status = "Open"
@@ -39,12 +39,14 @@ def add_or_edit_ticket(request, pk=None):
                                 ticket!")
             return redirect('all_tickets')
         else:
-                messages.error(request, "Something went wrong. Please try again.")
-            
+                messages.error(request, "Something went wrong. \
+                                Please try again.")
     else:
         add_ticket_form = AddTicketForm(instance=ticket)
-    
-    return render(request, 'add_ticket.html', {'add_ticket_form': add_ticket_form} )
+    context = {
+        'add_ticket_form': add_ticket_form
+    }
+    return render(request, 'add_ticket.html', context)
   
 def all_tickets(request):
     '''
@@ -59,9 +61,11 @@ def all_tickets(request):
     status_list = Ticket.objects.order_by().values_list('ticket_status',
                     flat=True).distinct()
     
+    # Set queryset to all tickets
     qs = Ticket.objects.all()
+    page = request.GET.get('page', 1)
     
-    # Queries
+    # Query parameters
     type_filter_query = request.GET.get('ticket-type')
     status_filter_query = request.GET.get('ticket-status')
     
@@ -77,8 +81,6 @@ def all_tickets(request):
     else:
         qs
     
-    page = request.GET.get('page', 1)
-    
     # Paginate tickets
     paginator = Paginator(qs, 10)
     try:
@@ -87,12 +89,10 @@ def all_tickets(request):
         tickets = paginator.page(1)
     except EmptyPage:
         tickets = paginator.page(paginator.num_pages)
-        
-    args = {'tickets': tickets, 
+    context = {'tickets': tickets, 
             'types_list': types_list, 
             'status_list': status_list }
-        
-    return render(request, 'all_tickets.html', args )
+    return render(request, 'all_tickets.html', context)
 
 def view_ticket(request, pk):
     '''
@@ -128,7 +128,8 @@ def view_ticket(request, pk):
     # Get a sum of donations for a given ticket
     total_donations = Donation.objects.filter(ticket=ticket
                     ).aggregate(Sum('donation_amount'))['donation_amount__sum']
-    
+                    
+    # Set donations to zero if no donations has been made
     if total_donations is None:
         total_donations = 0
     else:
@@ -139,8 +140,7 @@ def view_ticket(request, pk):
         comments = Comment.objects.filter(ticket_id=ticket.pk)
     except Comment.DoesNotExist:
         comments = None
-    
-    args = {
+    context = {
         'ticket': ticket, 
         'donation_form': donation_form, 
         'payment_form': payment_form,
@@ -151,8 +151,7 @@ def view_ticket(request, pk):
         'comments': comments,
         'comment_form': comment_form
     }
-    
-    return render(request, 'view_ticket.html', args)
+    return render(request, 'view_ticket.html', context)
 
 @login_required
 def delete_ticket(request, pk):
@@ -160,6 +159,7 @@ def delete_ticket(request, pk):
     Allows user to delete their ticket
     '''
     
+    # Retrive the comment and ticket if exists
     ticket = get_object_or_404(Ticket, pk=pk)
     author= ticket.user
     
@@ -179,6 +179,7 @@ def upvote(request, pk):
     Stripe API used to charge a user's credit card
     '''
     
+    # Retrive the comment and ticket if exists
     ticket = get_object_or_404(Ticket, pk=pk)
     
     # Check if user upvoted ticket
@@ -193,7 +194,8 @@ def upvote(request, pk):
     except Donation.DoesNotExist:
         has_donated = None
     
-    if has_voted is None and (ticket.ticket_type == "Bug" or has_donated is not None):
+    if has_voted is None and (ticket.ticket_type == "Bug" 
+                                or has_donated is not None):
        Upvote.objects.create(ticket_id=ticket.pk, user_id=request.user.id) 
        messages.success(request, "Your have successfully upvoted the ticket!")
        return redirect('view_ticket', pk)
@@ -201,12 +203,9 @@ def upvote(request, pk):
     if has_voted is None and has_donated is None and request.method == "POST":
         payment_form = PaymentForm(request.POST)
         donation_form = DonationForm(request.POST)
-        
         if payment_form.is_valid() and donation_form.is_valid():
-            
             # Amount donated
             donation_amount = int(request.POST.get("donation_amount"))
-            
             try:
                 # Charge customer using Stripe API
                 customer = stripe.Charge.create(
@@ -218,44 +217,43 @@ def upvote(request, pk):
             except stripe.error.CardError:
                 # If card is declined display the error message
                 messages.error(request, "Your card was declined!")
-            
             # Payment was successful
             if customer.paid:
                 donation_form.instance.user = request.user
                 donation_form.instance.donation_amount = donation_amount
                 donation_form.instance.ticket = ticket
                 donation_form.save()
-                
                 # Create an upvote for the feature
                 Upvote.objects.create(ticket_id=ticket.pk,
                                         user_id=request.user.id)
-                
                 messages.success(request, "Your have successfully donated!")
                 return redirect('view_ticket', pk)
-                
             # If payment didn't go through
             else:
                 messages.error(request, "Unable to process the payment.")
-        
         # Forms not valid
         else:
-            messages.error(request, "We were unable to take a payment with that card!")
+            messages.error(request, "We were unable to take a payment \
+                            with that card!")
     else:
         payment_form = PaymentForm()
         donation_form = DonationForm()
-    
-    args = {
+    context = {
         'ticket': ticket,
         'donation_form': donation_form,
         'payment_form': payment_form,
         'publishable': settings.STRIPE_PUBLISHABLE
     }
-    
-    return render(request, 'view_ticket.html', args)
+    return render(request, 'view_ticket.html', context)
 
 @login_required
 def downvote(request, pk):
+    '''
+    View allows the user to downvote the ticket
+    Downvote action will simply remove the user's upvote
+    '''
     
+    # Retrive the comment and ticket if exists
     ticket = get_object_or_404(Ticket, pk=pk)
     
     # Check if user upvoted ticket
@@ -263,7 +261,7 @@ def downvote(request, pk):
         has_voted = Upvote.objects.get(user=request.user, ticket=ticket)
     except Upvote.DoesNotExist:
         has_voted = None
-    
+        
     if request.user.is_authenticated and has_voted is not None:
         upvote = Upvote.objects.get(ticket_id=ticket.pk,
                                         user_id=request.user.id)
@@ -273,14 +271,18 @@ def downvote(request, pk):
 
 @login_required
 def add_or_edit_comment(request, ticket_pk, pk=None):
+    '''
+    View allows the user to add a new comment
+    or edit the  existing one
+    '''
     
     # Retrive the comment and ticket if exists
     ticket = get_object_or_404(Ticket, pk=ticket_pk)
     comment = get_object_or_404(Comment, pk=pk) if pk else None
-
+    
     if request.method == "POST":
-        comment_form = AddCommentForm(request.POST, request.FILES, instance=comment)
-
+        comment_form = AddCommentForm(request.POST, request.FILES,
+                                        instance=comment)
         if comment_form.is_valid():
             comment_form.instance.user = request.user
             comment_form.instance.ticket = ticket
@@ -289,12 +291,9 @@ def add_or_edit_comment(request, ticket_pk, pk=None):
             return redirect('view_ticket', ticket.pk)
         else:
             messages.error(request, "Something went wrong. Please try again.")
-            
     else:
         comment_form = AddCommentForm(instance=comment)
-    
-    args = {
+    context = {
         'comment_form': comment_form
     }
-    
-    return render(request, 'view_ticket.html', args )
+    return render(request, 'view_ticket.html', context)
