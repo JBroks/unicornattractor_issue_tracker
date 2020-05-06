@@ -111,16 +111,10 @@ def view_ticket(request, pk):
     comment_form = AddCommentForm()
     
     # Check if user upvoted ticket
-    try:
-        has_voted = Upvote.objects.get(user=request.user, ticket=ticket)
-    except Upvote.DoesNotExist:
-        has_voted = None
+    has_voted = record_exist_check(Upvote, request.user, ticket)
     
     # Check if user donated money for the feature
-    try:
-        has_donated = Donation.objects.get(user=request.user, ticket=ticket)
-    except Donation.DoesNotExist:
-        has_donated = None
+    has_donated = record_exist_check(Donation, request.user, ticket)
     
     # Count all upvotes / commments for a ticket
     upvote_count = Upvote.objects.filter(ticket=ticket).count()
@@ -170,6 +164,17 @@ def delete_ticket(request, pk):
             messages.success(request, "Ticket successfully deleted!")
             return redirect(reverse('all_tickets'))
 
+def record_exist_check(Model, user, ticket):
+    '''
+    Helper fnuction that will check if record for a given user and ticket 
+    already exist in a given model
+    '''
+    try:
+        param = Model.objects.get(user=user, ticket=ticket)
+    except Model.DoesNotExist:
+        param = None
+    return param
+    
 @login_required
 def upvote(request, pk):
     '''
@@ -185,16 +190,10 @@ def upvote(request, pk):
     ticket = get_object_or_404(Ticket, pk=pk)
     
     # Check if user upvoted ticket
-    try:
-        has_voted = Upvote.objects.get(user=request.user, ticket=ticket)
-    except Upvote.DoesNotExist:
-        has_voted = None
-        
+    has_voted = record_exist_check(Upvote, request.user, ticket)
+    
     # Check if user donated money for the feature
-    try:
-        has_donated = Donation.objects.get(user=request.user, ticket=ticket)
-    except Donation.DoesNotExist:
-        has_donated = None
+    has_donated = record_exist_check(Donation, request.user, ticket)
     
     if has_voted is None and (ticket.ticket_type == "Bug" 
                                 or has_donated is not None):
@@ -259,10 +258,7 @@ def downvote(request, pk):
     ticket = get_object_or_404(Ticket, pk=pk)
     
     # Check if user upvoted ticket
-    try:
-        has_voted = Upvote.objects.get(user=request.user, ticket=ticket)
-    except Upvote.DoesNotExist:
-        has_voted = None
+    has_voted = record_exist_check(Upvote, request.user, ticket)
         
     if request.user.is_authenticated and has_voted is not None:
         upvote = Upvote.objects.get(ticket_id=ticket.pk,
