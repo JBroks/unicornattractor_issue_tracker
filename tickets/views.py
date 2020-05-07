@@ -319,7 +319,7 @@ def delete_comment(request, ticket_pk, pk):
     author= comment.user
     
     if request.user.is_authenticated and request.user == author:
-            ticket.delete()
+            comment.delete()
             messages.success(request, "Comment successfully deleted!")
             return redirect('view_ticket', ticket.pk)
     else:
