@@ -44,7 +44,7 @@
 
       <!-- Reset buttton (BEGINNING) -->
       <div class="row">
-        <div class="form-group col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-success">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
+        <div class="form-group col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-outline-primary">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
         <div class="form-group col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset  <i class="fa fa-refresh" aria-hidden="true"></i></button></div>
       </div>
       <!-- Reset buttton (END) -->
@@ -94,13 +94,13 @@
               </td>
               <!-- Column containnig font awesome icons indication ticket status (END) -->
 
-              <td><a href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
+              <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
               <td>{{ ticket.ticket_type }}</td>
 
               <!-- Columns containnig action buttons for edit / view / delete ticket (BEGINNING) -->
-              <td class="d-none d-md-table-cell"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-secondary" aria-hidden="true"></i></a></td>
+              <td class="d-none d-md-table-cell"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
               {% if request.user == ticket.user %}
-              <td class="d-none d-md-table-cell"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i></a></td>
+              <td class="d-none d-md-table-cell"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a></td>
               <td class="d-none d-md-table-cell"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
               {% else %}
               <td class="d-none d-md-table-cell"></td>
