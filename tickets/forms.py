@@ -95,7 +95,7 @@ class AddCommentForm(forms.ModelForm):
         label="Leave a comment",
         min_length=20,
         max_length=8000,
-        widget=forms.Textarea(attrs={'rows':2, 'cols':10, 'placeholder': 'Add a comment...'}),
+        widget=forms.Textarea(attrs={'rows':3, 'cols':10, 'placeholder': 'Add a comment...'}),
         required=True)
     
     class Meta:
