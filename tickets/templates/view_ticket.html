@@ -286,7 +286,28 @@
                                     <!-- Layout of edit / delete buttons only on medium and large devices (END) -->
                                 </div>
 
+                                <!-- Delete Comment Modal -->
+                                <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteCommentModalLabel">Confirmation</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' ticket.id comment.id %}">Delete</a></button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Delete Comment Modal -->
+
                             </div>
+                            
                             <div class="card-body">
                                 <p class="card-text">{{ comment.comment }}</p>
                                 <p class="card-text text-right"><small class="text-muted">Read more</small></p>
@@ -300,6 +321,7 @@
 
                 <p>No comments yet. Be the first to comment.</p>
                 <!-- If no comments for the review display paragraph with information about it (END) -->
+
                 {% endfor %}
 
             </div>
