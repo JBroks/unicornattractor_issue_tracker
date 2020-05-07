@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^downvote/ticket/(?P<pk>\d+)/$', downvote, name="downvote"),
     url(r'^view/ticket/(?P<pk>\d+)/$', view_ticket, name="view_ticket"),
     url(r'^view/ticket/(?P<ticket_pk>\d+)/comments/new/$', add_or_edit_comment, name="add_comment"),
-    url(r'^view/ticket/(?P<ticket_pk>\d+)/comments/edit/(?P<pk>\d+)/$', add_or_edit_comment, name="edit_comment"),
-    url(r'^view/ticket/(?P<ticket_pk>\d+)/comments/delete/(?P<pk>\d+)/$', delete_comment, name="delete_comment")
+    url(r'^view/ticket/(?P<ticket_pk>\d+)/comments/edit/comment/(?P<pk>\d+)/$', add_or_edit_comment, name="edit_comment"),
+    url(r'^view/ticket/(?P<ticket_pk>\d+)/comments/delete/comment/(?P<pk>\d+)/$', delete_comment, name="delete_comment")
 ]
