@@ -98,13 +98,13 @@ def view_ticket(request, pk):
     '''
     Enables user to view page containing all details regarding a selected ticket
     Function retrieves a single ticket based on its ID (pk) and renders it to 
-    the view_ticket.html template
+    the view_ticket.html template{% url 'edit_comment' ticket.pk comment.pk %}
     If object is not found 404 error is being returned
     '''
     
     # Retrive the ticket
     ticket = get_object_or_404(Ticket, pk=pk)
-    
+        
     # Allows to retrive forms on the view ticket page
     donation_form = DonationForm()
     payment_form = PaymentForm()
@@ -282,7 +282,7 @@ def downvote(request, pk):
         return redirect('view_ticket', pk)
 
 @login_required
-def add_or_edit_comment(request, ticket_pk, pk=None):
+def add_or_edit_comment(request, ticket_pk, comment_pk=None):
     '''
     View allows the user to add a new comment
     or edit the  existing one
@@ -290,7 +290,7 @@ def add_or_edit_comment(request, ticket_pk, pk=None):
     
     # Retrive the comment and ticket if exists
     ticket = get_object_or_404(Ticket, pk=ticket_pk)
-    comment = get_object_or_404(Comment, pk=pk) if pk else None
+    comment = get_object_or_404(Comment, pk=comment_pk) if comment_pk else None
     
     if request.method == "POST":
         comment_form = AddCommentForm(request.POST, request.FILES,
@@ -311,11 +311,11 @@ def add_or_edit_comment(request, ticket_pk, pk=None):
     return render(request, 'view_ticket.html', context)
 
 @login_required
-def delete_comment(request, ticket_pk, pk):
+def delete_comment(request, ticket_pk, comment_pk):
     
     # Retrive the comment and ticket if exists
     ticket = get_object_or_404(Ticket, pk=ticket_pk)
-    comment = get_object_or_404(Comment, pk=pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
     author= comment.user
     
     if request.user.is_authenticated and request.user == author:
