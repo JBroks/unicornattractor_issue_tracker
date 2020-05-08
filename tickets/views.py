@@ -32,9 +32,13 @@ def add_or_edit_ticket(request, pk=None):
         add_ticket_form = AddTicketForm(request.POST, request.FILES,
                                         instance=ticket)
         if add_ticket_form.is_valid():
+            # Create ticket object without saving it to the database yet
+            new_ticket = add_ticket_form.save(commit=False)
+            # Assign the current user and ticket_status to the ticket
             add_ticket_form.instance.user = request.user
             add_ticket_form.instance.ticket_status = "Open"
-            add_ticket_form.save()
+            # Save the ticket to the database
+            new_ticket.save()
             messages.success(request, "You have successfully submitted your \
                                 ticket!")
             return redirect('all_tickets')
@@ -296,9 +300,13 @@ def add_or_edit_comment(request, ticket_pk, comment_pk=None):
         comment_form = AddCommentForm(request.POST, request.FILES,
                                         instance=comment)
         if comment_form.is_valid():
+            # Create comment object without saving it to the database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current user and ticket to the comment
             comment_form.instance.user = request.user
             comment_form.instance.ticket = ticket
-            comment_form.save()
+            # Save the comment to the database
+            new_comment.save()
             messages.success(request, "Thanks for sharing your thoughts!")
             return redirect('view_ticket', ticket.pk)
         else:
