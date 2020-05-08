@@ -147,7 +147,10 @@ class Comment(models.Model):
         null=False,
         auto_now=True,
         )
-    
+        
+    class Meta:
+        ordering = ['-date_created']
+        
     def __str__(self):
         return "Comment #{0} added by {1} for ticket #{2}".format(
             self.id, self.user.username, self.ticket.id)
