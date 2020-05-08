@@ -22,3 +22,19 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
   e.target // newly activated tab
   e.relatedTarget // previous active tab
 });
+
+/** 
+ * Function that displays only the comment form which user chose to update.
+ * Function is initiated on edit button click.
+ * When users clicks 'edit' button card view is hidden and editable comment is
+ * being displayed
+ **/
+
+$(document).ready(function() {
+  // Hide all (update) form as a default
+  $('.edit-comment').hide();
+  $('.edit-comment-btn').click(function() {
+    $(this).parents('div.card-header').nextAll('.posted-comment').hide();
+    $(this).parents('div.card-header').nextAll('.edit-comment').show();
+  });
+});
