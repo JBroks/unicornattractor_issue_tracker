@@ -60,18 +60,24 @@ $(function() {
  // SHOW MORE / LESS COMMENT
 
 /**
- * Function that toggles materialize class truncate for the comment text
+ * Function that toggles bootstrap class truncate-text for the comment text
  * in order to manage very long comments.
  * When comments are truncated link 'more' can be clicked to see full text.
  * On other other hand when user wants to hide the comment again he / she can 
- * click 'show less' which will truncate the comment 
+ * click 'read less' which will truncate the comment 
+ * At the same time when the user is done reading and does not click read less
+ * and clicks on other comment read mor button, the previous comment will
+ * automatically truncate text
  **/
-
-// Show more
+  
+// Read more
 $(document).ready(function() {
   $(function() {
     $('.read-less').hide();
     $('.read-more').click(function() {
+      $(".comment-text:not([class*='text-truncate'])").addClass("text-truncate");
+      $('.read-less').hide();
+      $('.read-more').show();
       $(this).siblings('.comment-text').toggleClass('text-truncate');
       $(this).hide();
       $(this).siblings('.read-less').show();
@@ -79,7 +85,7 @@ $(document).ready(function() {
   });
 });
 
-// Show less
+// Read less
 $(document).ready(function() {
   $(function() {
     $('.read-less').click(function() {
