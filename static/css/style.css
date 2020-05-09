@@ -16,9 +16,14 @@ textarea {
     resize: none;
   }
 
-#comment-form {
+/* Style comment forms on ticket view page */
+form.comment-form, textarea {
   width: 100%;
-}  
+} 
+
+.comment-form textarea {
+  border: 1px solid #ced4da
+}
 
 /* Set max size of profile images */
 .profile-image {
