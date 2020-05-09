@@ -318,8 +318,9 @@
                             
                             <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (BEGINNING) -->
                             <div class="card-body posted-comment">
-                                <p class="card-text posted-comment">{{ comment.comment }}</p>
-                                <p class="card-text text-right more-less-btn"><small class="text-muted">Read more</small></p>
+                                <p class="card-text text-truncate comment-text">{{ comment.comment }}</p>
+                                <p class="card-text text-right read-more"><small class="text-muted"><a type="button">Read more</a></small></p>
+                                <p class="card-text text-right read-less"><small class="text-muted"><a type="button">Read less</a></small></p>
                             </div>
                             <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (END) -->
 
