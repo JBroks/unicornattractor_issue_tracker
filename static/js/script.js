@@ -1,4 +1,5 @@
 // TOOLTIPS
+
 /**
  * Function to initialize all tooltips on a page
  **/
@@ -8,6 +9,7 @@ $(function() {
 
 
 // RESET TICKETS FILTERS
+
 /** 
  * Onclick functions for the ticket type and status filters.
  * Function that clears the filters after reset button is clicked by a user
@@ -30,14 +32,27 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
  * Function is initiated on edit button click.
  * When users clicks 'edit' button card view is hidden and editable comment is
  * being displayed
+ * When edit form cancel button is clicked the form is hidden again
  **/
 
 $(document).ready(function() {
   // Hide all (update) form as a default
   $('.edit-comment').hide();
   $('.edit-comment-btn').click(function() {
+    $('.edit-comment').hide();
+    $('.posted-comment').show();
     $(this).parents('div.card-header').nextAll('.posted-comment').hide();
     $(this).parents('div.card-header').nextAll('.edit-comment').show();
+  });
+});
+
+ 
+$(document).ready(function() {
+  $(function() {
+    $('.cancel-edit').click(function() {
+      $('.edit-comment').hide();
+      $('.posted-comment').show();
+    });
   });
 });
 
@@ -50,7 +65,6 @@ $(document).ready(function() {
 
 $(function() {
      $('.comment-text').each(function(index, elem) {
-
          if(elem.offsetWidth === elem.scrollWidth){
           	$(this).siblings('.read-more').hide();
          }
