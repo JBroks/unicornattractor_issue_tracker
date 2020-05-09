@@ -257,7 +257,10 @@
                     <div class="col-sm-12">
                         <div class="card">
 
+                            <!-- Posted comment card header (BEGINNING) -->
                             <div class="card-header bg-transparent">
+                                
+                                <!--Card header content (BEGINNING) -->
                                 <div class="row">
                                     <div class="col-lg-1 col-md-2 d-none d-sm-block pr-0 text-right">{% if user.userprofile.image %}
                                         <img class="img-thumbnail rounded-circle card-image" src="{{ comment.user.user.userprofile.image.url }}" alt="Comment card image"> {% else %}
@@ -286,7 +289,9 @@
                                         </div>
                                     </div>
                                     <!-- Layout of edit / delete buttons only on medium and large devices (END) -->
+                                    
                                 </div>
+                                <!--Card header content (END) -->
 
                                 <!-- Delete Comment Modal -->
                                 <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
@@ -309,19 +314,18 @@
                                 <!-- Delete Comment Modal -->
 
                             </div>
-
+                            <!-- Posted comment card header (END) -->
+                            
+                            <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (BEGINNING) -->
                             <div class="card-body posted-comment">
-
-                                <!-- Posted comment (BEGINNING) -->
                                 <p class="card-text posted-comment">{{ comment.comment }}</p>
-                                <!-- Posted comment (END) -->
-
                                 <p class="card-text text-right more-less-btn"><small class="text-muted">Read more</small></p>
-
                             </div>
+                            <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (END) -->
 
+                            <!-- Edit comment form - displayed only when edit button clicked (BEGINNING) -->
                             <div class="card-body edit-comment">
-                                <!-- Edit comment form container (BEGINNING) -->
+
                                 <div class="row">
                                     <div class="form-group col-sm-12 d-flex justify-content-center">
                                         <form action="{% url 'edit_comment' ticket.pk comment.pk %}" method="POST" class="comment-form" enctype="multipart/form-data">
@@ -339,21 +343,19 @@
                                         </form>
                                     </div>
                                 </div>
-                                <!-- Edit comment form container (END) -->
                             </div>
-
+                            <!-- Edit comment form container  - displayed only when edit button clicked (END) -->
+                            
                         </div>
                     </div>
                 </div>
 
                 <!-- If no comments for the review display paragraph with information about it (BEGINNING) -->
                 {% empty %}
-
                 <p>No comments yet. Be the first to comment.</p>
                 <!-- If no comments for the review display paragraph with information about it (END) -->
 
                 {% endfor %}
-
             </div>
             <!-- Comments cards container (END) -->
 
