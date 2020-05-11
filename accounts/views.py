@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm
 from .models import UserProfile
-from tickets.models import Ticket
+from tickets.models import Ticket, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
@@ -67,9 +67,13 @@ def user_profile(request, username):
 
     user = User.objects.get(username=request.user.username)
     
+    # Count all tickets / commments submited by the user
     ticket_count = Ticket.objects.filter(user=request.user).count()
+    comment_count = Comment.objects.filter(user=request.user).count()
     
+    # Retrive all user tickets / comments
     user_tickets = Ticket.objects.filter(user=request.user)
+    user_comments = Comment.objects.filter(user=request.user)
     
     page = request.GET.get('page', 1)
     
@@ -82,11 +86,13 @@ def user_profile(request, username):
     except EmptyPage:
         user_tickets = paginator.page(paginator.num_pages)
    
-    args = {"user": user,
+    context = {"user": user,
             "ticket_count": ticket_count,
-            "user_tickets": user_tickets }
+            "comment_count": comment_count,
+            "user_tickets": user_tickets,
+            "user_comments": user_comments }
             
-    return render(request, 'profile.html', args)
+    return render(request, 'profile.html', context)
 
 @login_required
 def edit_profile(request, username):

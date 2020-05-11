@@ -70,7 +70,7 @@
                             <p>Tickets: {{ ticket_count }}</p>
                         </div>
                         <div class="col-sm-12">
-                            <p>Comments: ??</p>
+                            <p>Comments: {{ comment_count }} {% if comment_count == 1 %} comment {% else %} comments {% endif %}</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                     <a class="nav-link flex-sm-fill text-sm-center" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts ()</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Comments ()</a>
+                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Comments ({{ comment_count }})</a>
                 </li>
             </ul>
             <!-- Pills navigation buttons (END) -->
@@ -191,7 +191,12 @@
                 <!-- Pill containing user posts table (END) -->
 
                 <!-- Pill containing user comments table (BEGINNING) -->
-                <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">...</div>
+                <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">
+                    {% for comment in user_comments %}
+                        ....
+                    {% endfor %}
+                
+                </div>
                 <!-- Pill containing user comments table (END) -->
 
             </div>
