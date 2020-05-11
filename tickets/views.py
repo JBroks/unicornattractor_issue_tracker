@@ -129,9 +129,6 @@ def view_ticket(request, pk):
                             ).order_by().values_list('user', flat=True
                             ).distinct())
     
-    # Retrive last comment
-    last_comment = Comment.objects.latest('date_created')
-    
     # Get a sum of donations for a given ticket
     total_donations = Donation.objects.filter(ticket=ticket
                     ).aggregate(Sum('donation_amount'))['donation_amount__sum']
@@ -147,6 +144,20 @@ def view_ticket(request, pk):
         comments = Comment.objects.filter(ticket_id=ticket.pk)
     except Comment.DoesNotExist:
         comments = None
+        
+    # Paginate tickets
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comments, 10)
+    try:
+        comments = paginator.page(page)
+    except PageNotAnInteger:
+        comments = paginator.page(1)
+    except EmptyPage:
+        comments = paginator.page(paginator.num_pages)
+    
+    # Retrive last comment
+    last_comment = Comment.objects.latest('date_created')
+    
     context = {
         'ticket': ticket, 
         'donation_form': donation_form, 

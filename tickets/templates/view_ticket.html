@@ -211,11 +211,9 @@
             <div class="col-md-8 offset-md-4 col-sm-12">
                 <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Comments (<span id="counter">{{ comment_count }}</span>)</h5>
                 <h6>Start a discussion. Share your thoughts.</h6>
-                <hr>
-                {% if not user.is_authenticated %}
+                <hr> {% if not user.is_authenticated %}
                 <p><small>Not yet a member? <a class="text-decoration-none" href="{% url 'registration' %}">Sign up</a> and join the discussion. If you are an existing user please <a class="text-decoration-none" href="{% url 'login' %}">sign in</a> first to post your comment.</small></p>
-               {% else %}
-               {% endif %}
+                {% else %} {% endif %}
             </div>
         </div>
         <!-- Comment counter form container (END) -->
@@ -242,8 +240,9 @@
         </div>
         <!-- Leave a comment form container (END) -->
 
-        <!-- Ticket edit and delete buttons - hidden only on small devices (BEGINNING) -->
         <div class="row align-items-end">
+
+            <!-- Ticket edit and delete buttons - hidden only on small devices (BEGINNING) -->
             <div class="col-md-4 d-none d-sm-block">
                 {% if request.user == ticket.user %}
                 <div class="row">
@@ -263,7 +262,7 @@
 
                             <!-- Posted comment card header (BEGINNING) -->
                             <div class="card-header bg-transparent">
-                                
+
                                 <!--Card header content (BEGINNING) -->
                                 <div class="row">
                                     <div class="col-lg-1 col-md-2 d-none d-sm-block pr-0 text-right">{% if user.userprofile.image %}
@@ -293,7 +292,7 @@
                                         </div>
                                     </div>
                                     <!-- Layout of edit / delete buttons only on medium and large devices (END) -->
-                                    
+
                                 </div>
                                 <!--Card header content (END) -->
 
@@ -319,7 +318,7 @@
 
                             </div>
                             <!-- Posted comment card header (END) -->
-                            
+
                             <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (BEGINNING) -->
                             <div class="card-body posted-comment">
                                 <p class="card-text text-truncate comment-text">{{ comment.comment }}</p>
@@ -335,8 +334,7 @@
                                 <div class="row">
                                     <div class="form-group col-sm-12 d-flex justify-content-center">
                                         <form action="{% url 'edit_comment' ticket.pk comment.pk %}" method="POST" class="comment-form" enctype="multipart/form-data">
-                                            {% csrf_token %}
-                                            {{ comment_form | as_bootstrap }}
+                                            {% csrf_token %} {{ comment_form | as_bootstrap }}
                                             <div class="row">
                                                 <div class="form-group col-sm-12 mb-0">
                                                     <!--<textarea rows="3" name="comment">{{ comment.comment }}</textarea>-->
@@ -353,7 +351,7 @@
                                 </div>
                             </div>
                             <!-- Edit comment form container  - displayed only when edit button clicked (END) -->
-                            
+
                         </div>
                     </div>
                 </div>
@@ -364,10 +362,37 @@
                 <!-- If no comments for the review display paragraph with information about it (END) -->
 
                 {% endfor %}
+
+                <!-- Comments pagination buttons (BEGINNING)-->
+                <div class="col-sm-12 d-flex justify-content-center">
+                    {% if comments.has_other_pages %}
+                    <nav aria-label="Table navigation">
+                        <ul class="pagination">
+                            {% if comments.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ comments.previous_page_number }}">&laquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                            {% endif %} {% for i in comments.paginator.page_range %} {% if comments.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                            </li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %} {% endfor %} {% if comments.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ comments.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                </div>
+                <!-- Comments pagination buttons (END)-->
+
             </div>
             <!-- Comments cards container (END) -->
 
         </div>
+
     </section>
     <!-- Comments section (END) -->
 
