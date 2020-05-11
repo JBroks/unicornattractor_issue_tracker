@@ -163,24 +163,28 @@
                     <!-- User tickets table (END) -->
 
                     <!-- User tickets pagination buttons (BEGINNING)-->
-                    {% if user_tickets.has_other_pages %}
-                    <ul class="pagination">
-                        {% if user_tickets.has_previous %}
-                        <li><a href="?page={{ user_tickets.previous_page_number }}">&laquo;</a></li>
-                        {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                        {% endif %} {% for i in user_tickets.paginator.page_range %} {% if user_tickets.number == i %}
-                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
-                        </li>
-                        {% else %}
-                        <li><a href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %} {% endfor %} {% if user_tickets.has_next %}
-                        <li><a href="?page={{ user_tickets.next_page_number }}">&raquo;</a></li>
-                        {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
+                    <div class="col-sm-12 d-flex justify-content-center">
+                        {% if user_tickets.has_other_pages %}
+                        <nav aria-label="Table navigation">
+                            <ul class="pagination">
+                                {% if user_tickets.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ user_tickets.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                {% endif %} {% for i in user_tickets.paginator.page_range %} {% if user_tickets.number == i %}
+                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                </li>
+                                {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %} {% endfor %} {% if user_tickets.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ user_tickets.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
                         {% endif %}
-                    </ul>
-                    {% endif %}
+                    </div>
                     <!-- User tickets pagination buttons (END)-->
 
                 </div>
@@ -192,10 +196,69 @@
 
                 <!-- Pill containing user comments table (BEGINNING) -->
                 <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">
-                    {% for comment in user_comments %}
-                        ....
-                    {% endfor %}
-                
+
+                    <!-- User comments table (BEGINNING) -->
+                    <table class="table">
+                        <tbody class="comments-table">
+                            {% for comment in user_comments %}
+                            <tr>
+                                <td>Commented on: <a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}">Ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</a></td>
+                                <td>{{ comment.date_updated | timesince }}</td>
+                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_ticket' comment.ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_comment' comment.ticket.id comment.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a></td>
+                                <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deleteModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                            </tr>
+
+                            <!-- Delete Comment Modal (BEGINNING) -->
+                            <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteCommentModalLabel">Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' comment.ticket.id comment.id %}">Delete</a></button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Delete Comment Modal (END) -->
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- User tickets table (END) -->
+
+                    <!-- User comments pagination buttons (BEGINNING)-->
+                    <div class="col-sm-12 d-flex justify-content-center">
+                        {% if user_comments.has_other_pages %}
+                        <nav aria-label="Table navigation">
+                            <ul class="pagination">
+                                {% if user_comments.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ user_comments.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                {% endif %} {% for i in user_comments.paginator.page_range %} {% if user_comments.number == i %}
+                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                </li>
+                                {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %} {% endfor %} {% if user_comments.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ user_comments.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        {% endif %}
+                    </div>
+                    <!-- User comments pagination buttons (END)-->
+
                 </div>
                 <!-- Pill containing user comments table (END) -->
 

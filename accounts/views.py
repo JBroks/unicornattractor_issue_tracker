@@ -85,6 +85,15 @@ def user_profile(request, username):
         user_tickets = paginator.page(1)
     except EmptyPage:
         user_tickets = paginator.page(paginator.num_pages)
+    
+    # Paginate comments
+    paginator = Paginator(user_comments, 10)
+    try:
+        user_comments = paginator.page(page)
+    except PageNotAnInteger:
+        user_comments = paginator.page(1)
+    except EmptyPage:
+        user_comments = paginator.page(paginator.num_pages)
    
     context = {"user": user,
             "ticket_count": ticket_count,
