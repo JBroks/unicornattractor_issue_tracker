@@ -6,7 +6,7 @@
     <div class="row">
 
         <!-- Profile photo container (BEGINNING)-->
-        <div class="col-md-3 col-sm-12 d-flex justify-content-center d-none d-sm-block">
+        <div class="col-md-3 col-sm-12 d-flex justify-content-center">
             {% if user.userprofile.image %}
             <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image"> {% else %}
             <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image"> {% endif %}
@@ -32,8 +32,9 @@
     </div>
 
     <div class="row">
-
-        <div class="col-md-3 col-sm-12">
+        
+        <!-- User information (BEGINNING) -->
+        <div class="col-md-3 col-sm-12 px-5 pt-5">
 
             <!-- Personal info container (BEGINNING)-->
             <div class="row d-none d-sm-block">
@@ -41,6 +42,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h5>Personal info</h5>
+                            <hr>
                         </div>
                         <div class="col-sm-12">
                             <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
@@ -62,6 +64,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h5>Activity</h5>
+                            <hr>
                         </div>
                         <div class="col-sm-12">
                             <p>Posts: ??</p>
@@ -93,7 +96,9 @@
             <!-- Buttons container - hidden only on small devices (END)-->
 
         </div>
-
+        <!-- User information (END) -->
+        
+        <!-- Pills (BEGINNING) -->
         <div class="col-md-8 col-sm-12">
 
             <!-- Pills navigation buttons (BEGINNING) -->
@@ -203,7 +208,7 @@
                             {% for comment in user_comments %}
                             <tr>
                                 <td>Commented on: <a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}">Ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</a></td>
-                                <td>{{ comment.date_updated | timesince }}</td>
+                                <td class="d-none d-md-table-cell">{{ comment.date_updated | timesince }}</td>
                                 <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_ticket' comment.ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
                                 <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_comment' comment.ticket.id comment.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a></td>
                                 <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deleteModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
@@ -266,6 +271,7 @@
             <!-- Pills content (END)-->
 
         </div>
+        <!-- Pills (END) -->
 
     </div>
 
