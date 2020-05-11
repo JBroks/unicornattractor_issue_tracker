@@ -319,8 +319,9 @@
                             <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (BEGINNING) -->
                             <div class="card-body posted-comment">
                                 <p class="card-text text-truncate comment-text">{{ comment.comment }}</p>
-                                <p class="card-text text-right read-more"><small class="text-primary"><a type="button">Read more</a></small></p>
-                                <p class="card-text text-right read-less"><small class="text-primary"><a type="button">Read less</a></small></p>
+                                <hr>
+                                <p class="card-text text-center text-uppercase read-more mb-0"><small class="text-primary"><a type="button">Read more</a></small></p>
+                                <p class="card-text text-center text-uppercase read-less mb-0"><small class="text-primary"><a type="button">Read less</a></small></p>
                             </div>
                             <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (END) -->
 
@@ -331,9 +332,10 @@
                                     <div class="form-group col-sm-12 d-flex justify-content-center">
                                         <form action="{% url 'edit_comment' ticket.pk comment.pk %}" method="POST" class="comment-form" enctype="multipart/form-data">
                                             {% csrf_token %}
+                                            {{ comment_form | as_bootstrap }}
                                             <div class="row">
                                                 <div class="form-group col-sm-12 mb-0">
-                                                    <textarea rows="3" name="comment">{{ comment.comment }}</textarea>
+                                                    <!--<textarea rows="3" name="comment">{{ comment.comment }}</textarea>-->
                                                 </div>
                                             </div>
                                             <div class="row">
