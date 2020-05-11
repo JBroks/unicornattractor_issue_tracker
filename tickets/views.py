@@ -187,11 +187,14 @@ def record_exist_check(Model, user, ticket):
     Helper function that will check if record for a given user and ticket 
     already exist in a given model
     '''
-    try:
-        param = Model.objects.get(user=user, ticket=ticket)
-    except Model.DoesNotExist:
+    if user.is_authenticated:
+        try:
+            param = Model.objects.get(user=user, ticket=ticket)
+        except Model.DoesNotExist:
+            param = None
+        return param
+    else:
         param = None
-    return param
     
 @login_required
 def upvote(request, pk):
