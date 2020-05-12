@@ -23,74 +23,90 @@
 
 <body>
 
-  <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Navbar (BEGINNING) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-      <!-- Logo -->
-      <a class="navbar-brand" href="{% url 'index' %}">Logo</a>
+    <!-- Logo (BEGINNING) -->
+    <a class="navbar-brand" href="{% url 'index' %}">Logo</a>
+    <!-- Logo (END) -->
 
-      <!-- Hamburger button -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Hamburger button (BEGINNING) -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span></button>
+    <!-- Hamburger button (END) -->
+    
+    <!-- Navbar menu (BEGINNING) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      <!-- Menu next to logo - left side (BEGINNING) -->
+      <ul class="navbar-nav mr-auto">
+        
+        <!-- Home link (BEGINNING) -->
+        <li {% if request.resolver_match.url_name == 'index' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
+        <!-- Home link (END) -->
 
-      <!-- Navbar menu -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li {% if request.resolver_match.url_name == 'index' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-
-          <!-- Unauthenticated users won't be able to add new tickets -->
-          {% if user.is_authenticated %}
-          <li {% if request.resolver_match.url_name == 'add_ticket' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-            <a class="nav-link" href="{% url 'add_ticket' %}">Add Ticket</a>
-          </li>
-          {% endif %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (BEGINNING) -->
+        {% if user.is_authenticated %}
+        <li {% if request.resolver_match.url_name == 'add_ticket' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'add_ticket' %}">Add Ticket</a>
+        </li>
+        {% endif %}
+        <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (END) -->
+        
+        <!-- Explore dropdown menu (BEGINNING) -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Explore
         </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'all_tickets' %}">Tickets</a>
-              <a class="dropdown-item" href="#">Forum</a>
-              <a class="dropdown-item" href="#">Stats</a>
-            </div>
-          </li>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'all_tickets' %}">Tickets</a>
+            <a class="dropdown-item" href="#">Forum</a>
+            <a class="dropdown-item" href="#">Stats</a>
+          </div>
+        </li>
+        <!-- Explore dropdown menu (END) -->
 
-          <!-- Profile and logout options are available only to authenticated users -->
-          {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          My Account
-        </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a>
-              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-            </div>
-          </li>
+        <!-- Profile / Sign Up link showing when user is authenticated / not authenticated (BEGINNING) -->
+        {% if user.is_authenticated %}
+        <li {% if request.resolver_match.url_name == 'profile' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'profile' user.username %}">Profile</a>
+        </li>
+        {% else %}
+        <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'registration' %}">Sign Up</a>
+        </li>
+        {% endif %}
+        <!-- Profile / Sign Up link showing when user is authenticated / not authenticated (END) -->
+      </ul>
+      <!-- Menu next to logo - left side (END) -->
 
-          <!-- Unauthenticated users will be able to register a new account or login to their existing accounts" -->
-          {% else %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Account
-        </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'registration' %}">Sign Up</a>
-              <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-            </div>
-          </li>
-          {% endif %}
-        </ul>
+      <!-- Search form -->
+      <form class="form-inline my-2 my-lg-0 d-flex justify-content-lg-end">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      
+      <!-- Sign Out / Sign In link showing when user is authenticated / not authenticated (BEGINNING) -->
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
+        </li>
+        {% else %}
+        <li {% if request.resolver_match.url_name == 'login' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'login' %}">Sign In</a>
+        </li>
+        {% endif %}
+      </ul>
+      <!-- Sign Out / Sign In buttons - showing when user is authenticated / not authenticated (END) -->
 
-        <!-- Search form -->
-        <form class="form-inline my-2 my-lg-0 d-flex justify-content-lg-end">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
+    </div>
+    <!-- Navbar menu (END) -->
 
-    </nav>
+  </nav>
+  <!-- Navbar (END) -->
 
   <!-- Message container -->
   <main>
@@ -131,21 +147,21 @@
     </div>
 
   </footer>
-  
+
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
   <!-- Popper JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  
+
   {% block js %} {% endblock %}
-  
+
   <!-- Custom JS -->
   <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-  
+
 </body>
 
 </html>
