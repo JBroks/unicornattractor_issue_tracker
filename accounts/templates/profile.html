@@ -70,14 +70,23 @@
                                 <div class="col-sm-12 text-center">
                                     <h5>Activity</h5>
                                 </div>
-                                <div class="col-sm-12 text-center">
-                                    <p>Posts: ??</p>
+                                <div class="col-sm-12 d-flex justify-content-center">
+                                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> Forum posts: ??</p>
                                 </div>
-                                <div class="col-sm-12 text-center">
-                                    <p>Tickets: {{ ticket_count }}</p>
+                                <div class="col-sm-12 d-flex justify-content-center">
+                                    <p><i class="fa fa-commenting-o" aria-hidden="true"></i> Post comments: ??</p>
                                 </div>
-                                <div class="col-sm-12 text-center">
-                                    <p>Comments: {{ comment_count }} {% if comment_count == 1 %} comment {% else %} comments {% endif %}</p>
+                                <div class="col-sm-12 d-flex justify-content-center">
+                                    <p><i class="fa fa-ticket" aria-hidden="true"></i> Tickets: {{ ticket_count }}</p>
+                                </div>
+                                <div class="col-sm-12 d-flex justify-content-center">
+                                    <p><i class="fa fa-comments" aria-hidden="true"></i> Ticket comments: {{ comment_count }}</p>
+                                </div>
+                                <div class="col-sm-12 d-flex justify-content-center">
+                                    <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: ?? </p>
+                                </div>
+                                <div class="col-sm-12 d-flex justify-content-center">
+                                    <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: ??</p>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +99,7 @@
                         <div class="col-sm-12 text-center">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a class="text-primary text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Update profile</a>
+                                    <a class="text-primary text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
                                 </div>
                                 <div class="col-sm-12">
                                     <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
@@ -114,13 +123,13 @@
                             <h5>Personal info</h5>
                             <hr class="mx-5">
                         </div>
-                        <div class="col-sm-12 text-center">
+                        <div class="col-sm-12 d-flex justify-content-center">
                             <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
                         </div>
-                        <div class="col-sm-12 text-center">
+                        <div class="col-sm-12 d-flex justify-content-center">
                             <p>Username: {{ user.username }}</p>
                         </div>
-                        <div class="col-sm-12 text-center">
+                        <div class="col-sm-12 d-flex justify-content-center">
                             <p>Email: {{ user.email }}</p>
                         </div>
                     </div>
@@ -136,14 +145,23 @@
                             <h5>Activity</h5>
                             <hr class="mx-5">
                         </div>
-                        <div class="col-sm-12 text-center">
-                            <p>Posts: ??</p>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <p><i class="fa fa-envelope-o" aria-hidden="true"></i> Forum posts: ??</p>
                         </div>
-                        <div class="col-sm-12 text-center">
-                            <p>Tickets: {{ ticket_count }}</p>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <p><i class="fa fa-commenting-o" aria-hidden="true"></i> Post comments: ??</p>
                         </div>
-                        <div class="col-sm-12 text-center">
-                            <p>Comments: {{ comment_count }} {% if comment_count == 1 %} comment {% else %} comments {% endif %}</p>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <p><i class="fa fa-ticket" aria-hidden="true"></i> Tickets: {{ ticket_count }}</p>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <p><i class="fa fa-comments" aria-hidden="true"></i> Ticket comments: {{ comment_count }}</p>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: ?? </p>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: ??</p>
                         </div>
                     </div>
                 </div>
@@ -155,10 +173,10 @@
                 <div class="col-sm-12 text-center d-none d-sm-block">
                     <div class="row">
                         <div class="col-sm-12">
-                            <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}">Update profile</a></button>
+                            <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
                         </div>
                         <div class="col-sm-12">
-                            <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal">Delete account</button>
+                            <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
                         </div>
                     </div>
                 </div>
