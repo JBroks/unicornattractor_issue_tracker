@@ -33,8 +33,78 @@
 
     <div class="row">
 
-        <!-- User information (BEGINNING) -->
-        <div class="col-lg-3 col-md-12 pt-5">
+        <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (BEGINNING) -->
+        <div class="col-sm-12 d-block d-lg-none">
+            <p class="text-center">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePersonalInfo" aria-expanded="false" aria-controls="collapseExample1"><i class="fa fa-user" aria-hidden="true"></i></button>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseActivity" aria-expanded="false" aria-controls="collapseExample2"><i class="fa fa-list" aria-hidden="true"></i></button>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAccSettings" aria-expanded="false" aria-controls="collapseExample3"><i class="fa fa-cogs" aria-hidden="true"></i></button>
+            </p>
+            <div class="collapse" id="collapsePersonalInfo">
+                <div class="card card-body">
+                    <div class="row mx-auto">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <h5>Personal info</h5>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <p>Username: {{ user.username }}</p>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <p>Email: {{ user.email }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="collapseActivity">
+                <div class="card card-body">
+                    <div class="row mx-auto">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <h5>Activity</h5>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <p>Posts: ??</p>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <p>Tickets: {{ ticket_count }}</p>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <p>Comments: {{ comment_count }} {% if comment_count == 1 %} comment {% else %} comments {% endif %}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="collapseAccSettings">
+                <div class="card card-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a class="text-primary text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Update profile</a>
+                                </div>
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (END) -->
+
+        <!-- User information - showing only on large and xl devices (BEGINNING) -->
+        <div class="col-lg-3 col-md-12 pt-5 d-none d-lg-block">
 
             <!-- Personal info container (BEGINNING)-->
             <div class="row mx-auto">
@@ -80,8 +150,8 @@
             </div>
             <!-- Activity summary container (END)-->
 
-            <!-- Buttons container - hidden only on small devices (BEGINNING)-->
-            <div class="row pt-5 ">
+            <!-- Buttons container - hidden only on medium and small devices (BEGINNING)-->
+            <div class="row pt-5">
                 <div class="col-sm-12 text-center d-none d-sm-block">
                     <div class="row">
                         <div class="col-sm-12">
@@ -93,10 +163,10 @@
                     </div>
                 </div>
             </div>
-            <!-- Buttons container - hidden only on small devices (END)-->
+            <!-- Buttons container - hidden only on medium and small devices (END)-->
 
         </div>
-        <!-- User information (END) -->
+        <!-- User information - showing only on large and xl devices (END) -->
 
         <!-- Pills (BEGINNING) -->
         <div class="col-lg-8 col-md-12">
@@ -274,21 +344,6 @@
         <!-- Pills (END) -->
 
     </div>
-
-    <!-- Buttons container - showing only on small devices (BEGINNING)-->
-    <div class="row pt-5 d-block d-sm-none">
-        <div class="col-sm-12 text-center">
-            <div class="row">
-                <div class="col-sm-12">
-                    <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}">Update profile</a></button>
-                </div>
-                <div class="col-sm-12">
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#deleteModal">Delete account</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Buttons container - showing only on small devices  (END)-->
 
     <!-- Delete Account Modal (BEGINNING)-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
