@@ -41,11 +41,18 @@
       <!-- Menu next to logo - left side (BEGINNING) -->
       <ul class="navbar-nav mr-auto">
         
-        <!-- Home link (BEGINNING) -->
         <li {% if request.resolver_match.url_name == 'index' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
           <a class="nav-link" href="{% url 'index' %}">Home</a>
         </li>
-        <!-- Home link (END) -->
+        <li {% if request.resolver_match.url_name == 'all_ticket' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'all_tickets' %}">Tickets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Forum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Stats</a>
+        </li>
 
         <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (BEGINNING) -->
         {% if user.is_authenticated %}
@@ -54,53 +61,37 @@
         </li>
         {% endif %}
         <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (END) -->
-        
-        <!-- Explore dropdown menu (BEGINNING) -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Explore
-        </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'all_tickets' %}">Tickets</a>
-            <a class="dropdown-item" href="#">Forum</a>
-            <a class="dropdown-item" href="#">Stats</a>
-          </div>
-        </li>
-        <!-- Explore dropdown menu (END) -->
 
-        <!-- Profile / Sign Up link showing when user is authenticated / not authenticated (BEGINNING) -->
-        {% if user.is_authenticated %}
-        <li {% if request.resolver_match.url_name == 'profile' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-          <a class="nav-link" href="{% url 'profile' user.username %}">Profile</a>
-        </li>
-        {% else %}
-        <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-          <a class="nav-link" href="{% url 'registration' %}">Sign Up</a>
-        </li>
-        {% endif %}
-        <!-- Profile / Sign Up link showing when user is authenticated / not authenticated (END) -->
       </ul>
       <!-- Menu next to logo - left side (END) -->
 
-      <!-- Search form -->
+      <!-- Search form (BEGINNING) -->
       <form class="form-inline my-2 my-lg-0 d-flex justify-content-lg-end">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
+      <!-- Search form (END) -->
       
-      <!-- Sign Out / Sign In link showing when user is authenticated / not authenticated (BEGINNING) -->
+      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated (BEGINNING) -->
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> {{ user.username }}</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a>
+          </div>
         </li>
         {% else %}
+        <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active ml-2" {% else %}class="nav-item ml-2" {% endif %}>
+          <a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a></button>
+        </li>
         <li {% if request.resolver_match.url_name == 'login' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-          <a class="nav-link" href="{% url 'login' %}">Sign In</a>
+          <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
         </li>
         {% endif %}
       </ul>
-      <!-- Sign Out / Sign In buttons - showing when user is authenticated / not authenticated (END) -->
+      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated (END) -->
 
     </div>
     <!-- Navbar menu (END) -->
