@@ -82,6 +82,11 @@ footer {
   padding-left: 50px;
 }
 
+/* Remove default dropdown symbol for all tickets table actions */
+.dropdown-toggle.actions::after {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   form {
     width: 80%;
