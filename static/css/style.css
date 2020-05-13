@@ -31,6 +31,11 @@ form.comment-form, textarea {
     max-height: 200px;
 }
 
+.nav-profile-image {
+  width: 35px;
+  height: 35px;
+}
+
 /* Set sticky footer at the bottom of a page */
 footer {
   position: absolute;
