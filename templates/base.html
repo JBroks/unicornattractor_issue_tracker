@@ -126,7 +126,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {% if user.userprofile.image %}
-          <img class="nav-profile-image rounded-circle" src="{{ user.userprofile.image.url }}" alt="Navbar profile image">{% else %}<i class="fa fa-user" aria-hidden="true"></i>{% endif %} {{ user.username }}</a>
+          <img class="nav-profile-image rounded-circle" src="{{ user.userprofile.image.url }}" alt="Navbar profile image">{% else %}<img class="nav-profile-image rounded-circle" src="/media/profile_image/default.png" alt="Navbar profile image">{% endif %} {{ user.username }}</a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
             <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
