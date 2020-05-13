@@ -71,8 +71,8 @@
               <th>Status</th>
               <th>Ticket</th>
               <th>Type</th>
-              <th class="d-none d-md-table-cell"></th>
               <th class="d-none d-md-table-cell">Date created</th>
+              <th class="d-none d-md-table-cell"></th>
 
             </tr>
           </thead>
@@ -96,9 +96,10 @@
 
               <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
               <td>{{ ticket.ticket_type }}</td>
+              <td class="d-none d-md-table-cell">{{ ticket.date_created }}</td>
               
               <!-- Columns containnig action dropdown containing edit / view / delete ticket actions (BEGINNING) -->
-              <td class="dropdown">
+              <td class="dropdown d-none d-md-table-cell">
                 <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <a class="dropdown-item" href="{% url 'view_ticket' ticket.id %}"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a>
@@ -110,8 +111,7 @@
                   </div>
               </td>
               <!-- Columns containnig action dropdown containing edit / view / delete ticket actions (END) -->
-  
-              <td class="d-none d-md-table-cell">{{ ticket.date_created }}</td>
+              
             </tr>
             
             <!-- Delete Ticket Modal (BEGINNING) -->
