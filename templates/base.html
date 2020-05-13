@@ -34,30 +34,34 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span></button>
     <!-- Hamburger button (END) -->
-    
+
     <!-- Navbar menu (BEGINNING) -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
+
       <!-- Menu next to logo - left side (BEGINNING) -->
       <ul class="navbar-nav mr-auto">
-        
+
         <li {% if request.resolver_match.url_name == 'index' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
           <a class="nav-link" href="{% url 'index' %}">Home</a>
         </li>
-        <li {% if request.resolver_match.url_name == 'all_ticket' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-          <a class="nav-link" href="{% url 'all_tickets' %}">Tickets</a>
+
+        <!-- Explore dropdown menu (BEGINNING) -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Explore
+        </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'all_tickets' %}"><i class="fa fa-ticket" aria-hidden="true"></i> Tickets</a>
+            <a class="dropdown-item" href="#"><i class="fa fa-users" aria-hidden="true"></i> Forum</a>
+            <a class="dropdown-item" href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Statistics</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Forum</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Stats</a>
-        </li>
+        <!-- Explore dropdown menu (END) -->
 
         <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (BEGINNING) -->
         {% if user.is_authenticated %}
         <li {% if request.resolver_match.url_name == 'add_ticket' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-          <a class="nav-link" href="{% url 'add_ticket' %}">Add Ticket</a>
+          <button class="btn btn-outline-secondary p-0"><a class="nav-link text-reset" href="{% url 'add_ticket' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add ticket</a></button>
         </li>
         {% endif %}
         <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (END) -->
@@ -66,28 +70,33 @@
       <!-- Menu next to logo - left side (END) -->
 
       <!-- Search form (BEGINNING) -->
-      <form class="form-inline my-2 my-lg-0 d-flex justify-content-lg-end">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0 mr-2 d-flex justify-content-lg-end">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search..." size="40">
+          <div class="input-group-append">
+            <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
       </form>
       <!-- Search form (END) -->
-      
+
       <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated (BEGINNING) -->
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> {{ user.username }}</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a>
-            <a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i> {{ user.username }}</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+            <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
+            <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
           </div>
         </li>
         {% else %}
-        <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active ml-2" {% else %}class="nav-item ml-2" {% endif %}>
-          <a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a></button>
+        <li {% if request.resolver_match.url_name == 'login' %}class="nav-item active mr-2" {% else %}class="nav-item mr-2" {% endif %}>
+          <a class="nav-link" href="{% url 'login' %}">Sign in</a>
         </li>
-        <li {% if request.resolver_match.url_name == 'login' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-          <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+        <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <button class="btn btn-outline-primary p-0"><a class="nav-link text-reset" href="{% url 'registration' %}">Sign up</a></button>
         </li>
         {% endif %}
       </ul>
