@@ -37,10 +37,9 @@
 
     <!-- Navbar menu (BEGINNING) -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <!-- Menu next to logo - left side (BEGINNING) -->
-      <ul class="navbar-nav mr-auto">
-
+      
+      <!-- Menu next to logo - on large screens only (BEGINNING) -->
+      <ul class="navbar-nav mr-auto d-none d-lg-flex">
         <li {% if request.resolver_match.url_name == 'index' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
           <a class="nav-link" href="{% url 'index' %}">Home</a>
         </li>
@@ -57,7 +56,7 @@
           </div>
         </li>
         <!-- Explore dropdown menu (END) -->
-
+        
         <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (BEGINNING) -->
         {% if user.is_authenticated %}
         <li {% if request.resolver_match.url_name == 'add_ticket' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
@@ -67,8 +66,49 @@
         <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (END) -->
 
       </ul>
-      <!-- Menu next to logo - left side (END) -->
-
+      <!-- Menu next to logo - on large screens only (END) -->
+      
+      <!-- Menu - on medium and smaller screens only (BEGINNING) -->
+      <ul class="navbar-nav mr-auto d-xs-inline d-lg-none">
+        <li {% if request.resolver_match.url_name == 'index' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        </li>
+        <li {% if request.resolver_match.url_name == 'all_tickets' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'all_tickets' %}"><i class="fa fa-ticket" aria-hidden="true"></i> Tickets</a>
+        </li>
+        <li {% if request.resolver_match.url_name == '#' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="#"><i class="fa fa-users" aria-hidden="true"></i> Forum</a>
+        </li>
+        <li {% if request.resolver_match.url_name == '#' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Statistics</a>
+        </li>
+        
+        <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (BEGINNING) -->
+        {% if user.is_authenticated %}
+        <li {% if request.resolver_match.url_name == 'add_ticket' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'add_ticket' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add ticket</a>
+        </li>
+        {% endif %}
+        <!-- Add Ticket link - unauthenticated users won't be able to add new tickets (END) -->
+      
+        {% if user.is_authenticated %}
+        <li {% if request.resolver_match.url_name == 'profile' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'profile' user.username %} %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+        </li>
+        <li {% if request.resolver_match.url_name == 'logout' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'profile' user.username %} %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+        </li>
+        {% else %}
+        <li {% if request.resolver_match.url_name == 'login' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
+        </li>
+        <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a></button>
+        </li>
+        {% endif %}
+      </ul>
+      <!-- Menu - on medium and smaller screens only (END) -->
+      
       <!-- Search form (BEGINNING) -->
       <form class="form-inline my-2 my-lg-0 mr-2 d-flex justify-content-lg-end">
         <div class="input-group">
@@ -79,12 +119,14 @@
         </div>
       </form>
       <!-- Search form (END) -->
-
-      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated (BEGINNING) -->
-      <ul class="navbar-nav">
+  
+      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on large screens only (BEGINNING) -->
+      <ul class="navbar-nav d-none d-lg-flex">
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i> {{ user.username }}</a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if user.userprofile.image %}
+          <img class="nav-profile-image rounded-circle" src="{{ user.userprofile.image.url }}" alt="Navbar profile image">{% else %}<i class="fa fa-user" aria-hidden="true"></i>{% endif %} {{ user.username }}</a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
             <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
@@ -100,8 +142,8 @@
         </li>
         {% endif %}
       </ul>
-      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated (END) -->
-
+      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on large screens only (END) -->
+      
     </div>
     <!-- Navbar menu (END) -->
 
