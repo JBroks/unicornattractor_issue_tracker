@@ -32,7 +32,7 @@
                             <li><i class="fa fa-users" aria-hidden="true"></i> <span>{{ user_commented_count }} {% if user_commented_count == 1 %} participant {% else %} participants {% endif %}</span></li>
                             <li><i class="fa fa-comments" aria-hidden="true"></i> <span>{{ comment_count }} {% if comment_count == 1 %} comment {% else %} comments {% endif %}</span></li>
                             <li><i class="fa fa-user" aria-hidden="true"></i> <span>Last commented by: {{ last_comment.user }}</span></li>
-                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Last activity: {{ last_comment.date_updated | timesince }}</span></li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Last activity: {{ last_comment.date_updated | timesince }} ago</span></li>
                             {% if ticket.ticket_type == "Feature" %}
                             <li><i class="fa fa-money" aria-hidden="true"></i> <span>Total donations: &euro;{{ total_donations }}</span></li>
                             {% else %}{% endif %}
@@ -97,7 +97,7 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-7 col-sm-12">
                                                 <h5 class="card-subtitle mb-2">{{ ticket.user }}</h5>
-                                                <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted"><small>{{ ticket.date_updated | timesince }}</small></h6>
+                                                <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted"><small>{{ ticket.date_updated | timesince }} ago</small></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -272,7 +272,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <h5 class="card-title">{{ comment.user }}</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted">{{ comment.date_updated | timesince }}</h6>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ comment.date_updated | timesince }} ago</h6>
                                             </div>
                                         </div>
                                     </div>
