@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block page_title %} View ticket {% endblock %} {% block content %}
 
 <!-- Page content container (BEGINNING) -->
-<section class="content-container pt-4 px-5">
+<section class="content-container pt-5 pb-3 px-sm-5 px-3">
 
     <section id="ticket-section">
         <div class="row">
@@ -80,21 +80,27 @@
                 <div class="row pt-5 pb-3">
                     <div class="col-sm-12">
                         <div class="card">
-                            <div class="card-header bg-transparent border-bottom-0">
+                            <div class="row no-gutters px-4 pt-3">
                                 <h4 class="card-title">{{ ticket.subject }}</h4>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 d-none d-sm-block pr-0 text-right">{% if user.userprofile.image %}
-                                        <img class="img-thumbnail rounded-circle card-image" src="{{ ticket.user.user.userprofile.image.url }}" alt="Comment card image"> {% else %}
-                                        <img class="img-thumbnail rounded-circle card-image" src="/media/profile_image/default.png" alt="Comment card image"> {% endif %}
-                                    </div>
-                                    <div class="col-lg-8 col-md-7 col-sm-12">
-                                        <h5 class="card-subtitle mb-2">{{ ticket.user }}</h5>
-                                        <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted"><small>{{ ticket.date_updated | timesince }}</small></h6>
+                            </div>
+                            <div class="row no-gutters px-4">
+                                <div class="col-auto">
+                                    {% if user.userprofile.image %}
+                                    <img class="img-thumbnail rounded-circle card-image" src="{{ ticket.user.user.userprofile.image.url }}" alt="Comment card image"> {% else %}
+                                    <img class="img-thumbnail rounded-circle card-image" src="/media/profile_image/default.png" alt="Comment card image"> {% endif %}
+                                </div>
+                                <div class="col">
+                                    <div class="card-block px-2">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-7 col-sm-12">
+                                                <h5 class="card-subtitle mb-2">{{ ticket.user }}</h5>
+                                                <h6 data-toggle="tooltip" data-placement="left" title="Last updated" class="card-subtitle mb-2 text-muted"><small>{{ ticket.date_updated | timesince }}</small></h6>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
-                            <div class="card-body">
+                            <div class="card-body w-100">
                                 <p class="card-text">{{ ticket.description }}</p>
                             </div>
                             <div class="card-footer bg-transparent text-right"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i>{{ upvote_count }}</div>
@@ -259,66 +265,35 @@
                 <div class="row py-3">
                     <div class="col-sm-12">
                         <div class="card">
-
+                            
                             <!-- Posted comment card header (BEGINNING) -->
-                            <div class="card-header bg-transparent">
-
-                                <!--Card header content (BEGINNING) -->
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 d-none d-sm-block pr-0 text-right">{% if user.userprofile.image %}
-                                        <img class="img-thumbnail rounded-circle card-image" src="{{ comment.user.user.userprofile.image.url }}" alt="Comment card image"> {% else %}
-                                        <img class="img-thumbnail rounded-circle card-image" src="/media/profile_image/default.png" alt="Comment card image"> {% endif %}
-                                    </div>
-
-                                    <!-- Layout of edit / delete buttons only on small devices (BEGINNING) -->
-                                    <div class="col-sm-12 d-block d-sm-none">
-                                        <div class="card-block text-right">
-                                            <span class="pr-3"><a class="edit-comment-btn" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-primary fa-lg" aria-hidden="true"></i></a></span>
-                                            <span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
-                                        </div>
-                                    </div>
-                                    <!-- Layout of edit / delete buttons only on small devices (END) -->
-
-                                    <div class="col-lg-8 col-md-7 col-sm-12">
-                                        <h5 class="card-title">{{ comment.user }}</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">{{ comment.date_updated | timesince }}</h6>
-                                    </div>
-
-                                    <!-- Layout of edit / delete buttons only on medium and large devices (BEGINNING) -->
-                                    <div class="col-md-3 d-none d-sm-block">
-                                        <div class="card-block text-right">
-                                            <span class="pr-3"><a class="edit-comment-btn" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-primary fa-lg" aria-hidden="true"></i></a></span>
-                                            <span class="pr-3" data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
-                                        </div>
-                                    </div>
-                                    <!-- Layout of edit / delete buttons only on medium and large devices (END) -->
-
+                            <div class="row no-gutters card-header bg-transparent border-none ">
+                                
+                                <div class="col-auto">
+                                    {% if user.userprofile.image %}
+                                    <img class="img-thumbnail rounded-circle card-image" src="{{ comment.user.user.userprofile.image.url }}" alt="Comment card image"> {% else %}
+                                    <img class="img-thumbnail rounded-circle card-image" src="/media/profile_image/default.png" alt="Comment card image"> {% endif %}
                                 </div>
-                                <!--Card header content (END) -->
-
-                                <!-- Delete Comment Modal -->
-                                <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteCommentModalLabel">Confirmation</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' ticket.id comment.id %}">Delete</a></button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                
+                                <div class="col">
+                                    <div class="card-block px-2">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h5 class="card-title">{{ comment.user }}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ comment.date_updated | timesince }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Delete Comment Modal -->
-
+                                
+                                <div class="col-auto">
+                                    <span class="pr-3"><a class="edit-comment-btn" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-primary fa-lg" aria-hidden="true"></i></a></span>
+                                    <span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
+                                </div>
+                                
                             </div>
                             <!-- Posted comment card header (END) -->
-
+                             
                             <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (BEGINNING) -->
                             <div class="card-body posted-comment">
                                 <p class="card-text text-truncate comment-text">{{ comment.comment }}</p>
@@ -330,14 +305,13 @@
 
                             <!-- Edit comment form - displayed only when edit button clicked (BEGINNING) -->
                             <div class="card-body edit-comment">
-
                                 <div class="row">
                                     <div class="form-group col-sm-12 d-flex justify-content-center">
                                         <form action="{% url 'edit_comment' ticket.pk comment.pk %}" method="POST" class="comment-form" enctype="multipart/form-data">
-                                            {% csrf_token %} {{ comment_form | as_bootstrap }}
+                                            {% csrf_token %}
                                             <div class="row">
                                                 <div class="form-group col-sm-12 mb-0">
-                                                    <!--<textarea rows="3" name="comment">{{ comment.comment }}</textarea>-->
+                                                    <textarea rows="3" name="comment">{{ comment.comment }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -351,8 +325,31 @@
                                 </div>
                             </div>
                             <!-- Edit comment form container  - displayed only when edit button clicked (END) -->
-
+                            
                         </div>
+
+                        <!-- Delete Comment Modal -->
+                        <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteCommentModalLabel">Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' ticket.id comment.id %}">Delete</a></button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Delete Comment Modal -->
+
+
+                       
                     </div>
                 </div>
 
