@@ -1,10 +1,18 @@
+/* Flexbox used to create a sticky footer and avoid empty space 
+    if not much content e.g. sign in page form */
+    
 body {
-  min-height: 100vh;
-  position: relative;
-  margin: 0;
-  padding-bottom: 100px; /*height of the footer*/
+  height: 100vh;
 }
 
+#main-container {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+     } 
+
+/* Form width decreased */
 form {
     width: 50%;
 }
@@ -34,14 +42,6 @@ form.comment-form, textarea {
 .nav-profile-image {
   width: 35px;
   height: 35px;
-}
-
-/* Set sticky footer at the bottom of a page */
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
 }
 
 /* Increse size of add ticket to make it more prominent */
