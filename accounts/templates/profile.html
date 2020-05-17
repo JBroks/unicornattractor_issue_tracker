@@ -7,9 +7,7 @@
 
         <!-- Profile photo container (BEGINNING)-->
         <div class="col-lg-3 col-md-12 d-flex justify-content-center">
-            {% if user.userprofile.image %}
-            <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image"> {% else %}
-            <img class="img-thumbnail profile-image" src="/media/profile_image/default.png" alt="Profile image"> {% endif %}
+            <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image">
         </div>
         <!-- Profile photo container (END)-->
 

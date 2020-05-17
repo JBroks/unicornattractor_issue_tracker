@@ -88,9 +88,7 @@
                             </div>
                             <div class="row no-gutters px-4">
                                 <div class="col-auto">
-                                    {% if user.userprofile.image %}
-                                    <img class="img-thumbnail rounded-circle card-image" src="{{ ticket.user.user.userprofile.image.url }}" alt="Comment card image"> {% else %}
-                                    <img class="img-thumbnail rounded-circle card-image" src="/media/profile_image/default.png" alt="Comment card image"> {% endif %}
+                                    <img class="img-thumbnail rounded-circle card-image" src="{{ ticket.user.userprofile.image.url }}" alt="Ticket card image">
                                 </div>
                                 <div class="col">
                                     <div class="card-block px-2">
@@ -262,9 +260,7 @@
                             <div class="row no-gutters card-header bg-transparent border-none ">
 
                                 <div class="col-auto">
-                                    {% if user.userprofile.image %}
-                                    <img class="img-thumbnail rounded-circle card-image" src="{{ comment.user.user.userprofile.image.url }}" alt="Comment card image"> {% else %}
-                                    <img class="img-thumbnail rounded-circle card-image" src="/media/profile_image/default.png" alt="Comment card image"> {% endif %}
+                                    <img class="img-thumbnail rounded-circle card-image" src="{{ comment.user.userprofile.image.url }}" alt="Comment card image">
                                 </div>
 
                                 <div class="col">
