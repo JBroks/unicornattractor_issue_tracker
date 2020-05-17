@@ -127,7 +127,9 @@ class UserDeleteForm(forms.ModelForm):
 class UploadFileForm(forms.ModelForm):
     
     image = forms.ImageField(
-        widget=forms.FileInput())
+        label = "Profile image",
+        widget=forms.FileInput()
+        )
     
     class Meta:
         model = UserProfile
