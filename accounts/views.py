@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm
+from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm, UploadFileForm
 from .models import UserProfile
 from tickets.models import Ticket, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -104,13 +104,20 @@ def user_profile(request, username):
 
 @login_required
 def edit_profile(request, username):
-    
+    '''
+    Allow user to edit their details as well as upload a new profile image
+    '''
     username = User.objects.get(username=request.user.username)
     
     if request.method == 'POST':
-        edit_form = UserChangeForm(request.POST, instance=request.user)
+        edit_form = UserChangeForm(request.POST, 
+                                    instance=request.user)
+        upload_img_form = UploadFileForm(request.POST,
+                                         request.FILES,
+                                         instance=request.user.userprofile)
         
-        if edit_form.is_valid():
+        if edit_form.is_valid() and upload_img_form.is_valid():
+            upload_img_form.save()
             edit_form.save()
             messages.success(request, "Your profile has been successfully \
                               updated!")
@@ -118,12 +125,18 @@ def edit_profile(request, username):
             
     else:
         edit_form = UserChangeForm(instance=request.user)
-        
-    return render(request, 'edit_profile.html', {'edit_form': edit_form })
+        upload_img_form = UploadFileForm(instance=request.user.userprofile)
+    
+    context = {'edit_form': edit_form,
+               'upload_img_form': upload_img_form }
+               
+    return render(request, 'edit_profile.html', context)
 
 @login_required    
 def delete_account(request):
-    
+    '''
+    Allow user to delete their account
+    '''
     if request.method == 'POST':
         delete_form = UserDeleteForm(request.POST, instance=request.user)
         if delete_form.is_valid():
