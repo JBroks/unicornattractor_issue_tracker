@@ -11,7 +11,10 @@ class UserProfile(models.Model):
     Set a placeholder image as a default
     '''
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to = 'profile_image', blank=True, null = True)
+    image = models.ImageField(upload_to = 'profile_image', 
+                                default = 'profile_image/default_img.jpg',
+                                blank=True,
+                                null = True)
 
     def __str__(self):
         return f"{self.user.username}'s profile"
