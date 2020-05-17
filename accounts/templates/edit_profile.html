@@ -8,13 +8,20 @@
         <div class="col-sm-12">
 
             <!-- Edit profile form (BEGINNING) -->
-            <form method="POST" class="mx-auto">
+            <form method="POST" class="mx-auto" id="edit_profile_form" enctype="multipart/form-data">
 
                 <!-- Form heading (BEGINNING) -->
                 <h2 class="text-center">Edit profile details</h2>
                 <!-- Form heading (END) -->
 
-                {% csrf_token %} {{ edit_form | as_bootstrap }}
+                {% csrf_token %} 
+                <div class="form-group col-sm-12">
+                {{ upload_img_form | as_bootstrap }}
+                </div>
+                
+                <div class="form-group col-sm-12">
+                {{ edit_form | as_bootstrap }}
+                </div>
                 
                 <div class="row">
                     <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-end justify-content-center"><button type="submit" class="btn btn-success">Save</button></div>
