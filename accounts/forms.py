@@ -1,6 +1,8 @@
 from django import forms
+from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import UserProfile
 from django.core.exceptions import ValidationError
 from django.utils.safestring import mark_safe
 
@@ -14,7 +16,6 @@ class UserLoginForm(forms.Form):
 
 class UserRegistrationForm(UserCreationForm):
     """Form used to register a new user"""
-
         
     first_name = forms.CharField(
         label="First name",
@@ -122,3 +123,12 @@ class UserDeleteForm(forms.ModelForm):
     class Meta:
         model = User
         fields = []
+
+class UploadFileForm(forms.ModelForm):
+    
+    image = forms.ImageField(
+        widget=forms.FileInput())
+    
+    class Meta:
+        model = UserProfile
+        fields = ['image', ]
