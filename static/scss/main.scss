@@ -103,8 +103,14 @@ form.comment-form, textarea {
   display: none;
 }
 
+/* Remove border for the accordion cards */
 #accordion .card {
   border: none;
+}
+
+/* Overwrite bootstrap select button color so it matches the form */
+.bootstrap-select > button {
+  background-color: #f7f7f9
 }
 
 @media only screen and (max-width: 600px) {
