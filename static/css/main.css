@@ -7699,6 +7699,7 @@ th {
 .card-title, .card-header {
   color: inherit; }
 
+/* CUSTOM STYLES */
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
 body {
@@ -7721,7 +7722,7 @@ textarea {
   resize: none; }
 
 /* Style comment forms on ticket view page */
-form.comment-form, textarea {
+form.comment-form, textarea, #payment-form {
   width: 100%; }
 
 .comment-form textarea {
