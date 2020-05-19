@@ -42,12 +42,12 @@
       </div>
       <!-- Row containing filters (END) -->
 
-      <!-- Reset buttton (BEGINNING) -->
+      <!-- Filter & Reset buttton (BEGINNING) -->
       <div class="row">
-        <div class="form-group col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-outline-primary">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
+        <div class="form-group col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-primary">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
         <div class="form-group col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset  <i class="fa fa-refresh" aria-hidden="true"></i></button></div>
       </div>
-      <!-- Reset buttton (END) -->
+      <!-- Filter & Reset buttton (END) -->
 
     </form>
 
@@ -60,7 +60,7 @@
     <div class="row">
 
       <!-- Table container (BEGINNING) -->
-      <div class="col-sm-12">
+      <div class="col-sm-12 table-responsive">
 
         <!-- Table containing tickets (BEGINNING) -->
         <table id="ticket-table" class="table text-center">
@@ -70,9 +70,9 @@
             <tr>
               <th>Status</th>
               <th>Ticket</th>
-              <th>Type</th>
+              <th class="d-none d-md-table-cell">Type</th>
               <th class="d-none d-md-table-cell">Date created</th>
-              <th class="d-none d-md-table-cell"></th>
+              <th></th>
 
             </tr>
           </thead>
@@ -95,11 +95,11 @@
               <!-- Column containnig font awesome icons indication ticket status (END) -->
 
               <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
-              <td>{{ ticket.ticket_type }}</td>
+              <td class="d-none d-md-table-cell">{{ ticket.ticket_type }}</td>
               <td class="d-none d-md-table-cell">{{ ticket.date_created }}</td>
               
               <!-- Columns containnig action dropdown containing edit / view / delete ticket actions (BEGINNING) -->
-              <td class="dropdown d-none d-md-table-cell">
+              <td class="dropdown">
                 <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
                     <a class="dropdown-item" href="{% url 'view_ticket' ticket.id %}"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a>
