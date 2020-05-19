@@ -34,7 +34,7 @@ def add_or_edit_post(request, pk=None):
             new_post.save()
             messages.success(request, "You have successfully submitted your \
                                 post!")
-            return redirect('all_posts')
+            return redirect('forum')
         else:
                 messages.error(request, "Something went wrong. \
                                 Please try again.")
@@ -44,3 +44,25 @@ def add_or_edit_post(request, pk=None):
         'add_post_form': add_post_form
     }
     return render(request, 'add_post.html', context)
+
+def forum(request):
+    '''
+    View all posts in a form of paginated table.
+    Table is paginated to show only 10 records per page
+    '''
+    
+    # Retrive all posts
+    posts = Post.objects.all()
+    
+    page = request.GET.get('page', 1)
+    
+    # Paginate posts
+    paginator = Paginator(posts, 10)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    
+    return render(request, 'forum.html', {'posts': posts})
