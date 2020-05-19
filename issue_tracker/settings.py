@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'home',
     'storages',
     'tickets',
+    'forum',
 ]
 
 MIDDLEWARE = [
