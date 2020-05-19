@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, reverse
+from django.db.models import Sum
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm, UploadFileForm
 from .models import UserProfile
-from tickets.models import Ticket, Comment
+from tickets.models import Ticket, Comment, Upvote, Donation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
@@ -69,6 +70,9 @@ def user_profile(request, username):
     # Count all tickets / commments submited by the user
     ticket_count = Ticket.objects.filter(user=request.user).count()
     comment_count = Comment.objects.filter(user=request.user).count()
+    upvotes_count = Upvote.objects.filter(user=request.user).count
+    donations_total = Donation.objects.filter(user=request.user).aggregate(
+                    Sum('donation_amount'))['donation_amount__sum']
     
     # Retrive all user tickets / comments
     user_tickets = Ticket.objects.filter(user=request.user)
@@ -97,8 +101,11 @@ def user_profile(request, username):
     context = {"user": user,
             "ticket_count": ticket_count,
             "comment_count": comment_count,
+            "upvotes_count": upvotes_count,
+            "donations_total": donations_total,
             "user_tickets": user_tickets,
-            "user_comments": user_comments }
+            "user_comments": user_comments
+    }
             
     return render(request, 'profile.html', context)
 
