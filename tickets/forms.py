@@ -61,11 +61,13 @@ class PaymentForm(forms.Form):
     expiry_month = forms.ChoiceField(
         label="Month",
         choices=MONTH_CHOICES,
+        widget=forms.Select(attrs={'class': 'selectpicker',}),
         required=False)
         
     expiry_year = forms.ChoiceField(
         label="Year",
         choices=YEAR_CHOICES,
+        widget=forms.Select(attrs={'class': 'selectpicker',}),
         required=False)
         
     stripe_id = forms.CharField(
@@ -83,6 +85,7 @@ class DonationForm(forms.ModelForm):
     donation_amount = forms.ChoiceField(
         label="Amount",
         choices=AMOUNT_CHOICES,
+        widget=forms.Select(attrs={'class': 'selectpicker',}),
         required=False
         )
     
