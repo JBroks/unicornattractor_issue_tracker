@@ -7775,6 +7775,9 @@ form.comment-form, textarea {
 .dropdown-toggle.actions::after {
   display: none; }
 
+#accordion .card {
+  border: none; }
+
 @media only screen and (max-width: 600px) {
   form {
     width: 80%; }

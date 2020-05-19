@@ -103,6 +103,10 @@ form.comment-form, textarea {
   display: none;
 }
 
+#accordion .card {
+  border: none;
+}
+
 @media only screen and (max-width: 600px) {
   form {
     width: 80%;
