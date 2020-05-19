@@ -18,7 +18,7 @@
         <!-- Ticket type select menu (BEGINNING) -->
         <div class="form-group col-md-6 col-sm-12">
           <label for="ticket-type">Ticket type</label>
-          <select class="form-control" id="ticket-type" name="ticket-type">
+          <select class="form-control selectpicker" id="ticket-type" name="ticket-type">
             <option selected>Select...</option>
             {% for type in types_list %}
             <option value="{{ type }}">{{ type }}</option>
@@ -30,7 +30,7 @@
         <!-- Ticket status select menu (BEGINNING) -->
         <div class="form-group col-md-6 col-sm-12">
           <label for="ticket-status">Ticket status</label>
-          <select class="form-control" id="ticket-status" name="ticket-status">
+          <select class="form-control selectpicker" id="ticket-status" name="ticket-status">
             <option selected>Select...</option>
             {% for status in status_list %}
             <option value="{{ status }}">{{ status }}</option>

@@ -20,6 +20,7 @@ class AddTicketForm(forms.ModelForm):
     ticket_type = forms.ChoiceField(
         choices=TYPE_CHOICES,
         label='Ticket type',
+        widget=forms.Select(attrs={'class': 'selectpicker',}),
         required=True)
         
     subject = forms.CharField(
