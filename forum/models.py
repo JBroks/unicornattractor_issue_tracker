@@ -42,7 +42,7 @@ class Post(models.Model):
         return "Forum post #{0} [{1}] added by {2}".format(
             self.id, self.subject, self.user.username)
 
-class Comment(models.Model):
+class CommentPost(models.Model):
     '''
     Enables users to comment on a given forum post, express their opinions,
     and be a part of the community
