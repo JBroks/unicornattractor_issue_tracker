@@ -32,13 +32,13 @@
     <div class="row">
 
         <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (BEGINNING) -->
-        <div class="col-sm-12 d-block d-lg-none">
+        <div class="col-sm-12 d-block d-lg-none accordion" id="accordion">
             <p class="text-center">
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePersonalInfo" aria-expanded="false" aria-controls="collapseExample1"><i class="fa fa-user" aria-hidden="true"></i></button>
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseActivity" aria-expanded="false" aria-controls="collapseExample2"><i class="fa fa-list" aria-hidden="true"></i></button>
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAccSettings" aria-expanded="false" aria-controls="collapseExample3"><i class="fa fa-cogs" aria-hidden="true"></i></button>
             </p>
-            <div class="collapse" id="collapsePersonalInfo">
+            <div class="collapse" aria-labelledby="collapsePersonalInfo" data-parent="#accordion" id="collapsePersonalInfo">
                 <div class="card card-body">
                     <div class="row mx-auto">
                         <div class="col-sm-12">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="collapse" id="collapseActivity">
+            <div class="collapse" aria-labelledby="collapseActivity" data-parent="#accordion" id="collapseActivity">
                 <div class="card card-body">
                     <div class="row mx-auto">
                         <div class="col-sm-12">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="collapse" id="collapseAccSettings">
+            <div class="collapse" aria-labelledby="collapseSettings" data-parent="#accordion" id="collapseAccSettings">
                 <div class="card card-body">
                     <div class="row">
                         <div class="col-sm-12 text-center">
