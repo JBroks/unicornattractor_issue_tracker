@@ -1,0 +1,113 @@
+$primary: #2e3190;
+$danger: #ee5140;
+$warning: #fcd731;
+$success: #1a1a1a;
+$info: #336989;
+
+@import "../../node_modules/bootswatch/dist/lux/variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootswatch/dist/lux/bootswatch";
+
+
+/* Flexbox used to create a sticky footer and avoid empty space 
+    if not much content e.g. sign in page form */
+    
+body {
+  height: 100vh;
+}
+
+#main-container {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+     } 
+
+/* Form width decreased */
+form {
+    width: 50%;
+}
+
+/* Disable textarea so user cannot resize it and increase width of form 
+   containing the comment form */
+textarea {
+    width: 80%;
+    resize: none;
+  }
+
+/* Style comment forms on ticket view page */
+form.comment-form, textarea {
+  width: 100%;
+} 
+
+.comment-form textarea {
+  border: 1px solid #ced4da
+}
+
+/* Set max size of profile images */
+.profile-image {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.nav-profile-image {
+  width: 35px;
+  height: 35px;
+}
+
+.card-image {
+  width: 50px;
+  height: 50px;
+}
+
+/* Increse size of add ticket to make it more prominent */
+.btn-lg {
+    font-size: 4rem;
+}
+
+/* Overwrite bootstrap class to place fixed 'add-ticket' button to the right */
+.fixed-bottom { 
+  bottom: 20px; 
+  right: 20px;
+  left: auto;
+}
+
+/* Remove top border for the first row in the table */
+.table tr:first-child td {
+  border-top: none;
+}
+
+/* Set width for the form contained within a modal */
+#user-form {
+  width: 100%;
+}
+
+/* Styling for ticket summary list to create nice layout where text is aligned */
+#ticket-summary-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#ticket-summary-list i {
+  float: left;
+}
+
+#ticket-summary-list span {
+  display: block;
+  padding-left: 50px;
+}
+
+/* Remove default dropdown symbol for all tickets table actions */
+.dropdown-toggle.actions::after {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    width: 80%;
+}
+  textarea {
+    width: 100%;
+  }
+}
