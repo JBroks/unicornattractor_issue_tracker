@@ -7,7 +7,7 @@
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
 
-    <!-- Add post button - fixed (BEGINNING) -->
+    <!-- Add post button (BEGINNING) -->
     {% if request.user.is_authenticated %}
     <section id="new-post-btn">
         <div class="row py-3">
@@ -17,7 +17,7 @@
         </div>
     </section>
     {% endif %}
-    <!-- Add post button - fixed (END) -->
+    <!-- Add post button (END) -->
 
     <!-- Section containing table with all posts (BEGINNING) -->
     <section id="table-section" class="py-5">
@@ -49,16 +49,16 @@
                         {% for post in posts %}
                         <tr>
                             <td>#{{ post.id}}</td>
-                            <td><a class="text-decoration-none" href="">{{ post.subject }}</a></td>
-                            <td class="d-none d-md-table-cell"><i class="fa fa-comments" aria-hidden="true"></i> add total comments</td>
-                            <td class="d-none d-md-table-cell">add last comment date</td>
+                            <td><a class="text-decoration-none" href="{% url 'view_post' post.id %}">{{ post.subject }}</a></td>
+                            <td class="d-none d-md-table-cell"><i class="fa fa-comments" aria-hidden="true"></i> {{ post.comments_count }}</td>
+                            <td class="d-none d-md-table-cell">{{ post.latest_comment_date | timesince }} ago</td>
 
                             <!-- Columns containnig action dropdown containing edit / view / delete post actions (BEGINNING) -->
                             <td class="dropdown">
                                 <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
-                                    <a class="dropdown-item" href=""><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a> {% if request.user == post.user %}
-                                    <a class="dropdown-item text-primary" href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                    <a class="dropdown-item" href="{% url 'view_post' post.id %}"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a> {% if request.user == post.user %}
+                                    <a class="dropdown-item text-primary" href="{% url 'edit_post' post.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                                     <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{post.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
                                 </div>
                             </td>
@@ -78,7 +78,7 @@
                                         <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="">Delete</a></button>
+                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' post.id %}">Delete</a></button>
                                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
