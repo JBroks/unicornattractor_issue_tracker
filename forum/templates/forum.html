@@ -1,0 +1,140 @@
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Forum {% endblock %} {% block content %}
+
+<!-- Page heading (BEGINNING) -->
+<h1 class="text-center mb-0 py-5">Join the discussion ...</h1>
+<!-- Page heading (END) -->
+
+<!-- Page content container (BEGINNING) -->
+<section class="content-container">
+
+    <!-- Add post button - fixed (BEGINNING) -->
+    {% if request.user.is_authenticated %}
+    <section id="new-post-btn">
+        <div class="row py-3">
+            <div class="col-sm-10 d-flex justify-content-end">
+                <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'add_post' %}"><i class="fa fa-paper-plane" aria-hidden="true"></i> Create post</a></button>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!-- Add post button - fixed (END) -->
+
+    <!-- Section containing table with all posts (BEGINNING) -->
+    <section id="table-section" class="py-5">
+
+        <div class="row">
+
+            <!-- Table container (BEGINNING) -->
+            <div class="col-sm-12 table-responsive">
+
+                <!-- Table containing post (BEGINNING) -->
+                <table id="post-table" class="table text-center">
+
+                    <!-- Table heading (BEGINNING) -->
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Post</th>
+                            <th class="d-none d-md-table-cell">Comments</th>
+                            <th class="d-none d-md-table-cell">Last commented</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <!-- Table heading (END) -->
+
+                    <!-- Table body (BEGINNING) -->
+                    <tbody>
+
+                        {% for post in posts %}
+                        <tr>
+                            <td>#{{ post.id}}</td>
+                            <td><a class="text-decoration-none" href="">{{ post.subject }}</a></td>
+                            <td class="d-none d-md-table-cell"><i class="fa fa-comments" aria-hidden="true"></i> add total comments</td>
+                            <td class="d-none d-md-table-cell">add last comment date</td>
+
+                            <!-- Columns containnig action dropdown containing edit / view / delete post actions (BEGINNING) -->
+                            <td class="dropdown">
+                                <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
+                                    <a class="dropdown-item" href=""><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a> {% if request.user == post.user %}
+                                    <a class="dropdown-item text-primary" href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                    <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{post.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
+                                </div>
+                            </td>
+                            <!-- Columns containnig action dropdown containing edit / view / delete post actions (END) -->
+
+                        </tr>
+
+                        <!-- Delete Post Modal (BEGINNING) -->
+                        <div class="modal fade" id="deleteModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deletePostModalLabel">Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="">Delete</a></button>
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Delete Post Modal (END) -->
+
+                        {% endfor %}
+
+                    </tbody>
+                    <!-- Table body (END) -->
+
+                </table>
+                <!-- Table containing post (END) -->
+
+            </div>
+            <!-- Table container (END) -->
+
+            <!-- Pagination navigation container (BEGINNING) -->
+            <div class="col-sm-12 d-flex justify-content-center">
+
+                <!-- Pagination buttons (BEGINNING) -->
+                {% if posts.has_other_pages %}
+                <nav aria-label="Table navigation">
+                    <ul class="pagination">
+                        {% if posts.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                        {% endif %} {% for i in posts.paginator.page_range %} {% if posts.number == i %}
+                        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                        </li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %} {% endfor %} {% if posts.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+                <!-- Pagination buttons (END) -->
+
+            </div>
+            <!-- Pagination navigation container (END) -->
+
+        </div>
+
+    </section>
+    <!-- Section containing table with all posts (END) -->
+
+
+
+
+</section>
+<!-- Page content container (END) -->
+
+{% endblock %}
