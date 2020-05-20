@@ -102,7 +102,7 @@ def view_ticket(request, pk):
     '''
     Enables user to view page containing all details regarding a selected ticket
     Function retrieves a single ticket based on its ID (pk) and renders it to 
-    the view_ticket.html template{% url 'edit_comment' ticket.pk comment.pk %}
+    the view_ticket.html template
     If object is not found 404 error is being returned
     '''
     
@@ -145,7 +145,7 @@ def view_ticket(request, pk):
     except Comment.DoesNotExist:
         comments = None
         
-    # Paginate tickets
+    # Paginate comments
     page = request.GET.get('page', 1)
     paginator = Paginator(comments, 10)
     try:
@@ -156,7 +156,7 @@ def view_ticket(request, pk):
         comments = paginator.page(paginator.num_pages)
     
     # Retrive last comment
-    last_comment = Comment.objects.latest('date_created')
+    last_comment = Comment.objects.filter(ticket=ticket).latest('date_created')
     
     context = {
         'ticket': ticket, 
@@ -180,7 +180,7 @@ def delete_ticket(request, pk):
     Allows user to delete their ticket
     '''
     
-    # Retrive the comment and ticket if exists
+    # Retrive the ticket if exists
     ticket = get_object_or_404(Ticket, pk=pk)
     author= ticket.user
     
@@ -190,7 +190,7 @@ def delete_ticket(request, pk):
             return redirect(reverse('all_tickets'))
     else:
         messages.error(request, "Error! You don't have a permission to \
-                        delete this comment.")
+                        delete this ticket.")
         return redirect('view_ticket', ticket.pk)
 
 def record_exist_check(Model, user, ticket):
