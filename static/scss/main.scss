@@ -1,7 +1,7 @@
 $primary: #2e3190;
 $danger: #ee5140;
 $warning: #fcd731;
-$success: #1a1a1a;
+$success: #57b856;
 $info: #336989;
 
 @import "../../node_modules/bootswatch/dist/lux/variables";
@@ -71,6 +71,11 @@ form.comment-form, textarea, #payment-form {
   bottom: 20px; 
   right: 20px;
   left: auto;
+}
+
+/* Adjust height of search button so it is the same as the form input */
+#search-btn {
+  line-height: 21px;
 }
 
 /* Remove top border for the first row in the table */
