@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from .views import add_or_edit_post, forum
+from forum.views import forum, add_or_edit_post
 
 urlpatterns = [
     url(r'^$', forum, name="forum"),

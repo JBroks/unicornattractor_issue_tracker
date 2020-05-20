@@ -47,23 +47,19 @@
 
           <!-- Explore dropdown menu (BEGINNING) -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Explore
-        </a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{% url 'all_tickets' %}"><i class="fa fa-ticket" aria-hidden="true"></i> Tickets</a>
-              <a class="dropdown-item" href="{% url 'forum' %"><i class="fa fa-users" aria-hidden="true"></i> Forum</a>
+              <a class="dropdown-item" href="{% url 'forum' %}"><i class="fa fa-users" aria-hidden="true"></i> Forum</a>
               <a class="dropdown-item" href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Statistics</a>
             </div>
           </li>
           <!-- Explore dropdown menu (END) -->
-
+          
           <!-- Actions dropdown menu - unauthenticated users won't be able to add new tickets (BEGINNING) -->
           {% if user.is_authenticated %}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Create
-        </a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownAdd">
               <a class="dropdown-item" href="{% url 'add_ticket' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add a ticket</a>
               <a class="dropdown-item" href="{% url 'add_post' %}"><i class="fa fa-paper-plane" aria-hidden="true"></i> Create a post</a>
