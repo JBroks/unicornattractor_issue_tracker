@@ -3,12 +3,22 @@
 <!-- Page content container (BEGINNING) -->
 <section class="content-container pt-5 pb-3 px-sm-5 px-3">
     
+    <!-- Go back to forum button (BEGINNING) -->
+    <section id="back-to-forum-btn">
+        <div class="row py-3 d-flex justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'forum' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to Forum</a></button>
+            </div>
+        </div>
+    </section>
+    <!-- Go back to forum button (END) -->
+    
      <!-- Thread section (BEGINNING) -->
     <section id="thread-section">
-        <div class="row">
+        <div class="row d-flex justify-content-center">
 
             <!-- Thread card containing description and like/dislike button container (BEGINNING) -->
-            <div class="col-sm-12">
+            <div class="col-lg-8 col-md-10 col-sm-12">
                 <div class="row pt-5 pb-3">
                     <div class="col-sm-12">
                         <div class="card">
@@ -61,10 +71,10 @@
     <section id="post-section">
 
         <!-- Posts counter container (BEGINNING) -->
-        <div class="row pt-5 pb-3">
-            <div class="col-sm-12">
+        <div class="row pt-5 pb-3 d-flex justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
                 <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Posts (<span id="counter">{{ posts_count }}</span>)</h5>
-                <h6>Share your thoughts. Be respectful. Be part of our community.</h6>
+                <h6>Be part of our community. Share your thoughts. Be respectful.</h6>
                 <hr> {% if not user.is_authenticated %}
                 <p><small>Not yet a member? <a class="text-decoration-none" href="{% url 'registration' %}">Sign up</a> and join the discussion. If you are an existing user please <a class="text-decoration-none" href="{% url 'login' %}">sign in</a> first to post your comment.</small></p>
                 {% else %} {% endif %}
@@ -73,8 +83,8 @@
         <!-- Posts counter form container (END) -->
 
         <!-- Add a post form container (BEGINNING) -->
-        <div class="row">
-            <div class="form-group col-sm-12 d-flex justify-content-center">
+        <div class="row d-flex justify-content-center">
+            <div class="form-group col-lg-8 col-md-10 col-sm-12">
                 <form action="{% url 'add_post' thread.pk %}" method="POST" class="post-form" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
@@ -84,7 +94,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 d-flex justify-content-end">
-                            <button type="submit" name="action" class="btn btn-outline-success">Post</button>
+                            <button type="submit" name="action" class="btn btn-outline-success"><i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> Submit Post</button>
                         </div>
                     </div>
                 </form>
@@ -92,10 +102,10 @@
         </div>
         <!-- Add a post form container (END) -->
 
-        <div class="row align-items-end">
+        <div class="row d-flex justify-content-center">
 
             <!-- Posts cards container (BEGINNING) -->
-            <div class="col-sm-12" id="posts-container">
+            <div class="col-lg-8 col-md-10 col-sm-12" id="posts-container">
                 {% for post in posts %}
                 <div class="row py-3">
                     <div class="col-sm-12">
@@ -145,7 +155,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-12 d-flex justify-content-end">
-                                                    <button type="submit" name="action" class="btn btn-outline-success mr-3">Save edits</button>
+                                                    <button type="submit" name="action" class="btn btn-outline-success mr-3"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> Save edits</button>
                                                     <button type="button" class="btn btn-outline-secondary cancel-edit">Cancel</button>
                                                 </div>
                                             </div>
