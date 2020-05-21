@@ -39,7 +39,7 @@
                             <td>#{{ thread.id}}</td>
                             <td><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">{{ thread.subject }}</a></td>
                             <td class="d-none d-md-table-cell"><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
-                            <td class="d-none d-md-table-cell">{{ thread.latest_post_date | timesince }} ago</td>
+                            <td class="d-none d-md-table-cell">{{ thread.latest_post_date | timesince }} ago </br> by {{ thread.latest_post_author }}</td>
 
                             <!-- Columns containnig action dropdown containing edit / view / delete thread actions (BEGINNING) -->
                             <td class="dropdown">
