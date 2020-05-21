@@ -20,7 +20,7 @@ def add_or_edit_thread(request, pk=None):
     '''
     
     # Retrive the thread if exists
-    thread = get_object_or_404(Post, pk=pk) if pk else None
+    thread = get_object_or_404(Thread, pk=pk) if pk else None
     
     if request.method == "POST":
         add_thread_form = AddThreadForm(request.POST, request.FILES,
