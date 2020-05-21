@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.db.models import Count
 
 # Create your models here.
-
 class Thread(models.Model):
     '''
     Enable user to create a thread (first post that starts a discussion/topic)
@@ -43,13 +42,16 @@ class Thread(models.Model):
     def __str__(self):
         return "Forum thread #{0} [{1}] added by {2}".format(
             self.id, self.subject, self.user.username)
-            
-    def latest_post_date(self):
-        return self.post.latest('date_updated').date_updated
     
+    def latest_post_date(self):
+        return self.forum_post.latest('date_updated').date_updated
+    
+    def latest_post_author(self):
+        return self.forum_post.latest('user').user
+        
     def post_count(self):
-        return Post.objects.annotate(Count('post')).count()
-
+        return self.forum_post.annotate(Count('post')).count()
+    
 class Post(models.Model):
     '''
     Enables users to comment on a given forum thread, express their opinions,
@@ -58,7 +60,7 @@ class Post(models.Model):
     
     thread = models.ForeignKey(
         Thread,
-        related_name='post',
+        related_name='forum_post',
         null=True,
         on_delete=models.CASCADE)
     
@@ -88,3 +90,4 @@ class Post(models.Model):
     def __str__(self):
         return "Post #{0} added by {1} for thread #{2}".format(
             self.id, self.user.username, self.thread.id)
+
