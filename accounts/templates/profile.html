@@ -69,10 +69,10 @@
                                     <h5>Activity</h5>
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-center">
-                                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> Forum posts: ??</p>
+                                    <p><i class="fa fa-users" aria-hidden="true"></i> Forum threads: {{ thread_count }}</p>
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-center">
-                                    <p><i class="fa fa-commenting-o" aria-hidden="true"></i> Post comments: ??</p>
+                                    <p><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Posts: {{ post_count }}</p>
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-center">
                                     <p><i class="fa fa-ticket" aria-hidden="true"></i> Tickets: {{ ticket_count }}</p>
@@ -81,10 +81,10 @@
                                     <p><i class="fa fa-comments" aria-hidden="true"></i> Ticket comments: {{ comment_count }}</p>
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-center">
-                                    <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: ?? </p>
+                                    <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: {{ upvotes_count }} </p>
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-center">
-                                    <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: ??</p>
+                                    <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: &euro;{{ donations_total }}</p>
                                 </div>
                             </div>
                         </div>
@@ -144,10 +144,10 @@
                             <hr class="mx-5">
                         </div>
                         <div class="col-sm-12 d-flex justify-content-center">
-                            <p><i class="fa fa-users" aria-hidden="true"></i> Forum posts: ??</p>
+                            <p><i class="fa fa-users" aria-hidden="true"></i> Forum threads: {{ thread_count }}</p>
                         </div>
                         <div class="col-sm-12 d-flex justify-content-center">
-                            <p><i class="fa fa-commenting-o" aria-hidden="true"></i> Post comments: ??</p>
+                            <p><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Posts: {{ post_count }}</p>
                         </div>
                         <div class="col-sm-12 d-flex justify-content-center">
                             <p><i class="fa fa-ticket" aria-hidden="true"></i> Tickets: {{ ticket_count }}</p>
@@ -193,10 +193,13 @@
                     <a class="nav-link active flex-sm-fill text-sm-center" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">Tickets ({{ ticket_count }})</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts ()</a>
+                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Ticket comments ({{ comment_count }})</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Comments ({{ comment_count }})</a>
+                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-threads-tab" data-toggle="pill" href="#pills-threads" role="tab" aria-controls="pills-threads" aria-selected="false">Forum threads ({{ thread_count }})</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Forum posts ({{ post_count }})</a>
                 </li>
             </ul>
             <!-- Pills navigation buttons (END) -->
@@ -281,10 +284,6 @@
                 </div>
                 <!-- Pill containing user tickets table (END) -->
 
-                <!-- Pill containing user posts table (BEGINNING) -->
-                <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">...</div>
-                <!-- Pill containing user posts table (END) -->
-
                 <!-- Pill containing user comments table (BEGINNING) -->
                 <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">
 
@@ -352,6 +351,14 @@
 
                 </div>
                 <!-- Pill containing user comments table (END) -->
+
+                <!-- Pill containing user threads table (BEGINNING) -->
+                <div class="tab-pane fade" id="pills-threads" role="tabpanel" aria-labelledby="pills-threads-tab">...</div>
+                <!-- Pill containing user threads table (END) -->
+                
+                <!-- Pill containing user posts table (BEGINNING) -->
+                <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">...</div>
+                <!-- Pill containing user posts table (END) -->
 
             </div>
             <!-- Pills content (END)-->

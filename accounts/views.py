@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm, UploadFileForm
 from .models import UserProfile
 from tickets.models import Ticket, Comment, Upvote, Donation
+from forum.models import Thread, Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
@@ -67,16 +68,29 @@ def user_profile(request, username):
 
     user = User.objects.get(username=request.user.username)
     
-    # Count all tickets / commments submited by the user
+    # Count all content submited by the user
     ticket_count = Ticket.objects.filter(user=request.user).count()
     comment_count = Comment.objects.filter(user=request.user).count()
-    upvotes_count = Upvote.objects.filter(user=request.user).count
+    upvotes_count = Upvote.objects.filter(user=request.user).count()
+    thread_count = Thread.objects.filter(user=request.user).count()
+    post_count = Post.objects.filter(user=request.user).count()
+    
+    
+    # Get a sum of donations for a given user
     donations_total = Donation.objects.filter(user=request.user).aggregate(
                     Sum('donation_amount'))['donation_amount__sum']
     
-    # Retrive all user tickets / comments
+    # Set donations to zero if no donations has been made               
+    if donations_total is None:
+        donations_total = 0
+    else:
+        donations_total
+        
+    # Retrive all user content
     user_tickets = Ticket.objects.filter(user=request.user)
     user_comments = Comment.objects.filter(user=request.user)
+    user_threads = Thread.objects.filter(user=request.user)
+    user_posts = Post.objects.filter(user=request.user)
     
     page = request.GET.get('page', 1)
     
@@ -103,8 +117,12 @@ def user_profile(request, username):
             "comment_count": comment_count,
             "upvotes_count": upvotes_count,
             "donations_total": donations_total,
+            "thread_count": thread_count,
+            "post_count": post_count,
             "user_tickets": user_tickets,
-            "user_comments": user_comments
+            "user_comments": user_comments,
+            "user_threads": user_threads,
+            "user_posts": user_posts
     }
             
     return render(request, 'profile.html', context)
