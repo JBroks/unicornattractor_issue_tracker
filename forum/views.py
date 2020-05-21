@@ -127,3 +127,53 @@ def delete_thread(request, pk):
         messages.error(request, "Error! You don't have a permission to \
                         delete this thread.")
         return redirect('view_thread', thread.pk)
+
+@login_required
+def add_or_edit_post(request, thread_pk, post_pk=None):
+    '''
+    View allows the user to add a new post
+    or edit the  existing one
+    '''
+    
+    # Retrive the post and thread if exists
+    thread = get_object_or_404(Thread, pk=thread_pk)
+    post = get_object_or_404(Post, pk=post_pk) if post_pk else None
+    
+    if request.method == "POST":
+        post_form = AddPostForm(request.POST, request.FILES,
+                                        instance=post)
+        if post_form.is_valid():
+            # Create post object without saving it to the database yet
+            new_post = post_form.save(commit=False)
+            # Assign the current user and thread to the post
+            post_form.instance.user = request.user
+            post_form.instance.thread = thread
+            # Save the post to the database
+            new_post.save()
+            messages.success(request, "Thanks for sharing your thoughts!")
+            return redirect('view_thread', thread.pk)
+        else:
+            messages.error(request, "Something went wrong. Please try again.")
+    else:
+        post_form = AddPostForm(instance=post)
+    context = {
+        'post_form': post_form
+    }
+    return render(request, 'view_thread.html', context)
+
+@login_required
+def delete_post(request, thread_pk, post_pk):
+    
+    # Retrive the post and thread if exists
+    thread = get_object_or_404(Thread, pk=thread_pk)
+    post = get_object_or_404(Post, pk=post_pk)
+    author = post.user
+    
+    if request.user.is_authenticated and request.user == author:
+            post.delete()
+            messages.success(request, "Post successfully deleted!")
+            return redirect('view_thread', thread.pk)
+    else:
+        messages.error(request, "Error! You don't have a permission to \
+                        delete this post.")
+        return redirect('view_thread', thread.pk)
