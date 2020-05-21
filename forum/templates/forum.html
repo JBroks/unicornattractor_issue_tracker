@@ -41,7 +41,7 @@
                             <td><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">{{ thread.subject }}</a></td>
                             <td>{{ thread.date_created | timesince }} ago </br>by {{ thread.user }}</td>
                             <td><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
-                            <td>{{ thread.latest_post_date | timesince }} ago </br> by {{ thread.latest_post_author }}</td>
+                            <td>{% if thread.post_count > 0 %}{{ thread.latest_post_date | timesince }} ago </br> by {{ thread.latest_post_author }}{% else %}-{% endif %}</td>
 
                             <!-- Columns containnig action dropdown containing edit / view / delete thread actions (BEGINNING) -->
                             <td class="dropdown">
