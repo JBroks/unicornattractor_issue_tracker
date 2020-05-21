@@ -7,18 +7,6 @@
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
 
-    <!-- Add thread button (BEGINNING) -->
-    {% if request.user.is_authenticated %}
-    <section id="new-thread-btn">
-        <div class="row py-3">
-            <div class="col-sm-10 d-flex justify-content-end">
-                <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'add_thread' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New thread</a></button>
-            </div>
-        </div>
-    </section>
-    {% endif %}
-    <!-- Add thread button (END) -->
-
     <!-- Section containing table with all threads (BEGINNING) -->
     <section id="table-section" class="py-5">
 
@@ -131,8 +119,13 @@
     </section>
     <!-- Section containing table with all threads (END) -->
 
-
-
+    <!-- Add thread button - fixed (BEGINNING) -->
+    {% if request.user.is_authenticated %}
+    <section id="new-thread-btn">
+        <button type="button" class="btn btn-outline-primary fixed-bottom btn-rounded" data-toggle="tooltip" data-placement="top" title="Create a thread"><a class="text-reset text-decoration-none" href="{% url 'add_thread' %}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></button>
+    </section>
+    {% endif %}
+    <!-- Add thread button - fixed (END) -->
 
 </section>
 <!-- Page content container (END) -->
