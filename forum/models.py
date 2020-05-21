@@ -69,8 +69,7 @@ class Post(models.Model):
         
     post = models.TextField(
         max_length=8000,
-        blank=False,
-        null=True)
+        blank=False)
         
     date_created = models.DateTimeField(
         blank=False,
