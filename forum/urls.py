@@ -1,10 +1,10 @@
 from django.conf.urls import url, include
-from forum.views import forum, add_or_edit_post, delete_post, view_post
+from forum.views import forum, add_or_edit_thread, delete_thread, view_thread
 
 urlpatterns = [
     url(r'^$', forum, name="forum"),
-    url(r'^new/post/$', add_or_edit_post, name="add_post"),
-    url(r'^edit/post/(?P<pk>\d+)/$', add_or_edit_post, name="edit_post"),
-    url(r'^delete/post/(?P<pk>\d+)/$', delete_post, name="delete_post"),
-    url(r'^view/post/(?P<pk>\d+)/$', view_post, name="view_post"),
+    url(r'^new/thread/$', add_or_edit_thread, name="add_thread"),
+    url(r'^edit/thread/(?P<pk>\d+)/$', add_or_edit_thread, name="edit_thread"),
+    url(r'^delete/thread/(?P<pk>\d+)/$', delete_thread, name="delete_thread"),
+    url(r'^view/thread/(?P<pk>\d+)/$', view_thread, name="view_thread"),
 ]

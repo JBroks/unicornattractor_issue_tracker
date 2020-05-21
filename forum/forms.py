@@ -1,12 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Post, CommentPost
+from .models import Thread, Post
 from django.core.exceptions import ValidationError
 from itertools import chain
 
-class AddPostForm(forms.ModelForm):
+class AddThreadForm(forms.ModelForm):
     '''
-    Post form that enables user to type in the post subject and description
+    Thread form that enables user to type in the subject and description
     '''
 
     subject = forms.CharField(
@@ -24,18 +24,18 @@ class AddPostForm(forms.ModelForm):
         required=True)
     
     class Meta:
-        model = Post
+        model = Thread
         fields = ["subject", "description"]
         
-class AddCommentPostForm(forms.ModelForm):
+class AddPostForm(forms.ModelForm):
 
-    comment = forms.CharField(
-        label="Leave a comment",
+    post = forms.CharField(
+        label="Submit your forum post",
         min_length=20,
         max_length=8000,
         widget=forms.Textarea(attrs={'rows':3, 'cols':10, 'placeholder': 'Add a comment...'}),
         required=True)
     
     class Meta:
-        model = CommentPost
-        fields = ('comment',)
+        model = Post
+        fields = ('post',)

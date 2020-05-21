@@ -5,11 +5,12 @@ from django.db.models import Count
 
 # Create your models here.
 
-class Post(models.Model):
+class Thread(models.Model):
     '''
-    Enable user to submit a post on the forum
-    Auto_now_add used to add date and time when post was created, and auto_now
-    used to add date and time when post was updated / edited.
+    Enable user to create a thread (first post that starts a discussion/topic)
+    on the forum
+    Auto_now_add used to add date and time when the thread was created, 
+    and auto_now used to add date and time when thread was updated / edited.
     '''
     
     user = models.ForeignKey(
@@ -40,24 +41,24 @@ class Post(models.Model):
         ordering = ['-id']
         
     def __str__(self):
-        return "Forum post #{0} [{1}] added by {2}".format(
+        return "Forum thread #{0} [{1}] added by {2}".format(
             self.id, self.subject, self.user.username)
             
-    def latest_comment_date(self):
-        return self.post_comments.latest('date_updated').date_updated
+    def latest_post_date(self):
+        return self.post.latest('date_updated').date_updated
     
-    def comments_count(self):
-        return CommentPost.objects.annotate(Count('comment')).count()
+    def post_count(self):
+        return Post.objects.annotate(Count('post')).count()
 
-class CommentPost(models.Model):
+class Post(models.Model):
     '''
-    Enables users to comment on a given forum post, express their opinions,
+    Enables users to comment on a given forum thread, express their opinions,
     and be a part of the community
     '''
     
-    post = models.ForeignKey(
-        Post,
-        related_name='post_comments',
+    thread = models.ForeignKey(
+        Thread,
+        related_name='post',
         null=True,
         on_delete=models.CASCADE)
     
@@ -66,9 +67,10 @@ class CommentPost(models.Model):
         null=True, 
         on_delete=models.CASCADE)
         
-    comment = models.TextField(
+    post = models.TextField(
         max_length=8000,
-        blank=False)
+        blank=False,
+        null=True)
         
     date_created = models.DateTimeField(
         blank=False,
@@ -85,5 +87,5 @@ class CommentPost(models.Model):
         ordering = ['-date_created']
         
     def __str__(self):
-        return "Comment #{0} added by {1} for post #{2}".format(
-            self.id, self.user.username, self.post.id)
+        return "Post #{0} added by {1} for thread #{2}".format(
+            self.id, self.user.username, self.thread.id)

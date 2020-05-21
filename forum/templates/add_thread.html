@@ -1,28 +1,28 @@
-{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Post form {% endblock %} {% block content %}
+{% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Thread form {% endblock %} {% block content %}
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container pt-5">
 
-    <!-- Section containing the post form (BEGINNING) -->
-    <section id="add-ticket-section">
+    <!-- Section containing the thread form (BEGINNING) -->
+    <section id="add-thread-section">
 
-        <!-- Add post form (BEGINNING) -->
+        <!-- Add thread form (BEGINNING) -->
         <form method="post" class="mx-auto">
 
-            <!-- Form heading (different for add new post and prefilled / edit form) (BEGINNING) -->
-            {% if request.get_full_path == "/forum/new/post/" %}
-            <h2 class="text-center mb-4">Add a new post to our forum</h2>
+            <!-- Form heading (different for add new thread and prefilled / edit form) (BEGINNING) -->
+            {% if request.get_full_path == "/forum/new/thread/" %}
+            <h2 class="text-center mb-4">Create a new thread</h2>
             {% else %}
-            <h2 class="text-center mb-4">Edit post</h2>
+            <h2 class="text-center mb-4">Edit thread</h2>
             {% endif %}
-            <!-- Form heading (different for add new post and prefilled / edit form) (END) -->
+            <!-- Form heading (different for add new thread and prefilled / edit form) (END) -->
 
-            {% csrf_token %} {{ add_post_form | as_bootstrap }}
+            {% csrf_token %} {{ add_thread_form | as_bootstrap }}
 
             <!-- Button container (BEGINNING) -->
             <div class="row">
 
-                {% if request.get_full_path == "/forum/new/post/" %}
+                {% if request.get_full_path == "/forum/new/thread/" %}
                 <div class="col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
@@ -43,10 +43,10 @@
             <!-- Button container (END) -->
 
         </form>
-        <!-- Add post form (END) -->
+        <!-- Add thread form (END) -->
 
     </section>
-    <!-- Section containing the post form (BEGINNING) -->
+    <!-- Section containing the thread form (BEGINNING) -->
 
 </section>
 <!-- Page content container (END) -->
