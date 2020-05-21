@@ -46,7 +46,7 @@ $(document).ready(function() {
   });
 });
 
- 
+
 $(document).ready(function() {
   $(function() {
     $('.cancel-edit').click(function() {
@@ -64,15 +64,15 @@ $(document).ready(function() {
  **/
 
 $(function() {
-     $('.comment-text').each(function(index, elem) {
-         if(elem.offsetWidth === elem.scrollWidth){
-          	$(this).siblings('.read-more').hide();
-          	$(this).siblings('hr').hide();
-         }
-     });
- });
- 
- // SHOW MORE / LESS COMMENT
+  $('.comment-text').each(function(index, elem) {
+    if (elem.offsetWidth === elem.scrollWidth) {
+      $(this).siblings('.read-more').hide();
+      $(this).siblings('hr').hide();
+    }
+  });
+});
+
+// SHOW MORE / LESS COMMENT
 
 /**
  * Function that toggles bootstrap class truncate-text for the comment text
@@ -84,15 +84,13 @@ $(function() {
  * and clicks on other comment read mor button, the previous comment will
  * automatically truncate text
  **/
-  
+
 // Read more
 $(document).ready(function() {
   $(function() {
+    $(".comment-text:not([class*='text-truncate'])").addClass("text-truncate");
     $('.read-less').hide();
     $('.read-more').click(function() {
-      $(".comment-text:not([class*='text-truncate'])").addClass("text-truncate");
-      $('.read-less').hide();
-      $('.read-more').show();
       $(this).siblings('.comment-text').toggleClass('text-truncate');
       $(this).hide();
       $(this).siblings('.read-less').show();
