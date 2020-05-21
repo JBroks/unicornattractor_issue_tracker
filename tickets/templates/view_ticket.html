@@ -80,7 +80,6 @@
                                     <div class="dropdown">
                                         <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"></i></button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
-
                                             <a class="dropdown-item text-primary" href="{% url 'edit_ticket' ticket.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                                             <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                                         </div>
@@ -90,7 +89,7 @@
                             </div>
                             <div class="row no-gutters px-4">
                                 <div class="col-auto">
-                                    <img class="img-thumbnail rounded-circle card-image" src="{{ ticket.user.userprofile.image.url }}" alt="Comment card image">
+                                    <img class="img-thumbnail rounded-circle card-image" src="{{ ticket.user.userprofile.image.url }}" alt="Ticket card image">
                                 </div>
                                 <div class="col">
                                     <div class="card-block px-2">
