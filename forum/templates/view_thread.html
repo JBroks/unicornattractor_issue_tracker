@@ -1,0 +1,226 @@
+{% extends 'base.html' %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block page_title %} View thread {% endblock %} {% block content %}
+
+<!-- Page content container (BEGINNING) -->
+<section class="content-container pt-5 pb-3 px-sm-5 px-3">
+    
+     <!-- Thread section (BEGINNING) -->
+    <section id="thread-section">
+        <div class="row">
+
+            <!-- Thread card containing description and like/dislike button container (BEGINNING) -->
+            <div class="col-sm-12">
+                <div class="row pt-5 pb-3">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="row no-gutters px-4 pt-3">
+                                <div class="col">
+                                    <h4 class="card-title">{{ thread.subject }}</h4>
+                                </div>
+                                {% if request.user == thread.user %}
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"></i></button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
+                                            <a class="dropdown-item text-primary" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                            <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="row no-gutters px-4">
+                                <div class="col-auto">
+                                    <img class="img-thumbnail rounded-circle card-image" src="{{ thread.user.userprofile.image.url }}" alt="Thread card image">
+                                </div>
+                                <div class="col">
+                                    <div class="card-block px-2">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-7 col-sm-12">
+                                                <h5 class="card-subtitle mb-2">{{ thread.user }}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted"><small data-toggle="tooltip" data-placement="left" title="Last updated">{{ thread.date_updated | timesince }} ago</small></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body w-100">
+                                <p class="card-text">{{ thread.description }}</p>
+                            </div>
+                            <div class="card-footer bg-transparent text-right"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i>like count/dislike count</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Thread card containing description and like/dislike button container (END) -->
+
+        </div>
+    </section>
+     <!-- Thread section (END) -->
+     
+    <!-- Posts section (BEGINNING) -->
+    <section id="post-section">
+
+        <!-- Posts counter container (BEGINNING) -->
+        <div class="row pt-5 pb-3">
+            <div class="col-sm-12">
+                <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Posts (<span id="counter">{{ posts_count }}</span>)</h5>
+                <h6>Share your thoughts. Be respectful. Be part of our community.</h6>
+                <hr> {% if not user.is_authenticated %}
+                <p><small>Not yet a member? <a class="text-decoration-none" href="{% url 'registration' %}">Sign up</a> and join the discussion. If you are an existing user please <a class="text-decoration-none" href="{% url 'login' %}">sign in</a> first to post your comment.</small></p>
+                {% else %} {% endif %}
+            </div>
+        </div>
+        <!-- Posts counter form container (END) -->
+
+        <!-- Add a post form container (BEGINNING) -->
+        <div class="row">
+            <div class="form-group col-sm-12 d-flex justify-content-center">
+                <form action="{% url 'add_post' thread.pk %}" method="POST" class="post-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-sm-12 mb-0">
+                            {{ post_form | as_bootstrap }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-end">
+                            <button type="submit" name="action" class="btn btn-outline-success">Post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Add a post form container (END) -->
+
+        <div class="row align-items-end">
+
+            <!-- Posts cards container (BEGINNING) -->
+            <div class="col-sm-12" id="posts-container">
+                {% for post in posts %}
+                <div class="row py-3">
+                    <div class="col-sm-12">
+                        <div class="card">
+
+                            <!-- Added post card header (BEGINNING) -->
+                            <div class="row no-gutters card-header bg-transparent border-none ">
+                                <div class="col-auto">
+                                    <img class="img-thumbnail rounded-circle card-image" src="{{ post.user.userprofile.image.url }}" alt="Post card image">
+                                </div>
+                                <div class="col">
+                                    <div class="card-block px-2">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h5 class="card-title">{{ post.user }}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ post.date_updated | timesince }} ago</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <span class="pr-3"><a class="edit-comment-btn" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary fa-lg" aria-hidden="true"></i></a></span>
+                                    <span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
+                                </div>
+                            </div>
+                            <!-- Added post card header (END) -->
+
+                            <!-- Posted comment(post) - displayed until edit button clicked, then replaced by edit post form (BEGINNING) -->
+                            <div class="card-body posted-comment">
+                                <p class="card-text text-truncate comment-text">{{ post.post }}</p>
+                                <hr>
+                                <p class="card-text text-center text-uppercase read-more mb-0"><small class="text-primary"><a type="button">Read more</a></small></p>
+                                <p class="card-text text-center text-uppercase read-less mb-0"><small class="text-primary"><a type="button">Read less</a></small></p>
+                            </div>
+                            <!-- Posted comment(post) - displayed until edit button clicked, then replaced by edit post form (END) -->
+
+                            <!-- Edit comment(post) form - displayed only when edit button clicked (BEGINNING) -->
+                            <div class="card-body edit-comment">
+                                <div class="row">
+                                    <div class="form-group col-sm-12 d-flex justify-content-center">
+                                        <form action="{% url 'edit_post' thread.pk post.pk %}" method="POST" class="comment-form" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="form-group col-sm-12 mb-0">
+                                                    <textarea rows="3" name="post">{{ post.post }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                    <button type="submit" name="action" class="btn btn-outline-success mr-3">Save edits</button>
+                                                    <button type="button" class="btn btn-outline-secondary cancel-edit">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Edit comment(post) form container  - displayed only when edit button clicked (END) -->
+
+                        </div>
+
+                        <!-- Delete Post Modal -->
+                        <div class="modal fade" id="deletePostModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deletePostModalLabel">Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' thread.id post.id %}">Delete</a></button>
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Delete Comment Modal -->
+
+                    </div>
+                </div>
+
+                <!-- If no posts for the review display paragraph with information about it (BEGINNING) -->
+                {% empty %}
+                <p>No posts yet. Be the first to add a post.</p>
+                <!-- If no posts for the review display paragraph with information about it (END) -->
+
+                {% endfor %}
+
+                <!-- Posts pagination buttons (BEGINNING)-->
+                <div class="col-sm-12 d-flex justify-content-center">
+                    {% if posts.has_other_pages %}
+                    <nav aria-label="Table navigation">
+                        <ul class="pagination">
+                            {% if posts.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                            {% endif %} {% for i in posts.paginator.page_range %} {% if posts.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                            </li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %} {% endfor %} {% if posts.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                </div>
+                <!-- Posts pagination buttons (END)-->
+
+            </div>
+            <!-- Posts cards container (END) -->
+
+        </div>
+
+    </section>
+    <!-- Posts section (END) -->
+
+</section>
+<!-- Page content container (END) -->
+
+{% endblock %}
