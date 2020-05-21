@@ -222,7 +222,7 @@
                                 <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
                                 <td class="text-center">{{ ticket.ticket_type }}</td>
                                 <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a></td>
+                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
                                 <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                             </tr>
 
@@ -296,7 +296,7 @@
                                 <td>Commented on: <a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}">Ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</a></td>
                                 <td class="d-none d-md-table-cell">{{ comment.date_updated | timesince }}</td>
                                 <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_ticket' comment.ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_comment' comment.ticket.id comment.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a></td>
+                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_comment' comment.ticket.id comment.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
                                 <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deleteModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                             </tr>
 

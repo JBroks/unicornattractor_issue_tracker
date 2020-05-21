@@ -12,7 +12,7 @@
     <section id="new-thread-btn">
         <div class="row py-3">
             <div class="col-sm-10 d-flex justify-content-end">
-                <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'add_thread' %}"><i class="fa fa-paper-plane" aria-hidden="true"></i> New thread</a></button>
+                <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'add_thread' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New thread</a></button>
             </div>
         </div>
     </section>
@@ -58,7 +58,7 @@
                                 <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
                                     <a class="dropdown-item" href="{% url 'view_thread' thread.id %}"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a> {% if request.user == thread.user %}
-                                    <a class="dropdown-item text-primary" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                    <a class="dropdown-item text-primary" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                                     <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{thread.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
                                 </div>
                             </td>
