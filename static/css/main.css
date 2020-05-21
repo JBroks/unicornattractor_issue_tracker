@@ -7721,8 +7721,8 @@ textarea {
   width: 80%;
   resize: none; }
 
-/* Style comment forms on ticket view page */
-form.comment-form, textarea, #payment-form {
+/* Style comment forms on ticket view page / thread page */
+form.comment-form, textarea, #payment-form, .post-form, #user-form {
   width: 100%; }
 
 .comment-form textarea {
@@ -7764,10 +7764,6 @@ button.btn-rounded {
 /* Remove top border for the first row in the table */
 .table tr:first-child td {
   border-top: none; }
-
-/* Set width for the form contained within a modal */
-#user-form {
-  width: 100%; }
 
 /* Styling for ticket summary list to create nice layout where text is aligned */
 #ticket-summary-list {
