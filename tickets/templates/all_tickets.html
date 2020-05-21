@@ -69,11 +69,10 @@
           <thead>
             <tr>
               <th>Status</th>
-              <th>Ticket</th>
-              <th class="d-none d-md-table-cell">Type</th>
-              <th class="d-none d-md-table-cell">Date created</th>
+              <th>Ticket subject</th>
+              <th class="d-none d-md-table-cell">Ticket type</th>
+              <th class="d-none d-md-table-cell">Created</th>
               <th></th>
-
             </tr>
           </thead>
           <!-- Table heading (END) -->
@@ -96,7 +95,7 @@
 
               <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
               <td class="d-none d-md-table-cell">{{ ticket.ticket_type }}</td>
-              <td class="d-none d-md-table-cell">{{ ticket.date_created }}</td>
+              <td class="d-none d-md-table-cell">{{ ticket.date_created | timesince }} ago</br> by {{ ticket.user }}</td>
 
               <!-- Columns containnig action dropdown containing edit / view / delete ticket actions (BEGINNING) -->
               <td class="dropdown">
