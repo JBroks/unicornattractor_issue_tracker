@@ -211,49 +211,53 @@
                 <div class="tab-pane fade show active" id="pills-tickets" role="tabpanel" aria-labelledby="pills-tickets-tab">
 
                     <!-- User tickets table (BEGINNING) -->
-                    <table class="table">
-                        <tbody class="tickets-table">
-                            {% if ticket_count > 0 %} {% for ticket in user_tickets %}
-                            <tr>
-                                <td class="text-center">
-                                    {% if ticket.ticket_status == "Open" %}
-                                    <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
-                                    <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
-                                    <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
-                                    <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
-                                </td>
-                                <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
-                                <td class="text-center">{{ ticket.ticket_type }}</td>
-                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
-                                <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
-                            </tr>
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <table class="table">
+                                <tbody class="tickets-table">
+                                    {% if ticket_count > 0 %} {% for ticket in user_tickets %}
+                                    <tr>
+                                        <td class="text-center text-md-left">
+                                            {% if ticket.ticket_status == "Open" %}
+                                            <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
+                                            <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
+                                            <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
+                                            <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
+                                        </td>
+                                        <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
+                                        <td class="text-center">{{ ticket.ticket_type }}</td>
+                                        <td class="text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                        <td class="text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
+                                        <td class="text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                    </tr>
 
-                            <!-- Delete Ticket Modal -->
-                            <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <!-- Delete Ticket Modal -->
+                                    <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                   <span aria-hidden="true">&times;</span>
                                             </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
-                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Delete Ticket Modal -->
+                                    <!-- Delete Ticket Modal -->
 
-                            {% endfor %} {% else %} You have not added any tickets yet. {% endif %}
-                        </tbody>
-                    </table>
+                                    {% endfor %} {% else %} You have not added any tickets yet. {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <!-- User tickets table (END) -->
 
                     <!-- User tickets pagination buttons (BEGINNING)-->
@@ -288,39 +292,44 @@
                 <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">
 
                     <!-- User comments table (BEGINNING) -->
-                    <table class="table">
-                        <tbody class="comments-table">
-                            {% if comment_count > 0 %} {% for comment in user_comments %}
-                            <tr>
-                                <td>Commented on: <a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}">Ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</a></td>
-                                <td class="d-none d-md-table-cell">Created {{ comment.date_created | timesince }} ago</td>
-                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
-                            </tr>
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <table class="table">
+                                <tbody class="comments-table">
+                                    {% if comment_count > 0 %} {% for comment in user_comments %}
+                                    <tr>
+                                        <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}">Comment #{{ comment.id }}</a></td>
+                                        <td class="text-center text-md-left">Re: ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</td>
+                                        <td class="text-md-left d-none d-md-table-cell "> {{ comment.date_created | timesince }} ago</td>
+                                        <td class="text-center"><a href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                        <td class="text-center"><span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                    </tr>
 
-                            <!-- Delete Comment Modal (BEGINNING) -->
-                            <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteCommentModalLabel">Confirmation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' comment.ticket.id comment.id %}">Delete</a></button>
-                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                    <!-- Delete Comment Modal (BEGINNING) -->
+                                    <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteCommentModalLabel">Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' comment.ticket.id comment.id %}">Delete</a></button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Delete Comment Modal (END) -->
+                                    <!-- Delete Comment Modal (END) -->
 
-                            {% endfor %} {% else %} You have not added any comments yet. {% endif %}
-                        </tbody>
-                    </table>
+                                    {% endfor %} {% else %} You have not added any comments yet. {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <!-- User tickets table (END) -->
 
                     <!-- User comments pagination buttons (BEGINNING)-->
@@ -353,48 +362,48 @@
 
                 <!-- Pill containing user threads table (BEGINNING) -->
                 <div class="tab-pane fade" id="pills-threads" role="tabpanel" aria-labelledby="pills-threads-tab">
-                    
+
                     <!-- User threads table (BEGINNING) -->
-                    <table class="table">
-                        <tbody class="thread-table">
-                        {% if thread_count > 0 %}
-                        {% for thread in user_threads %}
-                        <tr>
-                            <td>Thread #{{ thread.id}}: <a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">{{ thread.subject }}</a></td>
-                            <td> Created {{ thread.date_created | timesince }} ago</td>
-                            <td><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
-                            <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                            <td class="d-none d-md-table-cell text-center"><a href="{% url 'edit_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
-                            <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
-                        </tr>
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <table class="table">
+                                <tbody class="thread-table">
+                                    {% if thread_count > 0 %} {% for thread in user_threads %}
+                                    <tr>
+                                        <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">Thread #{{ thread.id}}: {{ thread.subject }}</a></td>
+                                        <td class="text-md-left d-none d-md-table-cell "> {{ thread.date_created | timesince }} ago</td>
+                                        <td class="text-center"><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
+                                        <td class="text-center"><a href="{% url 'view_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                        <td class="text-center"><a href="{% url 'edit_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
+                                        <td class="text-center"><span data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                    </tr>
 
-                        <!-- Delete Thread Modal (BEGINNING) -->
-                        <div class="modal fade" id="deleteThreadModal{{thread.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteThreadModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteThreadModalLabel">Confirmation</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <!-- Delete Thread Modal (BEGINNING) -->
+                                    <div class="modal fade" id="deleteThreadModal{{thread.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteThreadModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteThreadModalLabel">Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete your thread (#{{ thread.id }})?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_thread' thread.id %}">Delete</a></button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure you want to delete your thread (#{{ thread.id }})?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_thread' thread.id %}">Delete</a></button>
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
+                                    <!-- Delete Thread Modal (END) -->
+
+                                    {% endfor %} {% else %} You have not created any threads yet. {% endif %}
+
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- Delete Thread Modal (END) -->
-
-                        {% endfor %}
-                        {% else %}
-                        You have not created any threads yet.
-                        {% endif %}
-
-                    </tbody>
-                    </table>
+                    </div>
                     <!-- User threads table (END) -->
 
                     <!-- User threads pagination buttons (BEGINNING)-->
@@ -427,41 +436,46 @@
 
                 <!-- Pill containing user posts table (BEGINNING) -->
                 <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
-                    
-                    <!-- User posts table (BEGINNING) -->
-                    <table class="table">
-                        <tbody class="posts-table">
-                            {% if post_count > 0 %} {% for post in user_posts %}
-                            <tr>
-                                <td>Post added to: <a class="text-decoration-none" href="{% url 'view_thread' post.thread.id %}">Thread #{{ post.thread.id }}: {{ post.thread.subject }}</a></td>
-                                <td class="d-none d-md-table-cell">Created {{ post.date_created | timesince }} ago</td>
-                                <td class="d-none d-md-table-cell text-center"><a href="{% url 'view_thread' post.thread.id %}#post{{post.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                <td class="d-none d-md-table-cell text-center"><span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
-                            </tr>
 
-                            <!-- Delete Post Modal (BEGINNING) -->
-                            <div class="modal fade" id="deletePostModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deletePostModalLabel">Confirmation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' post.thread.id post.id %}">Delete</a></button>
-                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    <!-- User posts table (BEGINNING) -->
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <table class="table">
+                                <tbody class="posts-table">
+                                    {% if post_count > 0 %} {% for post in user_posts %}
+                                    <tr>
+                                        <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_thread' post.thread.id %}#post{{post.id}}">Post #{{ post.id }}</a></td>
+                                        <td class="text-center text-md-left">Re: thread #{{ post.thread.id }}: {{ post.thread.subject }}</td>
+                                        <td class="text-md-left d-none d-md-table-cell">{{ post.date_created | timesince }} ago</td>
+                                        <td class="text-center"><a href="{% url 'view_thread' post.thread.id %}#post{{post.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                        <td class="text-center"><span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                    </tr>
+
+                                    <!-- Delete Post Modal (BEGINNING) -->
+                                    <div class="modal fade" id="deletePostModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deletePostModalLabel">Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' post.thread.id post.id %}">Delete</a></button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Delete Post Modal (END) -->
+                                    <!-- Delete Post Modal (END) -->
 
-                            {% endfor %} {% else %} You have not added any posts yet. {% endif %}
-                        </tbody>
-                    </table>
+                                    {% endfor %} {% else %} You have not added any posts yet. {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <!-- User posts table (END) -->
 
                     <!-- User posts pagination buttons (BEGINNING)-->
