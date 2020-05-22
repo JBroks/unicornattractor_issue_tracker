@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Thread, Post
+from .models import Thread, Post, ThreadVote
 from django.core.exceptions import ValidationError
 from itertools import chain
 

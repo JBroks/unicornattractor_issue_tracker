@@ -3,10 +3,10 @@ from django.utils import timezone
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Thread, Post
+from .models import Thread, Post, ThreadVote
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import AddThreadForm, AddPostForm
-from django.db.models import Count, Sum
+from django.db.models import Count, Sum, F, Func, Value
 
 # Create your views here.
 @login_required
@@ -108,7 +108,7 @@ def view_thread(request, pk):
         'posts_count': posts_count
     }
     return render(request, 'view_thread.html', context)
-    
+
 @login_required
 def delete_thread(request, pk):
     '''
@@ -127,6 +127,47 @@ def delete_thread(request, pk):
         messages.error(request, "Error! You don't have a permission to \
                         delete this thread.")
         return redirect('view_thread', thread.pk)
+
+'''
+@login_required
+def vote_thread(request, thread_pk, vote_type):
+    
+    # Query parameters
+    vote_type = request.GET.get('vote-type')
+    
+    thread = get_object_or_404(Thread, pk=thread_pk)
+    
+    try:
+        # If child DisLike model doesnot exit then create
+        thread.thread_dislikes
+    except Thread.thread_dislikes.RelatedObjectDoesNotExist as identifier:
+        Dislike.objects.create(thread = thread)
+
+    try:
+        # If child Like model doesnot exit then create
+        thread.thread_likes
+    except Thread.thread_likes.RelatedObjectDoesNotExist as identifier:
+        Like.objects.create(thread = thread)
+
+    if vote_type.lower() == 'like':
+
+        if request.user in thread.thread_likes.users.all():
+            thread.thread_likes.user.remove(request.user)
+        else:    
+            thread.thread_likes.user.add(request.user)
+            thread.thread_dislikes.user.remove(request.user)
+
+    elif vote_type.lower() == 'dislike':
+
+        if request.user in thread.thread_dislikes.user.all():
+            thread.thread_dislikes.user.remove(request.user)
+        else:    
+            thread.thread_dislikes.user.add(request.user)
+            thread.thread_likes.user.remove(request.user)
+    else:
+        return redirect('view_thread', thread.pk)
+    return render(request, 'view_thread.html', {'thread': thread})
+'''
 
 @login_required
 def add_or_edit_post(request, thread_pk, post_pk=None):
@@ -177,3 +218,44 @@ def delete_post(request, thread_pk, post_pk):
         messages.error(request, "Error! You don't have a permission to \
                         delete this post.")
         return redirect('view_thread', thread.pk)
+
+def record_exist_check(Model, user, thread):
+    '''
+    Helper function that will check if record for a given user and thread 
+    already exist in a given model
+    '''
+    if user.is_authenticated:
+        try:
+            param = Model.objects.get(user=user, thread=thread)
+        except Model.DoesNotExist:
+            param = None
+        return param
+    else:
+        param = None
+
+def vote_thread(request, thread_pk, vote_type):
+    
+    # Retrive the thread and votes if exists
+    thread = get_object_or_404(Thread, pk=thread_pk)
+    
+    
+    # Check if user voted already
+    has_voted = record_exist_check(ThreadVote, request.user, thread)
+   
+    if request.method == "GET":
+        if has_voted is not None:
+            existing_vote_type = has_voted.vote_type
+            
+            if existing_vote_type == vote_type:
+                ThreadVote.objects.filter(thread_id=thread.pk, user_id=request.user.id, vote_type=vote_type).delete()
+            else: 
+                if has_voted.vote_type == "like":
+                    ThreadVote.objects.filter(thread_id=thread.pk, user_id=request.user.id, vote_type="like").update(
+                    vote_type=Func(F('vote_type'),Value('like'), Value('dislike'), function='replace',))
+                elif has_voted.vote_type == "dislike":
+                    ThreadVote.objects.filter(thread_id=thread.pk, user_id=request.user.id, vote_type="dislike").update(
+                    vote_type=Func(F('vote_type'),Value('dislike'), Value('like'), function='replace',))
+        else:
+            ThreadVote.objects.create(thread_id=thread.pk, user_id=request.user.id, vote_type=vote_type)
+            
+    return redirect('view_thread', thread.pk)

@@ -51,13 +51,7 @@ class Thread(models.Model):
         
     def post_count(self):
         return self.forum_post.annotate(Count('post')).count()
-    
-    def get_total_likes(self):
-        return self.likes.users.count()
-
-    def get_total_dis_likes(self):
-        return self.dis_likes.users.count()
-    
+ 
 class Post(models.Model):
     '''
     Enables users to comment on a given forum thread, express their opinions,
@@ -97,52 +91,37 @@ class Post(models.Model):
         return "Post #{0} added by {1} for thread #{2}".format(
             self.id, self.user.username, self.thread.id)
 
-class Like(models.Model):
-    ''' Enables user to like a posted thread '''
-
-    thread = models.OneToOneField(
-        Thread, 
-        related_name="thread_likes",
-        on_delete=models.CASCADE
-        )
+class ThreadVote(models.Model):
+    '''
+    Enables users to like/dislike thread
+    '''
         
-    user = models.ManyToManyField(
+    thread = models.ForeignKey(
+        Thread,
+        null=True,
+        on_delete=models.CASCADE)
+    
+    user = models.ForeignKey(
         User, 
-        related_name='thread_likes_users'
-        )
+        null=True, 
+        on_delete=models.CASCADE)
+    
+    vote_type = models.CharField(
+        max_length=7,
+        blank=False,
+        null=False)
         
     date_created = models.DateTimeField(
-        auto_now_add=True
-        )
-        
+        blank=False,
+        null=False,
+        auto_now_add=True)
+    
     date_updated = models.DateTimeField(
-        auto_now=True
+        blank=False,
+        null=False,
+        auto_now=True,
         )
-
+    
     def __str__(self):
-         return str(self.thread.thread)[:30]
-
-class Dislike(models.Model):
-    ''' Enables user to dislike a posted thread '''
-
-    thread = models.OneToOneField(
-        Thread, 
-        related_name="thread_dislikes",
-        on_delete=models.CASCADE
-        )
-        
-    user = models.ManyToManyField(
-        User, 
-        related_name='thread_dislikes_users'
-        )
-        
-    date_created = models.DateTimeField(
-        auto_now_add=True
-        )
-        
-    date_updated = models.DateTimeField(
-        auto_now=True
-        )
-
-    def __str__(self):
-         return str(self.thread.thread)[:30]
+        return "Thread #{0} {1}d by {2}".format(
+            self.thread.id, self.vote_type, self.user.username)
