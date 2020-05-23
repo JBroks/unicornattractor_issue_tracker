@@ -53,10 +53,12 @@ class Thread(models.Model):
         return self.forum_post.annotate(Count('post')).count()
     
     def thread_likes_count(self):
-        return self.thread_vote.filter(vote_type='like').annotate(Count('vote_type')).count()
+        return self.thread_vote.filter(
+            vote_type='like').annotate(Count('vote_type')).count()
     
     def thread_dislikes_count(self):
-        return self.thread_vote.filter(vote_type='dislike').annotate(Count('vote_type')).count()
+        return self.thread_vote.filter(
+            vote_type='dislike').annotate(Count('vote_type')).count()
  
 class Post(models.Model):
     '''
@@ -96,6 +98,14 @@ class Post(models.Model):
     def __str__(self):
         return "Post #{0} added by {1} for thread #{2}".format(
             self.id, self.user.username, self.thread.id)
+    
+    def post_likes_count(self):
+        return self.post_vote.filter(
+            vote_type='like').annotate(Count('vote_type')).count()
+        
+    def post_dislikes_count(self):
+        return self.post_vote.filter(
+            vote_type='dislike').annotate(Count('vote_type')).count()
 
 class ThreadVote(models.Model):
     '''
@@ -132,3 +142,39 @@ class ThreadVote(models.Model):
     def __str__(self):
         return "Thread #{0} {1}d by {2}".format(
             self.thread.id, self.vote_type, self.user.username)
+
+class PostVote(models.Model):
+    '''
+    Enables users to like/dislike posts
+    '''
+    
+    post = models.ForeignKey(
+        Post,
+        related_name='post_vote',
+        null=True,
+        on_delete=models.CASCADE)
+    
+    user = models.ForeignKey(
+        User, 
+        null=True, 
+        on_delete=models.CASCADE)
+    
+    vote_type = models.CharField(
+        max_length=7,
+        blank=False,
+        null=False)
+        
+    date_created = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now_add=True)
+    
+    date_updated = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now=True,
+        )
+    
+    def __str__(self):
+        return "Post #{0} {1}d by {2}".format(
+            self.post.id, self.vote_type, self.user.username)
