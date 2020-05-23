@@ -242,7 +242,7 @@ def vote_thread(request, thread_pk, vote_type):
     # Check if user voted already
     has_voted = record_exist_check(ThreadVote, request.user, thread)
    
-    if request.method == "GET":
+    if request.user.is_authenticated:
         if has_voted is not None:
             existing_vote_type = has_voted.vote_type
             
@@ -257,5 +257,4 @@ def vote_thread(request, thread_pk, vote_type):
                     vote_type=Func(F('vote_type'),Value('dislike'), Value('like'), function='replace',))
         else:
             ThreadVote.objects.create(thread_id=thread.pk, user_id=request.user.id, vote_type=vote_type)
-            
     return redirect('view_thread', thread.pk)
