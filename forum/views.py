@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Thread, Post, ThreadVote
+from .models import Thread, Post, ThreadVote, PostVote
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import AddThreadForm, AddPostForm
 from django.db.models import Count, Sum, F, Func, Value
@@ -79,14 +79,14 @@ def view_thread(request, pk):
     # Retrive the thread
     thread = get_object_or_404(Thread, pk=pk)
     
-    # Check if user voted and extract existing vote
-    has_voted = record_exist_check(ThreadVote, request.user, thread)
+    # Check if user voted for thread and extract existing vote
+    has_voted_thread = record_exist_check(ThreadVote, request.user, thread)
     
-    if has_voted is None:
-        existing_vote_type = None
+    if has_voted_thread is None:
+        thread_vote_type = None
     else:
-        existing_vote_type = has_voted.vote_type
-        
+        thread_vote_type = has_voted_thread.vote_type
+    
     # Allows to retrive forms on the view thread page
     post_form = AddPostForm()
     
@@ -98,7 +98,7 @@ def view_thread(request, pk):
         posts = Post.objects.filter(thread_id=thread.pk)
     except Post.DoesNotExist:
         posts = None
-        
+    
     # Paginate posts
     page = request.GET.get('page', 1)
     paginator = Paginator(posts, 10)
@@ -114,7 +114,7 @@ def view_thread(request, pk):
         'posts': posts,
         'post_form': post_form,
         'posts_count': posts_count,
-        'existing_vote_type': existing_vote_type
+        'thread_vote_type': thread_vote_type
     }
     return render(request, 'view_thread.html', context)
 
@@ -187,17 +187,24 @@ def delete_post(request, thread_pk, post_pk):
                         delete this post.")
         return redirect('view_thread', thread.pk)
 
-def record_exist_check(Model, user, thread):
+def record_exist_check(Model, user, record):
     '''
-    Helper function that will check if record for a given user and thread 
+    Helper function that will check if record for a given user and thread/post
     already exist in a given model
     '''
     if user.is_authenticated:
-        try:
-            param = Model.objects.get(user=user, thread=thread)
-        except Model.DoesNotExist:
-            param = None
-        return param
+        if Model == ThreadVote:
+            try:
+                param = Model.objects.get(user=user, thread=record)
+            except Model.DoesNotExist:
+                param = None
+            return param
+        elif Model == PostVote:
+            try:
+                param = Model.objects.get(user=user, post=record)
+            except Model.DoesNotExist:
+                param = None
+            return param
     else:
         param = None
 
@@ -206,7 +213,7 @@ def vote_thread(request, thread_pk, vote_type):
     Enables authenticated users to like or dislike posted thread
     '''
     
-    # Retrive the thread and votes if exists
+    # Retrive the thread
     thread = get_object_or_404(Thread, pk=thread_pk)
     
     # Check if user voted already
@@ -227,4 +234,30 @@ def vote_thread(request, thread_pk, vote_type):
                     vote_type=Func(F('vote_type'),Value('dislike'), Value('like'), function='replace',))
         else:
             ThreadVote.objects.create(thread_id=thread.pk, user_id=request.user.id, vote_type=vote_type)
+    return redirect('view_thread', thread.pk)
+
+def vote_post(request, thread_pk, post_pk=None, vote_type=None):
+    
+    # Retrive the thread and post if exists
+    thread = get_object_or_404(Thread, pk=thread_pk)
+    post = get_object_or_404(Post, pk=post_pk) if post_pk else None
+      
+    # Check if user voted already
+    has_voted = record_exist_check(PostVote, request.user, post)
+   
+    if request.user.is_authenticated:
+        if has_voted is not None:
+            existing_vote_type = has_voted.vote_type
+            
+            if existing_vote_type == vote_type:
+                PostVote.objects.filter(post_id=post.pk, user_id=request.user.id, vote_type=vote_type).delete()
+            else: 
+                if has_voted.vote_type == "like":
+                    PostVote.objects.filter(post_id=post.pk, user_id=request.user.id, vote_type="like").update(
+                    vote_type=Func(F('vote_type'),Value('like'), Value('dislike'), function='replace',))
+                elif has_voted.vote_type == "dislike":
+                    PostVote.objects.filter(post_id=post.pk, user_id=request.user.id, vote_type="dislike").update(
+                    vote_type=Func(F('vote_type'),Value('dislike'), Value('like'), function='replace',))
+        else:
+            PostVote.objects.create(post_id=post.pk, user_id=request.user.id, vote_type=vote_type)
     return redirect('view_thread', thread.pk)
