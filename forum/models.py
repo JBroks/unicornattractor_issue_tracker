@@ -53,10 +53,10 @@ class Thread(models.Model):
         return self.forum_post.annotate(Count('post')).count()
     
     def thread_likes_count(self):
-        return self.thread_vote.filter(vote_type="like").annotate(Count('vote_type')).count()
+        return self.thread_vote.filter(vote_type='like').annotate(Count('vote_type')).count()
     
     def thread_dislikes_count(self):
-        return self.thread_vote.filter(vote_type="dislike").annotate(Count('vote_type')).count()
+        return self.thread_vote.filter(vote_type='dislike').annotate(Count('vote_type')).count()
  
 class Post(models.Model):
     '''

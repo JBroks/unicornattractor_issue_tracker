@@ -57,9 +57,19 @@
                                 <p class="card-text">{{ thread.description }}</p>
                             </div>
                             <div class="card-footer bg-transparent text-right">
+                                <!-- if user authenticated check the vote type to assign colors -->
                                 {% if request.user.is_authenticated %}
-                                <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                     
+                                    {% if existing_vote_type is None %}
+                                    <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                    <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                     
+                                    {% elif existing_vote_type == 'like' %}
+                                    <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                    <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                     
+                                    {% else %}
+                                    <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                    <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                     
+                                    {% endif %}
+                                <!-- if user not authenticated show modals on click -->
                                 {% else %}
                                 <a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
                                 <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                               

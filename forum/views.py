@@ -78,6 +78,14 @@ def view_thread(request, pk):
     
     # Retrive the thread
     thread = get_object_or_404(Thread, pk=pk)
+    
+    # Check if user voted and extract existing vote
+    has_voted = record_exist_check(ThreadVote, request.user, thread)
+    
+    if has_voted is None:
+        existing_vote_type = None
+    else:
+        existing_vote_type = has_voted.vote_type
         
     # Allows to retrive forms on the view thread page
     post_form = AddPostForm()
@@ -105,7 +113,8 @@ def view_thread(request, pk):
         'thread': thread,
         'posts': posts,
         'post_form': post_form,
-        'posts_count': posts_count
+        'posts_count': posts_count,
+        'existing_vote_type': existing_vote_type
     }
     return render(request, 'view_thread.html', context)
 
@@ -127,47 +136,6 @@ def delete_thread(request, pk):
         messages.error(request, "Error! You don't have a permission to \
                         delete this thread.")
         return redirect('view_thread', thread.pk)
-
-'''
-@login_required
-def vote_thread(request, thread_pk, vote_type):
-    
-    # Query parameters
-    vote_type = request.GET.get('vote-type')
-    
-    thread = get_object_or_404(Thread, pk=thread_pk)
-    
-    try:
-        # If child DisLike model doesnot exit then create
-        thread.thread_dislikes
-    except Thread.thread_dislikes.RelatedObjectDoesNotExist as identifier:
-        Dislike.objects.create(thread = thread)
-
-    try:
-        # If child Like model doesnot exit then create
-        thread.thread_likes
-    except Thread.thread_likes.RelatedObjectDoesNotExist as identifier:
-        Like.objects.create(thread = thread)
-
-    if vote_type.lower() == 'like':
-
-        if request.user in thread.thread_likes.users.all():
-            thread.thread_likes.user.remove(request.user)
-        else:    
-            thread.thread_likes.user.add(request.user)
-            thread.thread_dislikes.user.remove(request.user)
-
-    elif vote_type.lower() == 'dislike':
-
-        if request.user in thread.thread_dislikes.user.all():
-            thread.thread_dislikes.user.remove(request.user)
-        else:    
-            thread.thread_dislikes.user.add(request.user)
-            thread.thread_likes.user.remove(request.user)
-    else:
-        return redirect('view_thread', thread.pk)
-    return render(request, 'view_thread.html', {'thread': thread})
-'''
 
 @login_required
 def add_or_edit_post(request, thread_pk, post_pk=None):
@@ -234,10 +202,12 @@ def record_exist_check(Model, user, thread):
         param = None
 
 def vote_thread(request, thread_pk, vote_type):
+    '''
+    Enables authenticated users to like or dislike posted thread
+    '''
     
     # Retrive the thread and votes if exists
     thread = get_object_or_404(Thread, pk=thread_pk)
-    
     
     # Check if user voted already
     has_voted = record_exist_check(ThreadVote, request.user, thread)
