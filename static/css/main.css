@@ -7790,6 +7790,10 @@ button.btn-rounded {
 .bootstrap-select > button {
   background-color: #f7f7f9; }
 
+/* Increase font-size for like/dislike counter */
+span.vote-counter {
+  font-size: 20px; }
+
 @media only screen and (max-width: 600px) {
   form {
     width: 80%; }
