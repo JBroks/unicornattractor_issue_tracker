@@ -9,6 +9,21 @@ from tickets.models import Ticket, Comment, Upvote, Donation
 from forum.models import Thread, Post, ThreadVote, PostVote
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+def paginate(request, list):
+    '''
+    Helper function that will paginate any qiven queryset
+    '''
+    page = request.GET.get('page', 1)
+    
+    paginator = Paginator(list, 2)
+    try:
+        list = paginator.page(page)
+    except PageNotAnInteger:
+        list = paginator.page(1)
+    except EmptyPage:
+        list = paginator.page(paginator.num_pages)
+    return list
+
 @login_required
 def logout(request):
     """Log the user out"""
@@ -62,21 +77,6 @@ def registration(request):
     return render(request, 'registration.html', {"registration_form": 
                     registration_form})
 
-def paginate(request, list):
-    '''
-    Helper function that will paginate any qiven queryset
-    '''
-    page = request.GET.get('page', 1)
-    
-    paginator = Paginator(list, 2)
-    try:
-        list = paginator.page(page)
-    except PageNotAnInteger:
-        list = paginator.page(1)
-    except EmptyPage:
-        list = paginator.page(paginator.num_pages)
-    return list
-    
 def user_profile(request, username):
     """The user's profile page"""
 

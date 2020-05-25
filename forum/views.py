@@ -44,7 +44,7 @@ def record_exist_check(Model, user, record):
             return param
     else:
         param = None
-        
+
 @login_required
 def add_or_edit_thread(request, pk=None):
     '''
