@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm, UserChangeForm, UserDeleteForm, UploadFileForm
 from .models import UserProfile
 from tickets.models import Ticket, Comment, Upvote, Donation
-from forum.models import Thread, Post
+from forum.models import Thread, Post, ThreadVote, PostVote
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
@@ -15,7 +15,6 @@ def logout(request):
     auth.logout(request)
     messages.success(request, "You have successfully been logged out")
     return redirect(reverse('index'))
-
 
 def login(request):
     """Return a login page"""
@@ -63,6 +62,21 @@ def registration(request):
     return render(request, 'registration.html', {"registration_form": 
                     registration_form})
 
+def paginate(request, list):
+    '''
+    Helper function that will paginate any qiven queryset
+    '''
+    page = request.GET.get('page', 1)
+    
+    paginator = Paginator(list, 2)
+    try:
+        list = paginator.page(page)
+    except PageNotAnInteger:
+        list = paginator.page(1)
+    except EmptyPage:
+        list = paginator.page(paginator.num_pages)
+    return list
+    
 def user_profile(request, username):
     """The user's profile page"""
 
@@ -74,7 +88,8 @@ def user_profile(request, username):
     upvotes_count = Upvote.objects.filter(user=request.user).count()
     thread_count = Thread.objects.filter(user=request.user).count()
     post_count = Post.objects.filter(user=request.user).count()
-    
+    thread_votes_count = ThreadVote.objects.filter(user=request.user).count()
+    post_votes_count = PostVote.objects.filter(user=request.user).count()
     
     # Get a sum of donations for a given user
     donations_total = Donation.objects.filter(user=request.user).aggregate(
@@ -85,33 +100,23 @@ def user_profile(request, username):
         donations_total = 0
     else:
         donations_total
-        
+
     # Retrive all user content
     user_tickets = Ticket.objects.filter(user=request.user)
     user_comments = Comment.objects.filter(user=request.user)
     user_threads = Thread.objects.filter(user=request.user)
     user_posts = Post.objects.filter(user=request.user)
+    user_thread_votes = ThreadVote.objects.filter(user=request.user)
+    user_post_votes = PostVote.objects.filter(user=request.user)
+     
+    # Paginate pills content
+    user_tickets = paginate(request, user_tickets)
+    user_comments = paginate(request, user_comments)
+    user_threads = paginate(request, user_threads)
+    user_posts = paginate(request, user_posts)
+    user_thread_votes = paginate(request, user_thread_votes)
+    user_post_votes = paginate(request, user_post_votes)
     
-    page = request.GET.get('page', 1)
-    
-    # Paginate tickets
-    paginator = Paginator(user_tickets, 10)
-    try:
-        user_tickets = paginator.page(page)
-    except PageNotAnInteger:
-        user_tickets = paginator.page(1)
-    except EmptyPage:
-        user_tickets = paginator.page(paginator.num_pages)
-    
-    # Paginate comments
-    paginator = Paginator(user_comments, 10)
-    try:
-        user_comments = paginator.page(page)
-    except PageNotAnInteger:
-        user_comments = paginator.page(1)
-    except EmptyPage:
-        user_comments = paginator.page(paginator.num_pages)
-   
     context = {"user": user,
             "ticket_count": ticket_count,
             "comment_count": comment_count,
@@ -119,10 +124,14 @@ def user_profile(request, username):
             "donations_total": donations_total,
             "thread_count": thread_count,
             "post_count": post_count,
+            "thread_votes_count": thread_votes_count,
+            "post_votes_count": post_votes_count,
             "user_tickets": user_tickets,
             "user_comments": user_comments,
             "user_threads": user_threads,
-            "user_posts": user_posts
+            "user_posts": user_posts,
+            "user_thread_votes": user_thread_votes,
+            "user_post_votes": user_post_votes
     }
             
     return render(request, 'profile.html', context)

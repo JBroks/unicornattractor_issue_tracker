@@ -201,6 +201,12 @@
                 <li class="nav-item">
                     <a class="nav-link flex-sm-fill text-sm-center" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Forum posts ({{ post_count }})</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-likes-tab" data-toggle="pill" href="#pills-thread-votes" role="tab" aria-controls="pills-thread-votes" aria-selected="false">Forum thread votes ({{ thread_votes_count }})</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-post-votes-tab" data-toggle="pill" href="#pills-post-votes" role="tab" aria-controls="pills-post-votes" aria-selected="false">Forum post votes ({{ post_votes_count }})</a>
+                </li>
             </ul>
             <!-- Pills navigation buttons (END) -->
 
@@ -504,6 +510,98 @@
                     <!-- User posts pagination buttons (END)-->
                 </div>
                 <!-- Pill containing user posts table (END) -->
+
+                <!-- Pill containing user thread votes table (BEGINNING) -->
+                <div class="tab-pane fade" id="pills-thread-votes" role="tabpanel" aria-labelledby="pills-thread-votes-tab">
+
+                    <!-- User thread votes table (BEGINNING) -->
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <table class="table">
+                                <tbody class="thread-votes-table">
+                                    {% if thread_votes_count > 0 %} {% for voted in user_thread_votes %}
+                                    <tr>
+                                        <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.thread.id %}">Thread #{{ voted.thread.id }}</a> on {{ voted.date_created }}</td>
+                                    </tr>
+                                    {% endfor %}{% else %} You have not liked / disliked any threads yet. {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- User thread votes table (END) -->
+
+                    <!-- User thread votes pagination buttons (BEGINNING) -->
+                    <div class="col-sm-12 d-flex justify-content-center">
+                        {% if user_thread_votes.has_other_pages %}
+                        <nav aria-label="Table navigation">
+                            <ul class="pagination">
+                                {% if user_thread_votes.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ user_thread_votes.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                {% endif %} {% for i in user_thread_votes.paginator.page_range %} {% if user_thread_votes.number == i %}
+                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                </li>
+                                {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %} {% endfor %} {% if user_thread_votes.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ user_thread_votes.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        {% endif %}
+                    </div>
+                    <!-- User thread votes pagination buttons (END)-->
+                </div>
+                <!-- Pill containing user thread votes table (END) -->
+                
+                <!-- Pill containing user post votes table (BEGINNING) -->
+                <div class="tab-pane fade" id="pills-post-votes" role="tabpanel" aria-labelledby="pills-post-votes-tab">
+
+                    <!-- User post votes table (BEGINNING) -->
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <table class="table">
+                                <tbody class="post-votes-table">
+                                    {% if post_votes_count > 0 %} {% for voted in user_post_votes %}
+                                    <tr>
+                                        <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created }}</td>
+                                    </tr>
+                                    {% endfor %}{% else %} You have not liked / disliked any posts yet. {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- User post votes table (END) -->
+
+                    <!-- User post votes pagination buttons (BEGINNING) -->
+                    <div class="col-sm-12 d-flex justify-content-center">
+                        {% if user_post_votes.has_other_pages %}
+                        <nav aria-label="Table navigation">
+                            <ul class="pagination">
+                                {% if user_post_votes.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ user_post_votes.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                {% endif %} {% for i in user_post_votes.paginator.page_range %} {% if user_post_votes.number == i %}
+                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                </li>
+                                {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %} {% endfor %} {% if user_post_votes.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ user_post_votes.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        {% endif %}
+                    </div>
+                    <!-- User post votes pagination buttons (END)-->
+                </div>
+                <!-- Pill containing user thread votes table (END) -->
 
             </div>
             <!-- Pills content (END)-->
