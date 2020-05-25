@@ -14,7 +14,8 @@ class Thread(models.Model):
     
     user = models.ForeignKey(
         User, 
-        null=True, 
+        related_name="thread_author_key",
+        null=True,
         on_delete=models.CASCADE)
     
     subject = models.CharField(
@@ -37,6 +38,7 @@ class Thread(models.Model):
         )
         
     class Meta:
+        db_table = "thread"
         ordering = ['-id']
         
     def __str__(self):
@@ -44,20 +46,20 @@ class Thread(models.Model):
             self.id, self.subject, self.user.username)
     
     def latest_post_date(self):
-        return self.forum_post.latest('date_updated').date_updated
+        return self.post_thread_key.latest('date_updated').date_updated
     
     def latest_post_author(self):
-        return self.forum_post.latest('user').user
+        return self.post_thread_key.latest('user').user
         
     def post_count(self):
-        return self.forum_post.annotate(Count('post')).count()
+        return self.post_thread_key.annotate(Count('post')).count()
     
     def thread_likes_count(self):
-        return self.thread_vote.filter(
+        return self.thread_vote_thread_key.filter(
             vote_type='like').annotate(Count('vote_type')).count()
     
     def thread_dislikes_count(self):
-        return self.thread_vote.filter(
+        return self.thread_vote_thread_key.filter(
             vote_type='dislike').annotate(Count('vote_type')).count()
  
 class Post(models.Model):
@@ -68,12 +70,13 @@ class Post(models.Model):
     
     thread = models.ForeignKey(
         Thread,
-        related_name='forum_post',
+        related_name='post_thread_key',
         null=True,
         on_delete=models.CASCADE)
     
     user = models.ForeignKey(
         User, 
+        related_name='post_author_key',
         null=True, 
         on_delete=models.CASCADE)
         
@@ -93,6 +96,7 @@ class Post(models.Model):
         )
         
     class Meta:
+        db_table = "post"
         ordering = ['-date_created']
         
     def __str__(self):
@@ -100,13 +104,16 @@ class Post(models.Model):
             self.id, self.user.username, self.thread.id)
     
     def post_likes_count(self):
-        return self.post_vote.filter(
+        return self.post_vote_post_key.filter(
             vote_type='like').annotate(Count('vote_type')).count()
         
     def post_dislikes_count(self):
-        return self.post_vote.filter(
+        return self.post_vote_post_key.filter(
             vote_type='dislike').annotate(Count('vote_type')).count()
-
+    
+    def post_voters(self):
+        return self.post_vote_post_key.values_list('user', flat=True)
+        
 class ThreadVote(models.Model):
     '''
     Enables users to like/dislike thread
@@ -114,12 +121,13 @@ class ThreadVote(models.Model):
         
     thread = models.ForeignKey(
         Thread,
-        related_name='thread_vote',
+        related_name='thread_vote_thread_key',
         null=True,
         on_delete=models.CASCADE)
     
     user = models.ForeignKey(
         User, 
+        related_name='thread_vote_author_key',
         null=True, 
         on_delete=models.CASCADE)
     
@@ -139,6 +147,9 @@ class ThreadVote(models.Model):
         auto_now=True,
         )
     
+    class Meta:
+            db_table = "thread_vote"
+            
     def __str__(self):
         return "Thread #{0} {1}d by {2}".format(
             self.thread.id, self.vote_type, self.user.username)
@@ -150,12 +161,13 @@ class PostVote(models.Model):
     
     post = models.ForeignKey(
         Post,
-        related_name='post_vote',
+        related_name='post_vote_post_key',
         null=True,
         on_delete=models.CASCADE)
     
     user = models.ForeignKey(
         User, 
+        related_name='post_vote_author_key',
         null=True, 
         on_delete=models.CASCADE)
     
@@ -175,6 +187,9 @@ class PostVote(models.Model):
         auto_now=True,
         )
     
+    class Meta:
+        db_table = "post_vote"
+        
     def __str__(self):
         return "Post #{0} {1}d by {2}".format(
             self.post.id, self.vote_type, self.user.username)
