@@ -108,3 +108,19 @@ $(document).ready(function() {
     });
   });
 });
+
+// KEEP THE PILL ACTIVE AFTER REFRESH
+/**
+ * Function that keeps the selected pill active after page is changed
+ **/
+
+$(function() {
+    $('a[data-toggle="pill"]').on('click', function(e) {
+        window.localStorage.setItem('activePill', $(e.target).attr('href'));
+    });
+    var activePill = window.localStorage.getItem('activePill');
+    if (activePill) {
+        $('#pills-tab a[href="' + activePill + '"]').tab('show');
+    }
+});
+
