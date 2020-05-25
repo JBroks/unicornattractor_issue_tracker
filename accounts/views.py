@@ -15,7 +15,7 @@ def paginate(request, list):
     '''
     page = request.GET.get('page', 1)
     
-    paginator = Paginator(list, 2)
+    paginator = Paginator(list, 10)
     try:
         list = paginator.page(page)
     except PageNotAnInteger:
