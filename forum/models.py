@@ -148,7 +148,8 @@ class ThreadVote(models.Model):
         )
     
     class Meta:
-            db_table = "thread_vote"
+        db_table = "thread_vote"
+        ordering = ['-date_created']
             
     def __str__(self):
         return "Thread #{0} {1}d by {2}".format(
@@ -188,6 +189,7 @@ class PostVote(models.Model):
         )
     
     class Meta:
+        ordering = ['-date_created']
         db_table = "post_vote"
         
     def __str__(self):
