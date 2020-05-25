@@ -285,10 +285,9 @@
 
                             <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (BEGINNING) -->
                             <div class="card-body posted-comment" id="comment{{comment.id}}">
-                                <p class="card-text text-truncate comment-text">{{ comment.comment }}</p>
-                                <hr>
-                                <p class="card-text text-center text-uppercase read-more mb-0"><small class="text-primary"><a type="button">Read more</a></small></p>
-                                <p class="card-text text-center text-uppercase read-less mb-0"><small class="text-primary"><a type="button">Read less</a></small></p>
+                                <p class="card-text text-truncate comment-text mb-1">{{ comment.comment }}</p>
+                                <p class="card-text text-left text-uppercase read-more mb-0"><small class="text-warning font-weight-bold"><a type="button">Read more <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a></small></p>
+                                <p class="card-text text-left text-uppercase read-less mb-0"><small class="text-warning font-weight-bold"><a type="button">Read less <i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a></small></p>
                             </div>
                             <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (END) -->
 
