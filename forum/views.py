@@ -9,6 +9,42 @@ from .forms import AddThreadForm, AddPostForm
 from django.db.models import Count, Sum, F, Func, Value
 
 # Create your views here.
+def paginate(request, list):
+    '''
+    Helper function that will paginate any qiven queryset
+    '''
+    page = request.GET.get('page', 1)
+    
+    paginator = Paginator(list, 10)
+    try:
+        list = paginator.page(page)
+    except PageNotAnInteger:
+        list = paginator.page(1)
+    except EmptyPage:
+        list = paginator.page(paginator.num_pages)
+    return list
+
+def record_exist_check(Model, user, record):
+    '''
+    Helper function that will check if record for a given user and thread/post
+    already exist in a given model
+    '''
+    if user.is_authenticated:
+        if Model == ThreadVote:
+            try:
+                param = Model.objects.get(user=user, thread=record)
+            except Model.DoesNotExist:
+                param = None
+            return param
+        elif Model == PostVote:
+            try:
+                param = Model.objects.get(user=user, post=record)
+            except Model.DoesNotExist:
+                param = None
+            return param
+    else:
+        param = None
+        
 @login_required
 def add_or_edit_thread(request, pk=None):
     '''
@@ -44,7 +80,7 @@ def add_or_edit_thread(request, pk=None):
         'add_thread_form': add_thread_form
     }
     return render(request, 'add_thread.html', context)
-
+    
 def forum(request):
     '''
     View all threads in a form of paginated table.
@@ -54,16 +90,8 @@ def forum(request):
     # Retrive all threads
     threads = Thread.objects.all()
     
-    page = request.GET.get('page', 1)
-    
     # Paginate threads
-    paginator = Paginator(threads, 10)
-    try:
-        threads = paginator.page(page)
-    except PageNotAnInteger:
-        threads = paginator.page(1)
-    except EmptyPage:
-        threads = paginator.page(paginator.num_pages)
+    threads = paginate(request, threads)
     
     return render(request, 'forum.html', {'threads': threads})
 
@@ -100,14 +128,7 @@ def view_thread(request, pk):
         posts = None
     
     # Paginate posts
-    page = request.GET.get('page', 1)
-    paginator = Paginator(posts, 10)
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        posts = paginator.page(1)
-    except EmptyPage:
-        posts = paginator.page(paginator.num_pages)
+    posts = paginate(request, posts)
     
     context = {
         'thread': thread,
@@ -186,27 +207,6 @@ def delete_post(request, thread_pk, post_pk):
         messages.error(request, "Error! You don't have a permission to \
                         delete this post.")
         return redirect('view_thread', thread.pk)
-
-def record_exist_check(Model, user, record):
-    '''
-    Helper function that will check if record for a given user and thread/post
-    already exist in a given model
-    '''
-    if user.is_authenticated:
-        if Model == ThreadVote:
-            try:
-                param = Model.objects.get(user=user, thread=record)
-            except Model.DoesNotExist:
-                param = None
-            return param
-        elif Model == PostVote:
-            try:
-                param = Model.objects.get(user=user, post=record)
-            except Model.DoesNotExist:
-                param = None
-            return param
-    else:
-        param = None
 
 def vote_thread(request, thread_pk, vote_type):
     '''

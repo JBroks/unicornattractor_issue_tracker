@@ -15,6 +15,35 @@ import stripe
 # Import the Stripe secret API key
 stripe.api_key = settings.STRIPE_SECRET
 
+def paginate(request, list):
+    '''
+    Helper function that will paginate any qiven queryset
+    '''
+    page = request.GET.get('page', 1)
+    
+    paginator = Paginator(list, 10)
+    try:
+        list = paginator.page(page)
+    except PageNotAnInteger:
+        list = paginator.page(1)
+    except EmptyPage:
+        list = paginator.page(paginator.num_pages)
+    return list
+
+def record_exist_check(Model, user, ticket):
+    '''
+    Helper function that will check if record for a given user and ticket 
+    already exist in a given model
+    '''
+    if user.is_authenticated:
+        try:
+            param = Model.objects.get(user=user, ticket=ticket)
+        except Model.DoesNotExist:
+            param = None
+        return param
+    else:
+        param = None
+
 @login_required
 def add_or_edit_ticket(request, pk=None):
     '''
@@ -67,7 +96,6 @@ def all_tickets(request):
     
     # Set queryset to all tickets
     qs = Ticket.objects.all()
-    page = request.GET.get('page', 1)
     
     # Query parameters
     type_filter_query = request.GET.get('ticket-type')
@@ -86,13 +114,8 @@ def all_tickets(request):
         qs
     
     # Paginate tickets
-    paginator = Paginator(qs, 10)
-    try:
-        tickets = paginator.page(page)
-    except PageNotAnInteger:
-        tickets = paginator.page(1)
-    except EmptyPage:
-        tickets = paginator.page(paginator.num_pages)
+    tickets = paginate(request, qs)
+    
     context = {'tickets': tickets, 
             'types_list': types_list, 
             'status_list': status_list }
@@ -146,14 +169,7 @@ def view_ticket(request, pk):
         comments = None
         
     # Paginate comments
-    page = request.GET.get('page', 1)
-    paginator = Paginator(comments, 10)
-    try:
-        comments = paginator.page(page)
-    except PageNotAnInteger:
-        comments = paginator.page(1)
-    except EmptyPage:
-        comments = paginator.page(paginator.num_pages)
+    comments = paginate(request, comments)
     
     # Retrive last comment
     last_comment = Comment.objects.filter(ticket=ticket).latest('date_created')
@@ -193,20 +209,6 @@ def delete_ticket(request, pk):
                         delete this ticket.")
         return redirect('view_ticket', ticket.pk)
 
-def record_exist_check(Model, user, ticket):
-    '''
-    Helper function that will check if record for a given user and ticket 
-    already exist in a given model
-    '''
-    if user.is_authenticated:
-        try:
-            param = Model.objects.get(user=user, ticket=ticket)
-        except Model.DoesNotExist:
-            param = None
-        return param
-    else:
-        param = None
-    
 @login_required
 def upvote(request, pk):
     '''
