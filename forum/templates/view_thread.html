@@ -222,15 +222,38 @@
                             <!-- Edit comment(post) form container  - displayed only when edit button clicked (END) -->
                             
                             <div class="card-footer bg-transparent text-right">
-                                <!-- if user authenticated check the vote type to assign colors -->
-                                {% if request.user.is_authenticated %}
-                                    <a href="{% url 'vote_post' thread.pk post.pk 'like' %}" class="text-reset text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I like it"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                    <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}" class="text-reset text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I dislike it"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span>  
-                                   <!-- if user not authenticated show modals on click -->
+                                <!-- If user authenticated check the vote type to assign colors (BEGINNING) -->
+                                 {% if request.user.is_authenticated %}
+                                 
+                                <!-- If authenticated user voted change color depending on vote type (BEGINNING) -->
+                                {% if request.user.id in post.post_voters %}
+                                     {% for voted in post.post_vote_post_key.all %}
+                                    {% if voted.user == request.user %}
+                                        {% if voted.vote_type == 'like' %}
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-success text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I like it"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I dislike it"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> 
+                                        {% elif voted.vote_type == 'dislike' %}
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I like it"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-danger text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I dislike it"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                <!-- If authenticated user voted change color depending on vote type (END) -->
+                                
+                                <!-- If authenticated user didn't vote (BEGINNING) -->
+                                {% else %}
+                                <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I like it"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I dislike it"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span>  
+                                {% endif %}
+                                <!-- If authenticated user didn't vote (END) -->
+                                <!-- If user authenticated check the vote type to assign colors (END) -->
+                                
+                                <!-- If user not authenticated show sign in modal on click (BEGINNING) -->
                                 {% else %}
                                 <a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I like it"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
                                 <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="I dislike it"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span>                               
-                                {% endif %}
+                               {% endif %}
+                               <!-- If user not authenticated show sign in modal on click (END) -->
                             </div>
                         </div>
 
