@@ -67,7 +67,6 @@ $(function() {
   $('.comment-text').each(function(index, elem) {
     if (elem.offsetWidth === elem.scrollWidth) {
       $(this).siblings('.read-more').hide();
-      $(this).siblings('hr').hide();
     }
   });
 });
