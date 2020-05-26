@@ -96,11 +96,11 @@
         <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on medium and smaller screens only (END) -->
         
         <!-- Search form (BEGINNING) -->
-        <form class="form-inline my-2 my-lg-0 mr-2 d-flex justify-content-lg-end">
+        <form action="{% url 'search_results' %}" method="GET" class="form-inline my-2 my-lg-0 mr-2 d-flex justify-content-lg-end">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search..." size="40">
+            <input id="search-term" type="text" name="search-term" class="form-control" placeholder="Search..." size="40">
             <div class="input-group-append">
-              <button id="search-btn" class="btn btn-dark" type="button"><i class="fa fa-search"></i></button>
+              <button id="search-btn" class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
             </div>
           </div>
         </form>
@@ -204,7 +204,8 @@
   {% block js %} {% endblock %}
 
   <!-- Custom JS -->
-  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+  <script src="/static/js/script.js"></script>
+  <!--<script src="{% static 'js/script.js' %}"></script>-->
 
 </body>
 
