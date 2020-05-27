@@ -240,10 +240,7 @@
                     <div class="row">
                         <div class="col-sm-12 d-flex justify-content-end">
                             {% if user.is_authenticated %}
-                            <button type="submit" name="action" class="btn btn-outline-success"><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Post comment</button>
-                            {% else %}
-                             <button class="btn btn-outline-success" data-toggle="modal" data-target="#postCommentModal"><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Post comment</button>
-                            {% endif %}
+                            <button type="submit" name="action" class="btn btn-outline-success"><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Post comment</button> {% endif %}
                         </div>
                     </div>
                 </form>
@@ -251,25 +248,37 @@
         </div>
         <!-- Leave a comment form container (END) -->
         
-        <!-- Post comment modal triggered when user is not logged in and clicks post button (BEGINNING) -->
-                <div class="modal fade" id="postCommentModal" tabindex="-1" role="dialog" aria-labelledby="postCommentModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="postCommentModalLabel">Would like to your thoughts?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Sign in to post your comment.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
-                            </div>
-                        </div>
+        <!-- If user not authenticated show modal (BEGINNING) -->
+        <div class="row">
+            <div class="col-md-8 offset-md-4 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12 d-flex justify-content-end">
+                        {% if not user.is_authenticated %}
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#postCommentModal"><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Post comment</button> {% endif %}
                     </div>
                 </div>
-            <!-- Post comment modal triggered when user is not logged in and clicks post button (END) -->
-            
+            </div>
+        </div>
+        <!-- If user not authenticated show modal (END) -->
+        
+        <!-- Post comment modal triggered when user is not logged in and clicks post button (BEGINNING) -->
+        <div class="modal fade" id="postCommentModal" tabindex="-1" role="dialog" aria-labelledby="postCommentModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="postCommentModalLabel">Would like to share your thoughts?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Sign in to post your comment.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Post comment modal triggered when user is not logged in and clicks post button (END) -->
 
         <div class="row align-items-end">
 

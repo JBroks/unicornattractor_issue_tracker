@@ -58,22 +58,25 @@
                             </div>
                             <div class="card-footer bg-transparent text-right">
                                 <!-- if user authenticated check the vote type to assign colors -->
-                                {% if request.user.is_authenticated %}
-                                    {% if thread_vote_type is None %}
-                                    <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                    <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                     
-                                    {% elif thread_vote_type == 'like' %}
-                                    <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                    <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                     
-                                    {% else %}
-                                    <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                    <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                     
-                                    {% endif %}
+                                {% if request.user.is_authenticated %} {% if thread_vote_type is None %}
+                                <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% elif thread_vote_type == 'like' %}
+                                <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% else %}
+                                <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% endif %}
                                 <!-- if user not authenticated show modals on click -->
                                 {% else %}
-                                <a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a><span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span>                               
-                                {% endif %}
+                                <a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% endif %}
                             </div>
                         </div>
                     </div>
@@ -82,43 +85,43 @@
             <!-- Thread card containing description and like/dislike button container (END) -->
 
             <!-- Like Modal triggered when user is not logged in and clicks like button (BEGINNING) -->
-                <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="likeModalLabel">Like this post?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Sign in to make your opinion count.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
-                            </div>
+            <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="likeModalLabel">Like this post?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Sign in to make your opinion count.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
                         </div>
                     </div>
                 </div>
+            </div>
             <!-- Like Modal triggered when user is not logged in and clicks like button (END) -->
-            
+
             <!-- Dislike Modal triggerd when user is not logged in and clicks dislike button (BEGINNING) -->
-                <div class="modal fade" id="dislikeModal" tabindex="-1" role="dialog" aria-labelledby="dislikeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="dislikeModalLabel">Dislike this post?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Sign in to make your opinion count.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
-                            </div>
+            <div class="modal fade" id="dislikeModal" tabindex="-1" role="dialog" aria-labelledby="dislikeModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dislikeModalLabel">Dislike this post?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Sign in to make your opinion count.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
                         </div>
                     </div>
                 </div>
+            </div>
             <!-- Dislike Modal triggerd when user is not logged in and clicks dislike button (END) -->
-            
+
         </div>
     </section>
     <!-- Thread section (END) -->
@@ -150,13 +153,47 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 d-flex justify-content-end">
-                            <button type="submit" name="action" class="btn btn-outline-success"><i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> Submit Post</button>
+                            {% if user.is_authenticated %}
+                            <button type="submit" name="action" class="btn btn-outline-success"><i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> Submit Post</button> {% endif %}
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <!-- Add a post form container (END) -->
+
+        <!-- If user not authenticated show modal (BEGINNING) -->
+        <div class="row">
+            <div class="col-md-10 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12 d-flex justify-content-end">
+                        {% if not user.is_authenticated %}
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#submitPostModal"><i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> Submit Post</button> {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- If user not authenticated show modal (END) -->
+
+        <!-- Submit post modal triggered when user is not logged in and clicks submit button (BEGINNING) -->
+        <div class="modal fade" id="submitPostModal" tabindex="-1" role="dialog" aria-labelledby="submitPostModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="submitPostModalLabel">Would like to share your thoughts?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Sign in to submit your post.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Submit post modal triggered when user is not logged in and clicks submit button (END) -->
+
 
         <div class="row d-flex justify-content-center">
 
@@ -219,41 +256,40 @@
                                 </div>
                             </div>
                             <!-- Edit comment(post) form container  - displayed only when edit button clicked (END) -->
-                            
+
                             <div class="card-footer bg-transparent text-right">
-                                
+
                                 <!-- If user authenticated check the vote type to assign colors (BEGINNING) -->
-                                 {% if request.user.is_authenticated %}
-                                 
+                                {% if request.user.is_authenticated %}
+
                                 <!-- If authenticated user voted change color depending on vote type (BEGINNING) -->
-                                {% if request.user.id in post.post_voters %}
-                                     {% for voted in post.post_vote_post_key.all %}
-                                    {% if voted.user == request.user %}
-                                        {% if voted.vote_type == 'like' %}
-                                        <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                        <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> 
-                                        {% elif voted.vote_type == 'dislike' %}
-                                        <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                        <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span>
-                                        {% endif %}
-                                    {% endif %}
-                                    {% endfor %}
+                                {% if request.user.id in post.post_voters %} {% for voted in post.post_vote_post_key.all %} {% if voted.user == request.user %} {% if voted.vote_type == 'like' %}
+                                <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% elif voted.vote_type == 'dislike' %}
+                                <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %} {% endif %} {% endfor %}
                                 <!-- If authenticated user voted change color depending on vote type (END) -->
-                                
+
                                 <!-- If authenticated user didn't vote (BEGINNING) -->
                                 {% else %}
-                                <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span>  
-                                {% endif %}
+                                <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %}
                                 <!-- If authenticated user didn't vote (END) -->
                                 <!-- If user authenticated check the vote type to assign colors (END) -->
-                                
+
                                 <!-- If user not authenticated show sign in modal on click (BEGINNING) -->
                                 {% else %}
-                                <span></span><a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a><span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a><span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span>                               
-                               {% endif %}
-                               <!-- If user not authenticated show sign in modal on click (END) -->
+                                <span></span><a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %}
+                                <!-- If user not authenticated show sign in modal on click (END) -->
                             </div>
                         </div>
 
