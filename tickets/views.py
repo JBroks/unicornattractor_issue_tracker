@@ -172,7 +172,10 @@ def view_ticket(request, pk):
     comments = paginate(request, comments)
     
     # Retrive last comment
-    last_comment = Comment.objects.filter(ticket=ticket).latest('date_created')
+    try:
+        last_comment = Comment.objects.filter(ticket=ticket).latest('date_created')
+    except Comment.DoesNotExist:
+        last_comment = None
     
     context = {
         'ticket': ticket, 
