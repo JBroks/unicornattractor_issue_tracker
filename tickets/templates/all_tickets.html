@@ -176,9 +176,11 @@
   <!-- Section containing table with all / filtered tickets (END) -->
 
   <!-- Add ticket button - fixed (BEGINNING) -->
+  {% if user.is_authenticated %}
   <section id="add-ticket-btn-section">
     <button type="button" class="btn btn-outline-primary fixed-bottom btn-rounded" data-toggle="tooltip" data-placement="top" title="Add a ticket"><a class="text-reset text-decoration-none" href="{% url 'add_ticket' %}"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></button>
   </section>
+  {% endif %}
   <!-- Add ticket button - fixed (END) -->
 
 </section>
