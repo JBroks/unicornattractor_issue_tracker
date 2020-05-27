@@ -134,7 +134,7 @@
           </li>
           {% else %}
           <li {% if request.resolver_match.url_name == 'login' %}class="nav-item active mr-2" {% else %}class="nav-item mr-2" {% endif %}>
-            <a class="nav-link" href="{% url 'login' %}">Sign in</a>
+            <a class="nav-link mt-1" href="{% url 'login' %}">Sign in</a>
           </li>
           <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
             <button class="btn btn-outline-primary p-0"><a class="nav-link text-reset" href="{% url 'registration' %}">Sign up</a></button>
