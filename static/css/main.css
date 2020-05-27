@@ -7794,6 +7794,9 @@ button.btn-rounded {
 span.vote-counter {
   font-size: 15px; }
 
+.jumbotron {
+  background-color: transparent; }
+
 @media only screen and (max-width: 600px) {
   form {
     width: 80%; }
