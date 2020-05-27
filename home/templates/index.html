@@ -1,5 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %} Homepage {% endblock %} {% block content %}
 
-{% block page_title %}Home Page{% endblock %}
+<div class="jumbotron">
+    <h1 class="display-4">Transform your experience today.</h1>
+    <p class="lead">Unicorn Attractor Tracking system enables you to engage with our developers to improve our Unicorn Attractor App.</p>
+    <hr class="my-4">
+    {% if user.is_authenticated %}
+    <p>Add your ticket to report an issue or suggest a new feature, or join a discussion on our Forum!</p>
+    <p><a class="btn btn-primary" href="{% url 'add_ticket' %}" role="button">Add ticket</a> <a class="btn btn-primary ml-3" href="{% url 'forum' %}" role="button">Forum</a></p>
+    {% else %}
+    <p>Sign up and help us to improve your experience today!</p>
+    <p><a class="btn btn-primary" href="{% url 'registration' %}" role="button">Sign up</a></p>
+    {% endif %}
+</div>
 
-{% block page_heading %}Home{% endblock %}
+{% endblock %}
