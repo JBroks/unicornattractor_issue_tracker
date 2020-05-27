@@ -83,7 +83,7 @@ def user_profile(request, username):
     user = User.objects.get(username=request.user.username)
     
     # Count all content submited by the user
-    ticket_count = Ticket.objects.filter(user=request.user).count()
+    ticket_count = Ticket.objects.filter(user=request.user)
     comment_count = Comment.objects.filter(user=request.user).count()
     upvotes_count = Upvote.objects.filter(user=request.user).count()
     thread_count = Thread.objects.filter(user=request.user).count()
@@ -117,7 +117,8 @@ def user_profile(request, username):
     user_thread_votes = paginate(request, user_thread_votes)
     user_post_votes = paginate(request, user_post_votes)
     
-    context = {"user": user,
+    context = {
+            "user": user,
             "ticket_count": ticket_count,
             "comment_count": comment_count,
             "upvotes_count": upvotes_count,
@@ -161,8 +162,9 @@ def edit_profile(request, username):
         edit_form = UserChangeForm(instance=request.user)
         upload_img_form = UploadFileForm(instance=request.user.userprofile)
     
-    context = {'edit_form': edit_form,
-               'upload_img_form': upload_img_form }
+    context = {
+        'edit_form': edit_form,
+        'upload_img_form': upload_img_form }
                
     return render(request, 'edit_profile.html', context)
 
