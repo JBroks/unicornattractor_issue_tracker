@@ -7802,6 +7802,9 @@ span.vote-counter {
     width: 80%; }
 
   textarea {
-    width: 100%; } }
+    width: 100%; }
+
+  .display-4 {
+    font-size: 2.5rem; } }
 
 /*# sourceMappingURL=main.css.map */
