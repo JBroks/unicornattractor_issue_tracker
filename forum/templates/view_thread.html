@@ -219,10 +219,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% if user.is_authenticated and request.user == post.user %}
                                 <div class="col-auto">
                                     <span class="pr-3"><a class="edit-comment-btn" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary fa-lg" aria-hidden="true"></i></a></span>
                                     <span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
                                 </div>
+                                {% endif %}
                             </div>
                             <!-- Added post card header (END) -->
 
