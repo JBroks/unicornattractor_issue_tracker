@@ -7722,7 +7722,11 @@ textarea {
   resize: none; }
 
 /* Style comment forms on ticket view page / thread page */
-form.comment-form, textarea, #payment-form, .post-form, #user-form {
+form.comment-form,
+textarea,
+#payment-form,
+.post-form,
+#user-form {
   width: 100%; }
 
 .comment-form textarea {
@@ -7794,8 +7798,24 @@ button.btn-rounded {
 span.vote-counter {
   font-size: 15px; }
 
+/* Homepage jumbotron background color */
 .jumbotron {
   background-color: transparent; }
+
+/* Hr divider styling - homepage about unicorn attractor section */
+.hr-divider {
+  margin-right: 65% !important; }
+
+/* Set size of the apple/google store badges */
+.badge img {
+  height: 50px; }
+
+.badge a {
+  cursor: pointer; }
+
+/* About app section images set width so they don't go outside column */
+#about-app-section img {
+  width: 100%; }
 
 @media only screen and (max-width: 600px) {
   form {

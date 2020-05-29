@@ -12,43 +12,51 @@ $info: #336989;
 
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
-    
+
 body {
   height: 100vh;
 }
 
 #main-container {
-        min-height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-     } 
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 /* Form width decreased */
+
 form {
-    width: 50%;
+  width: 50%;
 }
 
 /* Disable textarea so user cannot resize it and increase width of form 
    containing the comment form */
+
 textarea {
-    width: 80%;
-    resize: none;
-  }
+  width: 80%;
+  resize: none;
+}
 
 /* Style comment forms on ticket view page / thread page */
-form.comment-form, textarea, #payment-form, .post-form, #user-form {
+
+form.comment-form,
+textarea,
+#payment-form,
+.post-form,
+#user-form {
   width: 100%;
-}  
+}
 
 .comment-form textarea {
   border: 1px solid #ced4da
 }
 
 /* Set max size of profile images */
+
 .profile-image {
-    max-width: 200px;
-    max-height: 200px;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .nav-profile-image {
@@ -62,35 +70,40 @@ form.comment-form, textarea, #payment-form, .post-form, #user-form {
 }
 
 /* Increse size of add ticket to make it more prominent */
+
 .btn-lg {
-    font-size: 4rem;
+  font-size: 4rem;
 }
 
 /* Overwrite bootstrap class to place fixed 'add-ticket' button to the right */
-.fixed-bottom { 
-  bottom: 50px; 
+
+.fixed-bottom {
+  bottom: 50px;
   right: 50px;
   left: auto;
 }
 
 button.btn-rounded {
-    height: 80px;
-    width: 80px;
-    border-radius: 100%;
-    line-height: 50%;
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  line-height: 50%;
 }
 
 /* Adjust height of search button so it is the same as the form input */
+
 #search-btn {
   line-height: 21px;
 }
 
 /* Remove top border for the first row in the table */
+
 .table tr:first-child td {
   border-top: none;
 }
 
 /* Styling for ticket summary list to create nice layout where text is aligned */
+
 #ticket-summary-list {
   margin: 0;
   padding: 0;
@@ -107,39 +120,68 @@ button.btn-rounded {
 }
 
 /* Remove default dropdown symbol for all tickets table actions */
+
 .dropdown-toggle.actions::after {
   display: none;
 }
 
 /* Remove border for the accordion cards */
+
 #accordion .card {
   border: none;
 }
 
 /* Overwrite bootstrap select button color so it matches the form */
-.bootstrap-select > button {
+
+.bootstrap-select>button {
   background-color: #f7f7f9
 }
 
 /* Increase font-size for like/dislike counter */
+
 span.vote-counter {
   font-size: 15px;
 }
+
+/* Homepage jumbotron background color */
 
 .jumbotron {
   background-color: transparent;
 }
 
+/* Hr divider styling - homepage about unicorn attractor section */
+
+.hr-divider {
+  margin-right: 65% !important;
+}
+
+/* Set size of the apple/google store badges */
+
+.badge img {
+  height: 50px;
+}
+
+.badge a {
+  cursor: pointer;
+}
+
+/* About app section images set width so they don't go outside column */
+
+#about-app-section img {
+  width: 100%;
+}
+
 @media only screen and (max-width: 600px) {
+  
   form {
     width: 80%;
-}
+  }
   textarea {
     width: 100%;
   }
-  
+
   .display-4 {
     font-size: 2.5rem;
   }
-  
+
 }
