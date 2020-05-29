@@ -1,14 +1,81 @@
-$primary: #2e3190;
-$danger: #ee5140;
+/* CUSTOM SCSS */
+
+/* Customized colors */
+
+$color-blue: #2e3190;
+$color-purple: #5854a5;
+$color-light-purple: #bcb3bf;
+$color-off-white: #fafaf5;
+$color-red: #ee5140;
+$color-pink: #e89e93;
+$color-light-pink: #fcdcd7;
+$color-yellow: #fcd731;
+$color-grey: #cacaca;
+$color-green: #63d37b;
+
+/* Bootstrap classes colors adjusted */
+
+$primary: $color-pink;
+$danger: $color-red;
 $warning: #fcd731;
 $success: #57b856;
-$info: #336989;
+$info: $color-purple;
+$dark: $color-blue;
+$light: $color-off-white;
+$gray-900: $color-purple;
+
+/* Navbar link color adjusted */
+
+$navbar-light-color: rgba($dark, .5);
+$navbar-light-hover-color: rgba($dark, .7);
+$navbar-light-active-color: rgba($dark, .9);
+
+/* BOOTSTRAP STYLES + BOOTSWATCH LUX THEME */
 
 @import "../../node_modules/bootswatch/dist/lux/variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/bootswatch/dist/lux/bootswatch";
 
 /* CUSTOM STYLES */
+
+/* Light button colors changed */
+
+.btn-light {
+  color: $dark;
+  border: solid 2px $light;
+}
+
+.btn-light:hover {
+  color: $light;
+  border: solid 2px $light;
+  background-color: transparent;
+}
+
+/* Background color classes set */
+
+.bgr-purple {
+  background-color: $color-purple;
+}
+
+.bgr-light-purple {
+  background-color: $color-light-purple;
+}
+
+.bgr-blue {
+  background-color: $color-blue;
+}
+
+.bgr-pink {
+  background-color: $color-pink;
+}
+
+.bgr-light-pink {
+  background-color: $color-light-pink;
+}
+
+.bgr-off-white {
+  background-color: $color-off-white;
+}
 
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
@@ -22,6 +89,17 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+
+/* Background image for jumbotron section */
+
+#jumbotron-section {
+  background-image: url("/media/background_images/gradient_background_2.png")
+}
+
+#jumbotron-section hr {
+  border-top: 1px solid $purple;
 }
 
 /* Form width decreased */
@@ -172,7 +250,7 @@ span.vote-counter {
 }
 
 @media only screen and (max-width: 600px) {
-  
+
   form {
     width: 80%;
   }
