@@ -1,63 +1,107 @@
 {% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %} Homepage {% endblock %} {% block content %}
 
 <!-- Page content container (BEGINNING) -->
-<section class="content-container pb-3 px-sm-5 px-3">
-    
+<section class="content-container">
+
     <!-- Jumbotron section (BEGINNING) -->
     <section id="jumbotron-section">
-        <div class="jumbotron">
-            <h1 class="display-4 text-center">Transform your experience today</h1>
-            <p class="lead text-center">Unicorn Attractor Tracking system enables you to engage with our developers to improve our Unicorn Attractor App.</p>
+        <div class="jumbotron mb-0 py-5 px-4 px-md-5">
+            <h1 class="display-4">Transform your experience today</h1>
+            <p class="lead">Unicorn Attractor Tracking system enables you to engage with our developers to improve our Unicorn Attractor App.</p>
             <hr class="my-4"> {% if user.is_authenticated %}
-            <p class="text-center">Add your ticket to report an issue or suggest a new feature, or join a discussion on our Forum!</p>
-            <p class="text-center"><a class="btn btn-primary" href="{% url 'add_ticket' %}" role="button">Add ticket</a> <a class="btn btn-primary ml-3" href="{% url 'forum' %}" role="button">Forum</a></p>
+            <p>Add your ticket to report an issue or suggest a new feature, or join a discussion on our Forum!</p>
+            <p><a class="btn btn-primary" href="{% url 'add_ticket' %}" role="button">Add ticket</a> <a class="btn btn-primary ml-3" href="{% url 'forum' %}" role="button">Forum</a></p>
             {% else %}
-            <p class="text-center">Sign up and help us to improve your experience today!</p>
-            <p class="text-center"><a class="btn btn-primary" href="{% url 'registration' %}" role="button">Sign up</a></p>
+            <p>Sign up and help us to improve your experience today!</p>
+            <p><a class="btn btn-primary" href="{% url 'registration' %}" role="button">Sign up</a></p>
             {% endif %}
         </div>
     </section>
     <!-- Jumbotron section (END) -->
-    
+
     <!-- Section explaining Tracker features / page elements to be explored by the user (BEGINNING) -->
     <section id="page-features-section">
-        <div class="row">
+        <div class="row py-5 px-4 px-md-5">
             <div class="col-md-3 col-sm-6 col-xs-12 text-center">
                 <i class="fa fa-bug fa-5x mb-4" aria-hidden="true"></i>
                 <h5>Report Bugs</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate dolor non nulla tincidunt porttitor. Nullam lorem eros, laoreet eget erat sit amet, congue vestibulum nibh. Donec ex risus, ornare eu dignissim at, convallis scelerisque velit. Morbi vitae faucibus augue. Etiam vestibulum posuere nisi, quis lacinia ligula aliquam dignissim. Pellentesque quis metus tincidunt, commodo enim ac, condimentum erat. Curabitur nec tempor dolor.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate dolor non nulla tincidunt porttitor. Nullam lorem eros, laoreet eget erat sit amet, congue vestibulum nibh. Donec ex risus, ornare eu dignissim at, convallis
+                    scelerisque velit. Morbi vitae faucibus augue. Etiam vestibulum posuere nisi, quis lacinia ligula aliquam dignissim. Pellentesque quis metus tincidunt, commodo enim ac, condimentum erat. Curabitur nec tempor dolor.</p>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 text-center">
                 <i class="fa fa-cog fa-5x mb-4" aria-hidden="true"></i>
                 <h5>Suggest Features</h5>
-                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate dolor non nulla tincidunt porttitor. Nullam lorem eros, laoreet eget erat sit amet, congue vestibulum nibh. Donec ex risus, ornare eu dignissim at, convallis scelerisque velit. Morbi vitae faucibus augue. Etiam vestibulum posuere nisi, quis lacinia ligula aliquam dignissim. Pellentesque quis metus tincidunt, commodo enim ac, condimentum erat. Curabitur nec tempor dolor.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate dolor non nulla tincidunt porttitor. Nullam lorem eros, laoreet eget erat sit amet, congue vestibulum nibh. Donec ex risus, ornare eu dignissim at, convallis
+                    scelerisque velit. Morbi vitae faucibus augue. Etiam vestibulum posuere nisi, quis lacinia ligula aliquam dignissim. Pellentesque quis metus tincidunt, commodo enim ac, condimentum erat. Curabitur nec tempor dolor.</p>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 text-center">
                 <i class="fa fa-comments-o fa-5x mb-4" aria-hidden="true"></i>
                 <h5>Join Discussion</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate dolor non nulla tincidunt porttitor. Nullam lorem eros, laoreet eget erat sit amet, congue vestibulum nibh. Donec ex risus, ornare eu dignissim at, convallis scelerisque velit. Morbi vitae faucibus augue. Etiam vestibulum posuere nisi, quis lacinia ligula aliquam dignissim. Pellentesque quis metus tincidunt, commodo enim ac, condimentum erat. Curabitur nec tempor dolor.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate dolor non nulla tincidunt porttitor. Nullam lorem eros, laoreet eget erat sit amet, congue vestibulum nibh. Donec ex risus, ornare eu dignissim at, convallis
+                    scelerisque velit. Morbi vitae faucibus augue. Etiam vestibulum posuere nisi, quis lacinia ligula aliquam dignissim. Pellentesque quis metus tincidunt, commodo enim ac, condimentum erat. Curabitur nec tempor dolor.</p>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 text-center">
                 <i class="fa fa-bar-chart fa-5x mb-4" aria-hidden="true"></i>
                 <h5>View Statistics</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate dolor non nulla tincidunt porttitor. Nullam lorem eros, laoreet eget erat sit amet, congue vestibulum nibh. Donec ex risus, ornare eu dignissim at, convallis scelerisque velit. Morbi vitae faucibus augue. Etiam vestibulum posuere nisi, quis lacinia ligula aliquam dignissim. Pellentesque quis metus tincidunt, commodo enim ac, condimentum erat. Curabitur nec tempor dolor.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate dolor non nulla tincidunt porttitor. Nullam lorem eros, laoreet eget erat sit amet, congue vestibulum nibh. Donec ex risus, ornare eu dignissim at, convallis
+                    scelerisque velit. Morbi vitae faucibus augue. Etiam vestibulum posuere nisi, quis lacinia ligula aliquam dignissim. Pellentesque quis metus tincidunt, commodo enim ac, condimentum erat. Curabitur nec tempor dolor.</p>
             </div>
         </div>
     </section>
     <!-- Section explaining Tracker features / page elements to be explored by the user (END) -->
-    
+
     <!-- Section explaining the main app features - About Unicorn Attractor (BEGINNING) -->
-     <section id="about-app-section">
-        
+    <section id="about-app-section" class="py-5">
+        <h3 class="text-center pt-3 pb-5 px-4 px-md-5">About Unicorn Attractor</h3>
+
+        <div class="row pb-3 px-4 px-md-5">
+            <div class="col-lg-4 col-md-5 col-sm-12 my-auto"><img src="/media/app/UA-img-2.jpg"></img>
+            </div>
+            <div class="col-lg-8 col-md-7 col-sm-12">
+                <h5 class="pt-4">Accelerate Your Recruitment Process</h5>
+                <hr class="hr-divider">
+                <p>Unicorn Attractor App is the all-in-one solution for applicant sourcing and recruiting. The app enables you to create job ads collaboratively and centrally and publish them at the click of a button, without any IT support. Edit them just as easily in a one-stop process. Now you are be able to create structured, easily define department-specific recruitment processes as required to obtain a more refined picture of applicants. See how many applicants are at which stage of the recruitment process at any time to maintain a clear and consistent overview as a basis for transparent decisions.
+                </p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-end py-3 px-4 px-md-5">
+            <div class="col-sm-12 d-block d-md-none"><img src="/media/app/UA-img-4.jpg"></img>
+            </div>
+            <div class="col-lg-8 col-md-7 col-sm-12">
+                <h5 class="pt-4">Fill Critical Positions Quickly with the Right Candidates</h5>
+                <hr class="hr-divider">
+                <p>Publish job ads on any (or all) of the popular recruitment portals with only a few clicks while enjoying the benefits of centralized billing and preferential framework contracts. Each application is automatically tagged with the channel through which it is received. As a result, you know very quickly which portal works most effectively for you, so you can prioritize it.</p>
+            </div>
+            <div class="col-lg-4 col-md-5 d-none d-md-block my-auto"><img src="/media/app/UA-img-4.jpg"></img>
+            </div>
+        </div>
+
+        <div class="row pb-3 px-4 px-md-5">
+            <div class="col-lg-4 col-md-5 col-sm-12 my-auto"><img src="/media/app/UA-img-3.jpg"></img>
+            </div>
+            <div class="col-lg-8 col-md-7 col-sm-12">
+                <h5 class="pt-4">Stress-free Data Transfers and Reports at Your Fingertips</h5>
+                <hr class="hr-divider">
+                <p>Personio is your recruitment dashboard. Gone are the days when you needed to send documents and information from A to B: With Personio, you rather invite employees to access data within the system. You grant access permissions at different levels to ensure you are always in control of which people involved in the recruitment process have access to which applicant data. Naturally, Personio is fully GDPR-compliant. Use Personio to make data-driven decisions and avoid misjudgments. Personio provides you with current data on a wide range of processes at the click of a button: whether cost per hire or the effectiveness of various recruitment channels.</p>
+            </div>
+        </div>
+
     </section>
     <!-- Section explaining the main app features - About Unicorn Attractor (END) -->
-    
+
     <!-- Section containing link to app store - Get Unicorn Attractor (BEGINNING) -->
-     <section id="get-app-section">
-        
+    <section id="get-app-section" class="py-5">
+        <h3 class="text-center pt-3 pb-5 px-4 px-md-5">Get Unicorn Attractor App</h3>
+        <div class="row text-center pt-4">
+            <div class="col-sm-12 badge">
+                <a class="pr-5" href="https://apps.apple.com/"><img src="/media/badges/apple-store-badge.png" alt="Apple store badge"></a>
+                <a hclass="pl-5" ref="https://play.google.com/store?gl=IE"><img src="/media/badges/google-play-badge.png" alt="Google store badge"></a>
+            </div>
+        </div>
     </section>
     <!-- Section containing link to app store - Get Unicorn Attractor (END) -->
-    
+
 </section>
 <!-- Page content container (END) -->
 {% endblock %}
