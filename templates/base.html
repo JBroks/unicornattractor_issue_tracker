@@ -137,7 +137,7 @@
             <a class="nav-link mt-1" href="{% url 'login' %}">Sign in</a>
           </li>
           <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-            <button class="btn btn-outline-primary p-0"><a class="nav-link text-reset" href="{% url 'registration' %}">Sign up</a></button>
+            <button class="btn btn-primary p-0"><a class="nav-link text-reset" href="{% url 'registration' %}">Sign up</a></button>
           </li>
           {% endif %}
         </ul>
@@ -153,7 +153,7 @@
     <main>
       {% if messages %}
 
-      <div>
+      <div class="bgr-light-pink">
         {% for message in messages %} {{ message }} {% endfor %}
       </div>
       {% endif %}
