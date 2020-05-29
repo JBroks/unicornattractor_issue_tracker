@@ -83,7 +83,7 @@ def user_profile(request, username):
     user = User.objects.get(username=request.user.username)
     
     # Count all content submited by the user
-    ticket_count = Ticket.objects.filter(user=request.user)
+    ticket_count = Ticket.objects.filter(user=request.user).count()
     comment_count = Comment.objects.filter(user=request.user).count()
     upvotes_count = Upvote.objects.filter(user=request.user).count()
     thread_count = Thread.objects.filter(user=request.user).count()
