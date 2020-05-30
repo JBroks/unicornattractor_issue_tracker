@@ -17,8 +17,8 @@ $color-green: #63d37b;
 
 $primary: $color-pink;
 $danger: $color-red;
-$warning: #fcd731;
-$success: #57b856;
+$warning: $color-yellow;
+$success: $color-green;
 $info: $color-purple;
 $dark: $color-blue;
 $light: $color-off-white;
@@ -91,12 +91,15 @@ body {
   justify-content: space-between;
 }
 
-
 /* Background image for jumbotron section */
 
 #jumbotron-section {
-  background-image: url("/media/background_images/gradient_background_2.png")
+  background-image: url("/media/background_images/gradient_background_2.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 
 #jumbotron-section hr {
   border-top: 1px solid $purple;
@@ -237,6 +240,7 @@ span.vote-counter {
 
 .badge img {
   height: 50px;
+  border-radius: 7px;
 }
 
 .badge a {
