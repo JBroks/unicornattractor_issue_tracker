@@ -12,7 +12,7 @@
             <p class="text-light">Add your ticket to report an issue or suggest a new feature, or join a discussion on our Forum!</p>
             <p><a class="btn btn-light" href="{% url 'add_ticket' %}" role="button">Add ticket</a> <a class="btn btn-light ml-3" href="{% url 'forum' %}" role="button">Forum</a></p>
             {% else %}
-            <p>Sign up and help us to improve your experience today!</p>
+            <p class="text-light">Sign up and help us to improve your experience today!</p>
             <p><a class="btn btn-light" href="{% url 'registration' %}" role="button">Sign up</a></p>
             {% endif %}
         </div>
@@ -21,29 +21,31 @@
 
     <!-- Section explaining Tracker features / page elements to be explored by the user (BEGINNING) -->
     <section id="page-features-section">
-        <div class="row py-5 px-4 px-md-5 bgr-light-pink text-info">
-            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                <i class="fa fa-bug fa-5x mb-4" aria-hidden="true"></i>
-                <h5 class="text-info">Report Bugs</h5>
-                <p>Have you noticed any issues in our Unicorn Attractor app? Report it for free and let our team to resolve it for you. Register today and add a ticket describing an issue that you have experienced. We will check all submited bugs and fix
-                    it free of charge.</p>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                <i class="fa fa-cog fa-5x mb-4" aria-hidden="true"></i>
-                <h5 class="text-info">Suggest Features</h5>
-                <p>Do you have a great idea for a feature? Contact us today! Use add ticket form to submit a new feature suggestion. Than donate a minumu €5 to prioritize your feature. Top 5 features that will receive the most donations will be developed
-                    by our team.</p>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                <i class="fa fa-comments-o fa-5x mb-4" aria-hidden="true"></i>
-                <h5 class="text-info">Join Discussion</h5>
-                <p>Do you have any thouths you would like to share? Or question you would like to ask our team or other users? Please join our Forum and add a thread to start a new topic, or submit a post under the existing thread.</p>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                <i class="fa fa-bar-chart fa-5x mb-4" aria-hidden="true"></i>
-                <h5 class="text-info">View Statistics</h5>
-                <p>Would you like to learn which feature receive the most donation? Or how many tickets we receive / resolve daily? Explore the statictics section where you will find our data dashboard that contains information about acctivity associated
-                    with the Tracker.</p>
+        <div class="container-fluid mx-0">
+            <div class="row py-5 px-4 px-md-5 bgr-light-pink text-info">
+                <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                    <i class="fa fa-bug fa-5x mb-4" aria-hidden="true"></i>
+                    <h5 class="text-info">Report Bugs</h5>
+                    <p>Have you noticed any issues in our Unicorn Attractor app? Report it for free and let our team to resolve it for you. Register today and add a ticket describing an issue that you have experienced. We will check all submited bugs and
+                        fix it free of charge.</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                    <i class="fa fa-cog fa-5x mb-4" aria-hidden="true"></i>
+                    <h5 class="text-info">Suggest Features</h5>
+                    <p>Do you have a great idea for a feature? Contact us today! Use add ticket form to submit a new feature suggestion. Than donate a minumu €5 to prioritize your feature. Top 5 features that will receive the most donations will be developed
+                        by our team.</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                    <i class="fa fa-comments-o fa-5x mb-4" aria-hidden="true"></i>
+                    <h5 class="text-info">Join Discussion</h5>
+                    <p>Do you have any thouths you would like to share? Or question you would like to ask our team or other users? Please join our Forum and add a thread to start a new topic, or submit a post under the existing thread.</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                    <i class="fa fa-bar-chart fa-5x mb-4" aria-hidden="true"></i>
+                    <h5 class="text-info">View Statistics</h5>
+                    <p>Would you like to learn which feature receive the most donation? Or how many tickets we receive / resolve daily? Explore the statictics section where you will find our data dashboard that contains information about acctivity associated
+                        with the Tracker.</p>
+                </div>
             </div>
         </div>
     </section>
