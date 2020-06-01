@@ -7805,7 +7805,7 @@ main {
 #filter-section, #forum-table-section {
   border-top: solid 10px #fcdcd7; }
 
-#table-section, #forum-table-section {
+#table-section, #forum-table-section, #add-ticket-section {
   border-bottom: solid 10px #fcdcd7; }
 
 /* Jumbotron hr styling */
@@ -7813,7 +7813,7 @@ main {
   border-top: 1px solid #5854a5; }
 
 /* All tickets page heading section separator */
-#heading-section, #forum-heading-section {
+#heading-section, #forum-heading-section, #add-ticket-section {
   border-top: 10px solid #5854a5; }
 
 /* FORMS */
