@@ -7745,6 +7745,7 @@ body {
   flex-direction: column;
   justify-content: space-between; }
 
+/* BACKGROUND IMAGES */
 /* Background image for jumbotron section */
 #jumbotron-section {
   background-image: url("/media/background_images/gradient_background_2.png");
@@ -7752,9 +7753,29 @@ body {
   background-repeat: no-repeat;
   background-size: cover; }
 
-#jumbotron-section hr {
-  border-top: 1px solid #6f42c1; }
+/* Background image for all tickets heading section */
+#heading-section {
+  min-height: 350px;
+  background-image: url("/media/background_images/tickets_background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; }
 
+/* SEPARATORS */
+/* Add separator to filter section */
+#filter-section {
+  border-top: solid 10px #fcdcd7; }
+
+/* Jumbotron hr styling */
+#jumbotron-section hr {
+  border-top: 1px solid #5854a5; }
+
+/* All tickets page heading section separator */
+#heading-section {
+  border-top: 10px solid #5854a5; }
+
+/* FORMS */
 /* Form width decreased */
 form {
   width: 50%; }
