@@ -79,7 +79,9 @@ $navbar-light-active-color: rgba($dark, .9);
 
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
-html, body {
+
+html,
+body {
   margin: 0;
   height: 100%;
   min-height: 100%;
@@ -112,6 +114,7 @@ main {
 }
 
 /* Background image for all tickets heading section */
+
 #heading-section {
   min-height: 350px;
   background-image: url("/media/background_images/tickets_background.jpg");
@@ -121,6 +124,31 @@ main {
   background-attachment: fixed;
 }
 
+/* Forum background photo with opacity */
+
+#forum-heading-section {
+  min-height: 350px;
+  display: block;
+  position: relative;
+}
+
+#forum-heading-section::after {
+  content: "";
+  background-image: url("/media/background_images/forum.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+/* Add ticket form background photo */
 #add-ticket-section {
   background-image: url("/media/background_images/tickets_background.jpg");
   background-position: center center;
@@ -129,33 +157,34 @@ main {
   background-attachment: fixed;
 }
 
-/*
-#add-ticket-section {
-  background-image: url("/media/background_images/tickets_background.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}*/
-
 /* SEPARATORS */
+
 /* Add separator to filter section */
-#filter-section {
+
+#filter-section, #forum-table-section {
   border-top: solid 10px $color-light-pink;
 }
 
+#table-section, #forum-table-section {
+  border-bottom: solid 10px $color-light-pink;
+}
+
 /* Jumbotron hr styling */
+
 #jumbotron-section hr {
   border-top: 1px solid $color-purple;
 }
 
 /* All tickets page heading section separator */
-#heading-section {
+
+#heading-section, #forum-heading-section {
   border-top: 10px solid $color-purple;
 }
 
 /* FORMS */
+
 /* Form width decreased */
+
 #search {
   background-color: white;
 }
@@ -165,8 +194,8 @@ form {
 }
 
 #add-ticket-section form {
-    background-color: white;
-    padding: 50px 70px;
+  background-color: white;
+  width: 100%;
 }
 
 /* Disable textarea so user cannot resize it and increase width of form 
