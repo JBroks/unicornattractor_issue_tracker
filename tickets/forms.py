@@ -20,7 +20,7 @@ class AddTicketForm(forms.ModelForm):
     ticket_type = forms.ChoiceField(
         choices=TYPE_CHOICES,
         label='Ticket type',
-        widget=forms.Select(attrs={'class': 'selectpicker',}),
+        widget=forms.Select(attrs={'class': 'selectpicker', 'data-style': 'btn-secondary'}),
         required=True)
         
     subject = forms.CharField(
@@ -85,7 +85,7 @@ class DonationForm(forms.ModelForm):
     donation_amount = forms.ChoiceField(
         label="Amount",
         choices=AMOUNT_CHOICES,
-        widget=forms.Select(attrs={'class': 'selectpicker',}),
+        widget=forms.Select(attrs={'class': 'selectpicker', 'data-style': 'btn-secondary'}),
         required=False
         )
     

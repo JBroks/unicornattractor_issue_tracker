@@ -1,50 +1,52 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Ticket form {% endblock %} {% block content %}
 
 <!-- Page content container (BEGINNING) -->
-<section class="content-container pt-5">
+<section class="content-container">
 
     <!-- Section containing the ticket form (BEGINNING) -->
     <section id="add-ticket-section">
+        <div class="row">
+            <div class="col-sm-12 my-5">
+                <!-- Add ticket form (BEGINNING) -->
+                <form method="post" class="mx-auto">
 
-        <!-- Add ticket form (BEGINNING) -->
-        <form method="post" class="mx-auto">
+                    <!-- Form heading (different for add new ticket and prefilled / edit form) (BEGINNING) -->
+                    {% if request.get_full_path == "/tickets/new/" %}
+                    <h2 class="text-center mb-4">Report a bug or propose a new feature</h2>
+                    {% else %}
+                    <h2 class="text-center mb-4">Edit ticket</h2>
+                    {% endif %}
+                    <!-- Form heading (different for add new ticket and prefilled / edit form) (END) -->
 
-            <!-- Form heading (different for add new ticket and prefilled / edit form) (BEGINNING) -->
-            {% if request.get_full_path == "/tickets/new/" %}
-            <h2 class="text-center mb-4">Report a bug or propose a new feature</h2>
-            {% else %}
-            <h2 class="text-center mb-4">Edit ticket</h2>
-            {% endif %}
-            <!-- Form heading (different for add new ticket and prefilled / edit form) (END) -->
+                    {% csrf_token %} {{ add_ticket_form | as_bootstrap }}
 
-            {% csrf_token %} {{ add_ticket_form | as_bootstrap }}
+                    <!-- Button container (BEGINNING) -->
+                    <div class="row">
 
-            <!-- Button container (BEGINNING) -->
-            <div class="row">
+                        {% if request.get_full_path == "/tickets/new/" %}
+                        <div class="col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                        <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-start justify-content-center">
+                            <a role="button" class="btn btn-outline-secondary" href="{% url 'all_tickets' %}">Cancel</a>
+                        </div>
+                        {% else %}
+                        <div class="col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                        <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-start justify-content-center">
+                            <a role="button" class="btn btn-outline-secondary" onclick="history.back()">Cancel</a>
+                        </div>
+                        {% endif %}
 
-                {% if request.get_full_path == "/tickets/new/" %}
-                <div class="col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </div>
-                <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-start justify-content-center">	
-                    <a role="button" class="btn btn-outline-secondary" href="{% url 'all_tickets' %}">Cancel</a>	
-                </div>
-                {% else %}
-                <div class="col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center">
-                    <button type="submit" class="btn btn-success">Save</button>
-                </div>
-                <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-start justify-content-center">	
-                    <a role="button" class="btn btn-outline-secondary" onclick="history.back()">Cancel</a>	
-                </div>
-                {% endif %}
+                    </div>
 
+                    <!-- Button container (END) -->
+
+                </form>
+                <!-- Add ticket form (END) -->
             </div>
-
-            <!-- Button container (END) -->
-
-        </form>
-        <!-- Add ticket form (END) -->
-
+        </div>
     </section>
     <!-- Section containing the ticket form (BEGINNING) -->
 

@@ -79,16 +79,25 @@ $navbar-light-active-color: rgba($dark, .9);
 
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
-
-body {
-  height: 100vh;
+html, body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
 }
 
-#main-container {
-  min-height: 100%;
+body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.navbar,
+footer {
+  flex: none;
+}
+
+main {
+  flex: auto;
 }
 
 /* BACKGROUND IMAGES */
@@ -112,6 +121,23 @@ body {
   background-attachment: fixed;
 }
 
+#add-ticket-section {
+  background-image: url("/media/background_images/tickets_background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/*
+#add-ticket-section {
+  background-image: url("/media/background_images/tickets_background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}*/
+
 /* SEPARATORS */
 /* Add separator to filter section */
 #filter-section {
@@ -130,9 +156,17 @@ body {
 
 /* FORMS */
 /* Form width decreased */
+#search {
+  background-color: white;
+}
 
 form {
   width: 50%;
+}
+
+#add-ticket-section form {
+    background-color: white;
+    padding: 50px 70px;
 }
 
 /* Disable textarea so user cannot resize it and increase width of form 
