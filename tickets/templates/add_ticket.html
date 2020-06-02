@@ -4,11 +4,11 @@
 <section class="content-container">
 
     <!-- Section containing the ticket form (BEGINNING) -->
-    <section id="add-ticket-section">
-        <div class="row">
-            <div class="col-sm-12 my-5">
+    <section id="add-ticket-section" class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 my-5">
                 <!-- Add ticket form (BEGINNING) -->
-                <form method="post" class="mx-auto">
+                <form method="post" class="mx-auto p-5">
 
                     <!-- Form heading (different for add new ticket and prefilled / edit form) (BEGINNING) -->
                     {% if request.get_full_path == "/tickets/new/" %}
