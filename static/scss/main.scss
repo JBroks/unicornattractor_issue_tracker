@@ -115,7 +115,7 @@ main {
 
 /* Background image for all tickets heading section */
 
-#heading-section {
+#tickets-heading-container {
   min-height: 350px;
   background-image: url("/media/background_images/tickets_background.jpg");
   background-position: center center;
@@ -126,13 +126,13 @@ main {
 
 /* Forum background photo with opacity */
 
-#forum-heading-section {
+#forum-heading-container {
   min-height: 350px;
   display: block;
   position: relative;
 }
 
-#forum-heading-section::after {
+#forum-heading-container::after {
   content: "";
   background-image: url("/media/background_images/forum_discussion.jpg");
   background-position: center center;
@@ -200,7 +200,7 @@ main {
 
 /* All tickets page heading section separator */
 
-#heading-section, #forum-heading-section , #add-ticket-section, 
+#tickets-heading-container, #forum-heading-container , #add-ticket-section, 
 #add-thread-section{
   border-top: 10px solid $color-purple;
 }
