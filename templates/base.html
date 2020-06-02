@@ -109,7 +109,7 @@
         {% if user.is_authenticated %}
         <ul class="navbar-nav d-xs-inline d-lg-none">
           <li><hr></li>
-          <li class="nav-item text-center"><button class="btn btn-warning"><a class="nav-link text-reset p-0" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></button></li>
+          <li class="nav-item text-center"><button class="btn btn-danger"><a class="nav-link text-reset p-0" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></button></li>
         </ul>
         {% else %}
         <ul class="navbar-nav d-xs-inline d-lg-none">
