@@ -4,129 +4,133 @@
 <section class="content-container">
 
     <!-- Page heading (BEGINNING) -->
-    <section id="forum-heading-section" class="d-flex align-items-center justify-content-center">
-        <h1 class="text-center text-dark mb-0 py-5">Join the discussion...</h1>
+    <section id="forum-heading-section">
+        <div class="d-flex align-items-center justify-content-center">
+            <h1 class="text-center text-dark mb-0 py-5">Join the discussion...</h1>
+        </div>
     </section>
     <!-- Page heading (END) -->
 
     <!-- Section containing table with all threads (BEGINNING) -->
-    <section id="forum-table-section" class="py-5 bgr-off-white container-fluid">
+    <section id="forum-table-section">
+        <div class="py-5 bgr-off-white container-fluid">
+            <div class="row">
 
-        <div class="row">
+                <!-- Table container (BEGINNING) -->
+                <div class="col-sm-12 table-responsive">
 
-            <!-- Table container (BEGINNING) -->
-            <div class="col-sm-12 table-responsive">
+                    <!-- Table containing threads (BEGINNING) -->
+                    <table id="thread-table" class="table text-center">
 
-                <!-- Table containing threads (BEGINNING) -->
-                <table id="thread-table" class="table text-center">
+                        <!-- Table heading (BEGINNING) -->
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Thread subject</th>
+                                <th>Created</th>
+                                <th>Posts</th>
+                                <th>Latest post</th>
+                                <th></th>
 
-                    <!-- Table heading (BEGINNING) -->
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Thread subject</th>
-                            <th>Created</th>
-                            <th>Posts</th>
-                            <th>Latest post</th>
-                            <th></th>
+                            </tr>
+                        </thead>
+                        <!-- Table heading (END) -->
 
-                        </tr>
-                    </thead>
-                    <!-- Table heading (END) -->
+                        <!-- Table body (BEGINNING) -->
+                        <tbody>
 
-                    <!-- Table body (BEGINNING) -->
-                    <tbody>
+                            {% for thread in threads %}
+                            <tr>
+                                <td>#{{ thread.id}}</td>
+                                <td><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">{{ thread.subject }}</a></td>
+                                <td>{{ thread.date_created | timesince }} ago </br>by {{ thread.user }}</td>
+                                <td><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
+                                <td>{% if thread.post_count > 0 %}{{ thread.latest_post_date | timesince }} ago </br> by {{ thread.latest_post_author }}{% else %}-{% endif %}</td>
 
-                        {% for thread in threads %}
-                        <tr>
-                            <td>#{{ thread.id}}</td>
-                            <td><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">{{ thread.subject }}</a></td>
-                            <td>{{ thread.date_created | timesince }} ago </br>by {{ thread.user }}</td>
-                            <td><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
-                            <td>{% if thread.post_count > 0 %}{{ thread.latest_post_date | timesince }} ago </br> by {{ thread.latest_post_author }}{% else %}-{% endif %}</td>
-
-                            <!-- Columns containnig action dropdown containing edit / view / delete thread actions (BEGINNING) -->
-                            <td class="dropdown">
-                                <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
-                                    <a class="dropdown-item" href="{% url 'view_thread' thread.id %}"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a> {% if request.user == thread.user %}
-                                    <a class="dropdown-item text-primary" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                    <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{thread.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
-                                </div>
-                            </td>
-                            <!-- Columns containnig action dropdown containing edit / view / delete thread actions (END) -->
-
-                        </tr>
-
-                        <!-- Delete Thread Modal (BEGINNING) -->
-                        <div class="modal fade" id="deleteModal{{thread.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteThreadModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteThreadModalLabel">Confirmation</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <!-- Columns containnig action dropdown containing edit / view / delete thread actions (BEGINNING) -->
+                                <td class="dropdown">
+                                    <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
+                                        <a class="dropdown-item" href="{% url 'view_thread' thread.id %}"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a> {% if request.user == thread.user %}
+                                        <a class="dropdown-item text-primary" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                        <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{thread.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
                                     </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure you want to delete your thread (#{{ thread.id }})?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_thread' thread.id %}">Delete</a></button>
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                </td>
+                                <!-- Columns containnig action dropdown containing edit / view / delete thread actions (END) -->
+
+                            </tr>
+
+                            <!-- Delete Thread Modal (BEGINNING) -->
+                            <div class="modal fade" id="deleteModal{{thread.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteThreadModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteThreadModalLabel">Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete your thread (#{{ thread.id }})?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_thread' thread.id %}">Delete</a></button>
+                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Delete Thread Modal (END) -->
+                            <!-- Delete Thread Modal (END) -->
 
-                        {% endfor %}
+                            {% endfor %}
 
-                    </tbody>
-                    <!-- Table body (END) -->
+                        </tbody>
+                        <!-- Table body (END) -->
 
-                </table>
-                <!-- Table containing thread (END) -->
+                    </table>
+                    <!-- Table containing thread (END) -->
+
+                </div>
+                <!-- Table container (END) -->
+
+                <!-- Pagination navigation container (BEGINNING) -->
+                <div class="col-sm-12 d-flex justify-content-center">
+
+                    <!-- Pagination buttons (BEGINNING) -->
+                    {% if threads.has_other_pages %}
+                    <nav aria-label="Table navigation">
+                        <ul class="pagination">
+                            {% if threads.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ threads.previous_page_number }}">&laquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                            {% endif %} {% for i in threads.paginator.page_range %} {% if threads.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                            </li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %} {% endfor %} {% if threads.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ threads.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    <!-- Pagination buttons (END) -->
+
+                </div>
+                <!-- Pagination navigation container (END) -->
 
             </div>
-            <!-- Table container (END) -->
-
-            <!-- Pagination navigation container (BEGINNING) -->
-            <div class="col-sm-12 d-flex justify-content-center">
-
-                <!-- Pagination buttons (BEGINNING) -->
-                {% if threads.has_other_pages %}
-                <nav aria-label="Table navigation">
-                    <ul class="pagination">
-                        {% if threads.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ threads.previous_page_number }}">&laquo;</a></li>
-                        {% else %}
-                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                        {% endif %} {% for i in threads.paginator.page_range %} {% if threads.number == i %}
-                        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                        </li>
-                        {% else %}
-                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %} {% endfor %} {% if threads.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ threads.next_page_number }}">&raquo;</a></li>
-                        {% else %}
-                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-                {% endif %}
-                <!-- Pagination buttons (END) -->
-
-            </div>
-            <!-- Pagination navigation container (END) -->
-
         </div>
-
     </section>
     <!-- Section containing table with all threads (END) -->
 
     <!-- Add thread button - fixed (BEGINNING) -->
     {% if request.user.is_authenticated %}
     <section id="new-thread-btn">
-        <button type="button" class="btn btn-outline-primary fixed-bottom btn-rounded" data-toggle="tooltip" data-placement="top" title="Create a thread"><a class="text-reset text-decoration-none" href="{% url 'add_thread' %}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></button>
+        <div class="container-fluid">
+            <button type="button" class="btn btn-outline-primary fixed-bottom btn-rounded" data-toggle="tooltip" data-placement="top" title="Create a thread"><a class="text-reset text-decoration-none" href="{% url 'add_thread' %}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></button>
+        </div>
     </section>
     {% endif %}
     <!-- Add thread button - fixed (END) -->
