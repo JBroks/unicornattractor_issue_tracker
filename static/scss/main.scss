@@ -183,12 +183,12 @@ main {
   border-top: solid 10px $color-light-pink;
 }
 
-#thread-view-page {
+#thread-view-page, #view-ticket-page {
   border-top: solid 10px $color-pink;
 }
 
 #table-section, #forum-table-section, #add-ticket-section, #add-thread-section,
-#thread-view-page {
+#thread-view-page, #view-ticket-page {
   border-bottom: solid 10px $color-light-pink;
 }
 
@@ -209,7 +209,7 @@ main {
 
 /* Form width decreased */
 
-#search, form.post-form textarea {
+#search, form.post-form textarea, .comment-form textarea {
   background-color: white;
 }
 

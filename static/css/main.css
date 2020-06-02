@@ -7819,11 +7819,11 @@ main {
 #filter-section, #forum-table-section {
   border-top: solid 10px #fcdcd7; }
 
-#thread-view-page {
+#thread-view-page, #view-ticket-page {
   border-top: solid 10px #e89e93; }
 
 #table-section, #forum-table-section, #add-ticket-section, #add-thread-section,
-#thread-view-page {
+#thread-view-page, #view-ticket-page {
   border-bottom: solid 10px #fcdcd7; }
 
 /* Jumbotron hr styling */
@@ -7837,7 +7837,7 @@ main {
 
 /* FORMS */
 /* Form width decreased */
-#search, form.post-form textarea {
+#search, form.post-form textarea, .comment-form textarea {
   background-color: white; }
 
 form {
