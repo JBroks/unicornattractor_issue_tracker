@@ -150,7 +150,7 @@ main {
 
 /* Register & login page background image */
 
-#register-section, #login-section {
+#register-section, #login-section, #edit-profile-section {
   background-image: url("/media/background_images/gradient_background_large_4.png");
   background-position: center center;
   background-repeat: no-repeat;
@@ -203,7 +203,7 @@ form {
   width: 50%;
 }
 
-#add-ticket-section form, #register-section form,  #login-section form {
+#add-ticket-section form, #register-section form,  #login-section form, #edit-profile-form {
   background-color: white;
   width: 100%;
 }

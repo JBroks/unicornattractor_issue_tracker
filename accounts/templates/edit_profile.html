@@ -2,50 +2,52 @@
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
+    <section id="edit-profile-section">
 
-    <!-- Form container (BEGINNING) -->
-    <div class="row">
-        <div class="col-sm-12">
-            <!-- Edit profile form (BEGINNING) -->
-            <form method="POST" class="mx-auto" id="edit_profile_form" enctype="multipart/form-data">
+        <!-- Form container (BEGINNING) -->
+        <div class="row container-fluid d-flex justify-content-center p-0 m-0">
+            <div class="col-lg-6 col-md-8 col-sm-10 my-5">
+                <!-- Edit profile form (BEGINNING) -->
+                <form method="POST" class="mx-auto px-2 px-md-5 py-5" id="edit-profile-form" enctype="multipart/form-data">
 
-                <!-- Form heading (BEGINNING) -->
-                <h2 class="text-center">Edit profile details</h2>
-                <!-- Form heading (END) -->
+                    <!-- Form heading (BEGINNING) -->
+                    <h2 class="text-center">Edit profile details</h2>
+                    <!-- Form heading (END) -->
 
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <img class="img-thumbnail rounded-circle profile-image" src="{{ user.userprofile.image.url }}" alt="Current profile image">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <img class="img-thumbnail rounded-circle profile-image" src="{{ user.userprofile.image.url }}" alt="Current profile image">
+                        </div>
                     </div>
-                </div>
 
-                {% csrf_token %}
+                    {% csrf_token %}
 
-                <div class="row">
-                    <div class="form-group col-sm-12">
-                        {{ upload_img_form | as_bootstrap }}
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            {{ upload_img_form | as_bootstrap }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="form-group col-sm-12">
-                        {{ edit_form | as_bootstrap }}
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            {{ edit_form | as_bootstrap }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-end justify-content-center"><button type="submit" class="btn btn-outline-success"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> Save</button></div>
-                    <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-start justify-content-center"><a role="button" class="btn btn-outline-secondary" href="{% url 'profile' user.username %}">Cancel</a></button>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-end justify-content-center"><button type="submit" class="btn btn-outline-success"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> Save</button></div>
+                        <div class="col-md-6 col-sm-12 mt-3 mt-md-0 d-flex justify-content-md-start justify-content-center"><a role="button" class="btn btn-outline-secondary" href="{% url 'profile' user.username %}">Cancel</a></button>
+                        </div>
                     </div>
-                </div>
 
-            </form>
-            <!-- Edit profile form (END) -->
+                </form>
+                <!-- Edit profile form (END) -->
 
+            </div>
         </div>
-    </div>
-    <!-- Form container (END) -->
+        <!-- Form container (END) -->
 
+    </section>
 </section>
 <!-- Page content container (END) -->
 
