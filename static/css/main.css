@@ -7792,6 +7792,13 @@ main {
   position: absolute;
   z-index: -1; }
 
+/* Register & login page background image */
+#register-section, #login-section {
+  background-image: url("/media/background_images/gradient_background_large_4.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
 /* Add ticket form background photo */
 #add-ticket-section {
   background-image: url("/media/background_images/tickets_background.jpg");
@@ -7824,7 +7831,7 @@ main {
 form {
   width: 50%; }
 
-#add-ticket-section form {
+#add-ticket-section form, #register-section form, #login-section form {
   background-color: white;
   width: 100%; }
 
