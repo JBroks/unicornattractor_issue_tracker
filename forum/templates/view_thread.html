@@ -1,363 +1,366 @@
 {% extends 'base.html' %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block page_title %} View thread {% endblock %} {% block content %}
 
 <!-- Page content container (BEGINNING) -->
-<section class="content-container pt-5 pb-3 px-sm-5 px-3">
-
-    <!-- Go back to forum button (BEGINNING) -->
-    <section id="back-to-forum-btn">
-        <div class="row py-3 d-flex justify-content-center">
-            <div class="col-lg-8 col-md-10 col-sm-12">
-                <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'forum' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to Forum</a></button>
+<section class="content-container">
+    <div class="container-fluid pt-5 pb-3 px-sm-5 px-3 bgr-off-white" id="thread-view-page">
+        <!-- Go back to forum button (BEGINNING) -->
+        <section id="back-to-forum-btn">
+            <div class="container-fluid">
+                <div class="row py-3 d-flex justify-content-center">
+                    <div class="col-lg-8 col-md-10 col-sm-12">
+                        <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'forum' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to Forum</a></button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- Go back to forum button (END) -->
+        </section>
+        <!-- Go back to forum button (END) -->
 
-    <!-- Thread section (BEGINNING) -->
-    <section id="thread-section">
-        <div class="row d-flex justify-content-center">
-
-            <!-- Thread card containing description and like/dislike button container (BEGINNING) -->
-            <div class="col-lg-8 col-md-10 col-sm-12">
-                <div class="row pt-5 pb-3">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="row no-gutters px-4 pt-3">
-                                <div class="col">
-                                    <h4 class="card-title">{{ thread.subject }}</h4>
-                                </div>
-                                {% if request.user == thread.user %}
-                                <div class="col-auto">
-                                    <div class="dropdown">
-                                        <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"></i></button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
-                                            <a class="dropdown-item text-primary" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                            <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+        <!-- Thread section (BEGINNING) -->
+        <section id="thread-section">
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <!-- Thread card containing description and like/dislike button container (BEGINNING) -->
+                    <div class="col-lg-8 col-md-10 col-sm-12">
+                        <div class="row pt-5 pb-3">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="row no-gutters px-4 pt-3">
+                                        <div class="col">
+                                            <h4 class="card-title">{{ thread.subject }}</h4>
                                         </div>
+                                        {% if request.user == thread.user %}
+                                        <div class="col-auto">
+                                            <div class="dropdown">
+                                                <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"></i></button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
+                                                    <a class="dropdown-item text-primary" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                                    <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
                                     </div>
-                                </div>
-                                {% endif %}
-                            </div>
-                            <div class="row no-gutters px-4">
-                                <div class="col-auto">
-                                    <img class="img-thumbnail rounded-circle card-image" src="{{ thread.user.userprofile.image.url }}" alt="Thread card image">
-                                </div>
-                                <div class="col">
-                                    <div class="card-block px-2">
-                                        <div class="row">
-                                            <div class="col-lg-8 col-md-7 col-sm-12">
-                                                <h5 class="card-subtitle mb-2">{{ thread.user }}</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted"><small data-toggle="tooltip" data-placement="left" title="Last updated">{{ thread.date_updated | timesince }} ago</small></h6>
+                                    <div class="row no-gutters px-4">
+                                        <div class="col-auto">
+                                            <img class="img-thumbnail rounded-circle card-image" src="{{ thread.user.userprofile.image.url }}" alt="Thread card image">
+                                        </div>
+                                        <div class="col">
+                                            <div class="card-block px-2">
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-md-7 col-sm-12">
+                                                        <h5 class="card-subtitle mb-2">{{ thread.user }}</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted"><small data-toggle="tooltip" data-placement="left" title="Last updated">{{ thread.date_updated | timesince }} ago</small></h6>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="card-body w-100">
+                                        <p class="card-text">{{ thread.description }}</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent text-right">
+                                        <!-- if user authenticated check the vote type to assign colors -->
+                                        {% if request.user.is_authenticated %} {% if thread_vote_type is None %}
+                                        <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                        <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                        <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                        <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% elif thread_vote_type == 'like' %}
+                                        <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                        <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                        <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                        <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% else %}
+                                        <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                        <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                        <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                        <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% endif %}
+                                        <!-- if user not authenticated show modals on click -->
+                                        {% else %}
+                                        <a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                        <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
+                                        <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                        <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body w-100">
-                                <p class="card-text">{{ thread.description }}</p>
-                            </div>
-                            <div class="card-footer bg-transparent text-right">
-                                <!-- if user authenticated check the vote type to assign colors -->
-                                {% if request.user.is_authenticated %} {% if thread_vote_type is None %}
-                                <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
-                                <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
-                                <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% elif thread_vote_type == 'like' %}
-                                <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
-                                <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
-                                <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% else %}
-                                <a href="{% url 'vote_thread' thread.id 'like' %}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
-                                <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                <a href="{% url 'vote_thread' thread.id 'dislike' %}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
-                                <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% endif %}
-                                <!-- if user not authenticated show modals on click -->
-                                {% else %}
-                                <a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
-                                <span class="font-weight-bold vote-counter pr-3"> {{ thread.thread_likes_count }}</span>
-                                <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
-                                <span class="font-weight-bold vote-counter"> {{ thread.thread_dislikes_count }}</span> {% endif %}
+                        </div>
+                    </div>
+                    <!-- Thread card containing description and like/dislike button container (END) -->
+
+                    <!-- Like Modal triggered when user is not logged in and clicks like button (BEGINNING) -->
+                    <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="likeModalLabel">Like this post?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Sign in to make your opinion count.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Like Modal triggered when user is not logged in and clicks like button (END) -->
+
+                    <!-- Dislike Modal triggerd when user is not logged in and clicks dislike button (BEGINNING) -->
+                    <div class="modal fade" id="dislikeModal" tabindex="-1" role="dialog" aria-labelledby="dislikeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="dislikeModalLabel">Dislike this post?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Sign in to make your opinion count.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dislike Modal triggerd when user is not logged in and clicks dislike button (END) -->
+
                 </div>
             </div>
-            <!-- Thread card containing description and like/dislike button container (END) -->
+        </section>
+        <!-- Thread section (END) -->
 
-            <!-- Like Modal triggered when user is not logged in and clicks like button (BEGINNING) -->
-            <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="likeModalLabel">Like this post?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Sign in to make your opinion count.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
-                        </div>
+        <!-- Posts section (BEGINNING) -->
+        <section id="post-section">
+            <div class="container-fluid">
+                <!-- Posts counter container (BEGINNING) -->
+                <div class="row pt-5 pb-3 d-flex justify-content-center">
+                    <div class="col-lg-8 col-md-10 col-sm-12">
+                        <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Posts (<span id="counter">{{ posts_count }}</span>)</h5>
+                        <h6>Be part of our community. Share your thoughts. Be respectful.</h6>
+                        <hr> {% if not user.is_authenticated %}
+                        <p><small>Not yet a member? <a class="text-decoration-none" href="{% url 'registration' %}">Sign up</a> and join the discussion. If you are an existing user please <a class="text-decoration-none" href="{% url 'login' %}">sign in</a> first to post your comment.</small></p>
+                        {% else %} {% endif %}
                     </div>
                 </div>
-            </div>
-            <!-- Like Modal triggered when user is not logged in and clicks like button (END) -->
+                <!-- Posts counter form container (END) -->
 
-            <!-- Dislike Modal triggerd when user is not logged in and clicks dislike button (BEGINNING) -->
-            <div class="modal fade" id="dislikeModal" tabindex="-1" role="dialog" aria-labelledby="dislikeModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="dislikeModalLabel">Dislike this post?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Sign in to make your opinion count.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
-                        </div>
+                <!-- Add a post form container (BEGINNING) -->
+                <div class="row d-flex justify-content-center">
+                    <div class="form-group col-lg-8 col-md-10 col-sm-12">
+                        <form action="{% url 'add_post' thread.pk %}" method="POST" class="post-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="form-group col-sm-12 mb-0">
+                                    {{ post_form | as_bootstrap }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 d-flex justify-content-end">
+                                    {% if user.is_authenticated %}
+                                    <button type="submit" name="action" class="btn btn-success"><i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> Submit Post</button> {% endif %}
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
-            <!-- Dislike Modal triggerd when user is not logged in and clicks dislike button (END) -->
+                <!-- Add a post form container (END) -->
 
-        </div>
-    </section>
-    <!-- Thread section (END) -->
-
-    <!-- Posts section (BEGINNING) -->
-    <section id="post-section">
-
-        <!-- Posts counter container (BEGINNING) -->
-        <div class="row pt-5 pb-3 d-flex justify-content-center">
-            <div class="col-lg-8 col-md-10 col-sm-12">
-                <h5><i class="fa fa-comments fa-lg" aria-hidden="true"></i> Posts (<span id="counter">{{ posts_count }}</span>)</h5>
-                <h6>Be part of our community. Share your thoughts. Be respectful.</h6>
-                <hr> {% if not user.is_authenticated %}
-                <p><small>Not yet a member? <a class="text-decoration-none" href="{% url 'registration' %}">Sign up</a> and join the discussion. If you are an existing user please <a class="text-decoration-none" href="{% url 'login' %}">sign in</a> first to post your comment.</small></p>
-                {% else %} {% endif %}
-            </div>
-        </div>
-        <!-- Posts counter form container (END) -->
-
-        <!-- Add a post form container (BEGINNING) -->
-        <div class="row d-flex justify-content-center">
-            <div class="form-group col-lg-8 col-md-10 col-sm-12">
-                <form action="{% url 'add_post' thread.pk %}" method="POST" class="post-form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="form-group col-sm-12 mb-0">
-                            {{ post_form | as_bootstrap }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 d-flex justify-content-end">
-                            {% if user.is_authenticated %}
-                            <button type="submit" name="action" class="btn btn-outline-success"><i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> Submit Post</button> {% endif %}
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- Add a post form container (END) -->
-
-        <!-- If user not authenticated show modal (BEGINNING) -->
-        <div class="row">
-            <div class="col-md-10 col-sm-12">
+                <!-- If user not authenticated show modal (BEGINNING) -->
                 <div class="row">
-                    <div class="col-sm-12 d-flex justify-content-end">
-                        {% if not user.is_authenticated %}
-                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#submitPostModal"><i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> Submit Post</button> {% endif %}
+                    <div class="col-md-10 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 d-flex justify-content-end">
+                                {% if not user.is_authenticated %}
+                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#submitPostModal"><i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> Submit Post</button> {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- If user not authenticated show modal (END) -->
+                <!-- If user not authenticated show modal (END) -->
 
-        <!-- Submit post modal triggered when user is not logged in and clicks submit button (BEGINNING) -->
-        <div class="modal fade" id="submitPostModal" tabindex="-1" role="dialog" aria-labelledby="submitPostModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="submitPostModalLabel">Would like to share your thoughts?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Sign in to submit your post.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
+                <!-- Submit post modal triggered when user is not logged in and clicks submit button (BEGINNING) -->
+                <div class="modal fade" id="submitPostModal" tabindex="-1" role="dialog" aria-labelledby="submitPostModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="submitPostModalLabel">Would like to share your thoughts?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Sign in to submit your post.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Submit post modal triggered when user is not logged in and clicks submit button (END) -->
+                <!-- Submit post modal triggered when user is not logged in and clicks submit button (END) -->
 
 
-        <div class="row d-flex justify-content-center">
+                <div class="row d-flex justify-content-center">
 
-            <!-- Posts cards container (BEGINNING) -->
-            <div class="col-lg-8 col-md-10 col-sm-12" id="posts-container">
-                {% for post in posts %}
-                <div class="row py-3">
-                    <div class="col-sm-12">
-                        <div class="card">
+                    <!-- Posts cards container (BEGINNING) -->
+                    <div class="col-lg-8 col-md-10 col-sm-12" id="posts-container">
+                        {% for post in posts %}
+                        <div class="row py-3">
+                            <div class="col-sm-12">
+                                <div class="card">
 
-                            <!-- Added post card header (BEGINNING) -->
-                            <div class="row no-gutters card-header bg-transparent border-none ">
-                                <div class="col-auto">
-                                    <img class="img-thumbnail rounded-circle card-image" src="{{ post.user.userprofile.image.url }}" alt="Post card image">
-                                </div>
-                                <div class="col">
-                                    <div class="card-block px-2">
+                                    <!-- Added post card header (BEGINNING) -->
+                                    <div class="row no-gutters card-header bg-transparent border-none ">
+                                        <div class="col-auto">
+                                            <img class="img-thumbnail rounded-circle card-image" src="{{ post.user.userprofile.image.url }}" alt="Post card image">
+                                        </div>
+                                        <div class="col">
+                                            <div class="card-block px-2">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h5 class="card-title">{{ post.user }}</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">{{ post.date_updated | timesince }} ago</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% if user.is_authenticated and request.user == post.user %}
+                                        <div class="col-auto">
+                                            <span class="pr-3"><a class="edit-comment-btn" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary fa-lg" aria-hidden="true"></i></a></span>
+                                            <span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <!-- Added post card header (END) -->
+
+                                    <!-- Posted comment(post) - displayed until edit button clicked, then replaced by edit post form (BEGINNING) -->
+                                    <div class="card-body posted-comment" id="post{{post.id}}">
+                                        <p class="card-text text-truncate comment-text mb-1">{{ post.post }}</p>
+                                        <p class="card-text text-left text-uppercase read-more mb-0"><small class="text-success font-weight-bold"><a type="button">Read more <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a></small></p>
+                                        <p class="card-text text-left text-uppercase read-less mb-0"><small class="text-success font-weight-bold"><a type="button">Read less <i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a></small></p>
+                                    </div>
+                                    <!-- Posted comment(post) - displayed until edit button clicked, then replaced by edit post form (END) -->
+
+                                    <!-- Edit comment(post) form - displayed only when edit button clicked (BEGINNING) -->
+                                    <div class="card-body edit-comment">
                                         <div class="row">
-                                            <div class="col-sm-12">
-                                                <h5 class="card-title">{{ post.user }}</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted">{{ post.date_updated | timesince }} ago</h6>
+                                            <div class="form-group col-sm-12 d-flex justify-content-center">
+                                                <form action="{% url 'edit_post' thread.pk post.pk %}" method="POST" class="comment-form" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-12 mb-0">
+                                                            <textarea rows="3" name="post">{{ post.post }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 d-flex justify-content-end">
+                                                            <button type="submit" name="action" class="btn btn-outline-success mr-3"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> Save edits</button>
+                                                            <button type="button" class="btn btn-outline-secondary cancel-edit">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Edit comment(post) form container  - displayed only when edit button clicked (END) -->
+
+                                    <div class="card-footer bg-transparent text-right">
+
+                                        <!-- If user authenticated check the vote type to assign colors (BEGINNING) -->
+                                        {% if request.user.is_authenticated %}
+
+                                        <!-- If authenticated user voted change color depending on vote type (BEGINNING) -->
+                                        {% if request.user.id in post.post_voters %} {% for voted in post.post_vote_post_key.all %} {% if voted.user == request.user %} {% if voted.vote_type == 'like' %}
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                        <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                        <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% elif voted.vote_type == 'dislike' %}
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                        <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                        <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %} {% endif %} {% endfor %}
+                                        <!-- If authenticated user voted change color depending on vote type (END) -->
+
+                                        <!-- If authenticated user didn't vote (BEGINNING) -->
+                                        {% else %}
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                        <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                        <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                        <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %}
+                                        <!-- If authenticated user didn't vote (END) -->
+                                        <!-- If user authenticated check the vote type to assign colors (END) -->
+
+                                        <!-- If user not authenticated show sign in modal on click (BEGINNING) -->
+                                        {% else %}
+                                        <span></span><a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
+                                        <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
+                                        <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
+                                        <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %}
+                                        <!-- If user not authenticated show sign in modal on click (END) -->
+                                    </div>
+                                </div>
+
+                                <!-- Delete Post Modal -->
+                                <div class="modal fade" id="deletePostModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deletePostModalLabel">Confirmation</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' thread.id post.id %}">Delete</a></button>
+                                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {% if user.is_authenticated and request.user == post.user %}
-                                <div class="col-auto">
-                                    <span class="pr-3"><a class="edit-comment-btn" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary fa-lg" aria-hidden="true"></i></a></span>
-                                    <span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
-                                </div>
-                                {% endif %}
-                            </div>
-                            <!-- Added post card header (END) -->
+                                <!-- Delete Comment Modal -->
 
-                            <!-- Posted comment(post) - displayed until edit button clicked, then replaced by edit post form (BEGINNING) -->
-                            <div class="card-body posted-comment" id="post{{post.id}}">
-                                <p class="card-text text-truncate comment-text mb-1">{{ post.post }}</p>
-                                <p class="card-text text-left text-uppercase read-more mb-0"><small class="text-warning font-weight-bold"><a type="button">Read more <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a></small></p>
-                                <p class="card-text text-left text-uppercase read-less mb-0"><small class="text-warning font-weight-bold"><a type="button">Read less <i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a></small></p>
-                            </div>
-                            <!-- Posted comment(post) - displayed until edit button clicked, then replaced by edit post form (END) -->
-
-                            <!-- Edit comment(post) form - displayed only when edit button clicked (BEGINNING) -->
-                            <div class="card-body edit-comment">
-                                <div class="row">
-                                    <div class="form-group col-sm-12 d-flex justify-content-center">
-                                        <form action="{% url 'edit_post' thread.pk post.pk %}" method="POST" class="comment-form" enctype="multipart/form-data">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="form-group col-sm-12 mb-0">
-                                                    <textarea rows="3" name="post">{{ post.post }}</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12 d-flex justify-content-end">
-                                                    <button type="submit" name="action" class="btn btn-outline-success mr-3"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> Save edits</button>
-                                                    <button type="button" class="btn btn-outline-secondary cancel-edit">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Edit comment(post) form container  - displayed only when edit button clicked (END) -->
-
-                            <div class="card-footer bg-transparent text-right">
-
-                                <!-- If user authenticated check the vote type to assign colors (BEGINNING) -->
-                                {% if request.user.is_authenticated %}
-
-                                <!-- If authenticated user voted change color depending on vote type (BEGINNING) -->
-                                {% if request.user.id in post.post_voters %} {% for voted in post.post_vote_post_key.all %} {% if voted.user == request.user %} {% if voted.vote_type == 'like' %}
-                                <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-success text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
-                                <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
-                                <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% elif voted.vote_type == 'dislike' %}
-                                <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
-                                <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-danger text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
-                                <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %} {% endif %} {% endfor %}
-                                <!-- If authenticated user voted change color depending on vote type (END) -->
-
-                                <!-- If authenticated user didn't vote (BEGINNING) -->
-                                {% else %}
-                                <a href="{% url 'vote_post' thread.pk post.pk 'like' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
-                                <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                <a href="{% url 'vote_post' thread.pk post.pk 'dislike' %}#post{{post.id}}" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
-                                <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %}
-                                <!-- If authenticated user didn't vote (END) -->
-                                <!-- If user authenticated check the vote type to assign colors (END) -->
-
-                                <!-- If user not authenticated show sign in modal on click (BEGINNING) -->
-                                {% else %}
-                                <span></span><a data-toggle="modal" data-target="#likeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I like it"></i></a>
-                                <span class="font-weight-bold vote-counter pr-3"> {{ post.post_likes_count }}</span>
-                                <a data-toggle="modal" data-target="#dislikeModal" class="text-reset text-decoration-none"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="I dislike it"></i></a>
-                                <span class="font-weight-bold vote-counter"> {{ post.post_dislikes_count }}</span> {% endif %}
-                                <!-- If user not authenticated show sign in modal on click (END) -->
                             </div>
                         </div>
 
-                        <!-- Delete Post Modal -->
-                        <div class="modal fade" id="deletePostModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deletePostModalLabel">Confirmation</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' thread.id post.id %}">Delete</a></button>
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- If no posts for the review display paragraph with information about it (BEGINNING) -->
+                        {% empty %}
+                        <p>No posts yet. Be the first to add a post.</p>
+                        <!-- If no posts for the review display paragraph with information about it (END) -->
+
+                        {% endfor %}
+
+                        <!-- Posts pagination buttons (BEGINNING)-->
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            {% if posts.has_other_pages %}
+                            <nav aria-label="Table navigation">
+                                <ul class="pagination">
+                                    {% if posts.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                    {% endif %} {% for i in posts.paginator.page_range %} {% if posts.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %} {% endfor %} {% if posts.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
                         </div>
-                        <!-- Delete Comment Modal -->
+                        <!-- Posts pagination buttons (END)-->
 
                     </div>
+                    <!-- Posts cards container (END) -->
+
                 </div>
-
-                <!-- If no posts for the review display paragraph with information about it (BEGINNING) -->
-                {% empty %}
-                <p>No posts yet. Be the first to add a post.</p>
-                <!-- If no posts for the review display paragraph with information about it (END) -->
-
-                {% endfor %}
-
-                <!-- Posts pagination buttons (BEGINNING)-->
-                <div class="col-sm-12 d-flex justify-content-center">
-                    {% if posts.has_other_pages %}
-                    <nav aria-label="Table navigation">
-                        <ul class="pagination">
-                            {% if posts.has_previous %}
-                            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
-                            {% else %}
-                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                            {% endif %} {% for i in posts.paginator.page_range %} {% if posts.number == i %}
-                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                            </li>
-                            {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                            {% endif %} {% endfor %} {% if posts.has_next %}
-                            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
-                            {% else %}
-                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                    {% endif %}
-                </div>
-                <!-- Posts pagination buttons (END)-->
-
             </div>
-            <!-- Posts cards container (END) -->
-
-        </div>
-
-    </section>
-    <!-- Posts section (END) -->
-
+        </section>
+        <!-- Posts section (END) -->
+    </div>
 </section>
 <!-- Page content container (END) -->
 

@@ -5,7 +5,7 @@
 $color-blue: #2e3190;
 $color-purple: #5854a5;
 $color-light-purple: #bcb3bf;
-$color-off-white: #fafaf5;
+$color-off-white: #fbfafa;
 $color-red: #ee5140;
 $color-pink: #e89e93;
 $color-light-pink: #fcdcd7;
@@ -183,7 +183,12 @@ main {
   border-top: solid 10px $color-light-pink;
 }
 
-#table-section, #forum-table-section, #add-ticket-section, #add-thread-section {
+#thread-view-page {
+  border-top: solid 10px $color-pink;
+}
+
+#table-section, #forum-table-section, #add-ticket-section, #add-thread-section,
+#thread-view-page {
   border-bottom: solid 10px $color-light-pink;
 }
 
@@ -195,7 +200,8 @@ main {
 
 /* All tickets page heading section separator */
 
-#heading-section, #forum-heading-section , #add-ticket-section, #add-thread-section {
+#heading-section, #forum-heading-section , #add-ticket-section, 
+#add-thread-section{
   border-top: 10px solid $color-purple;
 }
 
@@ -203,7 +209,7 @@ main {
 
 /* Form width decreased */
 
-#search {
+#search, form.post-form textarea {
   background-color: white;
 }
 
