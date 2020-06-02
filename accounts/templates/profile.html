@@ -2,657 +2,659 @@
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
+    <div class="container-fluid">
+        <div class="row">
 
-    <div class="row">
+            <!-- Profile photo container (BEGINNING)-->
+            <div class="col-lg-3 col-md-12 d-flex justify-content-center">
+                <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image">
+            </div>
+            <!-- Profile photo container (END)-->
 
-        <!-- Profile photo container (BEGINNING)-->
-        <div class="col-lg-3 col-md-12 d-flex justify-content-center">
-            <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image">
-        </div>
-        <!-- Profile photo container (END)-->
-
-        <!-- User profile heading and last seen info (BEGINNING) -->
-        <div class="col-lg-8 col-md-12">
-            <div class="row">
-                <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
-                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                </div>
-                <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
-                    <p class="text-muted">Joined: {{ user.date_joined }}</p>
-                </div>
-                <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
-                    <p class="text-muted">Last seen: {{ user.last_login }}</p>
+            <!-- User profile heading and last seen info (BEGINNING) -->
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
+                        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                    </div>
+                    <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
+                        <p class="text-muted">Joined: {{ user.date_joined }}</p>
+                    </div>
+                    <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
+                        <p class="text-muted">Last seen: {{ user.last_login }}</p>
+                    </div>
                 </div>
             </div>
+            <!-- User profile heading and last seen info (END) -->
+
         </div>
-        <!-- User profile heading and last seen info (END) -->
 
-    </div>
+        <div class="row">
 
-    <div class="row">
-
-        <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (BEGINNING) -->
-        <div class="col-sm-12 d-block d-lg-none accordion" id="accordion">
-            <p class="text-center">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePersonalInfo" aria-expanded="false" aria-controls="collapseExample1"><i class="fa fa-user" aria-hidden="true"></i></button>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseActivity" aria-expanded="false" aria-controls="collapseExample2"><i class="fa fa-list" aria-hidden="true"></i></button>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAccSettings" aria-expanded="false" aria-controls="collapseExample3"><i class="fa fa-cogs" aria-hidden="true"></i></button>
-            </p>
-            <div class="collapse" aria-labelledby="collapsePersonalInfo" data-parent="#accordion" id="collapsePersonalInfo">
-                <div class="card card-body">
-                    <div class="row mx-auto">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-12 text-center">
-                                    <h5>Personal info</h5>
+            <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (BEGINNING) -->
+            <div class="col-sm-12 d-block d-lg-none accordion" id="accordion">
+                <p class="text-center">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePersonalInfo" aria-expanded="false" aria-controls="collapseExample1"><i class="fa fa-user" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseActivity" aria-expanded="false" aria-controls="collapseExample2"><i class="fa fa-list" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAccSettings" aria-expanded="false" aria-controls="collapseExample3"><i class="fa fa-cogs" aria-hidden="true"></i></button>
+                </p>
+                <div class="collapse" aria-labelledby="collapsePersonalInfo" data-parent="#accordion" id="collapsePersonalInfo">
+                    <div class="card card-body">
+                        <div class="row mx-auto">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <h5>Personal info</h5>
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <p>Username: {{ user.username }}</p>
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <p>Email: {{ user.email }}</p>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 text-center">
-                                    <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" aria-labelledby="collapseActivity" data-parent="#accordion" id="collapseActivity">
+                    <div class="card card-body">
+                        <div class="row mx-auto">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <h5>Activity</h5>
+                                    </div>
+                                    <div class="col-sm-12 d-flex justify-content-center">
+                                        <p><i class="fa fa-users" aria-hidden="true"></i> Forum threads: {{ thread_count }}</p>
+                                    </div>
+                                    <div class="col-sm-12 d-flex justify-content-center">
+                                        <p><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Posts: {{ post_count }}</p>
+                                    </div>
+                                    <div class="col-sm-12 d-flex justify-content-center">
+                                        <p><i class="fa fa-ticket" aria-hidden="true"></i> Tickets: {{ ticket_count }}</p>
+                                    </div>
+                                    <div class="col-sm-12 d-flex justify-content-center">
+                                        <p><i class="fa fa-comments" aria-hidden="true"></i> Ticket comments: {{ comment_count }}</p>
+                                    </div>
+                                    <div class="col-sm-12 d-flex justify-content-center">
+                                        <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: {{ upvotes_count }} </p>
+                                    </div>
+                                    <div class="col-sm-12 d-flex justify-content-center">
+                                        <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: &euro;{{ donations_total }}</p>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 text-center">
-                                    <p>Username: {{ user.username }}</p>
-                                </div>
-                                <div class="col-sm-12 text-center">
-                                    <p>Email: {{ user.email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" aria-labelledby="collapseSettings" data-parent="#accordion" id="collapseAccSettings">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="collapse" aria-labelledby="collapseActivity" data-parent="#accordion" id="collapseActivity">
-                <div class="card card-body">
-                    <div class="row mx-auto">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-12 text-center">
-                                    <h5>Activity</h5>
-                                </div>
-                                <div class="col-sm-12 d-flex justify-content-center">
-                                    <p><i class="fa fa-users" aria-hidden="true"></i> Forum threads: {{ thread_count }}</p>
-                                </div>
-                                <div class="col-sm-12 d-flex justify-content-center">
-                                    <p><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Posts: {{ post_count }}</p>
-                                </div>
-                                <div class="col-sm-12 d-flex justify-content-center">
-                                    <p><i class="fa fa-ticket" aria-hidden="true"></i> Tickets: {{ ticket_count }}</p>
-                                </div>
-                                <div class="col-sm-12 d-flex justify-content-center">
-                                    <p><i class="fa fa-comments" aria-hidden="true"></i> Ticket comments: {{ comment_count }}</p>
-                                </div>
-                                <div class="col-sm-12 d-flex justify-content-center">
-                                    <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: {{ upvotes_count }} </p>
-                                </div>
-                                <div class="col-sm-12 d-flex justify-content-center">
-                                    <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: &euro;{{ donations_total }}</p>
-                                </div>
+            <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (END) -->
+
+            <!-- User information - showing only on large and xl devices (BEGINNING) -->
+            <div class="col-lg-3 col-md-12 pt-5 d-none d-lg-block">
+
+                <!-- Personal info container (BEGINNING)-->
+                <div class="row mx-auto">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <h5>Personal info</h5>
+                                <hr class="mx-5">
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p>Username: {{ user.username }}</p>
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p>Email: {{ user.email }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="collapse" aria-labelledby="collapseSettings" data-parent="#accordion" id="collapseAccSettings">
-                <div class="card card-body">
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
-                                </div>
-                                <div class="col-sm-12">
-                                    <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
-                                </div>
+                <!-- Personal info container (END)-->
+
+                <!-- Activity summary container (BEGINNING)-->
+                <div class="row mx-auto">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <h5>Activity</h5>
+                                <hr class="mx-5">
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p><i class="fa fa-users" aria-hidden="true"></i> Forum threads: {{ thread_count }}</p>
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Posts: {{ post_count }}</p>
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p><i class="fa fa-ticket" aria-hidden="true"></i> Tickets: {{ ticket_count }}</p>
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p><i class="fa fa-comments" aria-hidden="true"></i> Ticket comments: {{ comment_count }}</p>
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: {{ upvotes_count }} </p>
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: &euro;{{ donations_total }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (END) -->
+                <!-- Activity summary container (END)-->
 
-        <!-- User information - showing only on large and xl devices (BEGINNING) -->
-        <div class="col-lg-3 col-md-12 pt-5 d-none d-lg-block">
-
-            <!-- Personal info container (BEGINNING)-->
-            <div class="row mx-auto">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <h5>Personal info</h5>
-                            <hr class="mx-5">
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p>Username: {{ user.username }}</p>
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p>Email: {{ user.email }}</p>
+                <!-- Buttons container - hidden only on medium and small devices (BEGINNING)-->
+                <div class="row pt-5">
+                    <div class="col-sm-12 text-center d-none d-sm-block">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
+                            </div>
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- Buttons container - hidden only on medium and small devices (END)-->
+
             </div>
-            <!-- Personal info container (END)-->
+            <!-- User information - showing only on large and xl devices (END) -->
 
-            <!-- Activity summary container (BEGINNING)-->
-            <div class="row mx-auto">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <h5>Activity</h5>
-                            <hr class="mx-5">
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p><i class="fa fa-users" aria-hidden="true"></i> Forum threads: {{ thread_count }}</p>
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Posts: {{ post_count }}</p>
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p><i class="fa fa-ticket" aria-hidden="true"></i> Tickets: {{ ticket_count }}</p>
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p><i class="fa fa-comments" aria-hidden="true"></i> Ticket comments: {{ comment_count }}</p>
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: {{ upvotes_count }} </p>
-                        </div>
-                        <div class="col-sm-12 d-flex justify-content-center">
-                            <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: &euro;{{ donations_total }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Activity summary container (END)-->
+            <!-- Pills (BEGINNING) -->
+            <div class="col-lg-8 col-md-12">
 
-            <!-- Buttons container - hidden only on medium and small devices (BEGINNING)-->
-            <div class="row pt-5">
-                <div class="col-sm-12 text-center d-none d-sm-block">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
-                        </div>
-                        <div class="col-sm-12">
-                            <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Buttons container - hidden only on medium and small devices (END)-->
+                <!-- Pills navigation buttons (BEGINNING) -->
+                <ul class="nav nav-pills mb-3 flex-column flex-sm-row" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active flex-sm-fill text-sm-center" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">Tickets ({{ ticket_count }})</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link flex-sm-fill text-sm-center" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Ticket comments ({{ comment_count }})</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link flex-sm-fill text-sm-center" id="pills-threads-tab" data-toggle="pill" href="#pills-threads" role="tab" aria-controls="pills-threads" aria-selected="false">Forum threads ({{ thread_count }})</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link flex-sm-fill text-sm-center" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Forum posts ({{ post_count }})</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link flex-sm-fill text-sm-center" id="pills-likes-tab" data-toggle="pill" href="#pills-thread-votes" role="tab" aria-controls="pills-thread-votes" aria-selected="false">Forum thread votes ({{ thread_votes_count }})</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link flex-sm-fill text-sm-center" id="pills-post-votes-tab" data-toggle="pill" href="#pills-post-votes" role="tab" aria-controls="pills-post-votes" aria-selected="false">Forum post votes ({{ post_votes_count }})</a>
+                    </li>
+                </ul>
+                <!-- Pills navigation buttons (END) -->
 
-        </div>
-        <!-- User information - showing only on large and xl devices (END) -->
+                <!-- Pills content (BEGINNING)-->
+                <div class="tab-content" id="pills-tabContent">
 
-        <!-- Pills (BEGINNING) -->
-        <div class="col-lg-8 col-md-12">
+                    <!-- Pill containing user tickets table (BEGINNING) -->
+                    <div class="tab-pane fade show active" id="pills-tickets" role="tabpanel" aria-labelledby="pills-tickets-tab">
 
-            <!-- Pills navigation buttons (BEGINNING) -->
-            <ul class="nav nav-pills mb-3 flex-column flex-sm-row" id="pills-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active flex-sm-fill text-sm-center" id="pills-tickets-tab" data-toggle="pill" href="#pills-tickets" role="tab" aria-controls="pills-tickets" aria-selected="true">Tickets ({{ ticket_count }})</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Ticket comments ({{ comment_count }})</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-threads-tab" data-toggle="pill" href="#pills-threads" role="tab" aria-controls="pills-threads" aria-selected="false">Forum threads ({{ thread_count }})</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Forum posts ({{ post_count }})</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-likes-tab" data-toggle="pill" href="#pills-thread-votes" role="tab" aria-controls="pills-thread-votes" aria-selected="false">Forum thread votes ({{ thread_votes_count }})</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-post-votes-tab" data-toggle="pill" href="#pills-post-votes" role="tab" aria-controls="pills-post-votes" aria-selected="false">Forum post votes ({{ post_votes_count }})</a>
-                </li>
-            </ul>
-            <!-- Pills navigation buttons (END) -->
+                        <!-- User tickets table (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table">
+                                    <tbody class="tickets-table">
+                                        {% if ticket_count > 0 %} {% for ticket in user_tickets %}
+                                        <tr>
+                                            <td class="text-center text-md-left">
+                                                {% if ticket.ticket_status == "Open" %}
+                                                <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
+                                                <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
+                                                <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
+                                                <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
+                                            </td>
+                                            <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
+                                            <td class="text-center">{{ ticket.ticket_type }}</td>
+                                            <td class="text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                        </tr>
 
-            <!-- Pills content (BEGINNING)-->
-            <div class="tab-content" id="pills-tabContent">
-
-                <!-- Pill containing user tickets table (BEGINNING) -->
-                <div class="tab-pane fade show active" id="pills-tickets" role="tabpanel" aria-labelledby="pills-tickets-tab">
-
-                    <!-- User tickets table (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 table-responsive">
-                            <table class="table">
-                                <tbody class="tickets-table">
-                                    {% if ticket_count > 0 %} {% for ticket in user_tickets %}
-                                    <tr>
-                                        <td class="text-center text-md-left">
-                                            {% if ticket.ticket_status == "Open" %}
-                                            <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
-                                            <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
-                                            <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
-                                            <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
-                                        </td>
-                                        <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
-                                        <td class="text-center">{{ ticket.ticket_type }}</td>
-                                        <td class="text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                        <td class="text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
-                                        <td class="text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
-                                    </tr>
-
-                                    <!-- Delete Ticket Modal -->
-                                    <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <!-- Delete Ticket Modal -->
+                                        <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                   <span aria-hidden="true">&times;</span>
                                             </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
-                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Delete Ticket Modal -->
-
-                                    {% endfor %} {% else %} You have not added any tickets yet. {% endif %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- User tickets table (END) -->
-
-                    <!-- User tickets pagination buttons (BEGINNING)-->
-                    <div class="col-sm-12 d-flex justify-content-center">
-                        {% if user_tickets.has_other_pages %}
-                        <nav aria-label="Table navigation">
-                            <ul class="pagination">
-                                {% if user_tickets.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_tickets.previous_page_number }}">&laquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                                {% endif %} {% for i in user_tickets.paginator.page_range %} {% if user_tickets.number == i %}
-                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                                </li>
-                                {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                {% endif %} {% endfor %} {% if user_tickets.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_tickets.next_page_number }}">&raquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                        {% endif %}
-                    </div>
-                    <!-- User tickets pagination buttons (END)-->
-
-                </div>
-                <!-- Pill containing user tickets table (END) -->
-
-                <!-- Pill containing user comments table (BEGINNING) -->
-                <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">
-
-                    <!-- User comments table (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 table-responsive">
-                            <table class="table">
-                                <tbody class="comments-table">
-                                    {% if comment_count > 0 %} {% for comment in user_comments %}
-                                    <tr>
-                                        <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}">Comment #{{ comment.id }}</a></td>
-                                        <td class="text-center text-md-left">Re: ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</td>
-                                        <td class="text-md-left d-none d-md-table-cell"> {{ comment.date_created | timesince }} ago</td>
-                                        <td class="text-center"><a href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                        <td class="text-center"><span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
-                                    </tr>
-                                        
-                                    <!-- Delete Comment Modal (BEGINNING) -->
-                                    <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteCommentModalLabel">Confirmation</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' comment.ticket.id comment.id %}">Delete</a></button>
-                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
+                                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Delete Comment Modal (END) -->
+                                        <!-- Delete Ticket Modal -->
 
-                                    {% endfor %} {% else %} You have not added any comments yet. {% endif %}
-                                </tbody>
-                            </table>
+                                        {% endfor %} {% else %} You have not added any tickets yet. {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                        <!-- User tickets table (END) -->
+
+                        <!-- User tickets pagination buttons (BEGINNING)-->
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            {% if user_tickets.has_other_pages %}
+                            <nav aria-label="Table navigation">
+                                <ul class="pagination">
+                                    {% if user_tickets.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_tickets.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                    {% endif %} {% for i in user_tickets.paginator.page_range %} {% if user_tickets.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %} {% endfor %} {% if user_tickets.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_tickets.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                        </div>
+                        <!-- User tickets pagination buttons (END)-->
+
                     </div>
-                    <!-- User tickets table (END) -->
+                    <!-- Pill containing user tickets table (END) -->
 
-                    <!-- User comments pagination buttons (BEGINNING)-->
-                    <div class="col-sm-12 d-flex justify-content-center">
-                        {% if user_comments.has_other_pages %}
-                        <nav aria-label="Table navigation">
-                            <ul class="pagination">
-                                {% if user_comments.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_comments.previous_page_number }}">&laquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                                {% endif %} {% for i in user_comments.paginator.page_range %} {% if user_comments.number == i %}
-                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                                </li>
-                                {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                {% endif %} {% endfor %} {% if user_comments.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_comments.next_page_number }}">&raquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                        {% endif %}
-                    </div>
-                    <!-- User comments pagination buttons (END)-->
+                    <!-- Pill containing user comments table (BEGINNING) -->
+                    <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">
 
-                </div>
-                <!-- Pill containing user comments table (END) -->
+                        <!-- User comments table (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table">
+                                    <tbody class="comments-table">
+                                        {% if comment_count > 0 %} {% for comment in user_comments %}
+                                        <tr>
+                                            <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}">Comment #{{ comment.id }}</a></td>
+                                            <td class="text-center text-md-left">Re: ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</td>
+                                            <td class="text-md-left d-none d-md-table-cell"> {{ comment.date_created | timesince }} ago</td>
+                                            <td class="text-center"><a href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                        </tr>
 
-                <!-- Pill containing user threads table (BEGINNING) -->
-                <div class="tab-pane fade" id="pills-threads" role="tabpanel" aria-labelledby="pills-threads-tab">
-
-                    <!-- User threads table (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 table-responsive">
-                            <table class="table">
-                                <tbody class="thread-table">
-                                    {% if thread_count > 0 %} {% for thread in user_threads %}
-                                    <tr>
-                                        <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">Thread #{{ thread.id}}: {{ thread.subject }}</a></td>
-                                        <td class="text-md-left d-none d-md-table-cell "> {{ thread.date_created | timesince }} ago</td>
-                                        <td class="text-center"><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
-                                        <td class="text-center"><a href="{% url 'view_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                        <td class="text-center"><a href="{% url 'edit_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
-                                        <td class="text-center"><span data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
-                                    </tr>
-
-                                    <!-- Delete Thread Modal (BEGINNING) -->
-                                    <div class="modal fade" id="deleteThreadModal{{thread.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteThreadModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteThreadModalLabel">Confirmation</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete your thread (#{{ thread.id }})?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_thread' thread.id %}">Delete</a></button>
-                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                        <!-- Delete Comment Modal (BEGINNING) -->
+                                        <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteCommentModalLabel">Confirmation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' comment.ticket.id comment.id %}">Delete</a></button>
+                                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Delete Thread Modal (END) -->
+                                        <!-- Delete Comment Modal (END) -->
 
-                                    {% endfor %} {% else %} You have not created any threads yet. {% endif %}
-
-                                </tbody>
-                            </table>
+                                        {% endfor %} {% else %} You have not added any comments yet. {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                        <!-- User tickets table (END) -->
+
+                        <!-- User comments pagination buttons (BEGINNING)-->
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            {% if user_comments.has_other_pages %}
+                            <nav aria-label="Table navigation">
+                                <ul class="pagination">
+                                    {% if user_comments.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_comments.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                    {% endif %} {% for i in user_comments.paginator.page_range %} {% if user_comments.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %} {% endfor %} {% if user_comments.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_comments.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                        </div>
+                        <!-- User comments pagination buttons (END)-->
+
                     </div>
-                    <!-- User threads table (END) -->
+                    <!-- Pill containing user comments table (END) -->
 
-                    <!-- User threads pagination buttons (BEGINNING)-->
-                    <div class="col-sm-12 d-flex justify-content-center">
-                        {% if user_threads.has_other_pages %}
-                        <nav aria-label="Table navigation">
-                            <ul class="pagination">
-                                {% if user_threads.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_threads.previous_page_number }}">&laquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                                {% endif %} {% for i in user_threads.paginator.page_range %} {% if user_threads.number == i %}
-                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                                </li>
-                                {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                {% endif %} {% endfor %} {% if user_threads.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_threads.next_page_number }}">&raquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                        {% endif %}
-                    </div>
-                    <!-- User threads pagination buttons (END)-->
+                    <!-- Pill containing user threads table (BEGINNING) -->
+                    <div class="tab-pane fade" id="pills-threads" role="tabpanel" aria-labelledby="pills-threads-tab">
 
-                </div>
-                <!-- Pill containing user threads table (END) -->
+                        <!-- User threads table (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table">
+                                    <tbody class="thread-table">
+                                        {% if thread_count > 0 %} {% for thread in user_threads %}
+                                        <tr>
+                                            <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">Thread #{{ thread.id}}: {{ thread.subject }}</a></td>
+                                            <td class="text-md-left d-none d-md-table-cell "> {{ thread.date_created | timesince }} ago</td>
+                                            <td class="text-center"><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
+                                            <td class="text-center"><a href="{% url 'view_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><a href="{% url 'edit_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                        </tr>
 
-                <!-- Pill containing user posts table (BEGINNING) -->
-                <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
-
-                    <!-- User posts table (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 table-responsive">
-                            <table class="table">
-                                <tbody class="posts-table">
-                                    {% if post_count > 0 %} {% for post in user_posts %}
-                                    <tr>
-                                        <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_thread' post.thread.id %}#post{{post.id}}">Post #{{ post.id }}</a></td>
-                                        <td class="text-center text-md-left">Re: thread #{{ post.thread.id }}: {{ post.thread.subject }}</td>
-                                        <td class="text-md-left d-none d-md-table-cell">{{ post.date_created | timesince }} ago</td>
-                                        <td class="text-center"><a href="{% url 'view_thread' post.thread.id %}#post{{post.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                        <td class="text-center"><span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
-                                    </tr>
-
-                                    <!-- Delete Post Modal (BEGINNING) -->
-                                    <div class="modal fade" id="deletePostModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deletePostModalLabel">Confirmation</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' post.thread.id post.id %}">Delete</a></button>
-                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                        <!-- Delete Thread Modal (BEGINNING) -->
+                                        <div class="modal fade" id="deleteThreadModal{{thread.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteThreadModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteThreadModalLabel">Confirmation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to delete your thread (#{{ thread.id }})?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_thread' thread.id %}">Delete</a></button>
+                                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Delete Post Modal (END) -->
+                                        <!-- Delete Thread Modal (END) -->
 
-                                    {% endfor %} {% else %} You have not added any posts yet. {% endif %}
-                                </tbody>
-                            </table>
+                                        {% endfor %} {% else %} You have not created any threads yet. {% endif %}
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <!-- User posts table (END) -->
+                        <!-- User threads table (END) -->
 
-                    <!-- User posts pagination buttons (BEGINNING)-->
-                    <div class="col-sm-12 d-flex justify-content-center">
-                        {% if user_posts.has_other_pages %}
-                        <nav aria-label="Table navigation">
-                            <ul class="pagination">
-                                {% if user_posts.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_posts.previous_page_number }}">&laquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                                {% endif %} {% for i in user_posts.paginator.page_range %} {% if user_posts.number == i %}
-                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                                </li>
-                                {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                {% endif %} {% endfor %} {% if user_posts.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_posts.next_page_number }}">&raquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                        {% endif %}
-                    </div>
-                    <!-- User posts pagination buttons (END)-->
-                </div>
-                <!-- Pill containing user posts table (END) -->
-
-                <!-- Pill containing user thread votes table (BEGINNING) -->
-                <div class="tab-pane fade" id="pills-thread-votes" role="tabpanel" aria-labelledby="pills-thread-votes-tab">
-
-                    <!-- User thread votes table (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 table-responsive">
-                            <table class="table">
-                                <tbody class="thread-votes-table">
-                                    {% if thread_votes_count > 0 %} {% for voted in user_thread_votes %}
-                                    <tr>
-                                        <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.thread.id %}">Thread #{{ voted.thread.id }}</a> on {{ voted.date_created }}</td>
-                                    </tr>
-                                    {% endfor %}{% else %} You have not liked / disliked any threads yet. {% endif %}
-                                </tbody>
-                            </table>
+                        <!-- User threads pagination buttons (BEGINNING)-->
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            {% if user_threads.has_other_pages %}
+                            <nav aria-label="Table navigation">
+                                <ul class="pagination">
+                                    {% if user_threads.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_threads.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                    {% endif %} {% for i in user_threads.paginator.page_range %} {% if user_threads.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %} {% endfor %} {% if user_threads.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_threads.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
                         </div>
-                    </div>
-                    <!-- User thread votes table (END) -->
+                        <!-- User threads pagination buttons (END)-->
 
-                    <!-- User thread votes pagination buttons (BEGINNING) -->
-                    <div class="col-sm-12 d-flex justify-content-center">
-                        {% if user_thread_votes.has_other_pages %}
-                        <nav aria-label="Table navigation">
-                            <ul class="pagination">
-                                {% if user_thread_votes.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_thread_votes.previous_page_number }}">&laquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                                {% endif %} {% for i in user_thread_votes.paginator.page_range %} {% if user_thread_votes.number == i %}
-                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                                </li>
-                                {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                {% endif %} {% endfor %} {% if user_thread_votes.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_thread_votes.next_page_number }}">&raquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                        {% endif %}
                     </div>
-                    <!-- User thread votes pagination buttons (END)-->
-                </div>
-                <!-- Pill containing user thread votes table (END) -->
-                
-                <!-- Pill containing user post votes table (BEGINNING) -->
-                <div class="tab-pane fade" id="pills-post-votes" role="tabpanel" aria-labelledby="pills-post-votes-tab">
+                    <!-- Pill containing user threads table (END) -->
 
-                    <!-- User post votes table (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 table-responsive">
-                            <table class="table">
-                                <tbody class="post-votes-table">
-                                    {% if post_votes_count > 0 %} {% for voted in user_post_votes %}
-                                    <tr>
-                                        <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created }}</td>
-                                    </tr>
-                                    {% endfor %}{% else %} You have not liked / disliked any posts yet. {% endif %}
-                                </tbody>
-                            </table>
+                    <!-- Pill containing user posts table (BEGINNING) -->
+                    <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
+
+                        <!-- User posts table (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table">
+                                    <tbody class="posts-table">
+                                        {% if post_count > 0 %} {% for post in user_posts %}
+                                        <tr>
+                                            <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_thread' post.thread.id %}#post{{post.id}}">Post #{{ post.id }}</a></td>
+                                            <td class="text-center text-md-left">Re: thread #{{ post.thread.id }}: {{ post.thread.subject }}</td>
+                                            <td class="text-md-left d-none d-md-table-cell">{{ post.date_created | timesince }} ago</td>
+                                            <td class="text-center"><a href="{% url 'view_thread' post.thread.id %}#post{{post.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                        </tr>
+
+                                        <!-- Delete Post Modal (BEGINNING) -->
+                                        <div class="modal fade" id="deletePostModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deletePostModalLabel">Confirmation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' post.thread.id post.id %}">Delete</a></button>
+                                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Delete Post Modal (END) -->
+
+                                        {% endfor %} {% else %} You have not added any posts yet. {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <!-- User post votes table (END) -->
+                        <!-- User posts table (END) -->
 
-                    <!-- User post votes pagination buttons (BEGINNING) -->
-                    <div class="col-sm-12 d-flex justify-content-center">
-                        {% if user_post_votes.has_other_pages %}
-                        <nav aria-label="Table navigation">
-                            <ul class="pagination">
-                                {% if user_post_votes.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_post_votes.previous_page_number }}">&laquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                                {% endif %} {% for i in user_post_votes.paginator.page_range %} {% if user_post_votes.number == i %}
-                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-                                </li>
-                                {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                {% endif %} {% endfor %} {% if user_post_votes.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{ user_post_votes.next_page_number }}">&raquo;</a></li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                        {% endif %}
+                        <!-- User posts pagination buttons (BEGINNING)-->
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            {% if user_posts.has_other_pages %}
+                            <nav aria-label="Table navigation">
+                                <ul class="pagination">
+                                    {% if user_posts.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_posts.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                    {% endif %} {% for i in user_posts.paginator.page_range %} {% if user_posts.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %} {% endfor %} {% if user_posts.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_posts.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                        </div>
+                        <!-- User posts pagination buttons (END)-->
                     </div>
-                    <!-- User post votes pagination buttons (END)-->
+                    <!-- Pill containing user posts table (END) -->
+
+                    <!-- Pill containing user thread votes table (BEGINNING) -->
+                    <div class="tab-pane fade" id="pills-thread-votes" role="tabpanel" aria-labelledby="pills-thread-votes-tab">
+
+                        <!-- User thread votes table (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table">
+                                    <tbody class="thread-votes-table">
+                                        {% if thread_votes_count > 0 %} {% for voted in user_thread_votes %}
+                                        <tr>
+                                            <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.thread.id %}">Thread #{{ voted.thread.id }}</a> on {{ voted.date_created }}</td>
+                                        </tr>
+                                        {% endfor %}{% else %} You have not liked / disliked any threads yet. {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- User thread votes table (END) -->
+
+                        <!-- User thread votes pagination buttons (BEGINNING) -->
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            {% if user_thread_votes.has_other_pages %}
+                            <nav aria-label="Table navigation">
+                                <ul class="pagination">
+                                    {% if user_thread_votes.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_thread_votes.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                    {% endif %} {% for i in user_thread_votes.paginator.page_range %} {% if user_thread_votes.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %} {% endfor %} {% if user_thread_votes.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_thread_votes.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                        </div>
+                        <!-- User thread votes pagination buttons (END)-->
+                    </div>
+                    <!-- Pill containing user thread votes table (END) -->
+
+                    <!-- Pill containing user post votes table (BEGINNING) -->
+                    <div class="tab-pane fade" id="pills-post-votes" role="tabpanel" aria-labelledby="pills-post-votes-tab">
+
+                        <!-- User post votes table (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table class="table">
+                                    <tbody class="post-votes-table">
+                                        {% if post_votes_count > 0 %} {% for voted in user_post_votes %}
+                                        <tr>
+                                            <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created
+                                                }}</td>
+                                        </tr>
+                                        {% endfor %}{% else %} You have not liked / disliked any posts yet. {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- User post votes table (END) -->
+
+                        <!-- User post votes pagination buttons (BEGINNING) -->
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            {% if user_post_votes.has_other_pages %}
+                            <nav aria-label="Table navigation">
+                                <ul class="pagination">
+                                    {% if user_post_votes.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_post_votes.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                    {% endif %} {% for i in user_post_votes.paginator.page_range %} {% if user_post_votes.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %} {% endfor %} {% if user_post_votes.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ user_post_votes.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                        </div>
+                        <!-- User post votes pagination buttons (END)-->
+                    </div>
+                    <!-- Pill containing user thread votes table (END) -->
+
                 </div>
-                <!-- Pill containing user thread votes table (END) -->
+                <!-- Pills content (END)-->
 
             </div>
-            <!-- Pills content (END)-->
+            <!-- Pills (END) -->
 
         </div>
-        <!-- Pills (END) -->
 
-    </div>
+        <!-- Delete Account Modal (BEGINNING)-->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
 
-    <!-- Delete Account Modal (BEGINNING)-->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
-                <!-- Modal header (BEGINNING) -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete User Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <!-- Modal header (BEGINNING) -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete User Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                         </button>
+                    </div>
+                    <!-- Modal header (END) -->
+
+                    <!-- Delete user account form (BEGINNING) -->
+                    <form action="{% url 'delete_account' %}" method="post" id="user-form">
+                        {% csrf_token %}
+
+                        <!-- Modal body (BEGINNING) -->
+                        <div class="form-group my-0 modal-body">
+                            <p class="my-0">Are you sure you want to delete your account? This will permanently delete your profile and any content you have generated.</p>
+                            {{ form }}
+                        </div>
+                        <!-- Modal body (END) -->
+
+                        <!-- Modal footer: Confirm delete and cancel button container (BEGINNING) -->
+                        <div class="form-group my-0 modal-footer">
+
+                            <button class="btn btn-danger" type="submit">Delete Account</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+
+                        </div>
+                        <!-- Modal footer: Confirm delete and cancel button container (END) -->
+
+                    </form>
+                    <!-- Delete user account form (END) -->
+
                 </div>
-                <!-- Modal header (END) -->
-
-                <!-- Delete user account form (BEGINNING) -->
-                <form action="{% url 'delete_account' %}" method="post" id="user-form">
-                    {% csrf_token %}
-
-                    <!-- Modal body (BEGINNING) -->
-                    <div class="form-group my-0 modal-body">
-                        <p class="my-0">Are you sure you want to delete your account? This will permanently delete your profile and any content you have generated.</p>
-                        {{ form }}
-                    </div>
-                    <!-- Modal body (END) -->
-
-                    <!-- Modal footer: Confirm delete and cancel button container (BEGINNING) -->
-                    <div class="form-group my-0 modal-footer">
-
-                        <button class="btn btn-danger" type="submit">Delete Account</button>
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-
-                    </div>
-                    <!-- Modal footer: Confirm delete and cancel button container (END) -->
-
-                </form>
-                <!-- Delete user account form (END) -->
-
             </div>
         </div>
-    </div>
-    <!-- Delete Account Modal (END)-->
+        <!-- Delete Account Modal (END)-->
 
+    </div>
 </section>
 <!-- Page content container (END) -->
 

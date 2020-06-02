@@ -4,181 +4,187 @@
 <section class="content-container">
 
   <!-- Page heading (BEGINNING) -->
-  <section id="heading-section" class="d-flex align-items-center justify-content-center">
-    <h1 class="text-center text-light mb-0 py-5">View all reported bugs and requested features</h1>
+  <section id="heading-section">
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+      <h1 class="text-center text-light mb-0 py-5">View all reported bugs and requested features</h1>
+    </div>
   </section>
   <!-- Page heading (END) -->
 
   <!-- Filter fields section (BEGINNING) -->
-  <section id="filter-section" class="py-5 bgr-off-white">
-    <form method="GET" class="mx-auto">
+  <section id="filter-section">
+    <div class="container-fluid py-5 bgr-off-white">
+      <form method="GET" class="mx-auto">
 
-      <!-- Row containing filters (BEGINNING) -->
-      <div class="row">
+        <!-- Row containing filters (BEGINNING) -->
+        <div class="row">
 
-        <!-- Ticket type select menu (BEGINNING) -->
-        <div class="form-group col-md-6 col-sm-12">
-          <label for="ticket-type">Ticket type</label>
-          <select class="form-control selectpicker" id="ticket-type" name="ticket-type" data-style="btn-outline-info">
+          <!-- Ticket type select menu (BEGINNING) -->
+          <div class="form-group col-md-6 col-sm-12">
+            <label for="ticket-type">Ticket type</label>
+            <select class="form-control selectpicker" id="ticket-type" name="ticket-type" data-style="btn-outline-info">
             <option selected>Select...</option>
             {% for type in types_list %}
             <option value="{{ type }}">{{ type }}</option>
             {% endfor %}
           </select>
-        </div>
-        <!-- Ticket type select menu (END) -->
+          </div>
+          <!-- Ticket type select menu (END) -->
 
-        <!-- Ticket status select menu (BEGINNING) -->
-        <div class="form-group col-md-6 col-sm-12">
-          <label for="ticket-status">Ticket status</label>
-          <select class="form-control selectpicker" id="ticket-status" name="ticket-status" data-style="btn-outline-info">
+          <!-- Ticket status select menu (BEGINNING) -->
+          <div class="form-group col-md-6 col-sm-12">
+            <label for="ticket-status">Ticket status</label>
+            <select class="form-control selectpicker" id="ticket-status" name="ticket-status" data-style="btn-outline-info">
             <option selected>Select...</option>
             {% for status in status_list %}
             <option value="{{ status }}">{{ status }}</option>
             {% endfor %}
           </select>
+          </div>
+          <!-- Ticket status select menu (END) -->
+
         </div>
-        <!-- Ticket status select menu (END) -->
+        <!-- Row containing filters (END) -->
 
-      </div>
-      <!-- Row containing filters (END) -->
+        <!-- Filter & Reset buttton (BEGINNING) -->
+        <div class="row">
+          <div class="form-group col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-info">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
+          <div class="form-group col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset  <i class="fa fa-refresh" aria-hidden="true"></i></button></div>
+        </div>
+        <!-- Filter & Reset buttton (END) -->
 
-      <!-- Filter & Reset buttton (BEGINNING) -->
-      <div class="row">
-        <div class="form-group col-sm-6 d-flex justify-content-center"><button type="submit" class="btn btn-info">Filter  <i class="fa fa-filter" aria-hidden="true"></i></button></div>
-        <div class="form-group col-sm-6 d-flex justify-content-center"><button id="reset" class="btn btn-outline-danger">Reset  <i class="fa fa-refresh" aria-hidden="true"></i></button></div>
-      </div>
-      <!-- Filter & Reset buttton (END) -->
-
-    </form>
-
+      </form>
+    </div>
   </section>
   <!-- Filter fields section (END) -->
 
   <!-- Section containing table with all / filtered tickets (BEGINNING) -->
-  <section id="table-section" class="px-md-5 px-sm-2 bgr-off-white">
-    <div class="row">
+  <section id="table-section">
+    <div class="container-fluid px-md-5 px-sm-2 bgr-off-white">
+      <div class="row">
 
-      <!-- Table container (BEGINNING) -->
-      <div class="col-sm-12 table-responsive">
+        <!-- Table container (BEGINNING) -->
+        <div class="col-sm-12 table-responsive">
 
-        <!-- Table containing tickets (BEGINNING) -->
-        <table id="ticket-table" class="table text-center">
+          <!-- Table containing tickets (BEGINNING) -->
+          <table id="ticket-table" class="table text-center">
 
-          <!-- Table heading (BEGINNING) -->
-          <thead>
-            <tr>
-              <th>Status</th>
-              <th>Ticket subject</th>
-              <th class="d-none d-md-table-cell">Ticket type</th>
-              <th class="d-none d-md-table-cell">Created</th>
-              <th></th>
-            </tr>
-          </thead>
-          <!-- Table heading (END) -->
+            <!-- Table heading (BEGINNING) -->
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Ticket subject</th>
+                <th class="d-none d-md-table-cell">Ticket type</th>
+                <th class="d-none d-md-table-cell">Created</th>
+                <th></th>
+              </tr>
+            </thead>
+            <!-- Table heading (END) -->
 
-          <!-- Table body (BEGINNING) -->
-          <tbody>
+            <!-- Table body (BEGINNING) -->
+            <tbody>
 
-            {% for ticket in tickets %}
-            <tr>
+              {% for ticket in tickets %}
+              <tr>
 
-              <!-- Column containnig font awesome icons indication ticket status (BEGINNING) -->
-              <td>
-                {% if ticket.ticket_status == "Open" %}
-                <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
-                <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
-                <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
-                <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
-              </td>
-              <!-- Column containnig font awesome icons indication ticket status (END) -->
+                <!-- Column containnig font awesome icons indication ticket status (BEGINNING) -->
+                <td>
+                  {% if ticket.ticket_status == "Open" %}
+                  <i data-toggle="tooltip" data-placement="top" title="Open" class="fa fa-hourglass-o" aria-hidden="true"></i> {% elif ticket.ticket_status == "In Progress" %}
+                  <i data-toggle="tooltip" data-placement="top" title="In Progress" class="fa fa-hourglass-end" aria-hidden="true"></i> {% elif ticket.ticket_status == "Completed" %}
+                  <i data-toggle="tooltip" data-placement="top" title="Completed" class="fa fa-hourglass" aria-hidden="true"></i> {% elif ticket.ticket_status == "Closed" %}
+                  <i data-toggle="tooltip" data-placement="top" title="Closed" class="fa fa-close" aria-hidden="true"></i> {% endif %}
+                </td>
+                <!-- Column containnig font awesome icons indication ticket status (END) -->
 
-              <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
-              <td class="d-none d-md-table-cell">{{ ticket.ticket_type }}</td>
-              <td class="d-none d-md-table-cell">{{ ticket.date_created | timesince }} ago</br> by {{ ticket.user }}</td>
+                <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
+                <td class="d-none d-md-table-cell">{{ ticket.ticket_type }}</td>
+                <td class="d-none d-md-table-cell">{{ ticket.date_created | timesince }} ago</br> by {{ ticket.user }}</td>
 
-              <!-- Columns containnig action dropdown containing edit / view / delete ticket actions (BEGINNING) -->
-              <td class="dropdown">
-                <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
-                  <a class="dropdown-item" href="{% url 'view_ticket' ticket.id %}"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a> {% if request.user == ticket.user %}
-                  <a class="dropdown-item text-primary" href="{% url 'edit_ticket' ticket.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                  <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
-                </div>
-              </td>
-              <!-- Columns containnig action dropdown containing edit / view / delete ticket actions (END) -->
-
-            </tr>
-
-            <!-- Delete Ticket Modal (BEGINNING) -->
-            <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <!-- Columns containnig action dropdown containing edit / view / delete ticket actions (BEGINNING) -->
+                <td class="dropdown">
+                  <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
+                    <a class="dropdown-item" href="{% url 'view_ticket' ticket.id %}"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i> View</a> {% if request.user == ticket.user %}
+                    <a class="dropdown-item text-primary" href="{% url 'edit_ticket' ticket.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                    <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
                   </div>
-                  <div class="modal-body">
-                    <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                </td>
+                <!-- Columns containnig action dropdown containing edit / view / delete ticket actions (END) -->
+
+              </tr>
+
+              <!-- Delete Ticket Modal (BEGINNING) -->
+              <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
+                      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- Delete Ticket Modal (END) -->
+              <!-- Delete Ticket Modal (END) -->
 
-            {% endfor %}
+              {% endfor %}
 
-          </tbody>
-          <!-- Table body (END) -->
+            </tbody>
+            <!-- Table body (END) -->
 
-        </table>
-        <!-- Table containing tickets (END) -->
+          </table>
+          <!-- Table containing tickets (END) -->
+
+        </div>
+        <!-- Table container (END) -->
+
+        <!-- Pagination navigation container (BEGINNING) -->
+        <div class="col-sm-12 d-flex justify-content-center">
+
+          <!-- Pagination buttons (BEGINNING) -->
+          {% if tickets.has_other_pages %}
+          <nav aria-label="Table navigation">
+            <ul class="pagination">
+              {% if tickets.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{ tickets.previous_page_number }}">&laquo;</a></li>
+              {% else %}
+              <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+              {% endif %} {% for i in tickets.paginator.page_range %} {% if tickets.number == i %}
+              <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+              </li>
+              {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %} {% endfor %} {% if tickets.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ tickets.next_page_number }}">&raquo;</a></li>
+              {% else %}
+              <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+              {% endif %}
+            </ul>
+          </nav>
+          {% endif %}
+          <!-- Pagination buttons (END) -->
+
+        </div>
+        <!-- Pagination navigation container (END) -->
 
       </div>
-      <!-- Table container (END) -->
-
-      <!-- Pagination navigation container (BEGINNING) -->
-      <div class="col-sm-12 d-flex justify-content-center">
-
-        <!-- Pagination buttons (BEGINNING) -->
-        {% if tickets.has_other_pages %}
-        <nav aria-label="Table navigation">
-          <ul class="pagination">
-            {% if tickets.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page={{ tickets.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-            {% endif %} {% for i in tickets.paginator.page_range %} {% if tickets.number == i %}
-            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
-            </li>
-            {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %} {% endfor %} {% if tickets.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ tickets.next_page_number }}">&raquo;</a></li>
-            {% else %}
-            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-            {% endif %}
-          </ul>
-        </nav>
-        {% endif %}
-        <!-- Pagination buttons (END) -->
-
-      </div>
-      <!-- Pagination navigation container (END) -->
-
     </div>
-
   </section>
   <!-- Section containing table with all / filtered tickets (END) -->
 
   <!-- Add ticket button - fixed (BEGINNING) -->
   {% if user.is_authenticated %}
   <section id="add-ticket-btn-section">
-    <button type="button" class="btn btn-outline-primary fixed-bottom btn-rounded" data-toggle="tooltip" data-placement="top" title="Add a ticket"><a class="text-reset text-decoration-none" href="{% url 'add_ticket' %}"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></button>
+    <div class="container-fluid">
+      <button type="button" class="btn btn-outline-primary fixed-bottom btn-rounded" data-toggle="tooltip" data-placement="top" title="Add a ticket"><a class="text-reset text-decoration-none" href="{% url 'add_ticket' %}"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></button>
+    </div>
   </section>
   {% endif %}
   <!-- Add ticket button - fixed (END) -->

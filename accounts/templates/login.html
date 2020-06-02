@@ -3,45 +3,47 @@
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
     <section id="login-section">
-        <div class="row container-fluid d-flex justify-content-center p-0 m-0">
-            <div class="col-lg-6 col-md-8 col-sm-10 my-5">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 col-md-8 col-sm-10 my-5">
 
-                <!-- Sign in form (BEGINNING) -->
-                <form method="POST" class="mx-auto px-2 px-md-5 py-5">
+                    <!-- Sign in form (BEGINNING) -->
+                    <form method="POST" class="mx-auto px-4 px-md-5 py-5">
 
-                    <!-- Form heading (BEGINNING) -->
-                    <h2 class="text-center">Sign in to the Unicorn Attracktor Tracker</h2>
-                    <!-- Form heading (END) -->
+                        <!-- Form heading (BEGINNING) -->
+                        <h2 class="text-center">Sign in to the Unicorn Attracktor Tracker</h2>
+                        <!-- Form heading (END) -->
 
-                    {% csrf_token %} {{ login_form | as_bootstrap }}
+                        {% csrf_token %} {{ login_form | as_bootstrap }}
 
-                    <!-- Login button (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <button type="submit" class="btn btn-outline-primary">Sign In</button>
+                        <!-- Login button (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-outline-primary">Sign In</button>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Login button (END) -->
+                        <!-- Login button (END) -->
 
-                    <!-- Reset password button (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <p><a class="text-decoration-none" href="{% url 'password_reset' %}">Forgot password?</a></p>
+                        <!-- Reset password button (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <p><a class="text-decoration-none" href="{% url 'password_reset' %}">Forgot password?</a></p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Reset password button (END) -->
+                        <!-- Reset password button (END) -->
 
-                    <!-- Go to registration form button (BEGINNING) -->
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <span>Not a member? <a class="text-decoration-none" href="{% url 'registration' %}">Sign Up.</a></span>
+                        <!-- Go to registration form button (BEGINNING) -->
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <span>Not a member? <a class="text-decoration-none" href="{% url 'registration' %}">Sign Up.</a></span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Go to registration form button (END) -->
+                        <!-- Go to registration form button (END) -->
 
-                </form>
-                <!-- Sign in form (END) -->
+                    </form>
+                    <!-- Sign in form (END) -->
 
+                </div>
             </div>
         </div>
     </section>

@@ -3,37 +3,39 @@
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
         <section id="register-section">
-                <div class="row container-fluid d-flex justify-content-center p-0 m-0">
-                        <div class="col-lg-6 col-md-8 col-sm-10 my-5">
+                <div class="container-fluid">
+                        <div class="row d-flex justify-content-center">
+                                <div class="col-lg-6 col-md-8 col-sm-10 my-5">
 
-                                <!-- Registration form (BEGINNING) -->
-                                <form method="post" class="mx-auto px-2 px-md-5 py-5">
+                                        <!-- Registration form (BEGINNING) -->
+                                        <form method="post" class="mx-auto px-4 px-md-5 py-5">
 
-                                        <!-- Form heading and sub-heading (BEGINNING) -->
-                                        <h2 class="text-center">Sign up for the Unicorn Attracktor Tracker</h2>
-                                        <h5 class="text-center">Sign up to report bugs, request features, support unicornAttracktor app development, and join our community.</h5>
-                                        <!-- Form heading and sub-heading (END) -->
+                                                <!-- Form heading and sub-heading (BEGINNING) -->
+                                                <h2 class="text-center">Sign up for the Unicorn Attracktor Tracker</h2>
+                                                <h5 class="text-center">Sign up to report bugs, request features, support unicornAttracktor app development, and join our community.</h5>
+                                                <!-- Form heading and sub-heading (END) -->
 
-                                        {% csrf_token %} {{ registration_form | as_bootstrap }}
+                                                {% csrf_token %} {{ registration_form | as_bootstrap }}
 
-                                        <!-- Sign Up button (BEGINNING) -->
-                                        <div class="row">
-                                                <div class="col-sm-12 text-center">
-                                                        <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+                                                <!-- Sign Up button (BEGINNING) -->
+                                                <div class="row">
+                                                        <div class="col-sm-12 text-center">
+                                                                <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+                                                        </div>
                                                 </div>
-                                        </div>
-                                        <!-- Sign Up button (END) -->
+                                                <!-- Sign Up button (END) -->
 
-                                        <!-- Reference to sign in form (BEGINNING) -->
-                                        <div class="row">
-                                                <div class="col-sm-12 text-center pt-3">
-                                                        <p>Already a member? <a class="text-decoration-none" href="{% url 'login' %}">Sign in.</a></p>
+                                                <!-- Reference to sign in form (BEGINNING) -->
+                                                <div class="row">
+                                                        <div class="col-sm-12 text-center pt-3">
+                                                                <p>Already a member? <a class="text-decoration-none" href="{% url 'login' %}">Sign in.</a></p>
+                                                        </div>
                                                 </div>
-                                        </div>
-                                        <!-- Reference to sign in form (END) -->
+                                                <!-- Reference to sign in form (END) -->
 
-                                </form>
-                                <!-- Registration form (END) -->
+                                        </form>
+                                        <!-- Registration form (END) -->
+                                </div>
                         </div>
                 </div>
         </section>
