@@ -134,7 +134,7 @@ main {
 
 #forum-heading-section::after {
   content: "";
-  background-image: url("/media/background_images/forum.jpg");
+  background-image: url("/media/background_images/forum_discussion.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -167,6 +167,14 @@ main {
   background-attachment: fixed;
 }
 
+#add-thread-section {
+  background-image: url("/media/background_images/forum_discussion.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 /* SEPARATORS */
 
 /* Add separator to filter section */
@@ -175,7 +183,7 @@ main {
   border-top: solid 10px $color-light-pink;
 }
 
-#table-section, #forum-table-section, #add-ticket-section {
+#table-section, #forum-table-section, #add-ticket-section, #add-thread-section {
   border-bottom: solid 10px $color-light-pink;
 }
 
@@ -187,7 +195,7 @@ main {
 
 /* All tickets page heading section separator */
 
-#heading-section, #forum-heading-section , #add-ticket-section {
+#heading-section, #forum-heading-section , #add-ticket-section, #add-thread-section {
   border-top: 10px solid $color-purple;
 }
 
@@ -203,7 +211,8 @@ form {
   width: 50%;
 }
 
-#add-ticket-section form, #register-section form,  #login-section form, #edit-profile-form {
+#add-ticket-section form, #register-section form,  #login-section form, #edit-profile-form ,
+#add-thread-section form {
   background-color: white;
   width: 100%;
 }
