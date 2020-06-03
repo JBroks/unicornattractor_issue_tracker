@@ -7759,6 +7759,11 @@ footer {
 main {
   flex: auto; }
 
+/* LOGO */
+/* logo size adjusted */
+.navbar-brand img {
+  height: 50px; }
+
 /* SPINNER */
 /* Spinner on data loading
 spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
