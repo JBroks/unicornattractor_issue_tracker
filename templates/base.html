@@ -6,13 +6,14 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block page_title %}{% endblock %}</title>
-  
-  <!-- Latest compiled and minified CSS -->	  <!-- Latest compiled and minified CSS -->
+
+  <!-- Latest compiled and minified CSS -->
+  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  
+
   <!-- Bootstrap select CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.17/css/bootstrap-select.min.css" type="text/css" />
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -22,172 +23,184 @@
 </head>
 
 <body>
+  
+  <!-- Spinner on data loading -->
+  <div id="overlay">
+    <div class="loader"></div>
+  </div>
 
-    <!-- Navbar (BEGINNING) -->
-    <nav class="navbar navbar-expand-lg navbar-light bgr-light-pink">
+  <!-- Back to top button -->
+  <a id="back-to-top-button"></a>
+  
+  <!-- Navbar (BEGINNING) -->
+  <nav class="navbar navbar-expand-lg navbar-light bgr-light-pink">
 
-      <!-- Logo (BEGINNING) -->
-      <a class="navbar-brand" href="{% url 'index' %}">Logo</a>
-      <!-- Logo (END) -->
+    <!-- Logo (BEGINNING) -->
+    <a class="navbar-brand" href="{% url 'index' %}">Logo</a>
+    <!-- Logo (END) -->
 
-      <!-- Hamburger button (BEGINNING) -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Hamburger button (BEGINNING) -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span></button>
-      <!-- Hamburger button (END) -->
+    <!-- Hamburger button (END) -->
 
-      <!-- Navbar menu (BEGINNING) -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-        <!-- Menu next to logo - on large screens only (BEGINNING) -->
-        <ul class="navbar-nav mr-auto ">
-          <li {% if request.resolver_match.url_name == 'index' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
+    <!-- Navbar menu (BEGINNING) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-          <!-- Explore dropdown menu (BEGINNING) -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'all_tickets' %}"><i class="fa fa-ticket" aria-hidden="true"></i> Tickets</a>
-              <a class="dropdown-item" href="{% url 'forum' %}"><i class="fa fa-users" aria-hidden="true"></i> Forum</a>
-              <a class="dropdown-item" href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Statistics</a>
-            </div>
-          </li>
-          <!-- Explore dropdown menu (END) -->
-          
-          <!-- Actions dropdown menu - unauthenticated users won't be able to add new tickets (BEGINNING) -->
-          {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownAdd">
-              <a class="dropdown-item" href="{% url 'add_ticket' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add a ticket</a>
-              <a class="dropdown-item" href="{% url 'add_thread' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create a thread</a>
-            </div>
-          </li>
-          {% endif %}
-          <!-- Actions dropdown menu - unauthenticated users won't be able to add new tickets (END) -->
-        </ul>
-        <!-- Menu next to logo - on large screens only (END) -->
+      <!-- Menu next to logo - on large screens only (BEGINNING) -->
+      <ul class="navbar-nav mr-auto ">
+        <li {% if request.resolver_match.url_name == 'index' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
 
-        <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on medium and smaller screens only (BEGINNING) -->
-        <ul class="navbar-nav d-xs-inline d-lg-none">
-          {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <!-- Explore dropdown menu (BEGINNING) -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'all_tickets' %}"><i class="fa fa-ticket" aria-hidden="true"></i> Tickets</a>
+            <a class="dropdown-item" href="{% url 'forum' %}"><i class="fa fa-users" aria-hidden="true"></i> Forum</a>
+            <a class="dropdown-item" href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Statistics</a>
+          </div>
+        </li>
+        <!-- Explore dropdown menu (END) -->
+
+        <!-- Actions dropdown menu - unauthenticated users won't be able to add new tickets (BEGINNING) -->
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownAdd">
+            <a class="dropdown-item" href="{% url 'add_ticket' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add a ticket</a>
+            <a class="dropdown-item" href="{% url 'add_thread' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create a thread</a>
+          </div>
+        </li>
+        {% endif %}
+        <!-- Actions dropdown menu - unauthenticated users won't be able to add new tickets (END) -->
+      </ul>
+      <!-- Menu next to logo - on large screens only (END) -->
+
+      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on medium and smaller screens only (BEGINNING) -->
+      <ul class="navbar-nav d-xs-inline d-lg-none">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {% if user.userprofile.image %}
           <img class="nav-profile-image rounded-circle" src="{{ user.userprofile.image.url }}" alt="Navbar profile image">{% else %}<img class="nav-profile-image rounded-circle" src="/media/profile_image/default.png" alt="Navbar profile image">{% endif %} {{ user.username }}</a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
-              <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
-              <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
-            </div>
-          </li>
-           {% else %}
-           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
-              <a class="dropdown-item" href="{% url 'registration' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
-            </div>
-          </li>
-           {% endif %}
-        </ul>
-        <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on medium and smaller screens only (END) -->
-        
-        <!-- Search form (BEGINNING) -->
-        <form action="{% url 'search_results' %}" method="GET" class="form-inline my-2 my-lg-0 mr-2 d-flex justify-content-lg-end">
-          <div class="input-group">
-            <input id="search" type="text" name="search" class="form-control" placeholder="Search..." size="40">
-            <div class="input-group-append">
-              <button id="search-btn" class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
-            </div>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+            <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
+            <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
           </div>
-        </form>
-        <!-- Search form (END) -->
-        
-        <!-- Sing in / out button displayed in the collapsed menu for easier access (BEGINNING) -->
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav d-xs-inline d-lg-none">
-          <li><hr></li>
-          <li class="nav-item text-center"><button class="btn btn-danger"><a class="nav-link text-reset p-0" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></button></li>
-        </ul>
+        </li>
         {% else %}
-        <ul class="navbar-nav d-xs-inline d-lg-none">
-          <li><hr></li>
-          <li class="nav-item text-center"><button class="btn btn-primary"><a class="nav-link text-reset p-0" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a></button></li>
-        </ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
+            <a class="dropdown-item" href="{% url 'registration' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
+          </div>
+        </li>
         {% endif %}
-        <!-- Sing in / out button displayed in the collapsed menu for easier access (END) -->
-        
-        <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on large screens only (BEGINNING) -->
-        <ul class="navbar-nav d-none d-lg-flex">
-          {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img class="nav-profile-image rounded-circle" src="{{ user.userprofile.image.url }}" alt="Navbar profile image"> {{ user.username }}</a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
-              <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
-              <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
-            </div>
-          </li>
-          {% else %}
-          <li {% if request.resolver_match.url_name == 'login' %}class="nav-item active mr-2" {% else %}class="nav-item mr-2" {% endif %}>
-            <a class="nav-link mt-1" href="{% url 'login' %}">Sign in</a>
-          </li>
-          <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-            <button class="btn btn-primary p-0"><a class="nav-link text-reset" href="{% url 'registration' %}">Sign up</a></button>
-          </li>
-          {% endif %}
-        </ul>
-        <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on large screens only (END) -->
+      </ul>
+      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on medium and smaller screens only (END) -->
 
-      </div>
-      <!-- Navbar menu (END) -->
-
-    </nav>
-    <!-- Navbar (END) -->
-
-    <!-- Message container -->
-    <main>
-      {% if messages %}
-
-      <div class="bgr-light-pink">
-        {% for message in messages %} {{ message }} {% endfor %}
-      </div>
-      {% endif %}
-
-      <!-- Content of other templates -->
-      <div class="templates-container container-fluid px-0">
-        {% block content %}{% endblock %}
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="page-footer font-small">
-
-      <!-- Footer Links -->
-      <div class="container-fluid text-center text-md-left bgr-blue">
-
-        <div class="row py-4">
-          <div class="col-md-6 mt-md-0 mt-3">
-
-            <!-- Content -->
-            <h5 class="text-uppercase text-light">Disclaimer</h5>
-            <p class="text-light">For educational purposes only.</p>
-
+      <!-- Search form (BEGINNING) -->
+      <form action="{% url 'search_results' %}" method="GET" class="form-inline my-2 my-lg-0 mr-2 d-flex justify-content-lg-end">
+        <div class="input-group">
+          <input id="search" type="text" name="search" class="form-control" placeholder="Search..." size="40">
+          <div class="input-group-append">
+            <button id="search-btn" class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
           </div>
         </div>
+      </form>
+      <!-- Search form (END) -->
 
+      <!-- Sing in / out button displayed in the collapsed menu for easier access (BEGINNING) -->
+      {% if user.is_authenticated %}
+      <ul class="navbar-nav d-xs-inline d-lg-none">
+        <li>
+          <hr>
+        </li>
+        <li class="nav-item text-center"><button class="btn btn-danger"><a class="nav-link text-reset p-0" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></button></li>
+      </ul>
+      {% else %}
+      <ul class="navbar-nav d-xs-inline d-lg-none">
+        <li>
+          <hr>
+        </li>
+        <li class="nav-item text-center"><button class="btn btn-primary"><a class="nav-link text-reset p-0" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a></button></li>
+      </ul>
+      {% endif %}
+      <!-- Sing in / out button displayed in the collapsed menu for easier access (END) -->
+
+      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on large screens only (BEGINNING) -->
+      <ul class="navbar-nav d-none d-lg-flex">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="nav-profile-image rounded-circle" src="{{ user.userprofile.image.url }}" alt="Navbar profile image"> {{ user.username }}</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+            <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
+            <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+          </div>
+        </li>
+        {% else %}
+        <li {% if request.resolver_match.url_name == 'login' %}class="nav-item active mr-2" {% else %}class="nav-item mr-2" {% endif %}>
+          <a class="nav-link mt-1" href="{% url 'login' %}">Sign in</a>
+        </li>
+        <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
+          <button class="btn btn-primary p-0"><a class="nav-link text-reset" href="{% url 'registration' %}">Sign up</a></button>
+        </li>
+        {% endif %}
+      </ul>
+      <!-- Account dropdown / Sign In & Sign Up link showing when user is authenticated / not authenticated - on large screens only (END) -->
+
+    </div>
+    <!-- Navbar menu (END) -->
+
+  </nav>
+  <!-- Navbar (END) -->
+
+  <!-- Message container -->
+  <main>
+    {% if messages %}
+
+    <div class="bgr-light-pink">
+      {% for message in messages %} {{ message }} {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Content of other templates -->
+    <div class="templates-container container-fluid px-0">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="page-footer font-small">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left bgr-blue">
+
+      <div class="row py-4">
+        <div class="col-md-6 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase text-light">Disclaimer</h5>
+          <p class="text-light">For educational purposes only.</p>
+
+        </div>
       </div>
 
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3 bgr-purple">
-        <span class="text-light">&copy; 2019 Copyright:</span>
-        <a class="text-decoration-none" href="https://github.com/JBroks/unicornattractor_issue_tracker">JBroks</a>
-      </div>
+    </div>
 
-    </footer>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 bgr-purple">
+      <span class="text-light">&copy; 2019 Copyright:</span>
+      <a class="text-decoration-none" href="https://github.com/JBroks/unicornattractor_issue_tracker">JBroks</a>
+    </div>
+
+  </footer>
 
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -197,7 +210,7 @@
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  
+
   <!-- Bootstrap select JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.17/js/bootstrap-select.min.js"></script>
   {% block js %} {% endblock %}

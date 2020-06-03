@@ -7715,6 +7715,7 @@ th {
   border: solid 2px #fbfafa;
   background-color: transparent; }
 
+/* BACKGROUND COLOR CLASSES */
 /* Background color classes set */
 .bgr-purple {
   background-color: #5854a5; }
@@ -7737,6 +7738,7 @@ th {
 .bgr-dark-grey {
   background-color: #5f6366; }
 
+/* FLEXBOX */
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
 html,
@@ -7757,6 +7759,108 @@ footer {
 main {
   flex: auto; }
 
+/* SPINNER */
+/* Spinner on data loading
+spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
+.loader {
+  z-index: 99;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border-top: 2px solid #2e3190;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  animation: spin 3s linear infinite forwards;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; }
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border-top: 2px solid #2e3190;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent; }
+
+.loader::before {
+  top: 7px;
+  left: 7px;
+  width: 178px;
+  height: 178px;
+  border-top: 2px solid #e89e93;
+  animation: spin 2s linear infinite forwards; }
+
+.loader::after {
+  top: 16px;
+  left: 16px;
+  width: 160px;
+  height: 160px;
+  border-top: 2px solid #fcdcd7;
+  animation: spin 1s linear infinite forwards; }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg); } }
+/* Overlay styled to dim the background for spinner */
+#overlay {
+  z-index: 98;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); }
+
+/* BACK TO TOP BUTTON */
+/* Back to top button inspired by this Codepen solution: https://codepen.io/matthewcain/pen/ZepbeR */
+#back-to-top-button {
+  display: inline-block;
+  background-color: transparent;
+  color: #63d37b;
+  border: 2px solid #63d37b;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  border-radius: 40px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: background-color .3s, opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 97; }
+
+#back-to-top-button::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 70px; }
+
+#back-to-top-button:active {
+  background-color: #63d37b;
+  color: #ffffff;
+  border: none; }
+
+#back-to-top-button.show {
+  opacity: 1;
+  visibility: visible; }
+
+/* Solution to sticky hover on mobile devices found here: https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
+@media (hover: hover) {
+  #back-to-top-button:hover {
+    cursor: pointer;
+    background-color: #63d37b;
+    color: #ffffff;
+    border: none; } }
 /* BACKGROUND IMAGES */
 /* Background image for jumbotron section */
 #jumbotron-section {
@@ -7892,6 +7996,7 @@ textarea,
 .comment-form textarea {
   border: 1px solid #ced4da; }
 
+/* PROFILE IMAGE */
 /* Set max size of profile images */
 .profile-image {
   max-width: 200px;
@@ -7905,13 +8010,14 @@ textarea,
   width: 50px;
   height: 50px; }
 
+/* BUTTONS */
 /* Increse size of add ticket to make it more prominent */
 .btn-lg, .btn-group-lg > .btn {
   font-size: 4rem; }
 
 /* Overwrite bootstrap class to place fixed 'add-ticket' button to the right */
 .fixed-bottom {
-  bottom: 20px;
+  bottom: 110px;
   right: 20px;
   left: auto; }
 
@@ -7960,7 +8066,7 @@ span.vote-counter {
 
 /* Homepage jumbotron background color */
 .jumbotron {
-  background-color: transparent; }
+  background: none; }
 
 /* Hr divider styling - homepage about unicorn attractor section */
 .hr-divider {

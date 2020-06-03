@@ -123,3 +123,33 @@ $(function() {
     }
 });
 
+// SPINNER OVERLAY
+
+/**
+ * Function fading out loading spinner overlay 
+ **/
+
+$(window).on('load', function() {
+  $("#overlay").fadeOut("slow");
+});
+
+// BACK TO TOP BUTTON
+
+/**
+ * Function implements smooth scrolling back to top after clicking the button
+ */
+
+let btn = $('#back-to-top-button');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(d) {
+  d.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
