@@ -11,7 +11,9 @@
                 <p class="lead text-dark">Unicorn Attractor Tracking system enables you to engage with our developers to improve our Unicorn Attractor App.</p>
                 <hr class="my-4"> {% if user.is_authenticated %}
                 <p class="text-light">Add your ticket to report an issue or suggest a new feature, or join a discussion on our Forum!</p>
-                <p><a class="btn btn-light" href="{% url 'add_ticket' %}" role="button">Add ticket</a> <a class="btn btn-light ml-3" href="{% url 'forum' %}" role="button">Forum</a></p>
+                <p>
+                <a class="btn btn-light mt-3" href="{% url 'add_ticket' %}" role="button">Add ticket</a> <a class="btn btn-light ml-3 mt-3" href="{% url 'forum' %}" role="button">Forum</a>
+                </p>
                 {% else %}
                 <p class="text-light">Sign up and help us to improve your experience today!</p>
                 <p><a class="btn btn-light" href="{% url 'registration' %}" role="button">Sign up</a></p>
@@ -105,7 +107,7 @@
             <div class="row pt-4">
                 <div class="col-md-6 col-sm-12 badge d-flex justify-content-md-end justify-content-center">
                     <a class="pr-md-5" href="https://apps.apple.com/"><img src="/media/badges/apple-store-badge.png" alt="Apple store badge"></a>
-                    </div>
+                </div>
                 <div class="col-md-6 col-sm-12 badge d-flex justify-content-md-start justify-content-center">
                     <a class="pl-md-5" ref="https://play.google.com/store?gl=IE"><img src="/media/badges/google-play-badge.png" alt="Google store badge"></a>
                 </div>
