@@ -6,10 +6,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block page_title %}{% endblock %}</title>
-  
+
   <!-- Favicon set -->
   <link rel="shortcut icon" type="image/png" href="/media/logo/logo.png" />
-  
+
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-  
+
   <!-- Spinner on data loading -->
   <div id="overlay">
     <div class="loader"></div>
@@ -33,7 +33,7 @@
 
   <!-- Back to top button -->
   <a id="back-to-top-button"></a>
-  
+
   <!-- Navbar (BEGINNING) -->
   <nav class="navbar navbar-expand-lg navbar-light bgr-light-pink">
 
@@ -167,9 +167,17 @@
   <main>
     {% if messages %}
 
-    <div class="bgr-light-pink">
-      {% for message in messages %} {{ message }} {% endfor %}
-    </div>
+      {% for message in messages %} 
+      <div role="alert" aria-live="assertive" aria-atomic="true" class="toast toast-{{message.tags}}" data-autohide="false">
+        <div class="toast-header">
+          <strong class="mr-auto text-capitalize">{{ message.tags }}</strong>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="toast-body">
+          {{ message }}
+        </div>
+      </div>
+      {% endfor %}
     {% endif %}
 
     <!-- Content of other templates -->
