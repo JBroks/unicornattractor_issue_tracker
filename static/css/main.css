@@ -7764,6 +7764,31 @@ main {
 .navbar-brand img {
   height: 50px; }
 
+/* TOAST MESSAGES */
+/* Toast message position */
+.toast {
+  position: fixed;
+  right: 0; }
+
+/* Toast messages color depending on message type */
+.toast-body {
+  background-color: white; }
+
+.toast-header {
+  color: white; }
+
+.toast-success .toast-header {
+  background-color: #63d37b; }
+
+.toast-warning .toast-header {
+  background-color: #fcd731; }
+
+.toast-error .toast-header {
+  background-color: #ee5140; }
+
+.toast-info .toast-header {
+  background-color: #5854a5; }
+
 /* SPINNER */
 /* Spinner on data loading
 spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */

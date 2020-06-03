@@ -137,7 +137,7 @@ $(window).on('load', function() {
 
 /**
  * Function implements smooth scrolling back to top after clicking the button
- */
+ **/
 
 let btn = $('#back-to-top-button');
 
@@ -152,4 +152,15 @@ $(window).scroll(function() {
 btn.on('click', function(d) {
   d.preventDefault();
   $('html, body').animate({scrollTop:0}, '300');
+});
+
+
+// TOAST MESSAGES
+/**
+ * Function that shows toast message and fades it out after 7sec
+ **/
+
+$(document).ready(function(){
+  $('.toast').toast('show');
+  setTimeout(function(){ $('.toast').toast('hide'); }, 7000);
 });

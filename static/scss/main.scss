@@ -116,6 +116,40 @@ main {
   height: 50px;
 }
 
+/* TOAST MESSAGES */
+
+/* Toast message position */
+.toast {
+  position: fixed;
+  right: 0;
+}
+
+/* Toast messages color depending on message type */
+
+.toast-body {
+  background-color: white;
+}
+
+.toast-header {
+  color: white;
+}
+
+.toast-success .toast-header {
+  background-color: $success;
+}
+
+.toast-warning .toast-header {
+  background-color: $warning;
+}
+
+.toast-error .toast-header {
+  background-color: $danger;
+}
+
+.toast-info .toast-header {
+  background-color: $info;
+}
+
 /* SPINNER */
 /* Spinner on data loading
 spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
