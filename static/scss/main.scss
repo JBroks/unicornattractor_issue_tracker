@@ -11,6 +11,7 @@ $color-pink: #e89e93;
 $color-light-pink: #fcdcd7;
 $color-yellow: #fcd731;
 $color-grey: #cacaca;
+$color-dark-grey: #5f6366;
 $color-green: #63d37b;
 
 /* Bootstrap classes colors adjusted */
@@ -75,6 +76,10 @@ $navbar-light-active-color: rgba($dark, .9);
 
 .bgr-off-white {
   background-color: $color-off-white;
+}
+
+.bgr-dark-grey {
+  background-color: $color-dark-grey;
 }
 
 /* Flexbox used to create a sticky footer and avoid empty space 
@@ -220,6 +225,12 @@ main {
   border-top: 1px solid $color-purple;
 }
 
+/* Profile personal user info hr styling */
+
+.profile-info-separator {
+  border-top: 1px solid $primary;
+}
+
 /* All tickets page heading section separator */
 
 #tickets-heading-container, #forum-heading-container , #add-ticket-section, 
@@ -293,8 +304,8 @@ textarea,
 /* Overwrite bootstrap class to place fixed 'add-ticket' button to the right */
 
 .fixed-bottom {
-  bottom: 50px;
-  right: 50px;
+  bottom: 20px;
+  right: 20px;
   left: auto;
 }
 

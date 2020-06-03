@@ -2,11 +2,11 @@
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
-    <div class="container-fluid">
+    <div class="container-fluid bgr-off-white">
         <div class="row">
 
             <!-- Profile photo container (BEGINNING)-->
-            <div class="col-lg-3 col-md-12 d-flex justify-content-center">
+            <div class="col-lg-3 col-md-12 d-flex justify-content-center bgr-dark-grey p-5">
                 <img class="img-thumbnail profile-image" src="{{ user.userprofile.image.url }}" alt="Profile image">
             </div>
             <!-- Profile photo container (END)-->
@@ -14,13 +14,13 @@
             <!-- User profile heading and last seen info (BEGINNING) -->
             <div class="col-lg-8 col-md-12">
                 <div class="row">
-                    <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
+                    <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center pt-5 pb-3">
                         <h1>{{ user.first_name }} {{ user.last_name }}</h1>
                     </div>
                     <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
                         <p class="text-muted">Joined: {{ user.date_joined }}</p>
                     </div>
-                    <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center">
+                    <div class="col-sm-12 d-flex justify-content-lg-start justify-content-center pb-3">
                         <p class="text-muted">Last seen: {{ user.last_login }}</p>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                             <div class="col-sm-12 text-center">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
+                                        <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
                                     </div>
                                     <div class="col-sm-12">
                                         <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
@@ -111,15 +111,15 @@
             <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (END) -->
 
             <!-- User information - showing only on large and xl devices (BEGINNING) -->
-            <div class="col-lg-3 col-md-12 pt-5 d-none d-lg-block">
+            <div class="col-lg-3 col-md-12 p-5 d-none d-lg-block bgr-dark-grey text-light">
 
                 <!-- Personal info container (BEGINNING)-->
                 <div class="row mx-auto">
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <h5>Personal info</h5>
-                                <hr class="mx-5">
+                                <h5 class="text-primary">Personal info</h5>
+                                <hr class="mx-5 profile-info-separator">
                             </div>
                             <div class="col-sm-12 d-flex justify-content-center">
                                 <p>Full name: {{ user.first_name }} {{ user.last_name }}</p>
@@ -140,8 +140,8 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <h5>Activity</h5>
-                                <hr class="mx-5">
+                                <h5 class="text-primary">Activity</h5>
+                                <hr class="mx-5 profile-info-separator">
                             </div>
                             <div class="col-sm-12 d-flex justify-content-center">
                                 <p><i class="fa fa-users" aria-hidden="true"></i> Forum threads: {{ thread_count }}</p>
@@ -171,7 +171,7 @@
                     <div class="col-sm-12 text-center d-none d-sm-block">
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
+                                <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
                             </div>
                             <div class="col-sm-12">
                                 <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
@@ -185,7 +185,7 @@
             <!-- User information - showing only on large and xl devices (END) -->
 
             <!-- Pills (BEGINNING) -->
-            <div class="col-lg-8 col-md-12">
+            <div class="col-lg-8 col-md-12 pt-3 pb-5">
 
                 <!-- Pills navigation buttons (BEGINNING) -->
                 <ul class="nav nav-pills mb-3 flex-column flex-sm-row" id="pills-tab" role="tablist">
@@ -232,8 +232,8 @@
                                             </td>
                                             <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
                                             <td class="text-center">{{ ticket.ticket_type }}</td>
-                                            <td class="text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                            <td class="text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-dark" aria-hidden="true"></i></a></td>
                                             <td class="text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                                         </tr>
 
@@ -379,8 +379,8 @@
                                             <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">Thread #{{ thread.id}}: {{ thread.subject }}</a></td>
                                             <td class="text-md-left d-none d-md-table-cell "> {{ thread.date_created | timesince }} ago</td>
                                             <td class="text-center"><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
-                                            <td class="text-center"><a href="{% url 'view_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
-                                            <td class="text-center"><a href="{% url 'edit_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><a href="{% url 'view_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><a href="{% url 'edit_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-dark" aria-hidden="true"></i></a></td>
                                             <td class="text-center"><span data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                                         </tr>
 
@@ -567,8 +567,7 @@
                                     <tbody class="post-votes-table">
                                         {% if post_votes_count > 0 %} {% for voted in user_post_votes %}
                                         <tr>
-                                            <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created
-                                                }}</td>
+                                            <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created }}</td>
                                         </tr>
                                         {% endfor %}{% else %} You have not liked / disliked any posts yet. {% endif %}
                                     </tbody>

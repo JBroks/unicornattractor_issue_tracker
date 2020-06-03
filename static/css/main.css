@@ -7734,6 +7734,9 @@ th {
 .bgr-off-white {
   background-color: #fbfafa; }
 
+.bgr-dark-grey {
+  background-color: #5f6366; }
+
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
 html,
@@ -7850,6 +7853,10 @@ main {
 #jumbotron-section hr {
   border-top: 1px solid #5854a5; }
 
+/* Profile personal user info hr styling */
+.profile-info-separator {
+  border-top: 1px solid #e89e93; }
+
 /* All tickets page heading section separator */
 #tickets-heading-container, #forum-heading-container, #add-ticket-section,
 #add-thread-section, #search-heading-section {
@@ -7904,8 +7911,8 @@ textarea,
 
 /* Overwrite bootstrap class to place fixed 'add-ticket' button to the right */
 .fixed-bottom {
-  bottom: 50px;
-  right: 50px;
+  bottom: 20px;
+  right: 20px;
   left: auto; }
 
 button.btn-rounded {
