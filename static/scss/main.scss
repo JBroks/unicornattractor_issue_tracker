@@ -398,6 +398,17 @@ span.vote-counter {
   width: 100%;
 }
 
+/* Switch off border for nav button and increase size of the button */
+
+.navbar-toggler-icon {
+    width: 2em;
+    height: 2em;
+}
+
+.navbar-light .navbar-toggler {
+    border: none;
+}
+
 @media only screen and (max-width: 600px) {
 
   form {
