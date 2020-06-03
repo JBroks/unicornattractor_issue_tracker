@@ -124,7 +124,7 @@ main {
   background-attachment: fixed;
 }
 
-/* Forum background photo with opacity */
+/* Forum & search page background photo with opacity */
 
 #forum-heading-container {
   min-height: 350px;
@@ -135,6 +135,28 @@ main {
 #forum-heading-container::after {
   content: "";
   background-image: url("/media/background_images/forum_discussion.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+#search-heading-container {
+  min-height: 350px;
+  display: block;
+  position: relative;
+}
+
+#search-heading-container::after {
+  content: "";
+  background-image: url("/media/background_images/search.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -188,7 +210,7 @@ main {
 }
 
 #table-section, #forum-table-section, #add-ticket-section, #add-thread-section,
-#thread-view-page, #view-ticket-page {
+#thread-view-page, #view-ticket-page, #search-result-section, #search-heading-section {
   border-bottom: solid 10px $color-light-pink;
 }
 
@@ -201,7 +223,7 @@ main {
 /* All tickets page heading section separator */
 
 #tickets-heading-container, #forum-heading-container , #add-ticket-section, 
-#add-thread-section{
+#add-thread-section, #search-heading-section {
   border-top: 10px solid $color-purple;
 }
 
