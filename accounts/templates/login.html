@@ -11,13 +11,13 @@
                     <form method="POST" class="mx-auto px-4 px-md-5 py-5">
 
                         <!-- Form heading (BEGINNING) -->
-                        <h2 class="text-center">Sign in to the Unicorn Attracktor Tracker</h2>
+                        <h2 class="text-center mb-5">Sign in to the Unicorn Attracktor Tracker</h2>
                         <!-- Form heading (END) -->
 
                         {% csrf_token %} {{ login_form | as_bootstrap }}
 
                         <!-- Login button (BEGINNING) -->
-                        <div class="row">
+                        <div class="row mt-5">
                             <div class="col-sm-12 text-center">
                                 <button type="submit" class="btn btn-outline-primary">Sign In</button>
                             </div>
@@ -25,7 +25,7 @@
                         <!-- Login button (END) -->
 
                         <!-- Reset password button (BEGINNING) -->
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-sm-12 text-center">
                                 <p><a class="text-decoration-none" href="{% url 'password_reset' %}">Forgot password?</a></p>
                             </div>

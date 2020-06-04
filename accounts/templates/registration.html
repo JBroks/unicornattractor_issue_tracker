@@ -12,13 +12,13 @@
 
                                                 <!-- Form heading and sub-heading (BEGINNING) -->
                                                 <h2 class="text-center">Sign up for the Unicorn Attracktor Tracker</h2>
-                                                <h5 class="text-center">Sign up to report bugs, request features, support unicornAttracktor app development, and join our community.</h5>
+                                                <h5 class="text-center mb-5">Sign up to report bugs, request features, support unicornAttracktor app development, and join our community.</h5>
                                                 <!-- Form heading and sub-heading (END) -->
 
                                                 {% csrf_token %} {{ registration_form | as_bootstrap }}
 
                                                 <!-- Sign Up button (BEGINNING) -->
-                                                <div class="row">
+                                                <div class="row mt-5">
                                                         <div class="col-sm-12 text-center">
                                                                 <button type="submit" class="btn btn-outline-primary">Sign Up</button>
                                                         </div>
