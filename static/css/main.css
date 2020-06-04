@@ -8091,6 +8091,10 @@ button.btn-rounded {
 #search-btn {
   line-height: 21px; }
 
+/* Overwrite bootstrap select button color so it matches the form */
+.bootstrap-select > button {
+  background-color: #f7f7f9; }
+
 /* TABLE */
 /* Remove top border for the first row in the table */
 .table tr:first-child td {
