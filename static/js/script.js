@@ -164,3 +164,48 @@ $(document).ready(function(){
   $('.toast').toast('show');
   setTimeout(function(){ $('.toast').toast('hide'); }, 7000);
 });
+
+// NAVBAR HIDE/SHOW EFFECT
+/**
+ * Function that hides the navbar when user is scrolling down and shows it back
+ * on the scroll to top
+ * Based on the following tutorial: 
+ * https://www.solodev.com/blog/web-design/bootstrap/
+ * /build-a-fixed-top-navigation-that-disappears-as-users-scroll.stml
+ **/
+ 
+$(document).ready(function () {
+	var previousScroll = 0;
+	$(window).scroll(function () {
+		var currentScroll = $(this).scrollTop();
+		if (currentScroll < 100) {
+			showNav();
+		} else if (currentScroll > 0 && currentScroll < $(document).height() - $(window).height()) {
+			if (currentScroll > previousScroll) {
+				hideNav();
+			} else {
+				showNav();
+			}
+			previousScroll = currentScroll;
+		}
+	});
+
+	function hideNav() {
+		$(".navbar").removeClass("is-visible").addClass("is-hidden");
+	}
+
+	function showNav() {
+		$(".navbar").removeClass("is-hidden").addClass("is-visible").addClass("scrolling");
+	}
+});
+
+
+// NAVBAR HEIGHT CALCULATOR
+/**
+ * Function that calulates navbar height and applies margin to the main content
+ * by adding nav height plus navbar padding
+ **/
+ 
+var heightNav = $('.navbar').height();
+
+$('main').css({ marginTop : heightNav + 48 + 'px' });

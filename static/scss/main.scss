@@ -122,7 +122,7 @@ main {
   height: 50px;
 }
 
-/* Navbar links in dropdown item color */
+/* Navbar dropdown colors */
 
 .dropdown-item {
   color: darken($primary, 15%);
@@ -130,6 +130,23 @@ main {
 
 .dropdown-menu {
   background-color: $color-light-pink;
+  border: none;
+}
+
+/* Navbar fixed hiding when user scrolls */
+
+nav {
+  transition: background 0.4s ease-in-out;
+}
+
+.is-hidden {
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.2s;
+}
+
+.navbar-hide {
+  pointer-events: none;
+  opacity: 0;
 }
 
 /* TOAST MESSAGES */
