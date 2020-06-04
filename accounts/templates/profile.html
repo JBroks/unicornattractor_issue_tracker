@@ -307,7 +307,7 @@
                                             <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}">Comment #{{ comment.id }}</a></td>
                                             <td class="text-center text-md-left">Re: ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</td>
                                             <td class="text-md-left d-none d-md-table-cell"> {{ comment.date_created | timesince }} ago</td>
-                                            <td class="text-center"><a href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><a href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
                                             <td class="text-center"><span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                                         </tr>
 
@@ -453,7 +453,7 @@
                                             <td class="text-center text-md-left"><a class="text-decoration-none" href="{% url 'view_thread' post.thread.id %}#post{{post.id}}">Post #{{ post.id }}</a></td>
                                             <td class="text-center text-md-left">Re: thread #{{ post.thread.id }}: {{ post.thread.subject }}</td>
                                             <td class="text-md-left d-none d-md-table-cell">{{ post.date_created | timesince }} ago</td>
-                                            <td class="text-center"><a href="{% url 'view_thread' post.thread.id %}#post{{post.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o text-dark" aria-hidden="true"></i></a></td>
+                                            <td class="text-center"><a href="{% url 'view_thread' post.thread.id %}#post{{post.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
                                             <td class="text-center"><span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                                         </tr>
 
