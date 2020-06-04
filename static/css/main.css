@@ -1,8 +1,8 @@
-/* CUSTOM SCSS */
+/* ----------------- CUSTOM SCSS ----------------- */
 /* Customized colors */
 /* Bootstrap classes colors adjusted */
 /* Navbar link color adjusted */
-/* BOOTSTRAP STYLES + BOOTSWATCH LUX THEME */
+/* ----------------- LOAD BOOTSTRAP SCSS + BOOTSWATCH LUX THEME ----------------- */
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -3301,31 +3301,31 @@ input[type="button"].btn-block {
     display: none; }
 
 .navbar-light .navbar-brand {
-  color: rgba(46, 49, 144, 0.9); }
+  color: #2e3190; }
   .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
-    color: rgba(46, 49, 144, 0.9); }
+    color: #2e3190; }
 .navbar-light .navbar-nav .nav-link {
-  color: rgba(46, 49, 144, 0.5); }
+  color: #db6554; }
   .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
-    color: rgba(46, 49, 144, 0.7); }
+    color: #2e3190; }
   .navbar-light .navbar-nav .nav-link.disabled {
     color: rgba(0, 0, 0, 0.3); }
 .navbar-light .navbar-nav .show > .nav-link,
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .nav-link.active {
-  color: rgba(46, 49, 144, 0.9); }
+  color: #2e3190; }
 .navbar-light .navbar-toggler {
-  color: rgba(46, 49, 144, 0.5);
+  color: #db6554;
   border-color: rgba(0, 0, 0, 0.1); }
 .navbar-light .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2846, 49, 144, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23db6554' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
 .navbar-light .navbar-text {
-  color: rgba(46, 49, 144, 0.5); }
+  color: #db6554; }
   .navbar-light .navbar-text a {
-    color: rgba(46, 49, 144, 0.9); }
+    color: #2e3190; }
     .navbar-light .navbar-text a:hover, .navbar-light .navbar-text a:focus {
-      color: rgba(46, 49, 144, 0.9); }
+      color: #2e3190; }
 
 .navbar-dark .navbar-brand {
   color: #fff; }
@@ -7704,18 +7704,8 @@ th {
 .card-title, .card-header {
   color: inherit; }
 
-/* CUSTOM STYLES */
-/* Light button colors changed */
-.btn-light {
-  color: #2e3190;
-  border: solid 2px #fbfafa; }
-
-.btn-light:hover {
-  color: #fbfafa;
-  border: solid 2px #fbfafa;
-  background-color: transparent; }
-
-/* BACKGROUND COLOR CLASSES */
+/* ----------------- CUSTOM CSS ----------------- */
+/* BACKGROUND COLORS */
 /* Background color classes set */
 .bgr-purple {
   background-color: #5854a5; }
@@ -7738,6 +7728,10 @@ th {
 .bgr-dark-grey {
   background-color: #5f6366; }
 
+/* Homepage jumbotron background color */
+.jumbotron {
+  background: none; }
+
 /* FLEXBOX */
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
@@ -7759,10 +7753,25 @@ footer {
 main {
   flex: auto; }
 
-/* LOGO */
+/* NAVBAR */
+/* Switch off border for nav button and increase size of the button */
+.navbar-toggler-icon {
+  width: 2em;
+  height: 2em; }
+
+.navbar-light .navbar-toggler {
+  border: none; }
+
 /* logo size adjusted */
 .navbar-brand img {
   height: 50px; }
+
+/* Navbar links in dropdown item color */
+.dropdown-item {
+  color: #db6554; }
+
+.dropdown-menu {
+  background-color: #fcdcd7; }
 
 /* TOAST MESSAGES */
 /* Toast message position */
@@ -7790,8 +7799,8 @@ main {
   background-color: #5854a5; }
 
 /* SPINNER */
-/* Spinner on data loading
-spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
+/* Spinner on data loading spinner animation found 
+    on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
 .loader {
   z-index: 99;
   width: 200px;
@@ -7884,13 +7893,6 @@ spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&pag
   opacity: 1;
   visibility: visible; }
 
-/* Solution to sticky hover on mobile devices found here: https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
-@media (hover: hover) {
-  #back-to-top-button:hover {
-    cursor: pointer;
-    background-color: #63d37b;
-    color: #ffffff;
-    border: none; } }
 /* BACKGROUND IMAGES */
 /* Background image for jumbotron section */
 #jumbotron-section {
@@ -7980,7 +7982,8 @@ spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&pag
   border-top: solid 10px #e89e93; }
 
 #table-section, #forum-table-section, #add-ticket-section, #add-thread-section,
-#thread-view-page, #view-ticket-page, #search-result-section, #search-heading-section {
+#thread-view-page, #view-ticket-page, #search-result-section,
+#search-heading-section {
   border-bottom: solid 10px #fcdcd7; }
 
 /* Jumbotron hr styling */
@@ -7995,6 +7998,10 @@ spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&pag
 #tickets-heading-container, #forum-heading-container, #add-ticket-section,
 #add-thread-section, #search-heading-section {
   border-top: 10px solid #5854a5; }
+
+/* Hr divider styling - homepage about unicorn attractor section */
+.hr-divider {
+  margin-right: 65% !important; }
 
 /* FORMS */
 /* Form width decreased */
@@ -8041,6 +8048,16 @@ textarea,
   height: 50px; }
 
 /* BUTTONS */
+/* Light button colors changed */
+.btn-light {
+  color: #2e3190;
+  border: solid 2px #fbfafa; }
+
+.btn-light:hover {
+  color: #fbfafa;
+  border: solid 2px #fbfafa;
+  background-color: transparent; }
+
 /* Increse size of add ticket to make it more prominent */
 .btn-lg, .btn-group-lg > .btn {
   font-size: 4rem; }
@@ -8061,10 +8078,16 @@ button.btn-rounded {
 #search-btn {
   line-height: 21px; }
 
+/* TABLE */
 /* Remove top border for the first row in the table */
 .table tr:first-child td {
   border-top: none; }
 
+/* Remove default dropdown symbol for all tickets table actions */
+.dropdown-toggle.actions::after {
+  display: none; }
+
+/* SUMMARY SIDE BAR */
 /* Styling for ticket summary list to create nice layout where text is aligned */
 #ticket-summary-list {
   margin: 0;
@@ -8078,30 +8101,16 @@ button.btn-rounded {
   display: block;
   padding-left: 50px; }
 
-/* Remove default dropdown symbol for all tickets table actions */
-.dropdown-toggle.actions::after {
-  display: none; }
-
+/* CARDS */
 /* Remove border for the accordion cards */
 #accordion .card {
   border: none; }
-
-/* Overwrite bootstrap select button color so it matches the form */
-.bootstrap-select > button {
-  background-color: #f7f7f9; }
 
 /* Increase font-size for like/dislike counter */
 span.vote-counter {
   font-size: 15px; }
 
-/* Homepage jumbotron background color */
-.jumbotron {
-  background: none; }
-
-/* Hr divider styling - homepage about unicorn attractor section */
-.hr-divider {
-  margin-right: 65% !important; }
-
+/* IMAGES */
 /* Set size of the apple/google store badges */
 .badge img {
   height: 50px;
@@ -8114,14 +8123,7 @@ span.vote-counter {
 #about-app-section img {
   width: 100%; }
 
-/* Switch off border for nav button and increase size of the button */
-.navbar-toggler-icon {
-  width: 2em;
-  height: 2em; }
-
-.navbar-light .navbar-toggler {
-  border: none; }
-
+/* MEDIA QUERIES */
 @media only screen and (max-width: 600px) {
   form {
     width: 80%; }
@@ -8131,5 +8133,12 @@ span.vote-counter {
 
   .display-4 {
     font-size: 2.5rem; } }
+/* Solution to sticky hover on mobile devices found here: https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
+@media (hover: hover) {
+  #back-to-top-button:hover {
+    cursor: pointer;
+    background-color: #63d37b;
+    color: #ffffff;
+    border: none; } }
 
 /*# sourceMappingURL=main.css.map */

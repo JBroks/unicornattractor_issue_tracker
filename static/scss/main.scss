@@ -1,4 +1,4 @@
-/* CUSTOM SCSS */
+/* ----------------- CUSTOM SCSS ----------------- */
 
 /* Customized colors */
 
@@ -27,32 +27,20 @@ $gray-900: $color-purple;
 
 /* Navbar link color adjusted */
 
-$navbar-light-color: rgba($dark, .5);
-$navbar-light-hover-color: rgba($dark, .7);
-$navbar-light-active-color: rgba($dark, .9);
+$navbar-light-color: darken($color-pink, 15%);
+$navbar-light-hover-color: $dark;
+$navbar-light-active-color: $dark;
 
-/* BOOTSTRAP STYLES + BOOTSWATCH LUX THEME */
+/* ----------------- LOAD BOOTSTRAP SCSS + BOOTSWATCH LUX THEME ----------------- */
 
 @import "../../node_modules/bootswatch/dist/lux/variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/bootswatch/dist/lux/bootswatch";
 
-/* CUSTOM STYLES */
+/* ----------------- CUSTOM CSS ----------------- */
 
-/* Light button colors changed */
+/* BACKGROUND COLORS */
 
-.btn-light {
-  color: $dark;
-  border: solid 2px $light;
-}
-
-.btn-light:hover {
-  color: $light;
-  border: solid 2px $light;
-  background-color: transparent;
-}
-
-/* BACKGROUND COLOR CLASSES */
 /* Background color classes set */
 
 .bgr-purple {
@@ -83,7 +71,14 @@ $navbar-light-active-color: rgba($dark, .9);
   background-color: $color-dark-grey;
 }
 
+/* Homepage jumbotron background color */
+
+.jumbotron {
+  background: none;
+}
+
 /* FLEXBOX */
+
 /* Flexbox used to create a sticky footer and avoid empty space 
     if not much content e.g. sign in page form */
 
@@ -109,11 +104,32 @@ main {
   flex: auto;
 }
 
-/* LOGO */
+/* NAVBAR */
+
+/* Switch off border for nav button and increase size of the button */
+
+.navbar-toggler-icon {
+    width: 2em;
+    height: 2em;
+}
+
+.navbar-light .navbar-toggler {
+    border: none;
+}
 
 /* logo size adjusted */
 .navbar-brand img {
   height: 50px;
+}
+
+/* Navbar links in dropdown item color */
+
+.dropdown-item {
+  color: darken($primary, 15%);
+}
+
+.dropdown-menu {
+  background-color: $color-light-pink;
 }
 
 /* TOAST MESSAGES */
@@ -151,8 +167,9 @@ main {
 }
 
 /* SPINNER */
-/* Spinner on data loading
-spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
+
+/* Spinner on data loading spinner animation found 
+    on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
 
 .loader {
     z-index: 99;
@@ -263,19 +280,6 @@ spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&pag
     visibility: visible;
 }
 
-/* Solution to sticky hover on mobile devices found here: https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
-
-@media (hover: hover) {
-
-    #back-to-top-button:hover {
-        cursor: pointer;
-        background-color: $color-green;
-        color: #ffffff;
-        border: none;
-    }
-
-}
-
 /* BACKGROUND IMAGES */
 
 /* Background image for jumbotron section */
@@ -384,7 +388,8 @@ spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&pag
 }
 
 #table-section, #forum-table-section, #add-ticket-section, #add-thread-section,
-#thread-view-page, #view-ticket-page, #search-result-section, #search-heading-section {
+#thread-view-page, #view-ticket-page, #search-result-section, 
+#search-heading-section {
   border-bottom: solid 10px $color-light-pink;
 }
 
@@ -405,6 +410,12 @@ spinner animation found on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&pag
 #tickets-heading-container, #forum-heading-container , #add-ticket-section, 
 #add-thread-section, #search-heading-section {
   border-top: 10px solid $color-purple;
+}
+
+/* Hr divider styling - homepage about unicorn attractor section */
+
+.hr-divider {
+  margin-right: 65% !important;
 }
 
 /* FORMS */
@@ -448,6 +459,7 @@ textarea,
 }
 
 /* PROFILE IMAGE */
+
 /* Set max size of profile images */
 
 .profile-image {
@@ -466,6 +478,20 @@ textarea,
 }
 
 /* BUTTONS */
+
+/* Light button colors changed */
+
+.btn-light {
+  color: $dark;
+  border: solid 2px $light;
+}
+
+.btn-light:hover {
+  color: $light;
+  border: solid 2px $light;
+  background-color: transparent;
+}
+
 /* Increse size of add ticket to make it more prominent */
 
 .btn-lg {
@@ -493,11 +519,21 @@ button.btn-rounded {
   line-height: 21px;
 }
 
+/* TABLE */
+
 /* Remove top border for the first row in the table */
 
 .table tr:first-child td {
   border-top: none;
 }
+
+/* Remove default dropdown symbol for all tickets table actions */
+
+.dropdown-toggle.actions::after {
+  display: none;
+}
+
+/* SUMMARY SIDE BAR */
 
 /* Styling for ticket summary list to create nice layout where text is aligned */
 
@@ -516,22 +552,12 @@ button.btn-rounded {
   padding-left: 50px;
 }
 
-/* Remove default dropdown symbol for all tickets table actions */
-
-.dropdown-toggle.actions::after {
-  display: none;
-}
+/* CARDS */
 
 /* Remove border for the accordion cards */
 
 #accordion .card {
   border: none;
-}
-
-/* Overwrite bootstrap select button color so it matches the form */
-
-.bootstrap-select>button {
-  background-color: #f7f7f9
 }
 
 /* Increase font-size for like/dislike counter */
@@ -540,17 +566,7 @@ span.vote-counter {
   font-size: 15px;
 }
 
-/* Homepage jumbotron background color */
-
-.jumbotron {
-  background: none;
-}
-
-/* Hr divider styling - homepage about unicorn attractor section */
-
-.hr-divider {
-  margin-right: 65% !important;
-}
+/* IMAGES */
 
 /* Set size of the apple/google store badges */
 
@@ -569,16 +585,7 @@ span.vote-counter {
   width: 100%;
 }
 
-/* Switch off border for nav button and increase size of the button */
-
-.navbar-toggler-icon {
-    width: 2em;
-    height: 2em;
-}
-
-.navbar-light .navbar-toggler {
-    border: none;
-}
+/* MEDIA QUERIES */
 
 @media only screen and (max-width: 600px) {
 
@@ -592,5 +599,18 @@ span.vote-counter {
   .display-4 {
     font-size: 2.5rem;
   }
+
+}
+
+/* Solution to sticky hover on mobile devices found here: https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
+
+@media (hover: hover) {
+
+    #back-to-top-button:hover {
+        cursor: pointer;
+        background-color: $color-green;
+        color: #ffffff;
+        border: none;
+    }
 
 }
