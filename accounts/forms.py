@@ -63,13 +63,17 @@ class UserRegistrationForm(UserCreationForm):
         
     def clean_email(self):
         """ Check if email is already registered """
-        
         email = self.cleaned_data.get('email')
-        username = self.cleaned_data.get('username')
-        
-        if User.objects.filter(email=email).exclude(username=username):
-            raise forms.ValidationError(u'Email address must be unique')
+        if User.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
+            raise forms.ValidationError(u'Email "%s" is already in use.' % email)
         return email
+        
+    def clean_username(self):
+        """ Check if username is already registered """
+        username = self.cleaned_data.get('username')
+        if User.objects.exclude(pk=self.instance.pk).filter(username=username).exists():
+            raise forms.ValidationError(u'Username "%s" is already in use.' % username)
+        return username
 
     def clean_password2(self):
         """ Check that the two password entries match """
@@ -77,12 +81,11 @@ class UserRegistrationForm(UserCreationForm):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
 
-        if not password1 or not password2:
-            raise ValidationError("Please confirm your password")
-        
-        if password1 != password2:
-            raise ValidationError("Passwords must match")
-        
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'],
+                code='password_mismatch',
+            )
         return password2
       
 class UserChangeForm(forms.ModelForm):
