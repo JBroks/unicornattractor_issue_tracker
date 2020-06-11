@@ -117,7 +117,8 @@ class TestThread(TestCase):
             expected_dislikes_count_second_thread = second_thread.thread_dislikes_count()
             self.assertEquals(expected_dislikes_count_second_thread, 1)
         
-       
+class TestPost(TestCase):    
+    
         def test_post_creation(self):
             """
             Test that when created a post a correct text is displayed
@@ -194,7 +195,9 @@ class TestThread(TestCase):
             # Post voters list
             expected_post_voters_new_post = new_post.post_voters().count()
             self.assertEquals(expected_post_voters_new_post, 2)
-        
+
+class TestThreadVotes(TestCase):
+    
         def test_thread_vote_creation(self):
             """
             Test that when created a thread vote a correct text is displayed
@@ -217,7 +220,9 @@ class TestThread(TestCase):
             vote = ThreadVote.objects.get(id=1)
             displayed_object_name = f"Thread #{vote.thread.id} {vote.vote_type}d by {vote.user.username}"
             self.assertEquals(displayed_object_name, str(vote))
-        
+
+class TestPostVotes(TestCase):
+    
         def test_post_vote_creation(self):
             """
             Test that when created a post vote a correct text is displayed
