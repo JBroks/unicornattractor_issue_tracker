@@ -3,6 +3,7 @@ from django.shortcuts import reverse, render, redirect
 from .models import Ticket, Upvote, Donation, Comment
 from django.contrib.auth.models import User
 from django.test.client import Client
+from tickets import forms
 
 class TestViews(TestCase):
     
@@ -36,6 +37,8 @@ class TestViews(TestCase):
         page = self.client.get("/tickets/new/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "add_ticket.html")
+        self.failUnless(isinstance(page.context['form'],
+                                   forms.AddTicketForm))
     
     def test_get_edit_ticket_page(self):
         # Login user
@@ -135,4 +138,87 @@ class TestViews(TestCase):
         page = self.client.get("/tickets/delete/ticket/{0}/".format(ticket.id))
         self.assertEqual(page.status_code, 302)
         self.client.post(reverse('view_ticket', kwargs={'pk':1}))
+        
+    def test_404_error_if_comment_does_not_exist(self):
+        
+        # Login user
+        self.client.login(username='joanna', password='secret')
+        
+        # Create a ticket
+        ticket = Ticket(user=self.user,
+                        subject="Test Subject",
+                        ticket_type="Bug",
+                        ticket_status="Open",
+                        description="Testing description of a ticket")
+        ticket.save()
+        
+        # Test redirect when comment does not exist
+        page = self.client.get(
+            "/tickets/view/ticket/{0}/comments/edit/comment/{1}".format(
+                ticket.id, None))
+        self.assertEqual(page.status_code, 404)
     
+    def test_get_delete_comment_by_author_page(self):
+        '''
+        Test case where comment author deletes their own comment
+        '''
+        # Login user
+        self.client.login(username='joanna', password='secret')
+        
+        # Create a ticket
+        ticket = Ticket(user=self.user,
+                        subject="Test Subject",
+                        ticket_type="Bug",
+                        ticket_status="Open",
+                        description="Testing description of a ticket")
+        ticket.save()
+        
+        # Create a comment
+        comment = Comment(user=self.user,
+                        ticket=ticket,
+                        comment="Testing comment description")
+        comment.save()
+        
+        # Test redirect when comment is deleted
+        page = self.client.get(
+            "/tickets/view/ticket/{0}/comments/delete/comment/{1}".format(
+                ticket.id, comment.id), follow=True)
+        self.assertEqual(page.status_code, 200)
+    
+    def test_get_delete_comment_by_other_user_page(self):
+        '''
+        Test case where comment author deletes their own comment
+        '''
+        # Login user
+        self.client.login(username='joanna', password='secret')
+        
+        # Create other user
+        other_user = User.objects.create_user('john',
+                                        'john@example.com',
+                                        'secret2')
+                                        
+        # Create a ticket
+        ticket = Ticket(user=self.user,
+                        subject="Test Subject",
+                        ticket_type="Bug",
+                        ticket_status="Open",
+                        description="Testing description of a ticket")
+        ticket.save()
+        
+        # Create a comment
+        comment = Comment(user=other_user,
+                        ticket=ticket,
+                        comment="Testing comment description")
+        comment.save()
+        
+        # Test redirect when comment is deleted
+        page = self.client.get(
+            "/tickets/view/ticket/{0}/comments/delete/comment/{1}".format(
+                ticket.id, comment.id), follow=True)
+        self.assertEqual(page.status_code, 200)
+        
+        # Test error message
+        messages = list(page.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]),"Error! You don't have a permission to \
+                        delete this comment.")
