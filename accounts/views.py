@@ -26,13 +26,17 @@ def paginate(request, list):
 
 @login_required
 def logout(request):
-    """Log the user out"""
+    '''
+    Log the user out
+    '''
     auth.logout(request)
     messages.success(request, "You have successfully been logged out")
     return redirect(reverse('index'))
 
 def login(request):
-    """Return a login page"""
+    '''
+    Return a login page
+    '''
     if request.user.is_authenticated:
         return redirect(reverse('index'))
     if request.method == "POST":
@@ -54,7 +58,9 @@ def login(request):
 
 
 def registration(request):
-    """Render the registration page"""
+    '''
+    Render the registration page
+    '''
     if request.user.is_authenticated:
         return redirect(reverse('index'))
 
@@ -78,7 +84,9 @@ def registration(request):
                     registration_form})
 
 def user_profile(request, username):
-    """The user's profile page"""
+    '''
+    The user's profile page
+    '''
 
     user = User.objects.get(username=request.user.username)
     
@@ -95,12 +103,13 @@ def user_profile(request, username):
     donations_total = Donation.objects.filter(user=request.user).aggregate(
                     Sum('donation_amount'))['donation_amount__sum']
     
+    
     # Set donations to zero if no donations has been made               
     if donations_total is None:
         donations_total = 0
     else:
         donations_total
-
+    
     # Retrive all user content
     user_tickets = Ticket.objects.filter(user=request.user)
     user_comments = Comment.objects.filter(user=request.user)
