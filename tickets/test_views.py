@@ -3,7 +3,7 @@ from django.shortcuts import reverse, render, redirect
 from .models import Ticket, Upvote, Donation, Comment
 from django.contrib.auth.models import User
 from django.test.client import Client
-from tickets import forms
+from .forms import AddCommentForm, AddTicketForm
 
 class TestViews(TestCase):
     
@@ -37,8 +37,7 @@ class TestViews(TestCase):
         page = self.client.get("/tickets/new/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "add_ticket.html")
-        self.failUnless(isinstance(page.context['form'],
-                                   forms.AddTicketForm))
+        self.failUnless(isinstance(page.context['form'],AddTicketForm))
     
     def test_get_edit_ticket_page(self):
         # Login user
