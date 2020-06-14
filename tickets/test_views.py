@@ -25,6 +25,23 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "all_tickets.html")
         
+    def test_get_all_tickets_with_filters_page(self):
+        '''
+        Test all tickets page with filters - if redirected to the correct 
+        URL and that a correct template is used
+        '''
+        page = self.client.get("/tickets/?ticket-type=Feature&ticket-status=Open/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "all_tickets.html")
+        
+        page = self.client.get("/tickets/?ticket-type=Feature/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "all_tickets.html") 
+        
+        page = self.client.get("/tickets/?ticket-status=Open/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "all_tickets.html")
+        
     def test_get_add_ticket_page(self):
         '''
         Test add ticket page - if redirected to the correct URL and that
@@ -38,6 +55,10 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, "add_ticket.html")
     
     def test_get_edit_ticket_page(self):
+        '''
+        Test edit ticket page - if redirected to the correct URL and that
+        a correct template is used
+        '''
         # Login user
         self.client.login(username='joanna', password='secret')
         # Create a ticket
@@ -184,7 +205,7 @@ class TestViews(TestCase):
     
     def test_get_delete_comment_by_other_user_page(self):
         '''
-        Test case where comment author deletes their own comment
+        Test case where a user tries to delete someone else's comment
         '''
         # Login user
         self.client.login(username='joanna', password='secret')
