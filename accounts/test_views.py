@@ -9,6 +9,16 @@ from accounts import forms
 
 class TestRegistrationViews(TestCase):
     
+    def setUp(self):
+        '''
+        Set up a client to be able to login users in order to test views
+        using @login_required decorators
+        '''
+        self.client = Client()
+        self.user = User.objects.create_user('joanna',
+                                        'joanna@example.com',
+                                        'secret')
+    
     def test_registration_view_initial(self):
         '''
         Test registration view (get response) - if view redirects to the correct
@@ -19,6 +29,16 @@ class TestRegistrationViews(TestCase):
         self.assertTemplateUsed(page,'registration.html')
         self.failUnless(isinstance(page.context['form'],
                                    forms.UserRegistrationForm))
+    
+    def test_get_register_for_authenticated_user_page(self):
+        '''
+        Test if user already authenticated and tries to register
+        they are redirected to homepage
+        '''
+        # Login user
+        self.client.login(username='joanna', password='secret')
+        page = self.client.get("/accounts/register/")
+        self.assertRedirects(page, '/', status_code=302)
         
 class TestLoginViews(TestCase):
     
@@ -42,6 +62,16 @@ class TestLoginViews(TestCase):
         self.assertTemplateUsed(page, "login.html")
         self.failUnless(isinstance(page.context['form'],
                                    forms.UserLoginForm))
+    
+    def test_get_login_for_authenticated_user_page(self):
+        '''
+        Test if user already authenticated and tries to login
+        they are redirected to homepage
+        '''
+        # Login user
+        self.client.login(username='joanna', password='secret')
+        page = self.client.get("/accounts/login/")
+        self.assertRedirects(page, '/', status_code=302)
    
 class TestProfileViews(TestCase):
     
