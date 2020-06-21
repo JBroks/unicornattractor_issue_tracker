@@ -75,7 +75,4 @@ def search_results(request):
         "search_term": search_term
         }
     
-    return render(request, 'search.html', context)   
-        
-    
-            
+    return render(request, 'search.html', context)
