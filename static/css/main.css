@@ -7790,7 +7790,7 @@ much content on the page */
 #filter-section .container-sm,
 #filter-section .container-md,
 #filter-section .container-lg,
-#filter-section .container-xl, #profile-page-content {
+#filter-section .container-xl, #profile-page-content, #reset-password-form {
   height: 100%; }
 
 #filter-section {
