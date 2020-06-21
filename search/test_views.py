@@ -18,7 +18,6 @@ class TestSearchViews(TestCase):
         Test search view with query - if view redirects to the correct
         URL and a correct template is used
         '''
-        
         page = self.client.get("/search_results/?search=Testing/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page,'search.html')
