@@ -128,7 +128,7 @@ much content on the page */
 #search-result-section .container-fluid,
 #forum-table-section .container-fluid,
 #table-section .container-fluid,
-#filter-section .container-fluid {
+#filter-section .container-fluid, #profile-page-content {
   height: 100%;
 }
 
@@ -166,11 +166,11 @@ much content on the page */
 
 /* Navbar dropdown colors */
 
-.dropdown-item {
+nav .dropdown-item {
   color: darken($primary, 15%);
 }
 
-.dropdown-menu {
+nav .dropdown-menu {
   background-color: $color-light-pink;
   border: none;
 }

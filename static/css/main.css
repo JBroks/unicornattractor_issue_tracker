@@ -7790,7 +7790,7 @@ much content on the page */
 #filter-section .container-sm,
 #filter-section .container-md,
 #filter-section .container-lg,
-#filter-section .container-xl {
+#filter-section .container-xl, #profile-page-content {
   height: 100%; }
 
 #filter-section {
@@ -7817,10 +7817,10 @@ much content on the page */
   height: 50px; }
 
 /* Navbar dropdown colors */
-.dropdown-item {
+nav .dropdown-item {
   color: #db6554; }
 
-.dropdown-menu {
+nav .dropdown-menu {
   background-color: #fcdcd7;
   border: none; }
 
