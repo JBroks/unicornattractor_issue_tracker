@@ -2,8 +2,8 @@
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
-    <div class="container-fluid bgr-off-white">
-        <div class="row">
+    <div id="profile-page-content" class="container-fluid bgr-off-white">
+        <div id="first-row" class="row">
 
             <!-- Profile photo container (BEGINNING)-->
             <div class="col-lg-3 col-md-12 d-flex justify-content-center bgr-dark-grey p-5">
@@ -29,7 +29,7 @@
 
         </div>
 
-        <div class="row">
+        <div id="second-row" class="row">
 
             <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (BEGINNING) -->
             <div class="col-sm-12 d-block d-lg-none accordion" id="accordion">
@@ -111,7 +111,7 @@
             <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (END) -->
 
             <!-- User information - showing only on large and xl devices (BEGINNING) -->
-            <div class="col-lg-3 col-md-12 p-5 d-none d-lg-block bgr-dark-grey text-light">
+            <div class="col-lg-3 col-md-12 p-3 d-none d-lg-block bgr-dark-grey text-light text-center">
 
                 <!-- Personal info container (BEGINNING)-->
                 <div class="row mx-auto">
@@ -156,7 +156,7 @@
                                 <p><i class="fa fa-comments" aria-hidden="true"></i> Ticket comments: {{ comment_count }}</p>
                             </div>
                             <div class="col-sm-12 d-flex justify-content-center">
-                                <p class="text-left"><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: {{ upvotes_count }} </p>
+                                <p><i class="fa fa-arrow-up" aria-hidden="true"></i> Ticket upvotes: {{ upvotes_count }} </p>
                             </div>
                             <div class="col-sm-12 d-flex justify-content-center">
                                 <p><i class="fa fa-money" aria-hidden="true"></i> Total donations: &euro;{{ donations_total }}</p>
