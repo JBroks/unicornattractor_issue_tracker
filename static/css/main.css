@@ -7744,7 +7744,8 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-items: stretch; }
 
 .navbar,
 footer {
@@ -7752,6 +7753,55 @@ footer {
 
 main {
   flex: auto; }
+
+/* Containers height settings to fill 100% of the main element.
+Solution to issue with the white space between content and footer when not
+much content on the page */
+.templates-container,
+.templates-container .content-container,
+#login-section,
+#login-section div {
+  height: 100%; }
+
+#search-heading-section,
+#heading-section,
+#forum-heading-section {
+  height: 350px; }
+
+#search-heading-section div,
+#tickets-heading-container,
+#forum-heading-container,
+#search-result-section .container-fluid,
+#search-result-section .container-sm,
+#search-result-section .container-md,
+#search-result-section .container-lg,
+#search-result-section .container-xl,
+#forum-table-section .container-fluid,
+#forum-table-section .container-sm,
+#forum-table-section .container-md,
+#forum-table-section .container-lg,
+#forum-table-section .container-xl,
+#table-section .container-fluid,
+#table-section .container-sm,
+#table-section .container-md,
+#table-section .container-lg,
+#table-section .container-xl,
+#filter-section .container-fluid,
+#filter-section .container-sm,
+#filter-section .container-md,
+#filter-section .container-lg,
+#filter-section .container-xl {
+  height: 100%; }
+
+#filter-section {
+  height: 300px; }
+
+#table-section {
+  height: calc(100% - 650px); }
+
+#search-result-section,
+#forum-table-section {
+  height: calc(100% - 350px); }
 
 /* NAVBAR */
 /* Switch off border for nav button and increase size of the button */
@@ -7813,7 +7863,7 @@ nav {
 
 /* SPINNER */
 /* Spinner on data loading spinner animation found 
-    on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
+    on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1  */
 .loader {
   z-index: 99;
   width: 200px;
@@ -7871,7 +7921,8 @@ nav {
   background: rgba(0, 0, 0, 0.5); }
 
 /* BACK TO TOP BUTTON */
-/* Back to top button inspired by this Codepen solution: https://codepen.io/matthewcain/pen/ZepbeR */
+/* Back to top button inspired by this Codepen 
+   solution: https://codepen.io/matthewcain/pen/ZepbeR */
 #back-to-top-button {
   display: inline-block;
   background-color: transparent;
@@ -7916,7 +7967,6 @@ nav {
 
 /* Background image for all tickets heading section */
 #tickets-heading-container {
-  min-height: 350px;
   background-image: url("/media/background_images/tickets_background.jpg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -7925,7 +7975,6 @@ nav {
 
 /* Forum & search page background photo with opacity */
 #forum-heading-container {
-  min-height: 350px;
   display: block;
   position: relative; }
 
@@ -7945,7 +7994,6 @@ nav {
   z-index: -1; }
 
 #search-heading-container {
-  min-height: 350px;
   display: block;
   position: relative; }
 
@@ -7965,7 +8013,9 @@ nav {
   z-index: -1; }
 
 /* Register & login page background image */
-#register-section, #login-section, #edit-profile-section {
+#register-section,
+#login-section,
+#edit-profile-section {
   background-image: url("/media/background_images/gradient_background_large_4.png");
   background-position: center center;
   background-repeat: no-repeat;
@@ -7988,14 +8038,21 @@ nav {
 
 /* SEPARATORS */
 /* Add separator to filter section */
-#filter-section, #forum-table-section {
+#filter-section,
+#forum-table-section {
   border-top: solid 10px #fcdcd7; }
 
-#thread-view-page, #view-ticket-page {
+#thread-view-page,
+#view-ticket-page {
   border-top: solid 10px #e89e93; }
 
-#table-section, #forum-table-section, #add-ticket-section, #add-thread-section,
-#thread-view-page, #view-ticket-page, #search-result-section,
+#table-section,
+#forum-table-section,
+#add-ticket-section,
+#add-thread-section,
+#thread-view-page,
+#view-ticket-page,
+#search-result-section,
 #search-heading-section {
   border-bottom: solid 10px #fcdcd7; }
 
@@ -8008,8 +8065,11 @@ nav {
   border-top: 1px solid #e89e93; }
 
 /* All tickets page heading section separator */
-#tickets-heading-container, #forum-heading-container, #add-ticket-section,
-#add-thread-section, #search-heading-section {
+#tickets-heading-container,
+#forum-heading-container,
+#add-ticket-section,
+#add-thread-section,
+#search-heading-section {
   border-top: 10px solid #5854a5; }
 
 /* Hr divider styling - homepage about unicorn attractor section */
@@ -8018,13 +8078,18 @@ nav {
 
 /* FORMS */
 /* Form width decreased */
-#search, form.post-form textarea, .comment-form textarea {
+#search,
+form.post-form textarea,
+.comment-form textarea {
   background-color: white; }
 
 form {
   width: 50%; }
 
-#add-ticket-section form, #register-section form, #login-section form, #edit-profile-form,
+#add-ticket-section form,
+#register-section form,
+#login-section form,
+#edit-profile-form,
 #add-thread-section form {
   background-color: white;
   width: 100%; }
@@ -8045,6 +8110,9 @@ textarea,
 
 .comment-form textarea {
   border: 1px solid #ced4da; }
+
+#filter-section form {
+  min-width: 70%; }
 
 /* PROFILE IMAGE */
 /* Set max size of profile images */
@@ -8141,6 +8209,12 @@ span.vote-counter {
   width: 100%; }
 
 /* MEDIA QUERIES */
+@media only screen and (max-width: 700px) {
+  #filter-section {
+    height: 450px; }
+
+  #table-section {
+    height: calc(100% - 800px); } }
 @media only screen and (max-width: 600px) {
   form {
     width: 80%; }

@@ -93,6 +93,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: stretch;
 }
 
 .navbar,
@@ -104,20 +105,61 @@ main {
   flex: auto;
 }
 
+/* Containers height settings to fill 100% of the main element.
+Solution to issue with the white space between content and footer when not
+much content on the page */
+
+.templates-container,
+.templates-container .content-container,
+#login-section,
+#login-section div {
+  height: 100%;
+}
+
+#search-heading-section,
+#heading-section,
+#forum-heading-section {
+  height: 350px;
+}
+
+#search-heading-section div,
+#tickets-heading-container,
+#forum-heading-container,
+#search-result-section .container-fluid,
+#forum-table-section .container-fluid,
+#table-section .container-fluid,
+#filter-section .container-fluid {
+  height: 100%;
+}
+
+#filter-section {
+  height: 300px;
+}
+
+#table-section {
+  height: calc(100% - 650px)
+}
+
+#search-result-section,
+#forum-table-section {
+  height: calc(100% - 350px);
+}
+
 /* NAVBAR */
 
 /* Switch off border for nav button and increase size of the button */
 
 .navbar-toggler-icon {
-    width: 2em;
-    height: 2em;
+  width: 2em;
+  height: 2em;
 }
 
 .navbar-light .navbar-toggler {
-    border: none;
+  border: none;
 }
 
 /* logo size adjusted */
+
 .navbar-brand img {
   height: 50px;
 }
@@ -152,6 +194,7 @@ nav {
 /* TOAST MESSAGES */
 
 /* Toast message position */
+
 .toast {
   position: fixed;
   right: 0;
@@ -186,115 +229,116 @@ nav {
 /* SPINNER */
 
 /* Spinner on data loading spinner animation found 
-    on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1 */
+    on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1  */
 
 .loader {
-    z-index: 99;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border-top: 2px solid $color-blue;
-    border-bottom: 2px solid transparent;
-    border-left: 2px solid transparent;
-    border-right: 2px solid transparent;
-    animation: spin 3s linear infinite forwards;
+  z-index: 99;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border-top: 2px solid $color-blue;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  animation: spin 3s linear infinite forwards;
 
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .loader::before,
 .loader::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    border-top: 2px solid $color-blue;
-    border-bottom: 2px solid transparent;
-    border-left: 2px solid transparent;
-    border-right: 2px solid transparent;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border-top: 2px solid $color-blue;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
 }
 
 .loader::before {
-    top: 7px;
-    left: 7px;
-    width: 178px;
-    height: 178px;
-    border-top: 2px solid $color-pink;
-    animation: spin 2s linear infinite forwards;
+  top: 7px;
+  left: 7px;
+  width: 178px;
+  height: 178px;
+  border-top: 2px solid $color-pink;
+  animation: spin 2s linear infinite forwards;
 }
 
 .loader::after {
-    top: 16px;
-    left: 16px;
-    width: 160px;
-    height: 160px;
-    border-top: 2px solid $color-light-pink;
-    animation: spin 1s linear infinite forwards;
+  top: 16px;
+  left: 16px;
+  width: 160px;
+  height: 160px;
+  border-top: 2px solid $color-light-pink;
+  animation: spin 1s linear infinite forwards;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Overlay styled to dim the background for spinner */
 
 #overlay {
-    z-index: 98;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, .5);
+  z-index: 98;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, .5);
 }
 
 /* BACK TO TOP BUTTON */
 
-/* Back to top button inspired by this Codepen solution: https://codepen.io/matthewcain/pen/ZepbeR */
+/* Back to top button inspired by this Codepen 
+   solution: https://codepen.io/matthewcain/pen/ZepbeR */
 
 #back-to-top-button {
-    display: inline-block;
-    background-color: transparent;
-    color: $color-green;
-    border: 2px solid $color-green;
-    width: 80px;
-    height: 80px;
-    text-align: center;
-    border-radius: 40px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    transition: background-color .3s,
-    opacity .5s, visibility .5s;
-    opacity: 0;
-    visibility: hidden;
-    z-index: 97;
+  display: inline-block;
+  background-color: transparent;
+  color: $color-green;
+  border: 2px solid $color-green;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  border-radius: 40px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: background-color .3s,
+  opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 97;
 }
 
 #back-to-top-button::after {
-    content: "\f077";
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 2em;
-    line-height: 70px;
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 70px;
 }
 
 #back-to-top-button:active {
-    background-color: $color-green;
-    color: #ffffff;
-    border: none;
+  background-color: $color-green;
+  color: #ffffff;
+  border: none;
 }
 
 #back-to-top-button.show {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* BACKGROUND IMAGES */
@@ -311,7 +355,6 @@ nav {
 /* Background image for all tickets heading section */
 
 #tickets-heading-container {
-  min-height: 350px;
   background-image: url("/media/background_images/tickets_background.jpg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -322,7 +365,6 @@ nav {
 /* Forum & search page background photo with opacity */
 
 #forum-heading-container {
-  min-height: 350px;
   display: block;
   position: relative;
 }
@@ -340,11 +382,10 @@ nav {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }
 
 #search-heading-container {
-  min-height: 350px;
   display: block;
   position: relative;
 }
@@ -362,12 +403,14 @@ nav {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }
 
 /* Register & login page background image */
 
-#register-section, #login-section, #edit-profile-section {
+#register-section,
+#login-section,
+#edit-profile-section {
   background-image: url("/media/background_images/gradient_background_large_4.png");
   background-position: center center;
   background-repeat: no-repeat;
@@ -396,16 +439,23 @@ nav {
 
 /* Add separator to filter section */
 
-#filter-section, #forum-table-section {
+#filter-section,
+#forum-table-section {
   border-top: solid 10px $color-light-pink;
 }
 
-#thread-view-page, #view-ticket-page {
+#thread-view-page,
+#view-ticket-page {
   border-top: solid 10px $color-pink;
 }
 
-#table-section, #forum-table-section, #add-ticket-section, #add-thread-section,
-#thread-view-page, #view-ticket-page, #search-result-section, 
+#table-section,
+#forum-table-section,
+#add-ticket-section,
+#add-thread-section,
+#thread-view-page,
+#view-ticket-page,
+#search-result-section,
 #search-heading-section {
   border-bottom: solid 10px $color-light-pink;
 }
@@ -424,8 +474,11 @@ nav {
 
 /* All tickets page heading section separator */
 
-#tickets-heading-container, #forum-heading-container , #add-ticket-section, 
-#add-thread-section, #search-heading-section {
+#tickets-heading-container,
+#forum-heading-container,
+#add-ticket-section,
+#add-thread-section,
+#search-heading-section {
   border-top: 10px solid $color-purple;
 }
 
@@ -439,7 +492,9 @@ nav {
 
 /* Form width decreased */
 
-#search, form.post-form textarea, .comment-form textarea {
+#search,
+form.post-form textarea,
+.comment-form textarea {
   background-color: white;
 }
 
@@ -447,7 +502,10 @@ form {
   width: 50%;
 }
 
-#add-ticket-section form, #register-section form,  #login-section form, #edit-profile-form ,
+#add-ticket-section form,
+#register-section form,
+#login-section form,
+#edit-profile-form,
 #add-thread-section form {
   background-color: white;
   width: 100%;
@@ -473,6 +531,10 @@ textarea,
 
 .comment-form textarea {
   border: 1px solid #ced4da
+}
+
+#filter-section form {
+  min-width: 70%;
 }
 
 /* PROFILE IMAGE */
@@ -537,10 +599,11 @@ button.btn-rounded {
 }
 
 /* Overwrite bootstrap select button color so it matches the form */
-.bootstrap-select > button {
-  background-color: #f7f7f9; 
+
+.bootstrap-select>button {
+  background-color: #f7f7f9;
 }
-  
+
 /* TABLE */
 
 /* Remove top border for the first row in the table */
@@ -609,6 +672,18 @@ span.vote-counter {
 
 /* MEDIA QUERIES */
 
+@media only screen and (max-width: 700px) {
+  
+  #filter-section {
+    height: 450px;
+  }
+
+  #table-section {
+    height: calc(100% - 800px)
+  }
+  
+}
+
 @media only screen and (max-width: 600px) {
 
   form {
@@ -628,11 +703,11 @@ span.vote-counter {
 
 @media (hover: hover) {
 
-    #back-to-top-button:hover {
-        cursor: pointer;
-        background-color: $color-green;
-        color: #ffffff;
-        border: none;
-    }
+  #back-to-top-button:hover {
+    cursor: pointer;
+    background-color: $color-green;
+    color: #ffffff;
+    border: none;
+  }
 
 }

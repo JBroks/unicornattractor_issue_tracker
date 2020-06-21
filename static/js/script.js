@@ -114,13 +114,13 @@ $(document).ready(function() {
  **/
 
 $(function() {
-    $('a[data-toggle="pill"]').on('click', function(e) {
-        window.localStorage.setItem('activePill', $(e.target).attr('href'));
-    });
-    var activePill = window.localStorage.getItem('activePill');
-    if (activePill) {
-        $('#pills-tab a[href="' + activePill + '"]').tab('show');
-    }
+  $('a[data-toggle="pill"]').on('click', function(e) {
+    window.localStorage.setItem('activePill', $(e.target).attr('href'));
+  });
+  var activePill = window.localStorage.getItem('activePill');
+  if (activePill) {
+    $('#pills-tab a[href="' + activePill + '"]').tab('show');
+  }
 });
 
 // SPINNER OVERLAY
@@ -144,14 +144,15 @@ let btn = $('#back-to-top-button');
 $(window).scroll(function() {
   if ($(window).scrollTop() > 300) {
     btn.addClass('show');
-  } else {
+  }
+  else {
     btn.removeClass('show');
   }
 });
 
 btn.on('click', function(d) {
   d.preventDefault();
-  $('html, body').animate({scrollTop:0}, '300');
+  $('html, body').animate({ scrollTop: 0 }, '300');
 });
 
 
@@ -160,9 +161,9 @@ btn.on('click', function(d) {
  * Function that shows toast message and fades it out after 7sec
  **/
 
-$(document).ready(function(){
+$(document).ready(function() {
   $('.toast').toast('show');
-  setTimeout(function(){ $('.toast').toast('hide'); }, 7000);
+  setTimeout(function() { $('.toast').toast('hide'); }, 7000);
 });
 
 // NAVBAR HIDE/SHOW EFFECT
@@ -173,30 +174,32 @@ $(document).ready(function(){
  * https://www.solodev.com/blog/web-design/bootstrap/
  * /build-a-fixed-top-navigation-that-disappears-as-users-scroll.stml
  **/
- 
-$(document).ready(function () {
-	var previousScroll = 0;
-	$(window).scroll(function () {
-		var currentScroll = $(this).scrollTop();
-		if (currentScroll < 100) {
-			showNav();
-		} else if (currentScroll > 0 && currentScroll < $(document).height() - $(window).height()) {
-			if (currentScroll > previousScroll) {
-				hideNav();
-			} else {
-				showNav();
-			}
-			previousScroll = currentScroll;
-		}
-	});
 
-	function hideNav() {
-		$(".navbar").removeClass("is-visible").addClass("is-hidden");
-	}
+$(document).ready(function() {
+  var previousScroll = 0;
+  $(window).scroll(function() {
+    var currentScroll = $(this).scrollTop();
+    if (currentScroll < 100) {
+      showNav();
+    }
+    else if (currentScroll > 0 && currentScroll < $(document).height() - $(window).height()) {
+      if (currentScroll > previousScroll) {
+        hideNav();
+      }
+      else {
+        showNav();
+      }
+      previousScroll = currentScroll;
+    }
+  });
 
-	function showNav() {
-		$(".navbar").removeClass("is-hidden").addClass("is-visible").addClass("scrolling");
-	}
+  function hideNav() {
+    $(".navbar").removeClass("is-visible").addClass("is-hidden");
+  }
+
+  function showNav() {
+    $(".navbar").removeClass("is-hidden").addClass("is-visible").addClass("scrolling");
+  }
 });
 
 
@@ -205,7 +208,7 @@ $(document).ready(function () {
  * Function that calulates navbar height and applies margin to the main content
  * by adding nav height plus navbar padding
  **/
- 
+
 var heightNav = $('.navbar').height();
 
-$('main').css({ marginTop : heightNav + 48 + 'px' });
+$('main').css({ marginTop: heightNav + 48 + 'px' });
