@@ -4,7 +4,7 @@ from .models import Thread, Post, PostVote, ThreadVote
 from django.contrib.auth.models import User
 from django.test.client import Client
 
-class TestForumViews(TestCase):
+class TestGetResponses(TestCase):
     
     def setUp(self):
         '''
@@ -65,7 +65,19 @@ class TestForumViews(TestCase):
         page = self.client.get("/forum/edit/thread/{0}/".format(thread.id))
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "add_thread.html")
+
+class TestDeleteViews(TestCase):
     
+    def setUp(self):
+        '''
+        Set up a client to be able to login users in order to test views
+        using @login_required decorators
+        '''
+        self.client = Client()
+        self.user = User.objects.create_user('joanna',
+                                        'joanna@example.com',
+                                        'secret')
+                                        
     def test_get_delete_thread_by_author_page(self):
         '''
         Test case where thread author deletes their own thread
