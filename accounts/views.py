@@ -103,7 +103,6 @@ def user_profile(request, username):
     donations_total = Donation.objects.filter(user=request.user).aggregate(
                     Sum('donation_amount'))['donation_amount__sum']
     
-    
     # Set donations to zero if no donations has been made               
     if donations_total is None:
         donations_total = 0
@@ -117,7 +116,7 @@ def user_profile(request, username):
     user_posts = Post.objects.filter(user=request.user)
     user_thread_votes = ThreadVote.objects.filter(user=request.user)
     user_post_votes = PostVote.objects.filter(user=request.user)
-     
+    
     # Paginate pills content
     user_tickets = paginate(request, user_tickets)
     user_comments = paginate(request, user_comments)
