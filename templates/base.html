@@ -8,7 +8,7 @@
   <title>{% block page_title %}{% endblock %}</title>
 
   <!-- Favicon set -->
-  <link rel="shortcut icon" type="image/png" href="/media/logo/logo.png" />
+  <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}logo/logo.png" />
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -38,7 +38,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bgr-light-pink fixed-top">
 
     <!-- Logo (BEGINNING) -->
-    <a class="navbar-brand" href="{% url 'index' %}"><img src="/media/logo/logo.png" alt="logo"></a>
+    <a class="navbar-brand" href="{% url 'index' %}"><img src="{{ MEDIA_URL }}logo/logo.png" alt="logo"></a>
     <!-- Logo (END) -->
 
     <!-- Hamburger button (BEGINNING) -->
@@ -226,8 +226,7 @@
   {% block js %} {% endblock %}
 
   <!-- Custom JS -->
-  <script src="/static/js/script.js"></script>
-  <!--<script src="{% static 'js/script.js' %}"></script>-->
+  <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 
