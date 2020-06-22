@@ -346,7 +346,7 @@ nav {
 /* Background image for jumbotron section */
 
 #jumbotron-section {
-  background-image: url("{{ MEDIA_URL }}background_images/gradient_background_2.png");
+  background-image: url("/media/background_images/gradient_background_2.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -355,7 +355,7 @@ nav {
 /* Background image for all tickets heading section */
 
 #tickets-heading-container {
-  background-image: url("{{ MEDIA_URL }}background_images/tickets_background.jpg");
+  background-image: url("/media/background_images/tickets_background.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -371,7 +371,7 @@ nav {
 
 #forum-heading-container::after {
   content: "";
-  background-image: url("{{ MEDIA_URL }}background_images/forum_discussion.jpg");
+  background-image: url("/media/background_images/forum_discussion.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -392,7 +392,7 @@ nav {
 
 #search-heading-container::after {
   content: "";
-  background-image: url("{{ MEDIA_URL }}background_images/search.jpg");
+  background-image: url("/media/background_images/search.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -411,7 +411,7 @@ nav {
 #register-section,
 #login-section,
 #edit-profile-section {
-  background-image: url("{{ MEDIA_URL }}background_images/gradient_background_large_4.png");
+  background-image: url("/media/background_images/gradient_background_large_4.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -420,7 +420,7 @@ nav {
 /* Add ticket form background photo */
 
 #add-ticket-section {
-  background-image: url("{{ MEDIA_URL }}background_images/tickets_background.jpg");
+  background-image: url("/media/background_images/tickets_background.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -428,7 +428,7 @@ nav {
 }
 
 #add-thread-section {
-  background-image: url("{{ MEDIA_URL }}background_images/forum_discussion.jpg");
+  background-image: url("/media/background_images/forum_discussion.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
