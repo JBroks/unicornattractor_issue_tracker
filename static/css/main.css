@@ -8212,10 +8212,10 @@ span.vote-counter {
 @media only screen and (min-width: 992px) {
   /* Set profile page row heights on large and xl screens only */
   #first-row {
-    height: 200px; }
+    height: 250px; }
 
   #second-row {
-    height: calc(100%  - 200px); } }
+    height: calc(100%  - 250px); } }
 @media only screen and (max-width: 700px) {
   #filter-section {
     height: 450px; }

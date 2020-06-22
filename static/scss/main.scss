@@ -676,11 +676,11 @@ span.vote-counter {
   
   /* Set profile page row heights on large and xl screens only */
   #first-row {
-    height: 200px;
+    height: 250px;
   }
   
   #second-row {
-    height: calc(100%  - 200px);
+    height: calc(100%  - 250px);
   }
 }
 
