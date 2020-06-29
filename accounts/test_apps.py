@@ -4,7 +4,9 @@ from .apps import AccountsConfig
 
 
 class TestAccountsConfig(TestCase):
-
+    '''
+    Test application name configuration.
+    '''
     def test_app(self):
         self.assertEqual("accounts", AccountsConfig.name)
         self.assertEqual("accounts", apps.get_app_config("accounts").name)
