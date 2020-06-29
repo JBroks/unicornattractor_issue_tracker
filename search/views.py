@@ -34,7 +34,7 @@ def search_results(request):
         description__icontains=search_term)
     thread_query = Q(subject__icontains=search_term) | Q(
         description__icontains=search_term)
-    if search_term and search_term != "":
+    if search_term and search_term != '':
         # Retrive results
         search_results_ticket = Ticket.objects.all().filter(ticket_query)
         search_results_comment = Comment.objects.all(
@@ -63,15 +63,15 @@ def search_results(request):
         post_count = 0
     
     context = {
-        "search_results_ticket": search_results_ticket,
-        "search_results_comment": search_results_comment,
-        "search_results_thread": search_results_thread,
-        "search_results_post": search_results_post,
-        "ticket_count": ticket_count,
-        "comment_count": comment_count,
-        "thread_count": thread_count,
-        "post_count": post_count,
-        "search_term": search_term
+        'search_results_ticket': search_results_ticket,
+        'search_results_comment': search_results_comment,
+        'search_results_thread': search_results_thread,
+        'search_results_post': search_results_post,
+        'ticket_count': ticket_count,
+        'comment_count': comment_count,
+        'thread_count': thread_count,
+        'post_count': post_count,
+        'search_term': search_term
         }
     
     return render(request, 'search.html', context)
