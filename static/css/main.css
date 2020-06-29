@@ -8209,6 +8209,13 @@ span.vote-counter {
 #about-app-section img {
   width: 100%; }
 
+/* TEXT SHADOW */
+#forum-heading-container h1, #search-heading-container h1 {
+  text-shadow: white 1px 2px 3px; }
+
+#tickets-heading-container h1 {
+  text-shadow: black 1px 2px 3px; }
+
 /* MEDIA QUERIES */
 @media only screen and (min-width: 992px) {
   /* Set profile page row heights on large and xl screens only */
