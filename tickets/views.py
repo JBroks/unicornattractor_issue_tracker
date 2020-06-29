@@ -232,6 +232,9 @@ def upvote(request, pk):
     # Check if user donated money for the feature
     has_donated = record_exist_check(Donation, request.user, ticket)
     
+    # Define comment form to avoid the error (so html can render it)
+    comment_form = AddCommentForm()
+    
     if has_voted is None and (ticket.ticket_type == "Bug" 
                                 or has_donated is not None):
        Upvote.objects.create(ticket_id=ticket.pk, user_id=request.user.id) 
@@ -276,10 +279,12 @@ def upvote(request, pk):
     else:
         payment_form = PaymentForm()
         donation_form = DonationForm()
+    
     context = {
         'ticket': ticket,
         'donation_form': donation_form,
         'payment_form': payment_form,
+        'comment_form': comment_form,
         'publishable': settings.STRIPE_PUBLISHABLE
     }
     return render(request, 'view_ticket.html', context)
