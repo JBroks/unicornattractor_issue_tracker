@@ -6,12 +6,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
+
 def paginate(request, list):
     '''
-    Helper function that will paginate any qiven queryset
+    Helper function that will paginate any qiven queryset.
     '''
     page = request.GET.get('page', 1)
-    
     paginator = Paginator(list, 10)
     try:
         list = paginator.page(page)
@@ -20,39 +20,38 @@ def paginate(request, list):
     except EmptyPage:
         list = paginator.page(paginator.num_pages)
     return list
-    
+
+
 def search_results(request):
-    
+    '''
+    View that filters out tickets, comments, threads and posts based on the
+    search term typed in by a user.
+    Counts of these results are included in the pill heading.
+    '''
     # Query parameters
     search_term = request.GET.get('search')
-    ticket_query = Q(subject__icontains=search_term
-                            ) | Q(description__icontains=search_term )
-    thread_query = Q(subject__icontains=search_term
-                            ) | Q(description__icontains=search_term )
-        
+    ticket_query = Q(subject__icontains=search_term) | Q(
+        description__icontains=search_term)
+    thread_query = Q(subject__icontains=search_term) | Q(
+        description__icontains=search_term)
     if search_term and search_term != "":
-        
         # Retrive results
         search_results_ticket = Ticket.objects.all().filter(ticket_query)
         search_results_comment = Comment.objects.all(
-                                ).filter(comment__icontains=search_term
-                                ).distinct()
+            ).filter(comment__icontains=search_term).distinct()
         search_results_thread = Thread.objects.all().filter(thread_query)
         search_results_post = Post.objects.all(
-                                ).filter(post__icontains=search_term
-                                ).distinct()
+            ).filter(post__icontains=search_term).distinct()
         # Count results
         ticket_count = search_results_ticket.count()
         comment_count = search_results_comment.count()
         thread_count = search_results_thread.count()
         post_count = search_results_post.count()
-        
         # Paginate results
         search_results_ticket = paginate(request, search_results_ticket)
         search_results_comment = paginate(request, search_results_comment)
         search_results_thread = paginate(request, search_results_thread)
         search_results_post = paginate(request, search_results_post)
-
     else:
         search_results_ticket = None
         search_results_comment = None
