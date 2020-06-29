@@ -55,7 +55,7 @@
                                                 </td>
                                                 <td class="text-center"><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
                                                 <td class="text-center d-none d-md-table-cell">{{ ticket.ticket_type }}</td>
-                                                <td class="text-right">{{ ticket.date_created | timesince }}</td>
+                                                <td class="text-right">Created {{ ticket.date_created | timesince }} ago</td>
                                             </tr>
 
                                             {% endfor %} {% else %} No tickets found for this query. {% endif %}
@@ -105,7 +105,7 @@
                                             <tr>
                                                 <td class="text-left"><a class="text-decoration-none" href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}">Comment #{{ comment.id }}</a></td>
                                                 <td class="text-center"><span>Re: ticket #{{ comment.ticket.id }}</span><span class="d-none d-md-inline">: {{ comment.ticket.subject }}</span></td>
-                                                <td class="text-right"> {{ comment.date_created | timesince }} ago</td>
+                                                <td class="text-right">Created {{ comment.date_created | timesince }} ago</td>
                                             </tr>
                                             {% endfor %} {% else %} No comments found for this query. {% endif %}
                                         </tbody>
@@ -154,7 +154,7 @@
                                             <tr>
                                                 <td class="text-left"><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">Thread #{{ thread.id}}: {{ thread.subject }}</a></td>
                                                 <td class="text-center d-none d-md-table-cell"><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
-                                                <td class="text-right"> {{ thread.date_created | timesince }} ago</td>
+                                                <td class="text-right">Created {{ thread.date_created | timesince }} ago</td>
                                             </tr>
                                             {% endfor %} {% else %} No threads found for this query. {% endif %}
                                         </tbody>
@@ -203,7 +203,7 @@
                                             <tr>
                                                 <td class="text-left"><a class="text-decoration-none" href="{% url 'view_thread' post.thread.id %}#post{{post.id}}">Post #{{ post.id }}</a></td>
                                                 <td class="text-center"><span>Re: thread #{{ post.thread.id }}</span><span class="d-none d-md-inline">: {{ post.thread.subject }}</span></td>
-                                                <td class="text-right">{{ post.date_created | timesince }} ago</td>
+                                                <td class="text-right">Created {{ post.date_created | timesince }} ago</td>
                                             </tr>
                                             {% endfor %} {% else %} No posts found for this query. {% endif %}
                                         </tbody>
