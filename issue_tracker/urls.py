@@ -31,6 +31,6 @@ urlpatterns = [
     url(r'^tickets/', include(urls_tickets)),
     url(r'^forum/', include(urls_forum)),
     url(r'^search_results/', include(urls_search)),
-    url(r'^media/(?P<path>.*)$', static.serve,{'document_root': MEDIA_ROOT}),
+    url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
    # url(r'^dashboard/', include(urls_dashboard)),
 ]
