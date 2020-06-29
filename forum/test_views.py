@@ -178,8 +178,8 @@ class TestDeleteViews(TestCase):
         messages = list(page.context['messages'])
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]),
-                         'Error! You don't have a permission to \
-                        delete this post.')
+                         "Error! You don't have a permission to \
+                        delete this post.")
 
    
 class TestThreadVoting(TestCase):
