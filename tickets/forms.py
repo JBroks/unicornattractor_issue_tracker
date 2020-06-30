@@ -7,12 +7,12 @@ from itertools import chain
 class AddTicketForm(forms.ModelForm):
     '''
     Ticket form that enables user to select ticket type, and type in ticket
-    subject and description
+    subject and description.
     '''
    
     TYPES = list(chain(["--- Please select type ---"],
-                        Ticket.objects.order_by().values_list('ticket_type',
-                        flat=True).distinct()
+                       ["Feature"],
+                       ["Bug"]
                         ))
 
     TYPE_CHOICES = [(i,i) for i in TYPES ]

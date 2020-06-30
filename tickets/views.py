@@ -9,11 +9,13 @@ from tickets.forms import AddTicketForm, PaymentForm, DonationForm, AddCommentFo
 from django.db.models import Count, Sum
 from django.conf import settings
 import stripe
+from itertools import chain
 
 # Create your views here.
 
 # Import the Stripe secret API key
 stripe.api_key = settings.STRIPE_SECRET
+
 
 def paginate(request, list):
     '''
@@ -89,10 +91,8 @@ def all_tickets(request):
     '''
     
     # Create type and status list for select option menu
-    types_list = Ticket.objects.order_by().values_list('ticket_type',
-                    flat=True).distinct()
-    status_list = Ticket.objects.order_by().values_list('ticket_status',
-                    flat=True).distinct()
+    types_list = list(chain(["Feature"], ["Bug"]))
+    status_list = list(chain(["Open"], ["In Progress"], ["Completed"], ["Closed"]))
     
     # Set queryset to all tickets
     qs = Ticket.objects.all()
