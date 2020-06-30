@@ -3,8 +3,9 @@
 /**
  * Function to initialize all tooltips on a page
  **/
+ 
 $(function() {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 
@@ -14,15 +15,10 @@ $(function() {
  * Onclick functions for the ticket type and status filters.
  * Function that clears the filters after reset button is clicked by a user
  **/
+ 
 $('#reset').click(function() {
   $("#ticket-type").val($("#ticket-type option:first").val());
   $("#ticket-status").val($("#ticket-status option:first").val());
-});
-
-
-$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-  e.target // newly activated tab
-  e.relatedTarget // previous active tab
 });
 
 // DISPLAY EDIT COMMENT FORM
@@ -109,6 +105,7 @@ $(document).ready(function() {
 });
 
 // KEEP THE PILL ACTIVE AFTER REFRESH
+
 /**
  * Function that keeps the selected pill active after page is changed
  **/
@@ -139,7 +136,7 @@ $(window).on('load', function() {
  * Function implements smooth scrolling back to top after clicking the button
  **/
 
-let btn = $('#back-to-top-button');
+var btn = $('#back-to-top-button');
 
 $(window).scroll(function() {
   if ($(window).scrollTop() > 300) {
@@ -157,6 +154,7 @@ btn.on('click', function(d) {
 
 
 // TOAST MESSAGES
+
 /**
  * Function that shows toast message and fades it out after 7sec
  **/
@@ -167,6 +165,7 @@ $(document).ready(function() {
 });
 
 // NAVBAR HIDE/SHOW EFFECT
+
 /**
  * Function that hides the navbar when user is scrolling down and shows it back
  * on the scroll to top
@@ -204,6 +203,7 @@ $(document).ready(function() {
 
 
 // NAVBAR HEIGHT CALCULATOR
+
 /**
  * Function that calulates navbar height and applies margin to the main content
  * by adding nav height plus navbar padding
