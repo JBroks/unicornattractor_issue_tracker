@@ -2,7 +2,7 @@
 /* Customized colors */
 /* Bootstrap classes colors adjusted */
 /* Navbar link color adjusted */
-/* ----------------- LOAD BOOTSTRAP SCSS + BOOTSWATCH LUX THEME ----------------- */
+/* --------------- LOAD BOOTSTRAP SCSS + BOOTSWATCH LUX THEME --------------- */
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -7734,7 +7734,7 @@ th {
 
 /* FLEXBOX */
 /* Flexbox used to create a sticky footer and avoid empty space 
-    if not much content e.g. sign in page form */
+   if not much content e.g. sign in page form */
 html,
 body {
   margin: 0;
@@ -7755,8 +7755,8 @@ main {
   flex: auto; }
 
 /* Containers height settings to fill 100% of the main element.
-Solution to issue with the white space between content and footer when not
-much content on the page */
+   Solution to issue with the white space between content and footer when not
+   much content on the page */
 .templates-container,
 .templates-container .content-container,
 #login-section,
@@ -7863,7 +7863,7 @@ nav {
 
 /* SPINNER */
 /* Spinner on data loading spinner animation found 
-    on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1  */
+   on CodePen: https://codepen.io/judecodes/pen/PrBOvG?&page=1  */
 .loader {
   z-index: 99;
   width: 200px;
@@ -7965,45 +7965,19 @@ nav {
   background-repeat: no-repeat;
   background-size: cover; }
 
-/* Background image for all tickets heading section */
-#tickets-heading-container {
-  background-image: url("/media/background_images/tickets_background.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed; }
-
 /* Forum & search page background photo with opacity */
-#forum-heading-container {
+#forum-heading-container, #search-heading-container {
   display: block;
   position: relative; }
 
 #forum-heading-container::after {
-  content: "";
-  background-image: url("/media/background_images/forum_discussion.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1; }
-
-#search-heading-container {
-  display: block;
-  position: relative; }
+  background-image: url("/media/background_images/forum_discussion.jpg"); }
 
 #search-heading-container::after {
+  background-image: url("/media/background_images/search.jpg"); }
+
+#search-heading-container::after, #forum-heading-container::after {
   content: "";
-  background-image: url("/media/background_images/search.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
   opacity: 0.5;
   top: 0;
   left: 0;
@@ -8021,16 +7995,21 @@ nav {
   background-repeat: no-repeat;
   background-size: cover; }
 
-/* Add ticket form background photo */
-#add-ticket-section {
-  background-image: url("/media/background_images/tickets_background.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed; }
+/* Background image for all tickets heading section */
+#tickets-heading-container {
+  background-image: url("/media/background_images/tickets_background.jpg"); }
 
+/* Add a ticket form background photo */
+#add-ticket-section {
+  background-image: url("/media/background_images/tickets_background.jpg"); }
+
+/* Add a thread form background photo */
 #add-thread-section {
-  background-image: url("/media/background_images/forum_discussion.jpg");
+  background-image: url("/media/background_images/forum_discussion.jpg"); }
+
+/* Common background settings for various sections */
+#add-thread-section, #add-ticket-section, #tickets-heading-container,
+#search-heading-container::after, #forum-heading-container::after {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -8117,8 +8096,8 @@ textarea,
 /* PROFILE IMAGE */
 /* Set max size of profile images */
 .profile-image {
-  max-width: 200px;
-  max-height: 200px; }
+  max-width: 150px;
+  max-height: 150px; }
 
 .nav-profile-image {
   width: 35px;
@@ -8173,7 +8152,8 @@ button.btn-rounded {
   display: none; }
 
 /* SUMMARY SIDE BAR */
-/* Styling for ticket summary list to create nice layout where text is aligned */
+/* Styling for ticket summary list to create nice layout
+   where text is aligned */
 #ticket-summary-list {
   margin: 0;
   padding: 0;
@@ -8239,7 +8219,8 @@ span.vote-counter {
 
   .display-4 {
     font-size: 2.5rem; } }
-/* Solution to sticky hover on mobile devices found here: https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
+/* Solution to sticky hover on mobile devices found here:
+   https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
 @media (hover: hover) {
   #back-to-top-button:hover {
     cursor: pointer;
