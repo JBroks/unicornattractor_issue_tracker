@@ -21,6 +21,7 @@ $('#reset').click(function() {
   $("#ticket-status").val($("#ticket-status option:first").val());
 });
 
+
 // DISPLAY EDIT COMMENT FORM
 
 /** 
@@ -42,7 +43,6 @@ $(document).ready(function() {
   });
 });
 
-
 $(document).ready(function() {
   $(function() {
     $('.cancel-edit').click(function() {
@@ -51,6 +51,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 // CHECK TRUNCATE
 
@@ -66,6 +67,7 @@ $(function() {
     }
   });
 });
+
 
 // SHOW MORE / LESS COMMENT
 
@@ -104,6 +106,7 @@ $(document).ready(function() {
   });
 });
 
+
 // KEEP THE PILL ACTIVE AFTER REFRESH
 
 /**
@@ -120,6 +123,7 @@ $(function() {
   }
 });
 
+
 // SPINNER OVERLAY
 
 /**
@@ -129,6 +133,7 @@ $(function() {
 $(window).on('load', function() {
   $("#overlay").fadeOut("slow");
 });
+
 
 // BACK TO TOP BUTTON
 
@@ -163,6 +168,7 @@ $(document).ready(function() {
   $('.toast').toast('show');
   setTimeout(function() { $('.toast').toast('hide'); }, 7000);
 });
+
 
 // NAVBAR HIDE/SHOW EFFECT
 
