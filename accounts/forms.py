@@ -151,7 +151,8 @@ class UploadFileForm(forms.ModelForm):
     Form used to upload a user profile photo.
     '''
     image = forms.ImageField(label="Profile image",
-                             widget=forms.FileInput())
+                             widget=forms.FileInput(),
+                             required=False)
     
     class Meta:
         model = UserProfile
