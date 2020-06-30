@@ -1,3 +1,9 @@
+// STRIPE PAYMENT PROCESSING
+
+/** 
+ * JS code copied and pasted from the Code Institute tutorial
+**/
+
 $(function() {
     $("#payment-form").submit(function() {
         var form = this;
@@ -19,7 +25,8 @@ $(function() {
             $("#id_cvv").removeAttr('name');
             $("#id_expiry_month").removeAttr('name');
             $("#id_expiry_year").removeAttr('name');
-
+            
+            // Submit the form
             form.submit();
         } else {
             $("#stripe-error-message").text(response.error.message);
@@ -27,6 +34,7 @@ $(function() {
             $("#validate_card_btn").attr("disabled", false);
         }
     });
+    
     return false;
     });
 });
