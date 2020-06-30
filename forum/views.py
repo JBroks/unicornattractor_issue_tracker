@@ -70,12 +70,12 @@ def add_or_edit_thread(request, pk=None):
             add_thread_form.instance.user = request.user
             # Save the thread to the database
             new_thread.save()
-            messages.success(request, 'You have successfully created a new \
-                                thread!')
+            messages.success(request, 'You have successfully created a new '
+                             ' thread!')
             return redirect('forum')
         else:
-            messages.error(request, 'Something went wrong. \
-                                Please try again.')
+            messages.error(request, 'Something went wrong. '
+                           'Please try again.')
     else:
         add_thread_form = AddThreadForm(instance=thread)
         
@@ -160,8 +160,9 @@ def delete_thread(request, pk):
             messages.success(request, 'Thread successfully deleted!')
             return redirect(reverse('forum'))
     else:
-        messages.error(request, "Error! You don't have a permission to \
-                        delete this thread.")
+        messages.error(request,
+                       "Error! You don't have a permission to delete "
+                       "this thread.")
         return redirect('view_thread', thread.pk)
 
 
@@ -210,8 +211,9 @@ def delete_post(request, thread_pk, post_pk):
             messages.success(request, 'Post successfully deleted!')
             return redirect('view_thread', thread.pk)
     else:
-        messages.error(request, "Error! You don't have a permission to \
-                        delete this post.")
+        messages.error(request,
+                       "Error! You don't have a permission to"
+                       " delete this post.")
         return redirect('view_thread', thread.pk)
 
 
