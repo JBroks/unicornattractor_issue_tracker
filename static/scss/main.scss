@@ -113,7 +113,7 @@ main {
 .templates-container .content-container,
 #login-section,
 #login-section div,
-#reset-password-section {
+section.reset-password-section {
   height: 100%;
 }
 
@@ -129,7 +129,7 @@ main {
 #search-result-section .container-fluid,
 #forum-table-section .container-fluid,
 #table-section .container-fluid,
-#filter-section .container-fluid, #profile-page-content, #reset-password-form-container {
+#filter-section .container-fluid, #profile-page-content, div.reset-password-container {
   height: 100%;
 }
 
@@ -384,7 +384,7 @@ nav {
 #register-section,
 #login-section,
 #edit-profile-section,
-#reset-password-section {
+section.reset-password-section {
   background-image: url(
   "/media/background_images/gradient_background_large_4.png");
   background-position: center center;
@@ -492,6 +492,7 @@ form {
 #login-section form,
 #edit-profile-form,
 #reset-password-form,
+#set-new-password-form,
 #add-thread-section form {
   background-color: white;
   width: 100%;

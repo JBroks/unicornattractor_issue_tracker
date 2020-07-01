@@ -223,9 +223,11 @@ $('main').css({ marginTop: heightNav + 48 + 'px' });
 // ADD BOOTSTRAP CLASS
 
 /**
- * 
+ * Function adds a given bootstrap class to selected field using jQuery
  **/
 
 $(document).ready(function(){
     $("#form-email-input input").addClass("form-control");
+    $("#id_new_password1").addClass("form-control");
+    $("#id_new_password2").addClass("form-control");
 });
