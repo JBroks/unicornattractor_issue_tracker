@@ -218,3 +218,14 @@ $(document).ready(function() {
 var heightNav = $('.navbar').height();
 
 $('main').css({ marginTop: heightNav + 48 + 'px' });
+
+
+// ADD BOOTSTRAP CLASS
+
+/**
+ * 
+ **/
+
+$(document).ready(function(){
+    $("#form-email-input input").addClass("form-control");
+});

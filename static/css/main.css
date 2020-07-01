@@ -7760,7 +7760,8 @@ main {
 .templates-container,
 .templates-container .content-container,
 #login-section,
-#login-section div {
+#login-section div,
+#reset-password-section {
   height: 100%; }
 
 #search-heading-section,
@@ -7790,7 +7791,7 @@ main {
 #filter-section .container-sm,
 #filter-section .container-md,
 #filter-section .container-lg,
-#filter-section .container-xl, #profile-page-content, #reset-password-form {
+#filter-section .container-xl, #profile-page-content, #reset-password-form-container {
   height: 100%; }
 
 #filter-section {
@@ -7989,7 +7990,8 @@ nav {
 /* Register & login page background image */
 #register-section,
 #login-section,
-#edit-profile-section {
+#edit-profile-section,
+#reset-password-section {
   background-image: url("/media/background_images/gradient_background_large_4.png");
   background-position: center center;
   background-repeat: no-repeat;
@@ -8069,6 +8071,7 @@ form {
 #register-section form,
 #login-section form,
 #edit-profile-form,
+#reset-password-form,
 #add-thread-section form {
   background-color: white;
   width: 100%; }
