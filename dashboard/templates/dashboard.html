@@ -2,28 +2,29 @@
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
-  <!-- Dashboard section containing three tiles with summary statistics (BEGINNING) -->
-  <section id="summary-stats">
-    <div class="container-fluid">
+  <div id="dashboard-page" class="container-fluid pt-5 pb-3 px-sm-5 px-3 bgr-off-white">
 
-      <div class="row mt-5">
+    <!-- Dashboard section containing three tiles with summary statistics (BEGINNING) -->
+    <section id="summary-stats">
+      <div class="container-fluid">
+        <div class="row">
 
-        <!-- Total tickets tile -->
-        <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-          <div id="total-acc-card" class="card mb-3">
-            <div class="card-header bg-dark text-white">Total Tickets</div>
-            <div class="card-body">
-              <div class="row no-gutters">
+          <!-- Total tickets tile -->
+          <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+            <div id="total-tickets-card" class="card mb-3">
+              <div class="card-header bg-dark text-white text-uppercase">Total Tickets</div>
+              <div class="card-body">
+                <div class="row no-gutters">
 
-                <!-- Total number of tickets (BEGINNING) -->
-                <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
-                  {{ total_tickets }}
-                </div>
-                <!-- Total number of tickets (END) -->
+                  <!-- Total number of tickets (BEGINNING) -->
+                  <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                    {{ total_tickets }}
+                  </div>
+                  <!-- Total number of tickets (END) -->
 
-                <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
-                <div class="col-auto text-primary">
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
+                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                  <div class="col-auto text-primary">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
                       <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
                       <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
                       <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
@@ -37,30 +38,30 @@
                       <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
                       <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
                   </svg>
-                </div>
-                <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+                  </div>
+                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
 
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Total bugs tile -->
-        <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-          <div id="total-acc-card" class="card mb-3">
-            <div class="card-header bg-dark text-white">Total Tickets</div>
-            <div class="card-body">
-              <div class="row no-gutters">
+          <!-- Total bugs tile -->
+          <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+            <div id="total-bugs-card" class="card mb-3">
+              <div class="card-header bg-dark text-white text-uppercase">Total Reported Bugs</div>
+              <div class="card-body">
+                <div class="row no-gutters">
 
-                <!-- Total number of bugs (BEGINNING) -->
-                <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
-                  {{ total_bugs}}
-                </div>
-                <!-- Total number of bugs (END) -->
+                  <!-- Total number of bugs (BEGINNING) -->
+                  <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                    {{ total_bugs}}
+                  </div>
+                  <!-- Total number of bugs (END) -->
 
-                <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
-                <div class="col-auto text-primary">
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
+                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                  <div class="col-auto text-primary">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
                       <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
                       <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
                       <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
@@ -74,30 +75,30 @@
                       <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
                       <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
                   </svg>
-                </div>
-                <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+                  </div>
+                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
 
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Total features tile -->
-        <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-          <div id="total-acc-card" class="card mb-3">
-            <div class="card-header bg-dark text-white">Total Tickets</div>
-            <div class="card-body">
-              <div class="row no-gutters">
+          <!-- Total features tile -->
+          <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+            <div id="total-features-card" class="card mb-3">
+              <div class="card-header bg-dark text-white text-uppercase">Total Proposed Features</div>
+              <div class="card-body">
+                <div class="row no-gutters">
 
-                <!-- Total number of features (BEGINNING) -->
-                <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
-                  {{ total_features }}
-                </div>
-                <!-- Total number of features (END) -->
+                  <!-- Total number of features (BEGINNING) -->
+                  <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                    {{ total_features }}
+                  </div>
+                  <!-- Total number of features (END) -->
 
-                <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
-                <div class="col-auto text-primary">
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
+                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                  <div class="col-auto text-primary">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
                       <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
                       <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
                       <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
@@ -111,21 +112,67 @@
                       <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
                       <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
                   </svg>
-                </div>
-                <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+                  </div>
+                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
 
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
+    </section>
+    <!-- Dashboard section containing three tiles with summary statistics (END) -->
 
-    </div>
-  </section>
-  <!-- Dashboard section containing three tiles with summary statistics (END) -->
+    <!-- Dashboard section containing analysis of tickets by type, status, and number of upvotes (BEGINNING) -->
+    <section id="charts-stats">
+      <div class="container-fluid">
+        <div class="row">
 
-  
+          <!-- Tickets by type pie chart tile (BEGINNING) -->
+          <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+            <div id="tickets-type-card" class="card mb-3">
+              <div class="card-header bg-dark text-white text-uppercase">Tickets by type</div>
+              <div class="card-body">
+
+                <figure class="highcharts-figure">
+                  <div id="container"></div>
+                </figure>
+
+              </div>
+            </div>
+          </div>
+          <!-- Tickets by type pie chart tile (END) -->
+
+          <!-- Tickets by type and status stacked chart tile (BEGINNING) -->
+          <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+            <div id="tickets-status-card" class="card mb-3">
+              <div class="card-header bg-dark text-white text-uppercase">Tickets by type and status</div>
+              <div class="card-body">
+
+              </div>
+            </div>
+          </div>
+          <!-- Tickets by type and status stacked chart tile (END) -->
+
+          <!-- Tickets by the highest number of upvotes tile (BEGINNING) -->
+          <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+            <div id="tickets-upvotes-card" class="card mb-3">
+              <div class="card-header bg-dark text-white text-uppercase">Top upvoted tickets</div>
+              <div class="card-body">
+
+              </div>
+            </div>
+          </div>
+          <!-- Tickets by the highest number of upvotes tile (END) -->
+
+        </div>
+      </div>
+    </section>
+    <!-- Dashboard section containing analysis of tickets by type, status, and number of upvotes (END) -->
+
+  </div>
 </section>
 <!-- Page content container (END) -->
 
