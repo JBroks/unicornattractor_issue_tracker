@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% load static from staticfiles %} {% block page_title %} Data Dashboard {% endblock %} {% block content %}
+
+<!-- Page content container (BEGINNING) -->
+<section class="content-container">
+    {{ total_open_bugs }}
+    <p>{{ top_five_upvoted_tickets }}</p>
+    <p>{{ top_five_upvoted_bugs }}</p>
+    <p>{{ top_five_upvoted_features }}</p>
+    
+    {% for i in top_five_upvoted_bugs %}
+     <div>{{ i.id }} - {{ i.tickets_upvotes_count }}</div>
+    {% endfor %}
+</section>
+<!-- Page content container (END) -->
+
+{% endblock %}
