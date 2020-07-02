@@ -2,14 +2,130 @@
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
-    {{ total_open_bugs }}
-    <p>{{ top_five_upvoted_tickets }}</p>
-    <p>{{ top_five_upvoted_bugs }}</p>
-    <p>{{ top_five_upvoted_features }}</p>
-    
-    {% for i in top_five_upvoted_bugs %}
-     <div>{{ i.id }} - {{ i.tickets_upvotes_count }}</div>
-    {% endfor %}
+  <!-- Dashboard section containing three tiles with summary statistics (BEGINNING) -->
+  <section id="summary-stats">
+    <div class="container-fluid">
+
+      <div class="row mt-5">
+
+        <!-- Total tickets tile -->
+        <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+          <div id="total-acc-card" class="card mb-3">
+            <div class="card-header bg-dark text-white">Total Tickets</div>
+            <div class="card-body">
+              <div class="row no-gutters">
+
+                <!-- Total number of tickets (BEGINNING) -->
+                <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                  {{ total_tickets }}
+                </div>
+                <!-- Total number of tickets (END) -->
+
+                <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                <div class="col-auto text-primary">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
+                      <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
+                      <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
+                      <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
+                      <g class="bar" transform="translate(18,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(24,0)"><rect height="9" y="11" width="5"></rect></g>
+                      <g class="bar" transform="translate(30,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(36,0)"><rect height="16" y="4" width="5"></rect></g>
+                      <g class="bar" transform="translate(42,0)"><rect height="17" y="3" width="5"></rect></g>
+                      <g class="bar" transform="translate(48,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(54,0)"><rect height="9" y="11" width="5"></rect></g>
+                      <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
+                      <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
+                  </svg>
+                </div>
+                <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total bugs tile -->
+        <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+          <div id="total-acc-card" class="card mb-3">
+            <div class="card-header bg-dark text-white">Total Tickets</div>
+            <div class="card-body">
+              <div class="row no-gutters">
+
+                <!-- Total number of bugs (BEGINNING) -->
+                <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                  {{ total_bugs}}
+                </div>
+                <!-- Total number of bugs (END) -->
+
+                <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                <div class="col-auto text-primary">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
+                      <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
+                      <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
+                      <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
+                      <g class="bar" transform="translate(18,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(24,0)"><rect height="9" y="11" width="5"></rect></g>
+                      <g class="bar" transform="translate(30,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(36,0)"><rect height="16" y="4" width="5"></rect></g>
+                      <g class="bar" transform="translate(42,0)"><rect height="17" y="3" width="5"></rect></g>
+                      <g class="bar" transform="translate(48,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(54,0)"><rect height="9" y="11" width="5"></rect></g>
+                      <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
+                      <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
+                  </svg>
+                </div>
+                <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total features tile -->
+        <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+          <div id="total-acc-card" class="card mb-3">
+            <div class="card-header bg-dark text-white">Total Tickets</div>
+            <div class="card-body">
+              <div class="row no-gutters">
+
+                <!-- Total number of features (BEGINNING) -->
+                <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                  {{ total_features }}
+                </div>
+                <!-- Total number of features (END) -->
+
+                <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                <div class="col-auto text-primary">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" viewBox="0 0 70 20" height="40" width="100" role="img">
+                      <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
+                      <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
+                      <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
+                      <g class="bar" transform="translate(18,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(24,0)"><rect height="9" y="11" width="5"></rect></g>
+                      <g class="bar" transform="translate(30,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(36,0)"><rect height="16" y="4" width="5"></rect></g>
+                      <g class="bar" transform="translate(42,0)"><rect height="17" y="3" width="5"></rect></g>
+                      <g class="bar" transform="translate(48,0)"><rect height="10" y="10" width="5"></rect></g>
+                      <g class="bar" transform="translate(54,0)"><rect height="9" y="11" width="5"></rect></g>
+                      <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
+                      <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
+                  </svg>
+                </div>
+                <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- Dashboard section containing three tiles with summary statistics (END) -->
+
+  
 </section>
 <!-- Page content container (END) -->
 
