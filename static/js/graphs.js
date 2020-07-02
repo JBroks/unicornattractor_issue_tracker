@@ -9,7 +9,7 @@ Highcharts.chart('container', {
     }
   },
   subtitle: {
-    text: 'Click the slices to view ticket type breakdown by status.'
+    text: 'Click the slices to view further breakdown.'
   },
   credits: {
     enabled: false
@@ -36,7 +36,7 @@ Highcharts.chart('container', {
     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
     pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
   },
-
+  colors: ['#63d37b', '#fcd731', '#ef6354', '#2e3190', '#88fca1', '#fceb9f', '#fcdcd7', '#494de3', '#ee5140'],
   series: [{
     name: "Tickets",
     colorByPoint: true,
@@ -100,3 +100,6 @@ Highcharts.chart('container', {
     ]
   }
 });
+
+
+
