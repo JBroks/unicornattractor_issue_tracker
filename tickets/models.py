@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.db.models import Count
 
 # Create your models here.
 
@@ -57,14 +58,18 @@ class Ticket(models.Model):
     def __str__(self):
         return 'Ticket #{0} [{1}] {2} - {3}'.format(
             self.id, self.ticket_status, self.ticket_type, self.subject)
+    
+    def tickets_upvotes_count(self):
+        return self.upvote_ticket_key.annotate(num_upvotes=Count('id')).count()
 
-        
+
 class Upvote(models.Model):
     '''
     Enables users to upvote any ticket
     '''
     ticket = models.ForeignKey(
         Ticket,
+        related_name='upvote_ticket_key',
         null=True,
         on_delete=models.CASCADE)
     user = models.ForeignKey(
