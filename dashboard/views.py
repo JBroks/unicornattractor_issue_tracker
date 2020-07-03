@@ -15,7 +15,7 @@ def dashboard(request):
     all_features = Ticket.objects.filter(ticket_type="Feature")
     
     # Count all tickets and tickets by ticket_type
-    total_tickets = Ticket.objects.all()
+    total_tickets = all_tickets.count()
     total_bugs = all_bugs.count()
     total_features = all_features.count()
     
