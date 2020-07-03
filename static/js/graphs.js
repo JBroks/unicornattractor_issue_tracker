@@ -1,5 +1,5 @@
 // PIE CHART
-Highcharts.chart('container', {
+chart = new Highcharts.chart('ticket-type-chart', {
   chart: {
     type: 'pie'
   },
@@ -9,7 +9,7 @@ Highcharts.chart('container', {
     }
   },
   subtitle: {
-    text: 'Click the slices to view further breakdown.'
+    text: 'Click the slices to view tickets by status',
   },
   credits: {
     enabled: false
@@ -97,9 +97,18 @@ Highcharts.chart('container', {
           ]
         ]
       }
-    ]
-  }
+    ],
+
+    drillUpButton: {
+      position: {
+        verticalAlign: top,
+        x: -5,
+        y: 10
+      },
+      theme: undefined
+    }
+  },
+  lang: {
+    drillUpText: '< Back'
+  },
 });
-
-
-
