@@ -175,5 +175,152 @@
   </div>
 </section>
 <!-- Page content container (END) -->
+{% endblock %}
 
+{% block graph_js %}
+<script>
+
+// PIE CHART
+
+/**
+ * Highcharts pie chart presenting ticket by type breakdown.
+ * When clicking on a slice user is able to investigate further details
+ * i.e. further breakdown of ticket type by the status.
+ **/
+
+$(document).ready(function() {
+  
+  /* Pie chart values variables */
+  let total_open_bugs = {{ total_open_bugs | safe }};
+  let total_in_progress_bugs = {{ total_in_progress_bugs | safe }};
+  let total_completed_bugs = {{ total_completed_bugs | safe }};
+  let total_closed_bugs = {{ total_closed_bugs | safe }};
+  
+  let total_open_features = {{ total_open_features | safe }};
+  let total_in_progress_features = {{ total_in_progress_features | safe }};
+  let total_completed_features = {{ total_completed_features | safe }};
+  let total_closed_features = {{ total_closed_features | safe }};
+
+  chart = new Highcharts.chart('ticket-type-chart', {
+    chart: {
+      type: 'pie'
+    },
+    title: {
+      style: {
+        display: 'none'
+      }
+    },
+    subtitle: {
+      text: 'Click the slices to view tickets by status',
+    },
+    credits: {
+      enabled: false
+    },
+    accessibility: {
+      announceNewData: {
+        enabled: true
+      },
+      point: {
+        valueSuffix: '%'
+      }
+    },
+    plotOptions: {
+      series: {
+        dataLabels: {
+          enabled: false,
+        },
+        showInLegend: true,
+      }
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+      pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+    colors: ['#63d37b', '#fcd731', '#ef6354', '#2e3190', '#88fca1', '#fceb9f', '#fcdcd7', '#494de3', '#ee5140'],
+    series: [{
+      name: "Tickets",
+      colorByPoint: true,
+      data: [{
+          name: "Bugs",
+          y: 62.74,
+          drilldown: "Bugs"
+        },
+        {
+          name: "Features",
+          y: 10.57,
+          drilldown: "Features"
+        }
+      ]
+    }],
+    drilldown: {
+      series: [{
+          name: "Bugs",
+          id: "Bugs",
+          data: [
+            [
+              "Open",
+              total_open_bugs
+            ],
+            [
+              "In progress",
+              total_in_progress_bugs
+            ],
+            [
+              "Completed",
+              total_completed_bugs
+            ],
+            [
+              "Closed",
+              total_closed_bugs
+            ]
+          ]
+        },
+        {
+          name: "Features",
+          id: "Features",
+          data: [
+            [
+              "Open",
+              total_open_features
+            ],
+            [
+              "In progress",
+              total_in_progress_features
+            ],
+            [
+              "Completed",
+              total_completed_features
+            ],
+            [
+              "Closed",
+              total_closed_features
+            ]
+          ]
+        }
+      ],
+
+      drillUpButton: {
+        position: {
+          verticalAlign: top,
+          x: 0,
+          y: 5
+        },
+        theme: undefined
+      }
+    },
+    lang: {
+      drillUpText: '< Back'
+    },
+    exporting: {
+      buttons: {
+        contextButton: {
+          align: 'right',
+          x: 5
+        }
+      }
+    }
+  });
+});
+
+</script>
 {% endblock %}
