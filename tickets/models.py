@@ -93,6 +93,7 @@ class Donation(models.Model):
     '''
     ticket = models.ForeignKey(
         Ticket,
+        related_name='donate_ticket_key',
         null=True,
         on_delete=models.CASCADE)
     user = models.ForeignKey(
