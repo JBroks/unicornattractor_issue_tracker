@@ -151,6 +151,10 @@
               <div class="card-header bg-dark text-white text-uppercase">Tickets by type and status</div>
               <div class="card-body">
 
+                <figure class="highcharts-figure">
+                  <div id="ticket-status-chart"></div>
+                </figure>
+
               </div>
             </div>
           </div>
@@ -180,16 +184,16 @@
 {% block graph_js %}
 <script>
 
-// PIE CHART
+$(document).ready(function() {
+  
+  // PIE CHART
 
 /**
  * Highcharts pie chart presenting ticket by type breakdown.
  * When clicking on a slice user is able to investigate further details
  * i.e. further breakdown of ticket type by the status.
  **/
-
-$(document).ready(function() {
-  
+ 
   /* Pie chart values variables */
   let total_open_bugs = {{ total_open_bugs | safe }};
   let total_in_progress_bugs = {{ total_in_progress_bugs | safe }};
@@ -320,6 +324,56 @@ $(document).ready(function() {
       }
     }
   });
+  
+  
+  // STACKED CHART
+
+chart = new  Highcharts.chart('ticket-status-chart', {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    style: {
+        display: 'none'
+      }
+  },
+  credits: {
+      enabled: false
+    },
+  xAxis: {
+    categories: ['Bugs', 'Features']
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Total number of tickets'
+    }
+  },
+  tooltip: {
+    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+    shared: true
+  },
+  plotOptions: {
+    column: {
+      stacking: 'percent'
+    }
+  },
+  colors: ['#63d37b', '#fcd731', '#ef6354', '#2e3190', '#88fca1', '#fceb9f', '#fcdcd7', '#494de3', '#ee5140'],
+  series: [{
+    name: 'Open',
+    data: [ total_open_bugs, total_open_features]
+  }, {
+    name: 'In Progress',
+    data: [total_in_progress_bugs, total_in_progress_features]
+  }, {
+    name: 'Completed',
+    data: [total_completed_bugs, total_completed_features]
+  },{
+    name: 'Closed',
+    data: [total_closed_bugs, total_closed_features]
+  } ]
+});
+  
 });
 
 </script>
