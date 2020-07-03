@@ -1,6 +1,6 @@
 from tickets.models import Ticket, Upvote
 from django.shortcuts import render
-from django.db.models import Count
+from django.db.models import Count, Sum, Q
 
 # Create your views here.
 
@@ -42,6 +42,13 @@ def dashboard(request):
     top_five_upvoted_features = all_features.annotate(
         num_likes=Count('upvote_ticket_key')).order_by('-num_likes')[:5]
     
+    # Top 10 most donated features - only open features  
+    top_ten_donated_features = all_features.filter(
+        Q(ticket_status__iexact="Open") \
+        | Q(ticket_status__iexact="In Progress")).annotate(
+            sum_donation=Sum('donate_ticket_key')).order_by(
+                '-sum_donation')[:10]
+
     context = {
         'total_tickets': total_tickets,
         'total_bugs': total_bugs,
@@ -57,6 +64,7 @@ def dashboard(request):
         'top_five_upvoted_tickets': top_five_upvoted_tickets,
         'top_five_upvoted_bugs': top_five_upvoted_bugs,
         'top_five_upvoted_features': top_five_upvoted_features,
+        'top_ten_donated_features': top_ten_donated_features,
     }
     
     return render(request, 'dashboard.html', context)
