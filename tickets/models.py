@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 # Create your models here.
 
@@ -61,6 +61,10 @@ class Ticket(models.Model):
     
     def tickets_upvotes_count(self):
         return self.upvote_ticket_key.annotate(num_upvotes=Count('id')).count()
+    
+    def tickets_donations_sum(self):
+        return self.donate_ticket_key.aggregate(
+            sum_donation=Sum('donation_amount'))
 
 
 class Upvote(models.Model):
