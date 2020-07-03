@@ -223,6 +223,8 @@
 
   <!-- Bootstrap select JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.17/js/bootstrap-select.min.js"></script>
+  
+  <!-- Stripe JS -->
   {% block js %} {% endblock %}
   
   <!-- Highcharts JS -->
@@ -233,8 +235,8 @@
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
   
-  <!-- Graphs JS -->
-  <script src="{% static 'js/graphs.js' %}"></script>
+  <!-- Custom charts JS -->
+  {% block graph_js %} {% endblock %}
   
   <!-- Custom JS -->
   <script src="{% static 'js/script.js' %}"></script>
