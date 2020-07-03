@@ -431,7 +431,8 @@ section.reset-password-section {
 }
 
 #thread-view-page,
-#view-ticket-page {
+#view-ticket-page,
+#dashboard-page {
   border-top: solid 10px $color-pink;
 }
 
@@ -677,7 +678,7 @@ span.vote-counter {
   font-size: 1.3rem;
 }
 
-/* Pie chart styling */
+/* Highcharts charts styling */
 .highcharts-figure, .highcharts-data-table table {
   min-width: 220px; 
   max-width: 455px;
@@ -710,6 +711,16 @@ span.vote-counter {
 }
 .highcharts-data-table tr:hover {
   background: #f1f7ff;
+}
+
+/* Set height so all cards in one row are tha same height */
+
+#dashboard-page .card {
+  height: 100%;
+}
+
+.upvote-total {
+  white-space: nowrap;
 }
 
 /* MEDIA QUERIES */
