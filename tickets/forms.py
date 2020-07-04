@@ -19,7 +19,7 @@ class AddTicketForm(forms.ModelForm):
         choices=TYPE_CHOICES,
         label='Ticket type',
         widget=forms.Select(attrs={'class': 'selectpicker',
-                                   'data-style': 'btn-secondary'}),
+                                   'data-style': 'btn-light'}),
         required=True)
     subject = forms.CharField(
         label='Subject',
