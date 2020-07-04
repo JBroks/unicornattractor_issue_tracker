@@ -8262,9 +8262,37 @@ span.vote-counter {
   white-space: nowrap; }
 
 /* Space text and icon on opposite sides of header */
-#charts-stats .card-header {
+#charts-stats .card-header, #summary-stats .card-header,
+#donations-stats .card-header {
   display: flex;
   justify-content: space-between; }
+
+/* Change the background color for the tooltip background and arrow color */
+.tooltip-inner {
+  background-color: #2e3190; }
+
+.tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before,
+.tooltip.bs-tooltip-top .arrow::before,
+.tooltip.bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  border-top-color: #2e3190; }
+
+.tooltip.bs-tooltip-auto[x-placement^=right] .arrow::before,
+.tooltip.bs-tooltip-right .arrow::before,
+.tooltip.bs-tooltip-auto[x-placement^="right"] .arrow::before {
+  border-right-color: #2e3190; }
+
+.tooltip.bs-tooltip-auto[x-placement^=bottom] .arrow::before,
+.tooltip.bs-tooltip-bottom .arrow::before,
+.tooltip.bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+  border-bottom-color: #2e3190; }
+
+.tooltip.bs-tooltip-auto[x-placement^=left] .arrow::before,
+.tooltip.bs-tooltip-left .arrow::before,
+.tooltip.bs-tooltip-auto[x-placement^="left"] .arrow::before {
+  border-left-color: #2e3190; }
+
+#dashboard-page .card-header i {
+  cursor: pointer; }
 
 /* MEDIA QUERIES */
 @media only screen and (min-width: 992px) {

@@ -747,9 +747,40 @@ span.vote-counter {
 
 /* Space text and icon on opposite sides of header */
 
-#charts-stats .card-header {
+#charts-stats .card-header, #summary-stats .card-header,
+#donations-stats .card-header {
   display: flex;
   justify-content: space-between
+}
+
+/* Change the background color for the tooltip background and arrow color */
+
+.tooltip-inner {
+  background-color: $color-blue;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before,
+.tooltip.bs-tooltip-top .arrow::before {
+  border-top-color: $color-blue;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=right] .arrow::before,
+.tooltip.bs-tooltip-right .arrow::before {
+  border-right-color: $color-blue;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=bottom] .arrow::before,
+.tooltip.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: $color-blue;
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=left] .arrow::before,
+.tooltip.bs-tooltip-left .arrow::before {
+  border-left-color: $color-blue;
+}
+
+#dashboard-page .card-header i {
+  cursor: pointer;
 }
 
 /* MEDIA QUERIES */
