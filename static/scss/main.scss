@@ -440,7 +440,7 @@ section.reset-password-section {
 
 /* SEPARATORS */
 
-/* Add separator to filter section */
+/* Add separator to various section */
 
 #filter-section,
 #forum-table-section {
@@ -449,7 +449,8 @@ section.reset-password-section {
 
 #thread-view-page,
 #view-ticket-page,
-#dashboard-page {
+#dashboard-page, 
+#dashboard-heading-container {
   border-top: solid 10px $color-pink;
 }
 

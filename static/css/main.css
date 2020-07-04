@@ -8036,14 +8036,15 @@ section.reset-password-section {
   background-attachment: fixed; }
 
 /* SEPARATORS */
-/* Add separator to filter section */
+/* Add separator to various section */
 #filter-section,
 #forum-table-section {
   border-top: solid 10px #fcdcd7; }
 
 #thread-view-page,
 #view-ticket-page,
-#dashboard-page {
+#dashboard-page,
+#dashboard-heading-container {
   border-top: solid 10px #e89e93; }
 
 #table-section,
