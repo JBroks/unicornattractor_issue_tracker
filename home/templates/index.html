@@ -12,7 +12,7 @@
                 <hr class="my-4"> {% if user.is_authenticated %}
                 <p class="text-light">Add your ticket to report an issue or suggest a new feature, or join a discussion on our Forum!</p>
                 <p>
-                <a class="btn btn-light mt-3" href="{% url 'add_ticket' %}" role="button">Add ticket</a> <a class="btn btn-light ml-3 mt-3" href="{% url 'forum' %}" role="button">Forum</a>
+                <a class="btn btn-light mt-3" href="{% url 'add_ticket' %}" role="button">Add ticket</a> <a class="btn btn-light ml-1 mt-3" href="{% url 'forum' %}" role="button">Forum</a>
                 </p>
                 {% else %}
                 <p class="text-light">Sign up and help us to improve your experience today!</p>
