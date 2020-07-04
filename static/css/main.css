@@ -7844,7 +7844,8 @@ nav {
 /* Toast message position */
 .toast {
   position: fixed;
-  right: 0; }
+  right: 0;
+  z-index: 9999; }
 
 /* Toast messages color depending on message type */
 .toast-body {
@@ -8127,7 +8128,6 @@ textarea,
   border: solid 2px #fbfafa; }
 
 .btn-light:hover {
-  color: #fbfafa;
   border: solid 2px #fbfafa;
   background-color: transparent; }
 
@@ -8150,10 +8150,6 @@ button.btn-rounded {
 /* Adjust height of search button so it is the same as the form input */
 #search-btn {
   line-height: 21px; }
-
-/* Overwrite bootstrap select button color so it matches the form */
-.bootstrap-select > button {
-  background-color: #f7f7f9; }
 
 /* TABLE */
 /* Remove top border for the first row in the table */
@@ -8288,7 +8284,10 @@ span.vote-counter {
     width: 100%; }
 
   .display-4 {
-    font-size: 2.5rem; } }
+    font-size: 2.2rem; } }
+@media only screen and (max-width: 350px) {
+  .filter-option-inner-inner {
+    font-size: 0.6rem; } }
 /* Solution to sticky hover on mobile devices found here:
    https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
 @media (hover: hover) {
