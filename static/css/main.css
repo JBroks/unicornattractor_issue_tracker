@@ -8262,7 +8262,8 @@ span.vote-counter {
   white-space: nowrap; }
 
 /* Space text and icon on opposite sides of header */
-#charts-stats .card-header, #summary-stats .card-header,
+#charts-stats .card-header,
+#summary-stats .card-header,
 #donations-stats .card-header {
   display: flex;
   justify-content: space-between; }
@@ -8293,6 +8294,14 @@ span.vote-counter {
 
 #dashboard-page .card-header i {
   cursor: pointer; }
+
+/* Dashboard nav pills colors */
+.nav-pills .nav-link.active {
+  color: #fff;
+  background-color: #2e3190; }
+
+.nav-pills .nav-link {
+  color: #2e3190; }
 
 /* MEDIA QUERIES */
 @media only screen and (min-width: 992px) {

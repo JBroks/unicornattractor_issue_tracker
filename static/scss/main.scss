@@ -747,7 +747,8 @@ span.vote-counter {
 
 /* Space text and icon on opposite sides of header */
 
-#charts-stats .card-header, #summary-stats .card-header,
+#charts-stats .card-header,
+#summary-stats .card-header,
 #donations-stats .card-header {
   display: flex;
   justify-content: space-between
@@ -781,6 +782,17 @@ span.vote-counter {
 
 #dashboard-page .card-header i {
   cursor: pointer;
+}
+
+/* Dashboard nav pills colors */
+
+.nav-pills .nav-link.active {
+  color: #fff;
+  background-color: $color-blue;
+}
+
+.nav-pills .nav-link {
+  color: $color-blue;
 }
 
 /* MEDIA QUERIES */
@@ -827,13 +839,11 @@ span.vote-counter {
 @media only screen and (max-width: 350px) {
 
   /* Smaller fonts to see the text inside the select menu */
-  
   .filter-option-inner-inner {
     font-size: 0.6rem;
   }
 
   /* Smaller font to avoid username and timesince text break */
-  
   h5.card-title {
     font-size: 0.7rem;
   }
