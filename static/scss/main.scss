@@ -675,6 +675,12 @@ span.vote-counter {
 
 /* DASHBOARD */
 
+/* Border of the card changed to pink */
+
+#dashboard-page .card {
+  border-color: $color-primary;
+}
+
 /* Styling of summary stats font */
 
 .summary-figure {
@@ -789,10 +795,22 @@ span.vote-counter {
 
 @media only screen and (max-width: 350px) {
 
+  /* Smaller fonts to see the text inside the select menu */
+  
   .filter-option-inner-inner {
     font-size: 0.6rem;
   }
+
+  /* Smaller font to avoid username and timesince text break */
   
+  h5.card-title {
+    font-size: 0.7rem;
+  }
+
+  h6.card-subtitle {
+    font-size: 0.5rem;
+  }
+
 }
 
 /* Solution to sticky hover on mobile devices found here:
