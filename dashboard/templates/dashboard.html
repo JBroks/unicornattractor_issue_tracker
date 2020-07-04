@@ -12,7 +12,10 @@
           <!-- Total tickets tile -->
           <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
             <div id="total-tickets-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">Total Tickets</div>
+              <div class="card-header bg-primary text-white text-uppercase">
+                <span>Total Tickets</span>
+                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of tickets submitted by users."></i></span>
+              </div>
               <div class="card-body">
                 <div class="row no-gutters">
 
@@ -49,7 +52,10 @@
           <!-- Total bugs tile -->
           <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
             <div id="total-bugs-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">Total Bugs</div>
+              <div class="card-header bg-primary text-white text-uppercase">
+                <span>Total Bugs</span>
+                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of bugs reported by users."></i></span>
+              </div>
               <div class="card-body">
                 <div class="row no-gutters">
 
@@ -86,7 +92,10 @@
           <!-- Total features tile -->
           <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
             <div id="total-features-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">Total Features</div>
+              <div class="card-header bg-primary text-white text-uppercase">
+                <span>Total Features</span>
+                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of features proposed by users."></i></span>
+              </div>
               <div class="card-body">
                 <div class="row no-gutters">
 
@@ -135,14 +144,12 @@
             <div id="tickets-type-card" class="card mb-3">
               <div class="card-header bg-primary text-white text-uppercase">
                 <span>Tickets by type</span>
-                <span><i class="fa fa-info-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Hover over each slice to see percentage breakdown of tickets by type. Click on a slice to view a further breakdown by ticket status."></i></span>
-                </div>
+                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Hover over each slice to see percentage breakdown of tickets by type. Click on a slice to view a further breakdown by ticket status."></i></span>
+              </div>
               <div class="card-body">
-
                 <figure class="highcharts-figure">
                   <div id="ticket-type-chart"></div>
                 </figure>
-
               </div>
             </div>
           </div>
@@ -153,14 +160,12 @@
             <div id="tickets-status-card" class="card mb-3">
               <div class="card-header bg-primary text-white text-uppercase">
                 <span>Tickets by status</span>
-                <span><i class="fa fa-info-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Hover over each slice to see value and percentage breakdown of tickets by status."></i></span>
+                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Hover over each slice to see value and percentage breakdown of tickets by status."></i></span>
               </div>
               <div class="card-body">
-
                 <figure class="highcharts-figure">
                   <div id="ticket-status-chart" class="my-auto"></div>
                 </figure>
-
               </div>
             </div>
           </div>
@@ -169,7 +174,10 @@
           <!-- Tickets by the highest number of upvotes tile (BEGINNING) -->
           <div class="col-lg-4 col-md-12 col-sm-12 px-2 mt-2">
             <div id="tickets-upvotes-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">Top upvoted tickets</div>
+              <div class="card-header bg-primary text-white text-uppercase">
+                <span>Top upvoted tickets</span>
+                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Top 5 upvoted tickets (overall) / bugs / features. Please click on a button to switch between tickets / bugs / features ranking."></i></span>
+              </div>
               <div class="card-body">
 
                 <!-- Pills navigation buttons (BEGINNING) -->
@@ -280,7 +288,10 @@
 
           <div class="col-lg-6 offset-lg-3 col-md-12 col-sm-12 px-2 mt-2">
             <div id="tickets-donations-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">Top donated features</div>
+              <div class="card-header bg-primary text-white text-uppercase">
+                <span>Top donated features</span>
+                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Top 10 features that users donated money for to support their development."></i></span>
+              </div>
               <div class="card-body">
 
                 <!-- Top donated tickets table (BEGINNING) -->
@@ -314,7 +325,6 @@
 <!-- Page content container (END) -->
 {% endblock %} {% block graph_js %}
 <script>
-
 $(document).ready(function() {
 /* Chart values variables */
 let total_open_bugs = {{ total_open_bugs | safe }};
