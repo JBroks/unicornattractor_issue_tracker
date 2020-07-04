@@ -113,26 +113,28 @@ main {
 .templates-container .content-container,
 #login-section,
 #login-section div,
-section.reset-password-section,
-#dashboard-page {
+section.reset-password-section {
   height: 100%;
 }
 
 #search-heading-section,
 #heading-section,
-#forum-heading-section {
+#forum-heading-section,
+#dashboard-heading-section {
   height: 350px;
 }
 
 #search-heading-section div,
 #tickets-heading-container,
 #forum-heading-container,
+#dashboard-heading-container,
 #search-result-section .container-fluid,
 #forum-table-section .container-fluid,
 #table-section .container-fluid,
 #filter-section .container-fluid,
 #profile-page-content,
-div.reset-password-container {
+div.reset-password-container,
+#dashboard-page {
   height: 100%;
 }
 
@@ -145,7 +147,8 @@ div.reset-password-container {
 }
 
 #search-result-section,
-#forum-table-section {
+#forum-table-section,
+#dashboard-section {
   height: calc(100% - 350px);
 }
 
@@ -357,10 +360,11 @@ nav {
   background-size: cover;
 }
 
-/* Forum & search page background photo with opacity */
+/* Forum, dashboard & search page background photo with opacity */
 
 #forum-heading-container,
-#search-heading-container {
+#search-heading-container,
+#dashboard-heading-container {
   display: block;
   position: relative;
 }
@@ -373,8 +377,13 @@ nav {
   background-image: url("/media/background_images/search.jpg");
 }
 
+#dashboard-heading-container::after {
+  background-image: url("/media/background_images/stats_background.jpg");
+}
+
 #search-heading-container::after,
-#forum-heading-container::after {
+#forum-heading-container::after,
+#dashboard-heading-container::after {
   content: "";
   opacity: 0.5;
   top: 0;
@@ -421,7 +430,8 @@ section.reset-password-section {
 #add-ticket-section,
 #tickets-heading-container,
 #search-heading-container::after,
-#forum-heading-container::after {
+#forum-heading-container::after,
+#dashboard-heading-container::after  {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -669,7 +679,8 @@ span.vote-counter {
   text-shadow: white 1px 2px 3px;
 }
 
-#tickets-heading-container h1 {
+#tickets-heading-container h1,
+#dashboard-heading-container h1 {
   text-shadow: black 1px 2px 3px;
 }
 

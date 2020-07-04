@@ -2,32 +2,43 @@
 
 <!-- Page content container (BEGINNING) -->
 <section class="content-container">
-  <div id="dashboard-page" class="container-fluid pt-5 pb-3 px-sm-4 px-3 bg-dark">
 
-    <!-- Dashboard section containing three tiles with summary statistics (BEGINNING) -->
-    <section id="summary-stats">
-      <div class="container-fluid">
-        <div class="row">
+  <!-- Page heading (BEGINNING) -->
+  <section id="dashboard-heading-section">
+    <div id="dashboard-heading-container" class="container-fluid d-flex align-items-center justify-content-center">
+      <h1 class="text-center text-white mb-0 py-5">Explore our statistics</h1>
+    </div>
+  </section>
+  <!-- Page heading (END) -->
 
-          <!-- Total tickets tile -->
-          <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
-            <div id="total-tickets-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">
-                <span>Total Tickets</span>
-                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of tickets submitted by users."></i></span>
-              </div>
-              <div class="card-body">
-                <div class="row no-gutters">
+  <!-- Dashboard content section (BEGINNING) -->
+  <section id="dashboard-section">
+    <div id="dashboard-page" class="container-fluid pt-5 pb-3 px-sm-4 px-3 bg-dark">
 
-                  <!-- Total number of tickets (BEGINNING) -->
-                  <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
-                    {{ total_tickets }}
-                  </div>
-                  <!-- Total number of tickets (END) -->
+      <!-- Dashboard section containing three tiles with summary statistics (BEGINNING) -->
+      <section id="summary-stats">
+        <div class="container-fluid">
+          <div class="row">
 
-                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
-                  <div class="col-auto text-primary">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" fill="#fcd731" viewBox="0 0 70 20" height="40" width="100" role="img">
+            <!-- Total tickets tile (BEGINNING) -->
+            <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
+              <div id="total-tickets-card" class="card mb-3">
+                <div class="card-header bg-primary text-white text-uppercase">
+                  <span>Total Tickets</span>
+                  <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of tickets submitted by users."></i></span>
+                </div>
+                <div class="card-body">
+                  <div class="row no-gutters">
+
+                    <!-- Total number of tickets (BEGINNING) -->
+                    <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                      {{ total_tickets }}
+                    </div>
+                    <!-- Total number of tickets (END) -->
+
+                    <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                    <div class="col-auto text-primary">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" fill="#fcd731" viewBox="0 0 70 20" height="40" width="100" role="img">
                       <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
                       <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
                       <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
@@ -41,33 +52,34 @@
                       <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
                       <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
                   </svg>
-                  </div>
-                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+                    </div>
+                    <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            <!-- Total tickets tile (END) -->
 
-          <!-- Total bugs tile -->
-          <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
-            <div id="total-bugs-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">
-                <span>Total Bugs</span>
-                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of bugs reported by users."></i></span>
-              </div>
-              <div class="card-body">
-                <div class="row no-gutters">
+            <!-- Total bugs tile (BEGINNING) -->
+            <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
+              <div id="total-bugs-card" class="card mb-3">
+                <div class="card-header bg-primary text-white text-uppercase">
+                  <span>Total Bugs</span>
+                  <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of bugs reported by users."></i></span>
+                </div>
+                <div class="card-body">
+                  <div class="row no-gutters">
 
-                  <!-- Total number of bugs (BEGINNING) -->
-                  <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
-                    {{ total_bugs}}
-                  </div>
-                  <!-- Total number of bugs (END) -->
+                    <!-- Total number of bugs (BEGINNING) -->
+                    <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                      {{ total_bugs}}
+                    </div>
+                    <!-- Total number of bugs (END) -->
 
-                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
-                  <div class="col-auto text-primary">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" fill="#ef6354" viewBox="0 0 70 20" height="40" width="100" role="img">
+                    <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                    <div class="col-auto text-primary">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" fill="#ef6354" viewBox="0 0 70 20" height="40" width="100" role="img">
                       <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
                       <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
                       <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
@@ -81,33 +93,34 @@
                       <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
                       <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
                   </svg>
-                  </div>
-                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+                    </div>
+                    <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            <!-- Total bugs tile (END) -->
 
-          <!-- Total features tile -->
-          <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
-            <div id="total-features-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">
-                <span>Total Features</span>
-                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of features proposed by users."></i></span>
-              </div>
-              <div class="card-body">
-                <div class="row no-gutters">
+            <!-- Total features tile (BEGINNING) -->
+            <div class="col-lg-4 col-md-4 col-sm-12 px-2 mt-2">
+              <div id="total-features-card" class="card mb-3">
+                <div class="card-header bg-primary text-white text-uppercase">
+                  <span>Total Features</span>
+                  <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total number of features proposed by users."></i></span>
+                </div>
+                <div class="card-body">
+                  <div class="row no-gutters">
 
-                  <!-- Total number of features (BEGINNING) -->
-                  <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
-                    {{ total_features }}
-                  </div>
-                  <!-- Total number of features (END) -->
+                    <!-- Total number of features (BEGINNING) -->
+                    <div class="col mt-auto mb-0 ml-4 text-dark summary-figure">
+                      {{ total_features }}
+                    </div>
+                    <!-- Total number of features (END) -->
 
-                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
-                  <div class="col-auto text-primary">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" fill="#63d37b" viewBox="0 0 70 20" height="40" width="100" role="img">
+                    <!-- SVG Spark Lines serving as decoration for the summary stats tile (BEGINNING) -->
+                    <div class="col-auto text-primary">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" fill="#63d37b" viewBox="0 0 70 20" height="40" width="100" role="img">
                       <g class="bar" transform="translate(0,0)"><rect height="4" y="16" width="5"></rect></g>
                       <g class="bar" transform="translate(6,0)"><rect height="6" y="14" width="5"></rect></g>
                       <g class="bar" transform="translate(12,0)"><rect height="5" y="15" width="5"></rect></g>
@@ -121,206 +134,214 @@
                       <g class="bar" transform="translate(60,0)"><rect height="5" y="15" width="5"></rect></g>
                       <g class="bar" transform="translate(66,0)"><rect height="2" y="18" width="5"></rect></g>
                   </svg>
+                    </div>
+                    <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+
                   </div>
-                  <!-- SVG Spark Lines serving as decoration for the summary stats tile (END) -->
+                </div>
+              </div>
+            </div>
+            <!-- Total features tile (END) -->
+
+          </div>
+        </div>
+      </section>
+      <!-- Dashboard section containing three tiles with summary statistics (END) -->
+
+      <!-- Dashboard section containing analysis of tickets by type, status, and number of upvotes (BEGINNING) -->
+      <section id="charts-stats">
+        <div class="container-fluid">
+          <div class="row">
+
+            <!-- Tickets by type pie chart tile (BEGINNING) -->
+            <div class="col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
+              <div id="tickets-type-card" class="card mb-3">
+                <div class="card-header bg-primary text-white text-uppercase">
+                  <span>Tickets by type</span>
+                  <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Hover over each slice to see percentage breakdown of tickets by type. Click on a slice to view a further breakdown by ticket status."></i></span>
+                </div>
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="ticket-type-chart"></div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <!-- Tickets by type pie chart tile (END) -->
+
+            <!-- Tickets by type and status stacked chart tile (BEGINNING) -->
+            <div class="col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
+              <div id="tickets-status-card" class="card mb-3">
+                <div class="card-header bg-primary text-white text-uppercase">
+                  <span>Tickets by status</span>
+                  <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Hover over each slice to see value and percentage breakdown of tickets by status."></i></span>
+                </div>
+                <div class="card-body">
+                  <figure class="highcharts-figure">
+                    <div id="ticket-status-chart" class="my-auto"></div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <!-- Tickets by type and status stacked chart tile (END) -->
+
+            <!-- Tickets by the highest number of upvotes tile (BEGINNING) -->
+            <div class="col-lg-4 col-md-12 col-sm-12 px-2 mt-2">
+              <div id="tickets-upvotes-card" class="card mb-3">
+                <div class="card-header bg-primary text-white text-uppercase">
+                  <span>Top upvoted tickets</span>
+                  <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Top 5 upvoted tickets (overall) / bugs / features. Please click on a button to switch between tickets / bugs / features ranking."></i></span>
+                </div>
+                <div class="card-body">
+
+                  <!-- Pills navigation buttons (BEGINNING) -->
+                  <ul class="nav nav-pills mb-3 flex-column flex-sm-row" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active flex-sm-fill text-sm-center" id="pills-top-tickets-tab" data-toggle="pill" href="#pills-top-tickets" role="tab" aria-controls="pills-top-tickets" aria-selected="true">Tickets</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link flex-sm-fill text-sm-center" id="pills-top-bugs-tab" data-toggle="pill" href="#pills-top-bugs" role="tab" aria-controls="pills-top-bugs" aria-selected="false">Bugs</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link flex-sm-fill text-sm-center" id="pills-top-features-tab" data-toggle="pill" href="#pills-top-features" role="tab" aria-controls="pills-top-features" aria-selected="false">Features</a>
+                    </li>
+                  </ul>
+                  <!-- Pills navigation buttons (END) -->
+
+                  <!-- Pills content (BEGINNING)-->
+                  <div class="tab-content" id="pills-tabContent">
+
+                    <!-- Pill containing top five tickets table (BEGINNING) -->
+                    <div class="tab-pane fade show active" id="pills-top-tickets" role="tabpanel" aria-labelledby="pills-top-tickets-tab">
+
+                      <!-- Top tickets table (BEGINNING) -->
+                      <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                          <table class="table">
+                            <tbody class="tickets-table">
+                              {% for ticket in top_five_upvoted_tickets %}
+                              <tr>
+                                <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
+                                <td>{{ ticket.ticket_type }}</td>
+                                <td><span class="upvote-total"><i class="fa fa-arrow-up" aria-hidden="true"></i> {{ ticket.tickets_upvotes_count }}</span></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <!-- Top tickets table (END) -->
+
+                    </div>
+                    <!-- Pill containing top five tickets table (END) -->
+
+                    <!-- Pill containing top five bugs table (BEGINNING) -->
+                    <div class="tab-pane fade" id="pills-top-bugs" role="tabpanel" aria-labelledby="pills-top-bugs-tab">
+
+                      <!-- Top bugs table (BEGINNING) -->
+                      <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                          <table class="table">
+                            <tbody class="tickets-table">
+                              {% for ticket in top_five_upvoted_bugs %}
+                              <tr>
+                                <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
+                                <td>{{ ticket.ticket_type }}</td>
+                                <td><span class="upvote-total"><i class="fa fa-arrow-up" aria-hidden="true"></i> {{ ticket.tickets_upvotes_count }}</span></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <!-- Top bugs table (END) -->
+
+                    </div>
+                    <!-- Pill containing top five bugs table (END) -->
+
+                    <!-- Pill containing top five features table (BEGINNING) -->
+                    <div class="tab-pane fade" id="pills-top-features" role="tabpanel" aria-labelledby="pills-top-features-tab">
+
+                      <!-- Top features table (BEGINNING) -->
+                      <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                          <table class="table">
+                            <tbody class="tickets-table">
+                              {% for ticket in top_five_upvoted_features %}
+                              <tr>
+                                <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
+                                <td>{{ ticket.ticket_type }}</td>
+                                <td><span class="upvote-total"><i class="fa fa-arrow-up" aria-hidden="true"></i> {{ ticket.tickets_upvotes_count }}</span></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <!-- Top features table (END) -->
+
+                    </div>
+                    <!-- Pill containing top five features table (END) -->
+
+                  </div>
+                  <!-- Pills content (END)-->
 
                 </div>
               </div>
             </div>
-          </div>
+            <!-- Tickets by the highest number of upvotes tile (END) -->
 
+          </div>
         </div>
-      </div>
-    </section>
-    <!-- Dashboard section containing three tiles with summary statistics (END) -->
+      </section>
+      <!-- Dashboard section containing analysis of tickets by type, status, and number of upvotes (END) -->
+      
+      <!-- Dashboard section containing analysis of features donations (BEGINNING) -->
+      <section id="donations-stats">
+        <div class="container-fluid">
+          <div class="row">
+            
+            <!-- Features by the highest number of donations tile (BEGINNING) -->
+            <div class="col-lg-6 offset-lg-3 col-md-12 col-sm-12 px-2 mt-2">
+              <div id="tickets-donations-card" class="card mb-3">
+                <div class="card-header bg-primary text-white text-uppercase">
+                  <span>Top donated features</span>
+                  <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Top 10 features that users donated money for to support their development."></i></span>
+                </div>
+                <div class="card-body">
 
-    <!-- Dashboard section containing analysis of tickets by type, status, and number of upvotes (BEGINNING) -->
-    <section id="charts-stats">
-      <div class="container-fluid">
-        <div class="row">
-
-          <!-- Tickets by type pie chart tile (BEGINNING) -->
-          <div class="col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
-            <div id="tickets-type-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">
-                <span>Tickets by type</span>
-                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Hover over each slice to see percentage breakdown of tickets by type. Click on a slice to view a further breakdown by ticket status."></i></span>
-              </div>
-              <div class="card-body">
-                <figure class="highcharts-figure">
-                  <div id="ticket-type-chart"></div>
-                </figure>
-              </div>
-            </div>
-          </div>
-          <!-- Tickets by type pie chart tile (END) -->
-
-          <!-- Tickets by type and status stacked chart tile (BEGINNING) -->
-          <div class="col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
-            <div id="tickets-status-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">
-                <span>Tickets by status</span>
-                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Hover over each slice to see value and percentage breakdown of tickets by status."></i></span>
-              </div>
-              <div class="card-body">
-                <figure class="highcharts-figure">
-                  <div id="ticket-status-chart" class="my-auto"></div>
-                </figure>
-              </div>
-            </div>
-          </div>
-          <!-- Tickets by type and status stacked chart tile (END) -->
-
-          <!-- Tickets by the highest number of upvotes tile (BEGINNING) -->
-          <div class="col-lg-4 col-md-12 col-sm-12 px-2 mt-2">
-            <div id="tickets-upvotes-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">
-                <span>Top upvoted tickets</span>
-                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Top 5 upvoted tickets (overall) / bugs / features. Please click on a button to switch between tickets / bugs / features ranking."></i></span>
-              </div>
-              <div class="card-body">
-
-                <!-- Pills navigation buttons (BEGINNING) -->
-                <ul class="nav nav-pills mb-3 flex-column flex-sm-row" id="pills-tab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active flex-sm-fill text-sm-center" id="pills-top-tickets-tab" data-toggle="pill" href="#pills-top-tickets" role="tab" aria-controls="pills-top-tickets" aria-selected="true">Tickets</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-top-bugs-tab" data-toggle="pill" href="#pills-top-bugs" role="tab" aria-controls="pills-top-bugs" aria-selected="false">Bugs</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link flex-sm-fill text-sm-center" id="pills-top-features-tab" data-toggle="pill" href="#pills-top-features" role="tab" aria-controls="pills-top-features" aria-selected="false">Features</a>
-                  </li>
-                </ul>
-                <!-- Pills navigation buttons (END) -->
-
-                <!-- Pills content (BEGINNING)-->
-                <div class="tab-content" id="pills-tabContent">
-
-                  <!-- Pill containing top five tickets table (BEGINNING) -->
-                  <div class="tab-pane fade show active" id="pills-top-tickets" role="tabpanel" aria-labelledby="pills-top-tickets-tab">
-
-                    <!-- Top tickets table (BEGINNING) -->
-                    <div class="row">
-                      <div class="col-sm-12 table-responsive">
-                        <table class="table">
-                          <tbody class="tickets-table">
-                            {% for ticket in top_five_upvoted_tickets %}
-                            <tr>
-                              <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
-                              <td>{{ ticket.ticket_type }}</td>
-                              <td><span class="upvote-total"><i class="fa fa-arrow-up" aria-hidden="true"></i> {{ ticket.tickets_upvotes_count }}</span></td>
-                            </tr>
-                            {% endfor %}
-                          </tbody>
-                        </table>
-                      </div>
+                  <!-- Top donated tickets table (BEGINNING) -->
+                  <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                      <table class="table">
+                        <tbody class="tickets-table">
+                          {% for ticket in top_ten_donated_features %}
+                          <tr>
+                            <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
+                            <td>{{ ticket.ticket_status }}</td>
+                            <td><span class="donation-total">&euro;{% if ticket.tickets_donations_sum.sum_donation is None %}0{% else %}{{ ticket.tickets_donations_sum.sum_donation }}{% endif %}</span></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
                     </div>
-                    <!-- Top tickets table (END) -->
-
                   </div>
-                  <!-- Pill containing top five tickets table (END) -->
-
-                  <!-- Pill containing top five bugs table (BEGINNING) -->
-                  <div class="tab-pane fade" id="pills-top-bugs" role="tabpanel" aria-labelledby="pills-top-bugs-tab">
-
-                    <!-- Top bugs table (BEGINNING) -->
-                    <div class="row">
-                      <div class="col-sm-12 table-responsive">
-                        <table class="table">
-                          <tbody class="tickets-table">
-                            {% for ticket in top_five_upvoted_bugs %}
-                            <tr>
-                              <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
-                              <td>{{ ticket.ticket_type }}</td>
-                              <td><span class="upvote-total"><i class="fa fa-arrow-up" aria-hidden="true"></i> {{ ticket.tickets_upvotes_count }}</span></td>
-                            </tr>
-                            {% endfor %}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <!-- Top bugs table (END) -->
-
-                  </div>
-                  <!-- Pill containing top five bugs table (END) -->
-
-                  <!-- Pill containing top five features table (BEGINNING) -->
-                  <div class="tab-pane fade" id="pills-top-features" role="tabpanel" aria-labelledby="pills-top-features-tab">
-
-                    <!-- Top features table (BEGINNING) -->
-                    <div class="row">
-                      <div class="col-sm-12 table-responsive">
-                        <table class="table">
-                          <tbody class="tickets-table">
-                            {% for ticket in top_five_upvoted_features %}
-                            <tr>
-                              <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
-                              <td>{{ ticket.ticket_type }}</td>
-                              <td><span class="upvote-total"><i class="fa fa-arrow-up" aria-hidden="true"></i> {{ ticket.tickets_upvotes_count }}</span></td>
-                            </tr>
-                            {% endfor %}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <!-- Top features table (END) -->
-
-                  </div>
-                  <!-- Pill containing top five features table (END) -->
+                  <!-- Top donated tickets table (END) -->
 
                 </div>
-                <!-- Pills content (END)-->
-
               </div>
             </div>
+            <!-- Features by the highest number of donations tile (END) -->
+            
           </div>
-          <!-- Tickets by the highest number of upvotes tile (END) -->
-
         </div>
-      </div>
-    </section>
-    <!-- Dashboard section containing analysis of tickets by type, status, and number of upvotes (END) -->
+      </section>
+      <!-- Dashboard section containing analysis of features donations (END) -->
 
-    <secion id="donations-stats">
-      <div class="container-fluid">
-        <div class="row">
+    </div>
+  </section>
+  <!-- Dashboard content section (END) -->
 
-          <div class="col-lg-6 offset-lg-3 col-md-12 col-sm-12 px-2 mt-2">
-            <div id="tickets-donations-card" class="card mb-3">
-              <div class="card-header bg-primary text-white text-uppercase">
-                <span>Top donated features</span>
-                <span><i class="fa fa-info-circle fa-lg blue-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Top 10 features that users donated money for to support their development."></i></span>
-              </div>
-              <div class="card-body">
-
-                <!-- Top donated tickets table (BEGINNING) -->
-                <div class="row">
-                  <div class="col-sm-12 table-responsive">
-                    <table class="table">
-                      <tbody class="tickets-table">
-                        {% for ticket in top_ten_donated_features %}
-                        <tr>
-                          <td><a class="text-decoration-none" href="{% url 'view_ticket' ticket.id %}">Ticket #{{ ticket.id }}: {{ ticket.subject }}</a></td>
-                          <td>{{ ticket.ticket_status }}</td>
-                          <td><span class="donation-total">&euro;{% if ticket.tickets_donations_sum.sum_donation is None %}0{% else %}{{ ticket.tickets_donations_sum.sum_donation }}{% endif %}</span></td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <!-- Top donated tickets table (END) -->
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </secion>
-
-  </div>
 </section>
 <!-- Page content container (END) -->
 {% endblock %} {% block graph_js %}
