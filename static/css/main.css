@@ -8145,7 +8145,7 @@ textarea,
 .btn-white:hover {
   color: #fbfafa; }
 
-/* Navbar sign out button */
+/* Navbar sign out / sign in button */
 .navbar-collapse ul li.text-center .btn-danger,
 .navbar-collapse ul li.text-center .btn-primary {
   display: unset;
@@ -8161,7 +8161,7 @@ textarea,
   right: 20px;
   left: auto; }
 
-button.btn-rounded {
+a.btn-rounded {
   height: 80px;
   width: 80px;
   border-radius: 100%;
