@@ -41,7 +41,7 @@
 
                             {% for thread in threads %}
                             <tr>
-                                <td>#{{ thread.id}}</td>
+                                <td>#{{ thread.id }}</td>
                                 <td><a class="text-decoration-none" href="{% url 'view_thread' thread.id %}">{{ thread.subject }}</a></td>
                                 <td>{{ thread.date_created | timesince }} ago </br>by {{ thread.user }}</td>
                                 <td><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
@@ -49,11 +49,11 @@
 
                                 <!-- Columns containnig action dropdown containing edit / view / delete thread actions (BEGINNING) -->
                                 <td class="dropdown">
-                                    <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
+                                    <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions{{ thread.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuActions{{ thread.id }}">
                                         <a class="dropdown-item" href="{% url 'view_thread' thread.id %}"><i class="fa fa-folder-open-o" aria-hidden="true"></i> View</a> {% if request.user == thread.user %}
                                         <a class="dropdown-item text-dark" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                        <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{thread.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
+                                        <a class="dropdown-item text-danger" role="button" data-toggle="modal" data-target="#deleteModal{{thread.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a> {% else %} {% endif %}
                                     </div>
                                 </td>
                                 <!-- Columns containnig action dropdown containing edit / view / delete thread actions (END) -->
@@ -61,18 +61,18 @@
                             </tr>
 
                             <!-- Delete Thread Modal (BEGINNING) -->
-                            <div class="modal fade" id="deleteModal{{thread.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteThreadModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="deleteModal{{thread.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteThreadModalLabel{{thread.id}}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteThreadModalLabel">Confirmation</h5>
+                                            <h5 class="modal-title" id="deleteThreadModalLabel{{thread.id}}">Confirmation</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         </div>
                                         <div class="modal-body">
                                             <p>Are you sure you want to delete your thread (#{{ thread.id }})?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_thread' thread.id %}">Delete</a></button>
+                                            <a class="btn btn-danger" role="button" href="{% url 'delete_thread' thread.id %}">Delete</a>
                                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                         </div>
                                     </div>
@@ -129,7 +129,7 @@
     {% if request.user.is_authenticated %}
     <section id="new-thread-btn">
         <div class="container-fluid">
-            <button type="button" class="btn btn-outline-primary fixed-bottom btn-rounded" data-toggle="tooltip" data-placement="top" title="Create a thread"><a class="text-reset text-decoration-none" href="{% url 'add_thread' %}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></button>
+            <a class="btn btn-outline-primary fixed-bottom btn-rounded d-flex justify-content-center align-items-center" role="button" href="{% url 'add_thread' %}" data-toggle="tooltip" data-placement="top" title="Create a thread"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
         </div>
     </section>
     {% endif %}

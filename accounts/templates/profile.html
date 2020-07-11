@@ -34,11 +34,11 @@
             <!-- Show user details and activity, and account settings in form of accordion on medium or smaller screens (BEGINNING) -->
             <div class="col-sm-12 d-block d-lg-none accordion" id="accordion">
                 <p class="text-center">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePersonalInfo" aria-expanded="false" aria-controls="collapseExample1"><i class="fa fa-user" aria-hidden="true"></i></button>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseActivity" aria-expanded="false" aria-controls="collapseExample2"><i class="fa fa-list" aria-hidden="true"></i></button>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAccSettings" aria-expanded="false" aria-controls="collapseExample3"><i class="fa fa-cogs" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePersonalInfo" aria-expanded="false" aria-controls="collapsePersonalInfo"><i class="fa fa-user" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseActivity" aria-expanded="false" aria-controls="collapseActivity"><i class="fa fa-list" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAccSettings" aria-expanded="false" aria-controls="collapseAccSettings"><i class="fa fa-cogs" aria-hidden="true"></i></button>
                 </p>
-                <div class="collapse" aria-labelledby="collapsePersonalInfo" data-parent="#accordion" id="collapsePersonalInfo">
+                <div class="collapse" data-parent="#accordion" id="collapsePersonalInfo">
                     <div class="card card-body">
                         <div class="row mx-auto">
                             <div class="col-sm-12">
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="collapse" aria-labelledby="collapseActivity" data-parent="#accordion" id="collapseActivity">
+                <div class="collapse" data-parent="#accordion" id="collapseActivity">
                     <div class="card card-body">
                         <div class="row mx-auto">
                             <div class="col-sm-12">
@@ -91,13 +91,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="collapse" aria-labelledby="collapseSettings" data-parent="#accordion" id="collapseAccSettings">
+                <div class="collapse" data-parent="#accordion" id="collapseAccSettings">
                     <div class="card card-body">
                         <div class="row">
                             <div class="col-sm-12 text-center">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
+                                        <a class="btn btn-primary" role="button" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
                                     </div>
                                     <div class="col-sm-12">
                                         <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
@@ -171,7 +171,7 @@
                     <div class="col-sm-12 text-center d-none d-sm-block">
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-primary"><a class="text-reset text-decoration-none" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a></button>
+                                <a class="btn btn-primary" role="button" href="{% url 'edit_profile' user.username %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
                             </div>
                             <div class="col-sm-12">
                                 <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete account</button>
@@ -202,7 +202,7 @@
                         <a class="nav-link flex-sm-fill text-sm-center" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Forum posts ({{ post_count }})</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link flex-sm-fill text-sm-center" id="pills-likes-tab" data-toggle="pill" href="#pills-thread-votes" role="tab" aria-controls="pills-thread-votes" aria-selected="false">Forum thread votes ({{ thread_votes_count }})</a>
+                        <a class="nav-link flex-sm-fill text-sm-center" id="pills-thread-votes-tab" data-toggle="pill" href="#pills-thread-votes" role="tab" aria-controls="pills-thread-votes" aria-selected="false">Forum thread votes ({{ thread_votes_count }})</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link flex-sm-fill text-sm-center" id="pills-post-votes-tab" data-toggle="pill" href="#pills-post-votes" role="tab" aria-controls="pills-post-votes" aria-selected="false">Forum post votes ({{ post_votes_count }})</a>
@@ -234,24 +234,22 @@
                                             <td class="text-center">{{ ticket.ticket_type }}</td>
                                             <td class="text-center"><a href="{% url 'view_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
                                             <td class="text-center"><a href="{% url 'edit_ticket' ticket.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-dark" aria-hidden="true"></i></a></td>
-                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><a role="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                                         </tr>
 
                                         <!-- Delete Ticket Modal -->
-                                        <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel{{ticket.id}}" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteTicketModalLabel">Confirmation</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                            </button>
+                                                        <h5 class="modal-title" id="deleteTicketModalLabel{{ticket.id}}">Confirmation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
+                                                        <a class="btn btn-danger" role="button" href="{% url 'delete_ticket' ticket.id %}">Delete</a>
                                                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
@@ -259,7 +257,10 @@
                                         </div>
                                         <!-- Delete Ticket Modal -->
 
-                                        {% endfor %} {% else %} You have not added any tickets yet. {% endif %}
+                                        {% endfor %} {% else %}
+                                        <tr>
+                                            <td><span>You have not added any tickets yet.</span></td>
+                                        </tr>{% endif %}
                                     </tbody>
                                 </table>
                             </div>
@@ -308,7 +309,7 @@
                                             <td class="text-center text-md-left">Re: ticket #{{ comment.ticket.id }}: {{ comment.ticket.subject }}</td>
                                             <td class="text-md-left d-none d-md-table-cell"> {{ comment.date_created | timesince }} ago</td>
                                             <td class="text-center"><a href="{% url 'view_ticket' comment.ticket.id %}#comment{{comment.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
-                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a role="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                                         </tr>
 
                                         <!-- Delete Comment Modal (BEGINNING) -->
@@ -323,7 +324,7 @@
                                                         <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' comment.ticket.id comment.id %}">Delete</a></button>
+                                                        <a class="btn btn-danger" role="button" href="{% url 'delete_comment' comment.ticket.id comment.id %}">Delete</a>
                                                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
@@ -331,7 +332,10 @@
                                         </div>
                                         <!-- Delete Comment Modal (END) -->
 
-                                        {% endfor %} {% else %} You have not added any comments yet. {% endif %}
+                                        {% endfor %} {% else %}
+                                        <tr>
+                                            <td><span>You have not added any comments yet.</span></td>
+                                        </tr> {% endif %}
                                     </tbody>
                                 </table>
                             </div>
@@ -381,7 +385,7 @@
                                             <td class="text-center"><i class="fa fa-comments" aria-hidden="true"></i> {{ thread.post_count }}</td>
                                             <td class="text-center"><a href="{% url 'view_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
                                             <td class="text-center"><a href="{% url 'edit_thread' thread.id %}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-dark" aria-hidden="true"></i></a></td>
-                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                            <td class="text-center"><span data-toggle="modal" data-target="#deleteThreadModal{{thread.id}}"><a role="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                                         </tr>
 
                                         <!-- Delete Thread Modal (BEGINNING) -->
@@ -396,7 +400,7 @@
                                                         <p>Are you sure you want to delete your thread (#{{ thread.id }})?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_thread' thread.id %}">Delete</a></button>
+                                                        <a class="btn btn-danger" role="button" href="{% url 'delete_thread' thread.id %}">Delete</a>
                                                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
@@ -404,7 +408,10 @@
                                         </div>
                                         <!-- Delete Thread Modal (END) -->
 
-                                        {% endfor %} {% else %} You have not created any threads yet. {% endif %}
+                                        {% endfor %} {% else %}
+                                        <tr>
+                                            <td><span>You have not created any threads yet.</span></td>
+                                        </tr> {% endif %}
 
                                     </tbody>
                                 </table>
@@ -454,7 +461,7 @@
                                             <td class="text-center text-md-left">Re: thread #{{ post.thread.id }}: {{ post.thread.subject }}</td>
                                             <td class="text-md-left d-none d-md-table-cell">{{ post.date_created | timesince }} ago</td>
                                             <td class="text-center"><a href="{% url 'view_thread' post.thread.id %}#post{{post.id}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a></td>
-                                            <td class="text-center"><span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
+                                            <td class="text-center"><span data-toggle="modal" data-target="#deletePostModal{{post.id}}"><a role="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a></span></td>
                                         </tr>
 
                                         <!-- Delete Post Modal (BEGINNING) -->
@@ -469,7 +476,7 @@
                                                         <p>Are you sure you want to delete your post (#{{ post.id }})?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_post' post.thread.id post.id %}">Delete</a></button>
+                                                        <a class="btn btn-danger" role="button" href="{% url 'delete_post' post.thread.id post.id %}">Delete</a>
                                                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
@@ -477,7 +484,10 @@
                                         </div>
                                         <!-- Delete Post Modal (END) -->
 
-                                        {% endfor %} {% else %} You have not added any posts yet. {% endif %}
+                                        {% endfor %} {% else %}
+                                        <tr>
+                                            <td><span>You have not added any posts yet.</span></td>
+                                        </tr> {% endif %}
                                     </tbody>
                                 </table>
                             </div>
@@ -523,7 +533,10 @@
                                         <tr>
                                             <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.thread.id %}">Thread #{{ voted.thread.id }}</a> on {{ voted.date_created }}</td>
                                         </tr>
-                                        {% endfor %}{% else %} You have not liked / disliked any threads yet. {% endif %}
+                                        {% endfor %}{% else %}
+                                        <tr>
+                                            <td><span>You have not liked / disliked any threads yet.</span></td>
+                                        </tr> {% endif %}
                                     </tbody>
                                 </table>
                             </div>
@@ -567,9 +580,13 @@
                                     <tbody class="post-votes-table">
                                         {% if post_votes_count > 0 %} {% for voted in user_post_votes %}
                                         <tr>
-                                            <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created }}</td>
+                                            <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created
+                                                }}</td>
                                         </tr>
-                                        {% endfor %}{% else %} You have not liked / disliked any posts yet. {% endif %}
+                                        {% endfor %}{% else %}
+                                        <tr>
+                                            <td><span>You have not liked / disliked any posts yet.</span></td>
+                                        </tr>{% endif %}
                                     </tbody>
                                 </table>
                             </div>

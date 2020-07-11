@@ -183,7 +183,7 @@
   {% if user.is_authenticated %}
   <section id="add-ticket-btn-section">
     <div class="container-fluid">
-      <button type="button" class="btn btn-outline-primary fixed-bottom btn-rounded" data-toggle="tooltip" data-placement="top" title="Add a ticket"><a class="text-reset text-decoration-none" href="{% url 'add_ticket' %}"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></button>
+      <a class="btn btn-outline-primary fixed-bottom btn-rounded d-flex justify-content-center align-items-center" role="button" href="{% url 'add_ticket' %}" data-toggle="tooltip" data-placement="top" title="Add a ticket"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></button>
     </div>
   </section>
   {% endif %}
