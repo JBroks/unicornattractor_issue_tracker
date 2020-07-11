@@ -55,7 +55,7 @@
                                         <p>Are you sure you want to delete your ticket (#{{ ticket.id }})?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_ticket' ticket.id %}">Delete</a></button>
+                                        <a class="btn btn-danger" role="button" href="{% url 'delete_ticket' ticket.id %}">Delete</a>
                                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                                 <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"></i></button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
                                                     <a class="dropdown-item text-dark" href="{% url 'edit_ticket' ticket.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                                    <a class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                    <a class="dropdown-item text-danger" role="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                         {% if has_donated is None %}
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <span>Would you like to support development of this feature? </br> Click the 'Upvote' button and donate a minimum of $5.</span>
+                                <span>Would you like to support development of this feature? <br> Click the 'Upvote' button and donate a minimum of $5.</span>
                             </div>
                             <div class="col-sm-12 pt-3 text-center">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#upvoteModal"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</button>
@@ -132,10 +132,10 @@
                         {% else %}
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <span>Would you like to support development of this feature? </br> Click the 'Upvote' button below.</span>
+                                <span>Would you like to support development of this feature? <br> Click the 'Upvote' button below.</span>
                             </div>
                             <div class="col-sm-12 pt-3 text-center">
-                                <button type="button" class="btn btn-primary"><a href="{% url 'upvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a></button>
+                                <a href="{% url 'upvote' ticket.id %}" role="button" class="btn btn-primary"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a>
                             </div>
                         </div>
                         {% endif %}
@@ -145,10 +145,10 @@
                         {% else %}
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <span>Are you experiencing the same issue? </br> Click the 'Upvote' button to prioritize this bug and we will fix it for free.</span>
+                                <span>Are you experiencing the same issue? <br> Click the 'Upvote' button to prioritize this bug and we will fix it for free.</span>
                             </div>
                             <div class="col-sm-12 pt-3 text-center">
-                                <button type="button" class="btn btn-primary"><a href="{% url 'upvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a></button>
+                                <a href="{% url 'upvote' ticket.id %}" role="button" class="btn btn-primary"><i class="fa fa-arrow-up" aria-hidden="true"></i> Upvote</a>
                             </div>
                         </div>
                         {% endif %}
@@ -158,10 +158,10 @@
                         {% else %}
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <span>You no longer want to support of this ticket</br> Click the 'Downvote' button to remove your vote.</span>
+                                <span>You no longer want to support of this ticket<br> Click the 'Downvote' button to remove your vote.</span>
                             </div>
                             <div class="col-sm-12 pt-3 text-center">
-                                <button class="btn btn-primary"><a href="{% url 'downvote' ticket.id %}" class="text-reset text-decoration-none"><i class="fa fa-arrow-down" aria-hidden="true"></i> Downvote</a></button>
+                                <a href="{% url 'downvote' ticket.id %}" role="button" class="btn btn-primary"><i class="fa fa-arrow-down" aria-hidden="true"></i> Downvote</a>
                             </div>
                         </div>
                         {% endif %}
@@ -175,11 +175,11 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="upvoteTicketModalLabel">Your donation supports new feature development</h5>
+                                        <h5 class="modal-title text-center" id="upvoteTicketModalLabel">Your donation supports new feature development</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form role="form" action="{% url 'upvote' ticket.pk %}" id="payment-form" method="POST" class="mx-auto">
+                                        <form action="{% url 'upvote' ticket.pk %}" id="payment-form" method="POST" class="mx-auto">
                                             <p>Pledge your support today so that we can prioritize your favourite features.</p>
                                             {% csrf_token %}
 
@@ -196,7 +196,7 @@
                                             </div>
 
                                             <div class="form-group col-sm-12 text-center">
-                                                <button type="submit" class="btn btn-success" id="submit_payment_btn" type="submit" value="Submit Payment"><a class="text-reset text-decoration-none">Donate</a></button>
+                                                <button type="submit" class="btn btn-success" id="submit_payment_btn" value="Submit Payment">Donate</button>
                                                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                             </div>
 
@@ -276,7 +276,7 @@
                                 <p>Sign in to post your comment.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-primary"><a class="text-reset text-decoration-none" href="{% url 'login' %}">Sign in</a></button>
+                                <a class="btn btn-outline-primary" role="button" href="{% url 'login' %}">Sign in</a>
                             </div>
                         </div>
                     </div>
@@ -309,8 +309,8 @@
                                         </div>
                                         {% if user.is_authenticated and request.user == comment.user %}
                                         <div class="col-auto">
-                                            <span class="pr-3"><a class="edit-comment-btn" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-dark fa-lg" aria-hidden="true"></i></a></span>
-                                            <span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
+                                            <span class="pr-3"><a class="edit-comment-btn" role="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-dark fa-lg" aria-hidden="true"></i></a></span>
+                                            <span data-toggle="modal" data-target="#deleteCommentModal{{comment.id}}"><a role="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash text-danger fa-lg" aria-hidden="true"></i></a></span>
                                         </div>
                                         {% endif %}
                                     </div>
@@ -319,8 +319,8 @@
                                     <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (BEGINNING) -->
                                     <div class="card-body posted-comment" id="comment{{comment.id}}">
                                         <p class="card-text text-truncate comment-text mb-1">{{ comment.comment }}</p>
-                                        <p class="card-text text-left text-uppercase read-more mb-0"><small class="text-success font-weight-bold"><a type="button">Read more <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a></small></p>
-                                        <p class="card-text text-left text-uppercase read-less mb-0"><small class="text-success font-weight-bold"><a type="button">Read less <i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a></small></p>
+                                        <p class="card-text text-left text-uppercase read-more mb-0"><small class="text-success font-weight-bold"><a role="button">Read more <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a></small></p>
+                                        <p class="card-text text-left text-uppercase read-less mb-0"><small class="text-success font-weight-bold"><a role="button">Read less <i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a></small></p>
                                     </div>
                                     <!-- Posted comment - displayed until edit button clicked, then replaced by edit comment form (END) -->
 
@@ -361,7 +361,7 @@
                                                 <p>Are you sure you want to delete your comment (#{{ comment.id }})?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger"><a class="text-reset text-decoration-none" href="{% url 'delete_comment' ticket.id comment.id %}">Delete</a></button>
+                                                <a class="btn btn-danger" role="button" href="{% url 'delete_comment' ticket.id comment.id %}">Delete</a>
                                                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                             </div>
                                         </div>
