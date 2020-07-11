@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -57,8 +57,8 @@
 
         <!-- Explore dropdown menu (BEGINNING) -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownExplore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownExplore">
             <a class="dropdown-item" href="{% url 'all_tickets' %}"><i class="fa fa-ticket" aria-hidden="true"></i> Tickets</a>
             <a class="dropdown-item" href="{% url 'forum' %}"><i class="fa fa-users" aria-hidden="true"></i> Forum</a>
             <a class="dropdown-item" href="{% url 'dashboard' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i> Statistics</a>
@@ -84,10 +84,10 @@
       <ul class="navbar-nav d-xs-inline d-lg-none">
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {% if user.userprofile.image %}
           <img class="nav-profile-image rounded-circle" src="{{ user.userprofile.image.url }}" alt="Navbar profile image">{% else %}<img class="nav-profile-image rounded-circle" src="{{ MEDIA_URL }}profile_image/default.png" alt="Navbar profile image">{% endif %} {{ user.username }}</a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
             <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
             <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
             <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
@@ -95,8 +95,8 @@
         </li>
         {% else %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccess" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccess">
             <a class="dropdown-item" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a>
             <a class="dropdown-item" href="{% url 'registration' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
           </div>
@@ -122,14 +122,16 @@
         <li>
           <hr>
         </li>
-        <li class="nav-item text-center"><button class="btn btn-danger"><a class="nav-link text-reset p-0" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></button></li>
+        <li class="nav-item mt-2 text-center">
+          <a class="btn btn-danger text-white nav-link " role="button" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
+        </li>
       </ul>
       {% else %}
       <ul class="navbar-nav d-xs-inline d-lg-none">
         <li>
           <hr>
         </li>
-        <li class="nav-item text-center"><button class="btn btn-primary"><a class="nav-link text-reset p-0" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a></button></li>
+        <li class="nav-item text-center mt-2"><a class="nav-link text-white btn btn-primary px-5 py-3" role="button" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a></li>
       </ul>
       {% endif %}
       <!-- Sing in / out button displayed in the collapsed menu for easier access (END) -->
@@ -138,9 +140,9 @@
       <ul class="navbar-nav d-none d-lg-flex">
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUserAccount" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img class="nav-profile-image rounded-circle" src="{{ user.userprofile.image.url }}" alt="Navbar profile image"> {{ user.username }}</a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownUserAccount">
             <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
             <a class="dropdown-item" href="{% url 'edit_profile' user %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
             <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
@@ -151,7 +153,7 @@
           <a class="nav-link mt-1" href="{% url 'login' %}">Sign in</a>
         </li>
         <li {% if request.resolver_match.url_name == 'registration' %}class="nav-item active" {% else %}class="nav-item" {% endif %}>
-          <button class="btn btn-primary p-0"><a class="nav-link text-reset" href="{% url 'registration' %}">Sign up</a></button>
+          <a class="nav-link btn btn-primary text-white" role="button" href="{% url 'registration' %}">Sign up</a>
         </li>
         {% endif %}
       </ul>
@@ -165,21 +167,18 @@
 
   <!-- Message container -->
   <main>
-    
-    {% if messages %}
 
-      {% for message in messages %} 
-      <div role="alert" aria-live="assertive" aria-atomic="true" class="toast toast-{{message.tags}}" data-autohide="false">
-        <div class="toast-header">
-          <strong class="mr-auto text-capitalize">{{ message.tags }}</strong>
-          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="toast-body">
-          {{ message }}
-        </div>
+    {% if messages %} {% for message in messages %}
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast toast-{{message.tags}}" data-autohide="false">
+      <div class="toast-header">
+        <strong class="mr-auto text-capitalize">{{ message.tags }}</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      {% endfor %}
-    {% endif %}
+      <div class="toast-body">
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %} {% endif %}
 
     <!-- Content of other templates -->
     <div class="templates-container container-fluid px-0">
@@ -223,10 +222,10 @@
 
   <!-- Bootstrap select JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.17/js/bootstrap-select.min.js"></script>
-  
+
   <!-- Stripe JS -->
   {% block js %} {% endblock %}
-  
+
   <!-- Highcharts JS -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/data.js"></script>
@@ -234,10 +233,10 @@
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-  
+
   <!-- Custom charts JS -->
   {% block graph_js %} {% endblock %}
-  
+
   <!-- Custom JS -->
   <script src="{% static 'js/script.js' %}"></script>
 
