@@ -573,7 +573,6 @@ textarea,
 }
 
 .btn-light:hover {
-  //color: $light;
   border: solid 2px $light;
   background-color: transparent;
 }
@@ -582,6 +581,13 @@ textarea,
 
 .btn-white:hover {
   color: $light;
+}
+/* Navbar sign out button */
+
+.navbar-collapse ul li.text-center .btn-danger,
+.navbar-collapse ul li.text-center .btn-primary {
+  display: unset;
+  color: #ffffff;
 }
 
 /* Increse size of add ticket to make it more prominent */

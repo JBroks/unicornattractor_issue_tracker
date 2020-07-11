@@ -8145,6 +8145,12 @@ textarea,
 .btn-white:hover {
   color: #fbfafa; }
 
+/* Navbar sign out button */
+.navbar-collapse ul li.text-center .btn-danger,
+.navbar-collapse ul li.text-center .btn-primary {
+  display: unset;
+  color: #ffffff; }
+
 /* Increse size of add ticket to make it more prominent */
 .btn-lg, .btn-group-lg > .btn {
   font-size: 4rem; }
