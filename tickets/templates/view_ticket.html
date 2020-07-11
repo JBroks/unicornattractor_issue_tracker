@@ -243,7 +243,7 @@
                             <div class="row">
                                 <div class="col-sm-12 d-flex justify-content-end">
                                     {% if user.is_authenticated %}
-                                    <button type="submit" name="action" class="btn btn-success"><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Post comment</button> {% endif %}
+                                    <button type="submit" name="action" class="btn btn-success mb-4"><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Post comment</button> {% endif %}
                                 </div>
                             </div>
                         </form>
@@ -257,7 +257,7 @@
                         <div class="row">
                             <div class="col-sm-12 d-flex justify-content-end">
                                 {% if not user.is_authenticated %}
-                                <button class="btn btn-success" data-toggle="modal" data-target="#postCommentModal"><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Post comment</button> {% endif %}
+                                <button class="btn btn-success mb-4" data-toggle="modal" data-target="#postCommentModal"><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Post comment</button> {% endif %}
                             </div>
                         </div>
                     </div>
