@@ -79,7 +79,7 @@ class DonationForm(forms.ModelForm):
         label='Amount',
         choices=AMOUNT_CHOICES,
         widget=forms.Select(attrs={'class': 'selectpicker',
-                                   'data-style': 'btn-secondary'}),
+                                   'data-style': 'btn-light'}),
         required=False
         )
     
