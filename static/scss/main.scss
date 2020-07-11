@@ -578,6 +578,12 @@ textarea,
   background-color: transparent;
 }
 
+/* White buttons on the home page - change font color on hover */
+
+.btn-white:hover {
+  color: $light;
+}
+
 /* Increse size of add ticket to make it more prominent */
 
 .btn-lg {

@@ -8141,6 +8141,10 @@ textarea,
   border: solid 2px #fbfafa;
   background-color: transparent; }
 
+/* White buttons on the home page - change font color on hover */
+.btn-white:hover {
+  color: #fbfafa; }
+
 /* Increse size of add ticket to make it more prominent */
 .btn-lg, .btn-group-lg > .btn {
   font-size: 4rem; }
