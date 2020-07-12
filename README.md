@@ -99,7 +99,7 @@ The following [wireframe](paste link) sketches were created to design the projec
 
 #### SQLite
 
-SQLite is a simple very lightweight database management system used for the project to store data locally.
+SQLite is a simple, very lightweight database management system used for the project to store data locally.
 
 #### PostgreSQL
 
@@ -189,7 +189,7 @@ List of features to be implemented in the future:
 
 ### Libraries
 
-- [jQuery](https://code.jquery.com/jquery-3.4.1.min.js) - .....;
+- [jQuery](https://code.jquery.com/jquery-3.4.1.min.js) - used to initialize elements of Bootstrap framework, to manage spinner overlay (fade out), back to top button (smooth scroll), read more / less button, reset filters button, navbar hide / show effect, and to implement Stripe and Highcharts APIs;
 
 - [Bootswatch](https://bootswatch.com/) - The project used Bootswatch "LUX" theme for setting styling for all pages;
 
@@ -197,9 +197,15 @@ List of features to be implemented in the future:
 
 ### Frameworks & Extensions
 
-- [Bootstrap]() - ....;
+- [Bootstrap](https://getbootstrap.com/) - The project used Bootstrap to create nice grid layout, and position elements within grids. The framework was also used to create and customize the navbar element and implement various elements such as modals, tooltips, pills etc.;
 
-- [Django]() - ....;
+- [Django](https://www.djangoproject.com/) - Python-based free and open-source web framework that follows the model-template-view architectural pattern;
+
+### Database
+
+- [Postgres](https://www.heroku.com/postgres) - a relational database management systems hosted on Heroku;
+
+- **SQLite** - a lightweight database management system used when running and testing app locally;
 
 ### API
 
