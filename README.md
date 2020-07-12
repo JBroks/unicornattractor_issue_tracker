@@ -183,23 +183,27 @@ List of features to be implemented in the future:
 
 - **CSS** - the project used CSS stylesheets to specify style of the web document elements;
 
-- **JavaScript** - the project used JavaScript to ...........
+- **JavaScript** - the project used jQuery as the primary JavaScript functionality. JavaScript is also used to implement Stripe and Highcharts APIs;
 
 - **Python** - the project back-end functions are written using Python. Django and Python is used to build views functions;
 
 ### Libraries
 
-- [jQuery](https://code.jquery.com/jquery-3.4.1.min.js) - used to initialize elements of Bootstrap framework, to manage spinner overlay (fade out), back to top button (smooth scroll), read more / less button, reset filters button, navbar hide / show effect, and to implement Stripe and Highcharts APIs;
+- [jQuery](https://code.jquery.com/jquery-3.4.1.min.js) - used to initialize elements of Bootstrap framework, to manage spinner overlay (fade out), back to top button (smooth scroll), read more / less button, reset filters button, navbar hide / show effect;
 
-- [Bootswatch](https://bootswatch.com/) - The project used Bootswatch "LUX" theme for setting styling for all pages;
+- [Bootswatch](https://bootswatch.com/) - the project used Bootswatch "LUX" theme for setting styling for all pages;
 
-- [Font Awesome](https://fontawesome.com/v4.7.0/) - Various Font Awesome icons were used for the project;
+- [Font Awesome](https://fontawesome.com/v4.7.0/) - various Font Awesome icons were used for the project;
 
 ### Frameworks & Extensions
 
-- [Bootstrap](https://getbootstrap.com/) - The project used Bootstrap to create nice grid layout, and position elements within grids. The framework was also used to create and customize the navbar element and implement various elements such as modals, tooltips, pills etc.;
+- [Bootstrap](https://getbootstrap.com/) - the project used Bootstrap to create nice grid layout, and position elements within grids. The framework was also used to create and customize the navbar element and implement various elements such as modals, tooltips, pills etc.;
 
-- [Django](https://www.djangoproject.com/) - Python-based free and open-source web framework that follows the model-template-view architectural pattern;
+- [Django](https://www.djangoproject.com/) - python-based free and open-source web framework that follows the model-template-view architectural pattern;
+
+- [django-forms-bootstrap](https://pypi.org/project/django-forms-bootstrap/) - used to style django form with Bootstrap styling;
+
+- [django-storages](https://django-storages.readthedocs.io/en/latest/) and [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - both packages used to connect Django to S3;
 
 ### Database
 
