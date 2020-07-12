@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/JBroks/unicornattractor_issue_tracker.svg?branch=master)](https://travis-ci.org/JBroks/unicornattractor_issue_tracker)
 
-# Unicorn Attracktor Issue Tracker - issue tracker application
+# Unicorn Attracktor Tracker - issue tracker application
 
 ## About
 Stream Four Project: Full Stack Frameworks with Django - Milestone Project
@@ -10,15 +10,17 @@ Stream Four Project: Full Stack Frameworks with Django - Milestone Project
 This project is part of the 'Full Stack Frameworks with Django' module of the Code Institute Full Stack Software Development course.
 
 ## Scope
-To complete this module the task was to create an issue tracking application that allows users to submit their tickets. Users are allowed to submit two types of tickets i.e. bugs and features. In order to prioritize their tickets users are able to upvote them. The more upvotes a ticket has the faster it will be look after by a developer.
-However, the difference is that bugs can be upvoted for free, while user has to donate minimum €5 to upvote a feature. Users are also able to comment on tickets.
+To complete this module the task was to create an issue tracking application that allows users to submit their tickets.
+
+Users are allowed to submit two types of tickets i.e. bugs and features. In order to prioritize their tickets users are able to upvote them. The more upvotes a ticket has the faster it will be look after by a developer. However, the difference is that bugs can be upvoted for free, while user has to donate minimum €5 to upvote a feature. Users are also able to comment on tickets.
+
 Additional features were developed, these include: data dashboard, forum, like / dislike mechanism for forum, search bar.
 
 ## Overview
 
 Project consists of the following sections:
 
-1. Homepage - 
+1. Homepage - Containing 'Sign up' button when user is not authenticated and 'Add ticket' and 'Forum' buttons when user is logged into his / her account. Home page also contains description of main tracking app features, about Unicorn Attractor app section and Apple / Google store badges.
 
 2. Sign in form - Page containing the form that enables user to log into their account to use the app.
 
@@ -69,7 +71,11 @@ Website demo is available [here](https://unicornattractor-issue-tracker.herokuap
 
 ### UX Design
 
+....
+
 ### Target Audience
+
+...
 
 ### User Stories
 
@@ -90,6 +96,16 @@ The following [wireframe](paste link) sketches were created to design the projec
 ## Database
 
 ### Database Type
+
+#### SQLite
+
+SQLite is a simple very lightweight database management system used for the project to store data locally.
+
+#### PostgreSQL
+
+Heroku's PostgreSQL relational database was used for the project to store the data for the deployed application.
+
+My database consists of the following tables: users, user profiles, tickets, comments, upvotes, donations, threads, posts, thread votes, post votes.
 
 ### Database Design
 
@@ -151,6 +167,12 @@ The project consists of various features presented below.
 
 List of features to be implemented in the future:
 
+- ....;
+
+- ....;
+
+- ...;
+
 <a name="technologies-used"/>
 
 ## Technologies used
@@ -179,9 +201,13 @@ List of features to be implemented in the future:
 
 - [Django]() - ....;
 
-### Other
+### API
 
-- [Highcharts](https://www.highcharts.com/) - .....;
+- [Highcharts](https://www.highcharts.com/) - Charting API used to create interactive charts for the data dashboard;
+
+- [Stripe API](https://stripe.com) - Stripe was used to make secure payments when users upvote features.
+
+### Other
 
 - [Gifox](https://gifox.io/) - Tool was used to record the gif presented in the demo section of this README files;
 
@@ -192,6 +218,10 @@ List of features to be implemented in the future:
 - [DBDiagram](https://dbdiagram.io/home) - A relational database diagram design tool used to create database schema.
 
 - [Placeholder](https://placeholder.com/) - Online tool to create custom placeholder images. It was used to create image placeholder in cases when user did not upload his / her profile image.
+
+- [npm](https://getbootstrap.com/docs/4.0/getting-started/webpack/) - Bootstrap and Bootswatch theme installed as a Node.js module using npm to customize SCSS.
+
+- [Popper](https://popper.js.org/) - **jQuery** and **Popper** are Bootstrap's peerDependencies and had to be added to enable me to customize the SCSS.
 
 <a name="testing"/>
 
@@ -215,15 +245,33 @@ List of features to be implemented in the future:
 
 .....
 
+### Travis Continuous Integration
+
+....
+
+### Automated testing
+
+.....testing and coverage description....
+
 ### Features testing
+
+.....
 
 ### Responsiveness testing
 
+.......
+
 #### Bugs:
+
+....
 
 ### Peer-code-review
 
+.....
+
 #### Bugs
+
+....
 
 ### User stories testing
 
@@ -241,7 +289,11 @@ List of features to be implemented in the future:
 
 ### GitHub
 
+....
+
 ### Heroku
+
+.....
 
 <a name="credits"/>
 
@@ -249,9 +301,15 @@ List of features to be implemented in the future:
 
 ### Content
 
+....
+
 ### Media
 
+....
+
 ### Acknowledgements
+
+....
 
 ### Disclaimer
 
