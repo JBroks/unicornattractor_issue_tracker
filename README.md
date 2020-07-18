@@ -91,11 +91,11 @@ The following user stories were used to design this project:
 
 The following wireframe sketches were created to design the project layout options for:
 
-- [large](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_large.png),
+- [large](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_large.pdf),
 
-- [medium](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_medium.png) , and 
+- [medium](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_medium.pdf), and 
 
-- [mobile](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_mobile.png) displays.
+- [mobile displays](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_mobile.pdf).
 
 <a name="database"/>
 
