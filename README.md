@@ -5,7 +5,7 @@
 ## About
 Stream Four Project: Full Stack Frameworks with Django - Milestone Project
 
-![alt text](paste gif link "Gif")
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/gif/unicornattractor.gif "Gif")
 
 This project is part of the 'Full Stack Frameworks with Django' module of the Code Institute Full Stack Software Development course.
 
@@ -89,11 +89,19 @@ The following user stories were used to design this project:
 
 ### Mockups & Wireframes
 
-The following [wireframe](paste link) sketches were created to design the project layout options for large, medium and mobile displays.
+The following wireframe sketches were created to design the project layout options for:
+
+- [large](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/wireframes/unicornAttractor_large.png),
+
+- [medium](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/wireframes/unicornAttractor_medium.png) , and 
+
+- [mobile](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/wireframes/unicornAttractor_mobile.png) displays.
 
 <a name="database"/>
 
 ## Database
+
+
 
 ### Database Type
 
@@ -111,7 +119,7 @@ My database consists of the following tables: users, user profiles, tickets, com
 
 Picture below presents the database schema outlining structure of each collection and relationship between each collection.
 
-![alt text](paste link "database-schema")
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/database-design/db-schema.png "database-schema")
 
 Relationships between collections are as follows:
 
@@ -225,13 +233,13 @@ List of features to be implemented in the future:
 
 - [MockFlow WireframePro](https://www.mockflow.com/) - Online tool that was used to create wireframes;
 
-- [DBDiagram](https://dbdiagram.io/home) - A relational database diagram design tool used to create database schema.
+- [DBDiagram](https://dbdiagram.io/home) - A relational database diagram design tool used to create database schema;
 
-- [Placeholder](https://placeholder.com/) - Online tool to create custom placeholder images. It was used to create image placeholder in cases when user did not upload his / her profile image.
+- [Placeholder](https://placeholder.com/) - Online tool to create custom placeholder images. It was used to create image placeholder in cases when user did not upload his / her profile image;
 
-- [npm](https://getbootstrap.com/docs/4.0/getting-started/webpack/) - Bootstrap and Bootswatch theme installed as a Node.js module using npm to customize SCSS.
+- [npm](https://getbootstrap.com/docs/4.0/getting-started/webpack/) - Bootstrap and Bootswatch theme installed as a Node.js module using npm to customize SCSS;
 
-- [Popper](https://popper.js.org/) - **jQuery** and **Popper** are Bootstrap's peerDependencies and had to be added to enable me to customize the SCSS.
+- [Popper](https://popper.js.org/) - **jQuery** and **Popper** are Bootstrap's peerDependencies and had to be added to enable me to customize the SCSS;
 
 <a name="testing"/>
 
