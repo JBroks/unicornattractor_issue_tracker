@@ -2,21 +2,21 @@
 
 # Unicorn Attracktor Tracker - issue tracker application
 
-## About
+## Project Intro
 Stream Four Project: Full Stack Frameworks with Django - Milestone Project
 
 ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/gif/unicornattractor.gif "Gif")
 
 This project is part of the 'Full Stack Frameworks with Django' module of the Code Institute Full Stack Software Development course.
 
-## Scope
+## Project Scope
 To complete this module the task was to create an issue tracking application that allows users to submit their tickets.
 
 Users are allowed to submit two types of tickets i.e. bugs and features. In order to prioritize their tickets users are able to upvote them. The more upvotes a ticket has the faster it will be look after by a developer. However, the difference is that bugs can be upvoted for free, while user has to donate minimum €5 to upvote a feature. Users are also able to comment on tickets.
 
 Additional features were developed, these include: data dashboard, forum, like / dislike mechanism for forum, search bar.
 
-## Overview
+## Project Overview
 
 Project consists of the following sections:
 
@@ -71,21 +71,49 @@ Website demo is available [here](https://unicornattractor-issue-tracker.herokuap
 
 ### UX Design
 
-....
+In this project I was aiming to achieve a simple and user friendly user design, while providing all required information. All sections are arranged in a logical order to provide intuitive user experience e.g. any content that users can review is placed under 'Explore' menu, while forms for creating new content are placed under 'Create' menu.
+
+In keeping with the unicorn theme I decided on blue (`#2e3190`), purple (`#5854a5`, `#bcb3bf`), pink (`#e89e93`, `#fcdcd7`) pallete of colors. Additionally yellow (`#fcd731`), green (`#63d37b`), red (`#ee5140`) colors were used for the data dashboard and back to top button.
 
 ### Target Audience
 
-...
+This app was created to serve users of the (fictional) sourcing and recruiting application called "Unicorn Attractor". This application enables these users to submit any tickets describing the existing bugs and issues that they are having, as well as suggest any new features to be implemented.
+
+Therefore, th main objective of the website is to provide a user with a tool that will enable them to submit tickets, upvote and donate for any features, comment tickets, create forum threads / posts, like threads / posts, review ticket statistics.
 
 ### User Stories
 
 The following user stories were used to design this project:
 
-**User Story 1:**
+**User Story 1:** As a user I would like to create an account to access all the app features such as e.g. ticket creation.
 
-**User Story 2:**
+**User Story 2:** As a user I would like to be able to delete my account and all content added by me at any point.
 
-**User Story 3:**
+**User Story 3:** As a user I would like to have an option to login and logout of my account so nobody else can access it.
+
+**User Story 4:** As a user I would like to be able to add a ticket of any of both types (bug or feature).
+
+**User Story 5:** As a user I would like to be able to donate to support any feature of my choice.
+
+**User Story 6:** As a user I would like to be able to add a new or remove my upvote.
+
+**User Story 7:** As a user I would like to be able to comment on any ticket submitted by me or any other user.
+
+**User Story 8:** As a user I would like to be able to filter out specific tickets depending on their type or status.
+
+**User Story 9:** As a user I would like to be able to search through the website content.
+
+**User Story 10:** As a user I would like to be able to start a new discussion on the website's forum.
+
+**User Story 11:** As a user I would like to be able to express my opinion on threads / post via like / dislike system.
+
+**User Story 12:** As a user I would like to have an overview on the ticket progress and overall statistics.
+
+**User Story 13:** As a user I would like to see all of my inputs within the app (i.e. tickets, comments, upvotes, likes / dislikes, threads, posts) in case I would like to edit or delete them.
+
+**User Story 14:** As a user I would like to be able to edit my profile information.
+
+**User Story 15:** As a user I would like to be able to reset my password in case I forget it.
 
 ### Mockups & Wireframes
 
@@ -229,7 +257,7 @@ List of features to be implemented in the future:
 
 - [Gifox](https://gifox.io/) - Tool was used to record the gif presented in the demo section of this README files;
 
-- [Am I Responsive](http://ami.responsivedesign.is/#) - Online tool was used to display the project on various devices;
+- [Multi Devices Mockup Generator](https://techsini.com/multi-mockup/) - Online tool was used to display the project on various devices;
 
 - [MockFlow WireframePro](https://www.mockflow.com/) - Online tool that was used to create wireframes;
 
