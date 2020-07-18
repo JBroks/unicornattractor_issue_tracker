@@ -5,7 +5,7 @@
 ## About
 Stream Four Project: Full Stack Frameworks with Django - Milestone Project
 
-![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/gif/unicornattractor.gif "Gif")
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/gif/unicornattractor.gif "Gif")
 
 This project is part of the 'Full Stack Frameworks with Django' module of the Code Institute Full Stack Software Development course.
 
@@ -91,11 +91,11 @@ The following user stories were used to design this project:
 
 The following wireframe sketches were created to design the project layout options for:
 
-- [large](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/wireframes/unicornAttractor_large.png),
+- [large](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_large.png),
 
-- [medium](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/wireframes/unicornAttractor_medium.png) , and 
+- [medium](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_medium.png) , and 
 
-- [mobile](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/wireframes/unicornAttractor_mobile.png) displays.
+- [mobile](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_mobile.png) displays.
 
 <a name="database"/>
 
@@ -119,7 +119,7 @@ My database consists of the following tables: users, user profiles, tickets, com
 
 Picture below presents the database schema outlining structure of each collection and relationship between each collection.
 
-![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/tree/master/design/database-design/db-schema.png "database-schema")
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/database-design/db-schema.png "database-schema")
 
 Relationships between collections are as follows:
 
