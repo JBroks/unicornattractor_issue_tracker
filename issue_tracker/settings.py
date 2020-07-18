@@ -61,8 +61,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-X_FRAME_OPTIONS = 'ALLOW-FROM https://www.responsinator.com/'
-
 ROOT_URLCONF = 'issue_tracker.urls'
 
 TEMPLATES = [
