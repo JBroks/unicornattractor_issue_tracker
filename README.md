@@ -150,7 +150,7 @@ Picture below presents the database schema outlining structure of each collectio
 The main point of database schema preparation was to think through the structure of each Django model. Django model is then coverted into SQL code and creates the database tables and fields.
 
 The example of Django model below:
-```
+```python
 class Ticket(models.Model):
     '''
     Ticket model that will store all the fields below in a tabel called 'Ticket'
@@ -194,17 +194,6 @@ class Ticket(models.Model):
         
     class Meta:
         ordering = ['-id']
-        
-    def __str__(self):
-        return 'Ticket #{0} [{1}] {2} - {3}'.format(
-            self.id, self.ticket_status, self.ticket_type, self.subject)
-    
-    def tickets_upvotes_count(self):
-        return self.upvote_ticket_key.annotate(num_upvotes=Count('id')).count()
-    
-    def tickets_donations_sum(self):
-        return self.donate_ticket_key.aggregate(
-            sum_donation=Sum('donation_amount'))
 ```
 
 <a name="features"/>
