@@ -129,13 +129,11 @@ The following wireframe sketches were created to design the project layout optio
 
 ## Database
 
-
-
 ### Database Type
 
 #### SQLite
 
-SQLite is a simple, very lightweight database management system used for the project to store data locally.
+SQLite is a simple, very lightweight database management system used for the project to store data locally and test my application.
 
 #### PostgreSQL
 
@@ -149,13 +147,65 @@ Picture below presents the database schema outlining structure of each collectio
 
 ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/database-design/db-schema.png "database-schema")
 
-Relationships between collections are as follows:
+The main point of database schema preparation was to think through the structure of each Django model. Django model is then coverted into SQL code and creates the database tables and fields.
 
-- ...
-
-- ...
-
-- ...
+The example of Django model below:
+```
+class Ticket(models.Model):
+    '''
+    Ticket model that will store all the fields below in a tabel called 'Ticket'
+    '''
+    TYPE_CHOICES = (
+        ('Bug', 'Bug'),
+        ('Feature', 'Feature'),
+        )
+    STATUS_CHOICES = (
+        ('Open', 'Open'),
+        ('In Progress', 'In Progress'),
+        ('Completed', 'Completed'),
+        ('Closed', 'Closed'),
+        )
+    
+    user = models.ForeignKey(
+        User,
+        null=True,
+        on_delete=models.CASCADE)
+    ticket_type = models.CharField(
+        max_length=7,
+        choices=TYPE_CHOICES)
+    ticket_status = models.CharField(
+        max_length=11,
+        choices=STATUS_CHOICES)
+    subject = models.CharField(
+        max_length=100,
+        blank=False)
+    description = models.TextField(
+        max_length=30000,
+        blank=False)
+    date_created = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now_add=True)
+    date_updated = models.DateTimeField(
+        blank=False,
+        null=False,
+        auto_now=True,
+        )
+        
+    class Meta:
+        ordering = ['-id']
+        
+    def __str__(self):
+        return 'Ticket #{0} [{1}] {2} - {3}'.format(
+            self.id, self.ticket_status, self.ticket_type, self.subject)
+    
+    def tickets_upvotes_count(self):
+        return self.upvote_ticket_key.annotate(num_upvotes=Count('id')).count()
+    
+    def tickets_donations_sum(self):
+        return self.donate_ticket_key.aggregate(
+            sum_donation=Sum('donation_amount'))
+```
 
 <a name="features"/>
 
