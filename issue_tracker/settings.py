@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-X_FRAME_OPTIONS = 'DENY'
+X_FRAME_OPTIONS = 'ALLOW-FROM https://techsini.com/multi-mockup/'
 
 ROOT_URLCONF = 'issue_tracker.urls'
 
