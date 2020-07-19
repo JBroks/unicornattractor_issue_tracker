@@ -418,11 +418,25 @@ This issue apppeared when I added spaces between some blocks of code to make it 
 
 ### Travis Continuous Integration
 
-....
+I have also used Travis CI for Continous Integration to automate testing of my code and resolve any issues as soon as they arose.
 
 ### Automated testing
 
-.....testing and coverage description....
+Python code was tested using unittest framework and I was able to achieve **overall coverage of 89%**, with the following breakdown for each app:
+
+- **Home** - 100% coverage;
+
+- **Accounts** - 83% coverage;
+
+- **Forum** - 94% coverage;
+
+- **Tickets** - 86% coverage;
+
+- **Search** - 95% coverage;
+
+- **Dashboard** - 100% coverage;
+
+To achieve 100% for all apps below that level I would need a bit more time and knowledge on testing Django apps. However, I believe I managed to achieve a great result given it was my first time testing a Django app.
 
 ### Features testing
 
@@ -432,17 +446,9 @@ This issue apppeared when I added spaces between some blocks of code to make it 
 
 .......
 
-#### Bugs:
-
-....
-
 ### Peer-code-review
 
 .....
-
-#### Bugs
-
-....
 
 ### User stories testing
 
@@ -453,6 +459,27 @@ This issue apppeared when I added spaces between some blocks of code to make it 
 **User Story 2:**
 
 - Solution:  .......
+
+### Interesting Bugs - Resolved
+
+Throught the process of development of this app I came accross a few interesting bugs. 
+
+- **SQLite issue** - One of the biggest issues I came accross whan using Travis CI was associated with my SQLite database. I switched to Heroku PostgreSQL too fast and while performing some testing I got an issue with missing migrations. I contacted the Code Institiute Tutoring service for advice. In the end I had to reset my SQLite database and rerun migrations to resolve the issue.
+
+- **X-Frame-Options isssue** - when i was triend to test my app using Responsinator and create a demo gif I got the following error:
+    ```
+    Refused to display '<URL>' in a frame because it set 'X-Frame-Options' to 'sameorigin'.
+    ```
+    Code Institute Tutor suggested this [solution](https://stackoverflow.com/questions/33267383/how-to-configure-x-frame-options-in-django-to-allow-iframe-embedding-of-one-view/33267908#33267908) and I also these solutions: [solution1](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options), [solution2](https://docs.djangoproject.com/en/3.0/ref/clickjacking/).
+    Ultimately I managed to fix that issue by adding one line in settings.py file:
+    ```
+    X_FRAME_OPTIONS = 'ALLOW-FROM url'
+    ```
+    When I was done testing and I created my gif file I removed that line from my settings, as it could cause security issues if left there pernamently.
+
+### Unresolved Bugs
+
+....
 
 <a name="deployment"/>
 
