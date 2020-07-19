@@ -290,17 +290,21 @@ The project consists of various features presented below.
 
 - **Filter** - filter fields were created so users can select only tickets within a specific type and / or status;
 
-- **Highcharts charts** - data dashboard uses Highcharts API to display analysis of tickets by type and status using a pie chart and stacked bar chart elements;
+- **Highcharts charts** - data dashboard uses Highcharts API to display analysis of tickets by type and status using a pie chart and stacked bar chart elements.
 
 ### Features left to implement
 
 List of features to be implemented in the future:
 
-- ....;
+- additional filters by e.g. a user who added it, by date added;
 
-- ....;
+- adding information on how many views each ticket or forum thread has;
 
-- ...;
+- contact us form or report to admin functionality;
+
+- notifications for users so they know e.g. if the feature they supported is being developed;
+
+- notification for users that the content that they added is being liked or upvoted.
 
 <a name="technologies-used"/>
 
@@ -370,19 +374,47 @@ List of features to be implemented in the future:
 
 #### CSS
 
-....
+CSS code was validated using the [W3C CSS Validation Service - Jigsaw](https://jigsaw.w3.org/css-validator/). It is important to mention that I only validated my custom code and not the Bootstrap modules.
+
+No errors were found in the code.
 
 #### HTML
 
-....
+HTML code was validated using the [W3C Markup Validation Service](https://validator.w3.org/).
+
+The following issues were captured by the validator:
+
+- For most of the templates this issue appeared:
+    ```
+    Section lacks heading. Consider using h2-h6 elements to add identifying headings to all sections.
+    ```
+    This warning was ignored as no additional heading is required.
+    
+- The following issue was highlighted for the homepage template:
+    ```
+    Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
+    ```
+    This warning was ignored as h1 was purposely put by me inside the jumbotrone element.
+
+All warnings related to Jinja templates syntax were ignored as they are not recognised by the HTML validator.
 
 #### JavaScript
 
-......
+JavaScript code was validated using [JSHint](https://jshint.com/).
+
+Validator has indicated that there are two unknown / undefined variables, namely `$`, and `Stripe`. The warning was ignored as I believe it is due to the fact that these libraries are separated and the validator does not have access to them.
 
 #### Python
 
-.....
+Python code was validated using[PEP8 Online](http://pep8online.com). All errors and warnings were fixed to validate the code agains the PEP8 requirements.
+
+The only warning that was not fixed in some cases was the following:
+```
+blank line contains whitespace
+```
+
+This issue apppeared when I added spaces between some blocks of code to make it more readable, which is allowed as per the following PEP8 rule:
+**"Extra blank lines may be used (sparingly) to separate groups of related functions."**
 
 ### Travis Continuous Integration
 
