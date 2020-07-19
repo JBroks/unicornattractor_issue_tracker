@@ -274,6 +274,8 @@ The project consists of various features presented below.
 
 - **Delete confirmation alerts** - alerts created using **Bootstrap** framework modals that asks user to confirm deletion.
 
+- **Login modal popups** - when user is not authenticated and treis to e.g. like a post or add a comment a pop up will appear asking him or her to sign in first;
+
 #### Other
 
 - **Pagination** - flask paginations styled with Bootstrap classes is used for the project to paginate content such as tickets, threads, post, comment etc.;
@@ -444,7 +446,25 @@ To achieve 100% for all apps below that level I would need a bit more time and k
 
 ### Responsiveness testing
 
-.......
+This site was tested across multiple browsers (Google Chrome, Safari, Mozilla Firefox, Opera) and on multiple mobile devices (iPad Mini, iPad, Huawei P20) to ensure compatibility and responsiveness.
+
+Chrome developer tools were used to additionally inspect responsiveness for the following devices:
+
+- iPad Pro / iPad / iPad Mini (portrait & landscape);
+
+- iPhone 5/SE (portrait & landscape);
+
+- iPhone 6/7/8 (portrait & landscape);
+
+- iPhone 6/7/8 Plus (portrait & landscape);
+
+- iPhone X (portrait & landscape);
+
+- Android (Pixel 2) (portrait & landscape).
+
+Furthermore, [Responsinator](https://www.responsinator.com/) was used to test responsiveness of the final version of the project.
+
+The website is fully responsive and working well on mobile devices.
 
 ### Peer-code-review
 
@@ -454,11 +474,63 @@ To achieve 100% for all apps below that level I would need a bit more time and k
 
 **User Story 1:**
 
-- Solution:  .......
+- Solution:  Any user can create their own account by using the registration form. User has to provide first and last name, username, email and password in order to register. After successful registration user can login in using the login form. When logged in user can explore all the existing content as well as add their own content.
 
 **User Story 2:**
 
-- Solution:  .......
+- Solution:  User can delete their account by going to the profile page and clicking Delete Account button. Confirmation alert will pop up asking for confirmation.
+
+**User Story 3:**
+
+- Solution: Login form enables user to login to their account. Whenever user wants to log out they can click 'Sign out' located in the navbar menu. When user is not authenticated nobody else can access their account unless they know username and password of that user.
+
+**User Story 4:**
+
+- Solution: User can add any type of ticket by clicking 'Add ticket' option in the navbar menu, 'Add ticket' button on jumbotron or static 'Add ticket' button on 'All tickets' page. User is then redirected to the add ticket form where he or she can select a ticket type and fill out other details.
+
+**User Story 5:**
+
+- Solution: User can upvote and donate for any feature of their choice by clicking 'Upvote' button on the view a single ticket page. However, user can only donate once for any given feature.
+
+**User Story 6:**
+
+- Solution: User can upvote any ticket as long as they are authenticated. If user upvoted the ticket they can remove their upvote at any point by clicking the 'Downvote' button. 'Downvote' button replaces 'Upvote' button when a ticket was upvoted by the user.
+
+**User Story 7:**
+
+- Solution: User can comment any ticket in order to share his / her opinion and interact with other users, as long as they are authenticated.
+
+**User Story 8:**
+
+- Solution: User is able to filter out tickets by type and status by using the filter feature implemented on the all tickets page.
+
+**User Story 9:**
+
+- Solution: User is able to search throught the content of my application by using the search bar. Results will include all tickets, comments, threads, and posts that match the keyword typed into the search bar.
+
+**User Story 10:**
+
+- Solution: User can start any new discussion on the forum by adding a new thread. New thread can be added by clicking 'Add Thread' in the navbar or 'Add Thread' static button available on the forum page.
+
+**User Story 11:**
+
+- Solution: User is able to Like / Dislike any thread / post added by them or other users. When e.g. user clicks on the 'Like' button their vote is submitted to the database and color of thumbs up icon changes to green (red when user clicks 'Dislike' button) so the user knows that they already voted for a given thread / post. When user wants to remove their vote they need to click on the same icon again and then the color will go back to grey and the vote will be removed.
+
+**User Story 12:**
+
+- Solution: User is able to review statistics by going to the statistics page. Dashboard contains statistic for top donated features, top upvoted tickets, tickets by type and status, and total number of tickets / bugs / features.
+
+**User Story 13:**
+
+- Solution: Users are able to get an overview on the content they have added by going to their profile page. Profile page shows the content added by a user organised in tabular form and navigated by Bootstrap pills. User can use links to access and review their content, or view / edit / and delete buttons to take an action.
+
+**User Story 14:**
+
+- Solution: User can access the edit profile form by clicking 'Edit Profile' in the navbar or on their profile page.
+
+**User Story 15:**
+
+- Solution: If user forgets their password they can click 'Forgot your password' link available on the sign in page. Process is desing in a way to provide a clear instructions every step of the way.
 
 ### Interesting Bugs - Resolved
 
@@ -470,7 +542,7 @@ Throught the process of development of this app I came accross a few interesting
     ```
     Refused to display '<URL>' in a frame because it set 'X-Frame-Options' to 'sameorigin'.
     ```
-    Code Institute Tutor suggested this [solution](https://stackoverflow.com/questions/33267383/how-to-configure-x-frame-options-in-django-to-allow-iframe-embedding-of-one-view/33267908#33267908) and I also these solutions: [solution1](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options), [solution2](https://docs.djangoproject.com/en/3.0/ref/clickjacking/).
+    Code Institute Tutor suggested this [solution](https://stackoverflow.com/questions/33267383/how-to-configure-x-frame-options-in-django-to-allow-iframe-embedding-of-one-view/33267908#33267908) and I also these solutions: [solution 1](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options), [solution 2](https://docs.djangoproject.com/en/3.0/ref/clickjacking/).
     Ultimately I managed to fix that issue by adding one line in settings.py file:
     ```
     X_FRAME_OPTIONS = 'ALLOW-FROM url'
