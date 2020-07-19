@@ -20,33 +20,33 @@ Additional features were developed, these include: data dashboard, forum, like /
 
 Project consists of the following sections:
 
-1. Homepage - Containing 'Sign up' button when user is not authenticated and 'Add ticket' and 'Forum' buttons when user is logged into his / her account. Home page also contains description of main tracking app features, about Unicorn Attractor app section and Apple / Google store badges.
+**1. Homepage** - Containing 'Sign up' button when user is not authenticated and 'Add ticket' and 'Forum' buttons when user is logged into his / her account. Home page also contains description of main tracking app features, about Unicorn Attractor app section and Apple / Google store badges.
 
-2. Sign in form - Page containing the form that enables user to log into their account to use the app.
+**2. Sign in form** - Page containing the form that enables user to log into their account to use the app.
 
-3. Sign up form - Page containing the form that enables user to sign up for the Unicorn Attractor Issue Tracking app.
+**3. Sign up form** - Page containing the form that enables user to sign up for the Unicorn Attractor Issue Tracking app.
  
-4. All tickets page - Page containing paginated tickets and filters that enable user to filter tickets by type and status.
+**4. All tickets page** - Page containing paginated tickets and filters that enable user to filter tickets by type and status.
 
-5. Single ticket view page - Page containing a detail information about a given ticket, a comment form and paginated comments.
+**5. Single ticket view page** - Page containing a detail information about a given ticket, a comment form and paginated comments.
 
-6. Add / edit ticket page - Page containing add / edit ticket form.
+**6. Add / edit ticket page** - Page containing add / edit ticket form.
 
-7. Forum page - Page containing paginated forum threads.
+**7. Forum page** - Page containing paginated forum threads.
 
-8. Thread view page - Page containing a single thread and all associated posts.
+**8. Thread view page** - Page containing a single thread and all associated posts.
 
-9. Add / edit thread page - Page containing add / edit thread form.
+**9. Add / edit thread page** - Page containing add / edit thread form.
 
-10. Data dashboard page - Page containing summary statistics and charts presenting analysis of all tickets submited by app users.
+**10. Data dashboard page** - Page containing summary statistics and charts presenting analysis of all tickets submited by app users.
 
-11. Search results page - Page containing any application content that matches the search term.
+**11. Search results page** - Page containing any application content that matches the search term.
 
-12. Profile page - Page containing user information, such as username, last seen (date and time), and all content that a given user added, commented, upvoted, liked or disliked.
+**12. Profile page** - Page containing user information, such as username, last seen (date and time), and all content that a given user added, commented, upvoted, liked or disliked.
 
-13. Edit profile page - Page containing edit profile form that enables a user to upload a profile photo and update any personal information.
+**13. Edit profile page** - Page containing edit profile form that enables a user to upload a profile photo and update any personal information.
 
-14. Reset password pages - Pages that display instructions on password reset and password reset form.
+**14. Reset password pages** - Pages that display instructions on password reset and password reset form.
 
 ## Table of Contents
 
@@ -212,7 +212,55 @@ The project consists of various features presented below.
 
 #### Buttons
 
+- **App Store/Google Play Buttons** - buttons load Apple App Store / Google Play store in a new browser tab. Since the Unicorn Attractor app is not a real application buttons redirect user to the homepage of each store;
+
+- **Sign Up Button** - this buttons redirects a user to the registration page, where they can sign up for a new account;
+
+- **Sign In Button** - this button redirect a user to the login form page where he or she can log into their account;
+
+-  **Sign Out Button** - this button allows a user to log out of their account. When button is clicked the user session ends end they are redirected to the homepage;
+
+- **Add Ticket / Thread Buttons** - these buttons redirect user to the add ticket / add thread page, where they can add a new ticket / a new thread;
+
+- **Add Ticket / Forum / Sign Up Buttons on Jumbotron** - these buttons are placed on the jumbotrone that contains a welcome message. Unauthenticated users will see Sign Up button on the jumbotrone, while authenticated users will see Add Ticket and Forum button;
+
+- **Back to Forum Button** - this button is available on the page that contains a single thread view. It enables user to go back to the forum table view;
+
+- **Back to Top Button** - static back to top button was implemented at the bottom of the page so user can go back to the top of the page without scrolling back. The feature is especially useful on mobile devices;
+
+- **View / Edit / Delete Button** - favicons were used to create view / edit / delete buttons that enable user to take an appropriate action when it comes to tickets / threads / posts;
+
+- **Show more / Show less buttons** - buttons used to toggle Bootstrap class="truncate" to manage very long comments;
+
+- **Form Buttons** -  each form was supplied with a Cancel and Sumbit  / Save  button. Cancel button enables users to get out of the edit, delete or create a new content mode, while Submit / Save button enable user to approve the action;
+
+- **Like / Dislike button** - voting buttons enabling user to like or dislike a thread or a post;
+
+- **Upvote / Downvote** - upvote buttons enables user to upvote any ticket, however a small donation is required when upvoting a feature. Users can remove their upvote by clicking downvote button that will appear after a ticket was upvoted by a given user;
+
+- **Filter button** - button applies filters specified by a user;
+
+- **Reset filter** - button that resets all filters and shows all tickets;
+
 #### Forms
+
+- **Sign Up Form** -  registration form that enables user to use the app. User input includes first name, last name, username, email address, and password (that has to be repeated);
+
+- **Sign In** - login form that enables user to sign into the user account;
+
+- **Reset Password Forms** - a set of forms that include instructions on how to reset a password. First form asks for the user's email address so an email with the reset password link can be send. User then clicks the link and gets to the page where he or she can set up a new password. When the process is successful message appears informing the user that they are now able to sing into their account;
+
+- **Edit Profile Details Form** - at any point user can upload their profile image and update any personal details by using the Update Profile Form;
+
+- **Add Comment / Post Form** - users can post their comments for each ticket, and posts for each forum thread by using these forms;
+
+- **Add Ticket / Thread Form** - users are able to add a ticket / thread by filling out the appropriate form. Add Ticket Form requests information such as ticket type, subject and description. Add Thread Form requires only subject and description;
+
+- **Edit Comment / Post Form** - users are able to edit any comment / post created by them by clicking edit icon displayed in the comment's / post's card header. When edit button is clicked the displayed comment / post disappears and editable text form appears;
+
+- **Edit Ticket / Thread Form** - edit ticket / thread form displays information about a given ticket / thread in the eaditable format. User can edit any ticket / thread earlier added by them;
+
+- **Donation Form** - donation form pops up when a user tries to upvote a feature. Donation uses Stripe API to process the payment;
 
 #### Structure
 
@@ -228,15 +276,21 @@ The project consists of various features presented below.
 
 #### Other
 
-- **Pagination** - 
+- **Pagination** - flask paginations styled with Bootstrap classes is used for the project to paginate content such as tickets, threads, post, comment etc.;
 
 - **Accordion** - Bootstrap accordion feature that stores user personal information, activity, delete profile and update profile buttons on user profile page (mobile displays only);
 
-- **Pills** - 
+- **Pills** - Bootstrap pills were used to organise content and create a neat and compact look. Pills were implemented on the profile page, search results page and inside some cards on the dashboard page;
 
 - **Bootstrap cards** - feature used to present comments / posts added by users and charts & statistics on data dashboard;
 
 - **Search bar** - search bar that enables users to search any ticket, comment, thread, and post.
+
+- **Jumbotron** - Bootstrap jumbotrone is used to prominently display a welcome message on the homepage;
+
+- **Filter** - filter fields were created so users can select only tickets within a specific type and / or status;
+
+- **Highcharts charts** - data dashboard uses Highcharts API to display analysis of tickets by type and status using a pie chart and stacked bar chart elements;
 
 ### Features left to implement
 
