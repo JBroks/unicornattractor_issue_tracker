@@ -580,8 +580,7 @@
                                     <tbody class="post-votes-table">
                                         {% if post_votes_count > 0 %} {% for voted in user_post_votes %}
                                         <tr>
-                                            <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created
-                                                }}</td>
+                                            <td class="text-center text-md-left"><span class="text-capitalize">{{ voted.vote_type }}d</span> <a class="text-decoration-none" href="{% url 'view_thread' voted.post.thread.id %}#post{{voted.post.id}}">Post #{{ voted.post.id }}</a> on {{ voted.date_created }}</td>
                                         </tr>
                                         {% endfor %}{% else %}
                                         <tr>
