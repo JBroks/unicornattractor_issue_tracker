@@ -302,6 +302,10 @@ List of features to be implemented in the future:
 
 - adding information on how many views each ticket or forum thread has;
 
+- adding function that will resize profile photos to avoid issues with images when displayed inside of cards, navbar and profile page;
+
+- adding more charts and statistics that would show how tickets are resolved over time (week, month, year);
+
 - contact us form or report to admin functionality;
 
 - notifications for users so they know e.g. if the feature they supported is being developed;
