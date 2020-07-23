@@ -344,6 +344,8 @@ List of features to be implemented in the future:
 
 - [django-storages](https://django-storages.readthedocs.io/en/latest/) and [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - both packages used to connect Django to S3;
 
+- [bootstrap-select](https://developer.snapappointments.com/bootstrap-select/examples/#styling) - jQuery plugin was used to style selectmenu;
+
 ### Database
 
 - [Postgres](https://www.heroku.com/postgres) - a relational database management systems hosted on Heroku;
@@ -371,6 +373,10 @@ List of features to be implemented in the future:
 - [npm](https://getbootstrap.com/docs/4.0/getting-started/webpack/) - Bootstrap and Bootswatch theme installed as a Node.js module using npm to customize SCSS;
 
 - [Popper](https://popper.js.org/) - **jQuery** and **Popper** are Bootstrap's peerDependencies and had to be added to enable me to customize the SCSS;
+
+- [Angrytools gradient maker](https://angrytools.com/gradient/image/) - was used to create a gradient image that was further processed in Dmesh software;
+
+- [Dmesh software](http://dmesh.thedofl.com/) - was used to triangulate the gradient image in order to create backgound images for the app.
 
 <a name="testing"/>
 
@@ -575,15 +581,59 @@ Throught the process of development of this app I came accross a few interesting
 
 ### Content
 
-....
+Description in the 'About Unicorn Attractor' section was sourced from [here](https://www.personio.com/product/applicant-sourcing/).
 
 ### Media
 
-....
+Favicon and logo used for the project was created and downloaded from [here](https://www.freelogodesign.org/).
+
+The following images were used for the project:
+
+- Forum image was sourced from [here](https://www.csp.org.uk/sites/default/files/styles/full_width/public/media-image/2019-05/forum_discussion.jpg?itok=mv36Pmi9, https://www.csp.org.uk/sites/default/files/styles/full_width/public/media-image/2019-05/forum_discussion.jpg?itok=mv36Pmi9);
+
+- Tickets image was sourced from [here](https://www.wallpaperflare.com/close-up-photography-of-ticket-coupons-admission-admit-buy-wallpaper-wqegy/download/1920x1080);
+
+- Search image was sourced from [here](https://images8.alphacoders.com/438/438354.jpg, https://www.google.com/);
+
+- Statistics image was sourced from [here](https://www.york.ac.uk/study/postgraduate-taught/courses/pgcert-health-research-and-statistics/).
+
+Gradient images were created using [gradient maker](https://angrytools.com/gradient/image/) and [Dmesh software](http://dmesh.thedofl.com/).
+
+Images for the 'About Unicorn Attractor' section were sourced from [here](https://www.personio.com/product/applicant-sourcing/).
 
 ### Acknowledgements
 
-....
+While working with Django I relied heavily on [Django documentation](https://docs.djangoproject.com/en/3.0/).
+
+Code Institute tutorials were used to create authentication app and Stripe payment processing.
+
+[This](https://stackoverflow.com/questions/25044370/make-clicked-tab-active-in-bootstrap) Stackoverflow discussion was used to make navbar links active.
+
+[This](https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html) tutorial was used when I was working on pagination.
+
+When working on filter feature I reviewed [this](https://www.youtube.com/watch?v=GtwK0Hj6jU8&list=PLLRM7ROnmA9EGO3TOlWLgrc46EhTgj1Ih&index=7) video tutorial.
+
+Filter chaining [solution](https://stackoverflow.com/questions/42105347/django-combine-filter-on-two-fields) was suggested by Haley from Code Institute.
+
+In order to create navbar that disappears on a scroll [this](https://www.solodev.com/blog/web-design/bootstrap/build-a-fixed-top-navigation-that-disappears-as-users-scroll.stml) tutorial was used.
+
+[This](https://stackoverflow.com/questions/6536373/how-can-i-set-the-size-of-rows-columns-in-textfield-in-django-models) Stackoverflow discussion was reviewed to add attributes to textarea.
+
+[History back method](https://www.google.com/search?client=safari&rls=en&q=history.back()&ie=UTF-8&oe=UTF-8) was used for cancael buttons.
+
+[Timesince method](http://www.learningaboutelectronics.com/Articles/How-to-display-how-long-ago-a-post-was-created-in-Django.php) was used in the project.
+
+[This](https://www.youtube.com/watch?v=6Ovw43Dkp44) tutorial was used to learn how to customize bootstrap with Sass.
+
+In order to calculate total comments per post [this](https://stackoverflow.com/questions/46726672/count-total-comments-of-every-author-in-django) Stackoverflow discussion was reviewed.
+
+To keep active tab on refresh [this](https://stackoverflow.com/questions/50423148/keep-active-tab-on-page-refresh-in-bootstrap-4-using-local-storage) Stackoverflow discussion was used.
+
+When creating pagination for search results I reviewed [this](http://shopnilsazal.github.io/django-pagination-with-basic-search/) tutorial.
+
+Many thanks to my mentor **Maranatha Ilesanmi** for support and advice throughout the project.
+
+To create mini charts for total figures cards I reviewed [this](https://css-tricks.com/how-to-make-charts-with-svg/) article.
 
 ### Disclaimer
 
