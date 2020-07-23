@@ -589,11 +589,11 @@ Favicon and logo used for the project was created and downloaded from [here](htt
 
 The following images were used for the project:
 
-- Forum image was sourced from [here](https://www.csp.org.uk/sites/default/files/styles/full_width/public/media-image/2019-05/forum_discussion.jpg?itok=mv36Pmi9, https://www.csp.org.uk/sites/default/files/styles/full_width/public/media-image/2019-05/forum_discussion.jpg?itok=mv36Pmi9);
+- Forum image was sourced from [here](https://www.csp.org.uk/sites/default/files/styles/full_width/public/media-image/2019-05/forum_discussion.jpg?itok=mv36Pmi9);
 
 - Tickets image was sourced from [here](https://www.wallpaperflare.com/close-up-photography-of-ticket-coupons-admission-admit-buy-wallpaper-wqegy/download/1920x1080);
 
-- Search image was sourced from [here](https://images8.alphacoders.com/438/438354.jpg, https://www.google.com/);
+- Search image was sourced from [here](https://images8.alphacoders.com/438/438354.jpg);
 
 - Statistics image was sourced from [here](https://www.york.ac.uk/study/postgraduate-taught/courses/pgcert-health-research-and-statistics/).
 
@@ -619,7 +619,7 @@ In order to create navbar that disappears on a scroll [this](https://www.solodev
 
 [This](https://stackoverflow.com/questions/6536373/how-can-i-set-the-size-of-rows-columns-in-textfield-in-django-models) Stackoverflow discussion was reviewed to add attributes to textarea.
 
-[History back method](https://www.google.com/search?client=safari&rls=en&q=history.back()&ie=UTF-8&oe=UTF-8) was used for cancael buttons.
+[History back method](https://www.google.com/search?client=safari&rls=en&q=history.back()&ie=UTF-8&oe=UTF-8) was used for cancel buttons.
 
 [Timesince method](http://www.learningaboutelectronics.com/Articles/How-to-display-how-long-ago-a-post-was-created-in-Django.php) was used in the project.
 
@@ -631,9 +631,9 @@ To keep active tab on refresh [this](https://stackoverflow.com/questions/5042314
 
 When creating pagination for search results I reviewed [this](http://shopnilsazal.github.io/django-pagination-with-basic-search/) tutorial.
 
-Many thanks to my mentor **Maranatha Ilesanmi** for support and advice throughout the project.
-
 To create mini charts for total figures cards I reviewed [this](https://css-tricks.com/how-to-make-charts-with-svg/) article.
+
+Many thanks to my mentor **Maranatha Ilesanmi** for support and advice throughout the project.
 
 ### Disclaimer
 
