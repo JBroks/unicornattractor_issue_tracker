@@ -56,6 +56,8 @@ Project consists of the following sections:
 - [Features](#features)
 - [Technologies used](#technologies-used)
 - [Testing](#testing)
+- [Version Control](#version-control)
+- [Running Code Locally](#run-code-locally)
 - [Deployment](#deployment)
 - [Credits](#credits)
 
@@ -358,6 +360,16 @@ List of features to be implemented in the future:
 
 - [Stripe API](https://stripe.com) - Stripe was used to make secure payments when users upvote features.
 
+### Version Control
+
+- **Git**- git was used as a version control system to add and commit changes made to the project in AWS Cloud9. All committed changes were then pushed to remote repository on GitHub;
+
+- [GitHub](https://github.com/) - GitHub was used as a remote repository to store the committed changes from the local repository;
+
+### Hosting
+
+- [Heroku](https://www.heroku.com/) - Heroku was used as the hosting platform to deploy my app;
+
 ### Other
 
 - [Gifox](https://gifox.io/) - Tool was used to record the gif presented in the demo section of this README files;
@@ -563,17 +575,87 @@ Throught the process of development of this app I came accross a few interesting
 
 ....
 
+<a name="version-control"/>
+
+## Version Control
+
+The site was developed using AWS Cloud 9. To keep records of different versions of all project files git version control system was used. 
+
+To initialize the local repository the command `$ git init` was used. After adding initial files and committing them `$ git remote add origin 'GitHub repo name'` command was used to add new remote repository. Code was then pushed to the master branch of the remote repository using `$ git push -u origin master`.
+
+In order to track the changes in the local repository the following steps were taken:
+
+- command `$ git add 'filename'` - to update what will be committed;
+
+- command `$ git commit -m 'Description of changes made'` - to commit the changes.
+
+Using `$ git push` command all changes from the local repository were pushed to the remote one on GitHub.
+
+<a name="run-code-locally"/>
+
+## Running Code Locally
+
+In order to clone my GitHub repository to your local one you should follow these steps:
+
+1. On GitHub navigate to [my repository](https://github.com/JBroks/unicornattractor_issue_tracker);
+
+2. Under the repository name, click **Clone or download**;
+
+3. In the Clone with HTTPs section, copy the clone URL for the repository;
+
+4. Go to IDE that you are using and open terminal;
+
+5. Change the current working directory to the location where you want the cloned directory to be made;
+
+6. Type git clone and then paste the URL you copied in Step 3;
+
+    `$ git clone https://github.com/JBroks/unicornattractor_issue_tracker.git`
+
+7. Lastly press Enter and your local repository will be created.
+
+8. In order to set your own credentials for the enviroment variables follow on of the two steps presented below in your local workspace:
+
+    - Enter and save your own credentials in the `.bashrc` file; or
+    
+    - Create an `env.py` file with your own credentials and import this into the `settings.py` file
+    
+9. Install the requirements.txt file by running the following command in your CLI terminal:
+
+    `sudo pip3 install -r requirements.txt`
+
+10. Run one of the following commands in your terminal to launch the Django project:
+
+    `python3 manage.py runserver`
+
+11. Window showing running the app address will pop up, click the link and the project should load in the new tab. If it doesn't load copy and paste it into a new browser tab instead.
+
+12. In order to create a super user and migrate the changes from models to database run the following commands:
+
+    ```
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    python3 manage.py createsuperuser
+    ```
+
 <a name="deployment"/>
 
 ## Deployment
 
-### GitHub
+This project is hosted using Heroku, deployed directly from the `master` branch. 
 
-....
+To deploy my project I followed these steps:
 
-### Heroku
+1. Create App:
 
-.....
+    - On Heroku website I logged onto my account and created [my app](https://dashboard.heroku.com/apps/unicornattractor-issue-tracker);
+    
+    - In the Resources tab on Heroku I searched for Heroku Postgres in the 'Add-Ons' section and I selected the free Hobby level;
+    
+2. Install the Heroku CLI: 
+
+     - To install Heroku CLI I typed `$ sudo snap install --classic heroku` command into the terminal; 
+     
+     - In order to log in to the Heroku account I typed `$ heroku login` command into the terminal;
 
 <a name="credits"/>
 
@@ -600,6 +682,8 @@ The following images were used for the project:
 Gradient images were created using [gradient maker](https://angrytools.com/gradient/image/) and [Dmesh software](http://dmesh.thedofl.com/).
 
 Images for the 'About Unicorn Attractor' section were sourced from [here](https://www.personio.com/product/applicant-sourcing/).
+
+Google Play Store and Apple App Store badges were sourced from [here](https://www.stickpng.com/img/download/5a902dbf7f96951c82922875).
 
 ### Acknowledgements
 
