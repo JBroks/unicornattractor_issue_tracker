@@ -56,7 +56,7 @@ Project consists of the following sections:
 - [Features](#features)
 - [Technologies used](#technologies-used)
 - [Testing](#testing)
-- [Github Version Control](#version-control)
+- [Version Control](#version-control)
 - [Running Code Locally](#run-code-locally)
 - [Deployment](#deployment)
 - [Credits](#credits)
@@ -360,7 +360,7 @@ List of features to be implemented in the future:
 
 - [Stripe API](https://stripe.com) - Stripe was used to make secure payments when users upvote features.
 
-### Version Control
+### Version-control System
 
 - **Git**- git was used as a version control system to add and commit changes made to the project in AWS Cloud9. All committed changes were then pushed to remote repository on GitHub;
 
@@ -577,7 +577,7 @@ Throught the process of development of this app I came accross a few interesting
 
 <a name="version-control"/>
 
-## Github Version Control
+## Version Control
 
 The site was developed using AWS Cloud 9. To keep records of different versions of all project files git version control system was used. 
 
