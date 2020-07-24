@@ -113,7 +113,9 @@ main {
 .templates-container .content-container,
 #login-section,
 #login-section div,
-section.reset-password-section {
+section.reset-password-section,
+#register-section, #view-ticket-page, #thread-view-page,
+#add-ticket-section, #add-thread-section, #edit-profile-section {
   height: 100%;
 }
 
@@ -134,7 +136,12 @@ section.reset-password-section {
 #filter-section .container-fluid,
 #profile-page-content,
 div.reset-password-container,
-#dashboard-page {
+#dashboard-page, #register-section .container-fluid, 
+#register-section .container-fluid .row,
+#add-ticket-section .container-fluid, #add-ticket-section .container-fluid .row,
+#add-thread-section .container-fluid, #add-thread-section .container-fluid .row,
+#edit-profile-section .container-fluid, 
+#edit-profile-section .container-fluid .row {
   height: 100%;
 }
 
