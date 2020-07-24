@@ -56,7 +56,7 @@ Project consists of the following sections:
 - [Features](#features)
 - [Technologies used](#technologies-used)
 - [Testing](#testing)
-- [Version Control](#version-control)
+- [Github Version Control](#version-control)
 - [Running Code Locally](#run-code-locally)
 - [Deployment](#deployment)
 - [Credits](#credits)
@@ -577,7 +577,7 @@ Throught the process of development of this app I came accross a few interesting
 
 <a name="version-control"/>
 
-## Version Control
+## Github Version Control
 
 The site was developed using AWS Cloud 9. To keep records of different versions of all project files git version control system was used. 
 
@@ -597,17 +597,17 @@ Using `$ git push` command all changes from the local repository were pushed to 
 
 In order to clone my GitHub repository to your local one you should follow these steps:
 
-1. On GitHub navigate to [my repository](https://github.com/JBroks/unicornattractor_issue_tracker);
+1. On GitHub navigate to [my repository](https://github.com/JBroks/unicornattractor_issue_tracker).
 
-2. Under the repository name, click **Clone or download**;
+2. Under the repository name, click **Clone or download**.
 
-3. In the Clone with HTTPs section, copy the clone URL for the repository;
+3. In the Clone with HTTPs section, copy the clone URL for the repository.
 
-4. Go to IDE that you are using and open terminal;
+4. Go to IDE that you are using and open terminal.
 
-5. Change the current working directory to the location where you want the cloned directory to be made;
+5. Change the current working directory to the location where you want the cloned directory to be made.
 
-6. Type git clone and then paste the URL you copied in Step 3;
+6. Type git clone and then paste the URL you copied in Step 3:
 
     `$ git clone https://github.com/JBroks/unicornattractor_issue_tracker.git`
 
