@@ -587,7 +587,7 @@ In order to set up S3 bucket I went through the following steps:
 
 1. I went to [AWS](https://aws.amazon.com) and created an account and signed into it.
 
-2. I went to the S3 section of AWS and created a new S3 bucket.
+2. I went to the **S3** section of AWS and clicked on the **Create bucket** button.
 
 3. I opened my new bucket and I went to **Properties** tab and selected **Static website hosting**.
  
@@ -748,7 +748,7 @@ To deploy my project I followed these steps:
 
 1. Create App:
 
-    - On Heroku [website]() I logged onto my account and created [my app](https://dashboard.heroku.com/apps/unicornattractor-issue-tracker) by clicking **New > Create new app**;
+    - On Heroku [website]() I logged onto my account and created my app by clicking **New > Create new app**;
     
     - In the **Resources** tab on Heroku I searched for **Heroku Postgres** in the **Add-Ons** section and I selected the free **Hobby level**;
     
@@ -776,7 +776,7 @@ To deploy my project I followed these steps:
 
     - To make initial push to Heroku I used the following command: `git push heroku master`;
     
-    - Since I was using **AWS S3** (see [AWS S3 Bucket](#S3) section)to store staticfiles I set `DISABLE_COLLECTSTATIC=1` by running the following command: `heroku config:set DISABLE_COLLECTSTATIC=1`;
+    - Since I was using **AWS S3** (see [AWS S3 Bucket](#S3) section) to store staticfiles I set `DISABLE_COLLECTSTATIC=1` by running the following command: `heroku config:set DISABLE_COLLECTSTATIC=1`;
     
 5. Procfile:
 
@@ -821,13 +821,14 @@ To deploy my project I followed these steps:
     - I copied all of the `env.py` variables over to  Heroku's **Config Vars** section;
     
     - Variables in the `env.py` file included the following:
-    ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/settings.png "App settings")
+
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/settings.png "App settings")
    
 9. Deployment Automation:
 
     - In the **Deploy** tab on Heroku, I selected GitHub as my deployment method and I connected my app to my GitHub repository;
     
-    - I then enabled **Automatic Deploys** to make sure that every push to my GitHub repo will deploy a new version of my app;
+    - I then enabled **Automatic Deploys** to make sure that every push to my GitHub repo will deploy a new version of my app.
 
 <a name="credits"/>
 
