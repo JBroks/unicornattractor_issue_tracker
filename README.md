@@ -822,7 +822,7 @@ To deploy my project I followed these steps:
     
     - Variables in the `env.py` file included the following:
 
-![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/settings.png "App settings")
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/settings-heroku.png "App settings")
    
 9. Deployment Automation:
 
