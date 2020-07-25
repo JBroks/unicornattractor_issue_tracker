@@ -56,6 +56,7 @@ Project consists of the following sections:
 - [Features](#features)
 - [Technologies used](#technologies-used)
 - [Testing](#testing)
+- [AWS S3 Bucket](#S3)
 - [Version Control](#version-control)
 - [Running Code Locally](#run-code-locally)
 - [Deployment](#deployment)
@@ -565,15 +566,115 @@ Throught the process of development of this app I came accross a few interesting
     Refused to display '<URL>' in a frame because it set 'X-Frame-Options' to 'sameorigin'.
     ```
     Code Institute Tutor suggested this [solution](https://stackoverflow.com/questions/33267383/how-to-configure-x-frame-options-in-django-to-allow-iframe-embedding-of-one-view/33267908#33267908) and I also these solutions: [solution 1](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options), [solution 2](https://docs.djangoproject.com/en/3.0/ref/clickjacking/).
-    Ultimately I managed to fix that issue by adding one line in settings.py file:
+    
+    Ultimately I managed to fix that issue by adding one line in `settings.py` file:
     ```
     X_FRAME_OPTIONS = 'ALLOW-FROM url'
     ```
-    When I was done testing and I created my gif file I removed that line from my settings, as it could cause security issues if left there pernamently.
+    When I was done testing and I created my gif file I removed that line from my `settings.py`, as it could cause security issues if left there pernamently.
 
 ### Unresolved Bugs
 
 ....
+
+<a name="S3"/>
+
+## AWS S3 Bucket
+
+### Setting Up S3 Bucket
+
+In order to set up S3 bucket I went through the following steps:
+
+1. I went to [AWS]() and created an account and signed into it.
+
+2. I went to the S3 section of AWS and created a new S3 bucket.
+
+3. I opened my new bucket and I went to **Properties** tab and selected **Static website hosting**.
+ 
+4. Then I went to **Permissions > CORS Config** and changed the **CORS Configuration** to the following:
+    ```
+    <?xml version="1.0" encoding="UTF-8"?>
+    <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>HEAD</AllowedMethod>
+    <MaxAgeSeconds>3000</MaxAgeSeconds>
+    <AllowedHeader>Authorization</AllowedHeader>
+    </CORSRule>
+    </CORSConfiguration>
+    ```
+
+5. Still in the S3 **Permissions** section, I changed the **Bucket Policy** to the following:
+    ```
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "PublicReadGetObject",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::<bucket-name>/*"
+            }
+        ]
+    }
+    ```
+6. In place of the <bucket-name> in the **Resource** line I put my S3 bucket's name.
+
+7. I went to the **IAM  > Groups**, created a **New Group** and attached my S3 bucket details to it.
+
+8. In the **IAM** section I created a **New Policy** and a **New User** and attached these to the newly created group.
+
+### Adding S3 to Django
+
+1. In my local workspace I installed `django-storages` and `boto3` using the following commands:
+    `$ sudo pip3 install django-storages`
+    `$ sudo pip3 install boto3`
+
+2. In `settings.py` file I added `storages` to **INSTALLED_APPS** and updated it with the following S3 bucket details:
+    ```python
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000'
+    }
+    
+    # Bucket config
+    AWS_STORAGE_BUCKET_NAME = '<bucket-name>'
+    AWS_S3_REGION_NAME = '<region-name>'
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_SECRET_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    ```
+
+### Adding Media to S3
+
+1. I created a `custom_storages.py` file with classes to route to the relevant location settings for static and media files:
+
+    ```
+    from django.conf import settings
+    from storages.backends.s3boto3 import S3Boto3Storage
+
+
+    class StaticStorage(S3Boto3Storage):
+        location = settings.STATICFILES_LOCATION
+    
+    
+    class MediaStorage(S3Boto3Storage):
+        location = settings.MEDIAFILES_LOCATION
+    ```
+    
+2. Configure media and static files location and storage in the `settings.py` file:
+    ```python
+    # Static and media files
+    STATICFILES_LOCATION = 'static'
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    MEDIAFILES_LOCATION = 'media'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    ```
+3. Finally, to push the static files to my S3 bucket I ran the `python3 manage.py collectstatic` command.
 
 <a name="version-control"/>
 
@@ -587,7 +688,7 @@ In order to track the changes in the local repository the following steps were t
 
 - command `$ git add 'filename'` - to update what will be committed;
 
-- command `$ git commit -m 'Description of changes made'` - to commit the changes.
+- command `$ git commit -m '<commit-message>'` - to commit the changes.
 
 Using `$ git push` command all changes from the local repository were pushed to the remote one on GitHub.
 
@@ -617,7 +718,7 @@ In order to clone my GitHub repository to your local one you should follow these
 
     - Enter and save your own credentials in the `.bashrc` file; or
     
-    - Create an `env.py` file with your own credentials and import this into the `settings.py` file
+    - Create an `env.py` file with your own credentials and import this into the `settings.py` file.
     
 9. Install the requirements.txt file by running the following command in your CLI terminal:
 
@@ -647,15 +748,86 @@ To deploy my project I followed these steps:
 
 1. Create App:
 
-    - On Heroku website I logged onto my account and created [my app](https://dashboard.heroku.com/apps/unicornattractor-issue-tracker);
+    - On Heroku [website]() I logged onto my account and created [my app](https://dashboard.heroku.com/apps/unicornattractor-issue-tracker) by clicking **New > Create new app**;
     
-    - In the Resources tab on Heroku I searched for Heroku Postgres in the 'Add-Ons' section and I selected the free Hobby level;
+    - In the **Resources** tab on Heroku I searched for **Heroku Postgres** in the **Add-Ons** section and I selected the free **Hobby level**;
     
-2. Install the Heroku CLI: 
+    - In `settings.py` file I added url of my Heroku app to `ALLOWED_HOSTS`;
+    
+2. Install the Heroku CLI and required packages: 
 
-     - To install Heroku CLI I typed `$ sudo snap install --classic heroku` command into the terminal; 
+    - To install Heroku CLI I typed `$ sudo snap install --classic heroku` command into the terminal; 
      
-     - In order to log in to the Heroku account I typed `$ heroku login` command into the terminal;
+    - In order to log in to the Heroku account I typed `$ heroku login` command into the terminal;
+    
+    - I installed guinicorn using the following command: `$ sudo pip3 install guinicorn`;
+    
+    - I installed psycopg2 library using the following command: `$ sudo pip3 install psycopg2-binary install`;
+
+3. Declare app dependencies:
+
+    - In order to run the app Heroku needs to install the required dependencies so make sure that **requirements.txt** file was created and committed;
+    
+    - In order to create **requirements.txt** file run `$ sudo pip3 freeze --local > requirements.txt` command in the terminal;
+    
+    - I run the git `add  requirements.txt`, `git commit -m '<commit-message>'"` and `git push` commands to push all changes to my GitHub repository.
+
+4. First push to Heroku:
+
+    - To make initial push to Heroku I used the following command: `git push heroku master`;
+    
+    - Since I was using **AWS S3** (see [AWS S3 Bucket](#S3) section)to store staticfiles I set `DISABLE_COLLECTSTATIC=1` by running the following command: `heroku config:set DISABLE_COLLECTSTATIC=1`;
+    
+5. Procfile:
+
+    - **Procfile** is a Heroku specific type of file that tells Heroku how to run our project;
+    
+    - For the **Procfile** run `$ echo web: gunicorn issue_tracker.wsgi:application > Procfile` command in the terminal;
+
+6. PostgreSQL Database:
+
+    - In order to connect to the Heroku database I installed `dj_database_url` package using the following command: `$sudo pip3 install dj_database_url`;
+    
+    - I have updated my **requirements.txt** file and pushed it to my GitHub repository;
+    
+    - Update the `DATABASE_URL` details in the `env.py` file (stored locally in my workspace);
+    
+    - I imported `dj_database_url` package into the `settings.py` file and I added my database configuration in setting.py file to connect to the database using the `dj_database_url` package:
+    
+    ```python
+    if "DATABASE_URL" in os.environ:
+        DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+    else:
+        print("Database URL not found. Using SQLite instead")
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            }
+    }
+
+    ```
+    
+7. Run migrations and create superuser:
+
+    - In order to migrate all the models into Heroku PostgreSQL I ran the `python3 manage.py makemigrations`, `python3 manage.py migrate`
+    
+    - To create a new superuser in the new PostgreSQL database I ran `createsuperuser` command;
+
+8. Setting Up App for Hosting on Heroku:
+
+    - In the **Settings** tab on Heroku I clicked on the **Reveal Config Vars** button to add my variables that I stored locally in the `env.py` file;
+
+    - I copied all of the `env.py` variables over to  Heroku's **Config Vars** section;
+    
+    - Variables in the `env.py` file included the following:
+    ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/settings.png "App settings")
+   
+9. Deployment Automation:
+
+    - In the **Deploy** tab on Heroku, I selected GitHub as my deployment method and I connected my app to my GitHub repository;
+    
+    - I then enabled **Automatic Deploys** to make sure that every push to my GitHub repo will deploy a new version of my app;
 
 <a name="credits"/>
 
