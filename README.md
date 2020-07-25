@@ -585,7 +585,7 @@ Throught the process of development of this app I came accross a few interesting
 
 In order to set up S3 bucket I went through the following steps:
 
-1. I went to [AWS]() and created an account and signed into it.
+1. I went to [AWS](https://aws.amazon.com) and created an account and signed into it.
 
 2. I went to the S3 section of AWS and created a new S3 bucket.
 
