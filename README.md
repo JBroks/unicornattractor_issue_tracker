@@ -317,6 +317,8 @@ List of features to be implemented in the future:
 
 - notification for users that the content that they added is being liked or upvoted.
 
+Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when I have more time.
+
 <a name="technologies-used"/>
 
 ## Technologies used
@@ -465,9 +467,11 @@ Python code was tested using unittest framework and I was able to achieve **over
 
 To achieve 100% for all apps below that level I would need a bit more time and knowledge on testing Django apps. However, I believe I managed to achieve a great result given it was my first time testing a Django app.
 
-### Features testing
+### Functionality testing
 
-.....
+All the features were tested manually throughout the application development process. I documented all tests in a spreadsheet, the file below outlines all features and tests performed on them:
+
+[Testing documentation](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/testing/testing-documentation.pdf)
 
 ### Responsiveness testing
 
