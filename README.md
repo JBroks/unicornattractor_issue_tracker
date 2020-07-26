@@ -489,9 +489,9 @@ Furthermore, [Responsinator](https://www.responsinator.com/) was used to test re
 
 The website is fully responsive and working well on mobile devices.
 
-### Peer-code-review
+### Peer-code-review & additional testig
 
-.....
+Besides testing the app myself I asked my friends and family members to test its functionality for me. Additionally, the project was published on Code Institute Slack code-peer-review channel where other students and mentors are able to review the code and provide their feedback.
 
 ### User stories testing
 
