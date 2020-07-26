@@ -303,6 +303,8 @@ List of features to be implemented in the future:
 
 - additional filters by e.g. a user who added it, by date added;
 
+- adding sorting feature to tables;
+
 - adding information on how many views each ticket or forum thread has;
 
 - adding function that will resize profile photos to avoid issues with images when displayed inside of cards, navbar and profile page;
@@ -431,7 +433,7 @@ Validator has indicated that there are two unknown / undefined variables, namely
 
 #### Python
 
-Python code was validated using[PEP8 Online](http://pep8online.com). All errors and warnings were fixed to validate the code agains the PEP8 requirements.
+Python code was validated using [PEP8 Online](http://pep8online.com). All errors and warnings were fixed to validate the code agains the PEP8 requirements.
 
 The only warning that was not fixed in some cases was the following:
 ```
@@ -469,7 +471,7 @@ To achieve 100% for all apps below that level I would need a bit more time and k
 
 ### Responsiveness testing
 
-This site was tested across multiple browsers (Google Chrome, Safari, Mozilla Firefox, Opera) and on multiple mobile devices (iPad Mini, iPad, Huawei P20) to ensure compatibility and responsiveness.
+This site was tested across multiple browsers (Google Chrome, Safari, Mozilla Firefox, Opera) and on multiple mobile devices (iPad Mini, Nvidia sShield Tablet K1, Huawei P20) to ensure compatibility and responsiveness.
 
 Chrome developer tools were used to additionally inspect responsiveness for the following devices:
 
@@ -482,6 +484,10 @@ Chrome developer tools were used to additionally inspect responsiveness for the 
 - iPhone 6/7/8 Plus (portrait & landscape);
 
 - iPhone X (portrait & landscape);
+
+- Samsung Galaxy S5 (portrait & landscape);
+
+- MS Surface Duo (portrait & landscape);
 
 - Android (Pixel 2) (portrait & landscape).
 
@@ -575,9 +581,9 @@ Throught the process of development of this app I came accross a few interesting
 
 - **Stripe issue** - Initially I had an issue with Stripe, every time I was trying to uvote a feature my first payment was rejected and only the second one was accepted. In the console I was seeing this error:
 
-![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/stripe-error.png "Stripe error")
+    ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/stripe-error.png "Stripe error")
     
-    I contacted tutor support at Code Institiute, and Tim Nelson helped me to resolve it. The problem was that I placed `settings.STRIPE_PUBLISHABLE` in the `upvote` view context and it should have been placed in the `view_ticket` view context.
+    I contacted tutor support at Code Institiute and Tim Nelson helped me to resolve it. The problem was that I placed `settings.STRIPE_PUBLISHABLE` in the `upvote` view context and it should have been placed in the `view_ticket` view context.
 
 ### Unresolved Bugs
 
