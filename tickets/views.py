@@ -17,7 +17,6 @@ from itertools import chain
 # Import the Stripe secret API key
 stripe.api_key = settings.STRIPE_SECRET
 
-
 def paginate(request, list):
     '''
     Helper function that will paginate any qiven queryset.
@@ -198,7 +197,8 @@ def view_ticket(request, pk):
         'comment_form': comment_form,
         'comment_count': comment_count,
         'user_commented_count': user_commented_count,
-        'last_comment': last_comment
+        'last_comment': last_comment,
+        'publishable': settings.STRIPE_PUBLISHABLE
     }
     
     return render(request, 'view_ticket.html', context)
@@ -245,6 +245,7 @@ def upvote(request, pk):
     
     # Define comment form to avoid the error (so html can render it)
     comment_form = AddCommentForm()
+    
     
     if has_voted is None and (ticket.ticket_type == 'Bug'or
                               has_donated is not None):
@@ -294,8 +295,7 @@ def upvote(request, pk):
         'ticket': ticket,
         'donation_form': donation_form,
         'payment_form': payment_form,
-        'comment_form': comment_form,
-        'publishable': settings.STRIPE_PUBLISHABLE
+        'comment_form': comment_form
     }
     
     return render(request, 'view_ticket.html', context)
