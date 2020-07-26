@@ -6,3 +6,6 @@ env.py
 .sass-cache/
 .coverage
 htmlcov/
+node_modules/
+package-lock.json
+package.json
