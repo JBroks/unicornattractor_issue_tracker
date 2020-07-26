@@ -573,6 +573,12 @@ Throught the process of development of this app I came accross a few interesting
     ```
     When I was done testing and I created my gif file I removed that line from my `settings.py`, as it could cause security issues if left there pernamently.
 
+- **Stripe issue** - Initially I had an issue with Stripe, every time I was trying to uvote a feature my first payment was rejected and only the second one was accepted. In the console I was seeing this error:
+
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/stripe-error.png "Stripe error")
+    
+    I contacted tutor support at Code Institiute, and Tim Nelson helped me to resolve it. The problem was that I placed `settings.STRIPE_PUBLISHABLE` in the `upvote` view context and it should have been placed in the `view_ticket` view context.
+
 ### Unresolved Bugs
 
 ....
