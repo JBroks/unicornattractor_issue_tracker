@@ -4,3 +4,5 @@
 __pycache__/
 env.py
 .sass-cache/
+.coverage
+htmlcov/
