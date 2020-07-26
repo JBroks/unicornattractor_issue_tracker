@@ -60,8 +60,27 @@ Project consists of the following sections:
     - [Database Type](#database-type)
     - [Database Design](#database-design)
 4. [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Features Left To Implement](#features-left)
 5. [Technologies used](#technologies-used)
+    - [Programming languages](#programming-languages)
+    - [Libraries](#libraries)
+    - [Frameworks & Extensions](#frameworks)
+    - [Database](#tech-database)
+    - [API](#API)
+    - [Version-control System](#ver-control-system)
+    - [Hosting](#hosting)
+    - [Other](#tech-other)
 6. [Testing](#testing)
+    - [Code validation](#code-validation)
+    - [Travis Continuous Integration](#travis)
+    - [Automated testing](#auto-testing)
+    - [Functionality testing](#functionality-testing)
+    - [Responsiveness testing](#responsiveness-testing)
+    - [Peer-code-review & additional testing](#additional-testing)
+    - [User stories testing](#us-testing)
+    - [Interesting bugs - resolved](#resolved-bugs)
+    - [Unresolved bugs](#unresolved-bugs)
 7. [AWS S3 Bucket](#S3)
 8. [Version Control](#version-control)
 9. [Running Code Locally](#run-code-locally)
@@ -77,19 +96,25 @@ Website demo is available [here](https://unicornattractor-issue-tracker.herokuap
 <a name="ux"/>
 
 ## UX
+
 <a name="ux-design"/>
+
 ### UX Design
 
 In this project I was aiming to achieve a simple and user friendly user design, while providing all required information. All sections are arranged in a logical order to provide intuitive user experience e.g. any content that users can review is placed under 'Explore' menu, while forms for creating new content are placed under 'Create' menu.
 
 In keeping with the unicorn theme I decided on blue (`#2e3190`), purple (`#5854a5`, `#bcb3bf`), pink (`#e89e93`, `#fcdcd7`) pallete of colors. Additionally yellow (`#fcd731`), green (`#63d37b`), red (`#ee5140`) colors were used for the data dashboard and back to top button.
+
 <a name="target-audience"/>
+
 ### Target Audience
 
 This app was created to serve users of the (fictional) sourcing and recruiting application called "Unicorn Attractor". This application enables these users to submit any tickets describing the existing bugs and issues that they are having, as well as suggest any new features to be implemented.
 
 Therefore, th main objective of the website is to provide a user with a tool that will enable them to submit tickets, upvote and donate for any features, comment tickets, create forum threads / posts, like threads / posts, review ticket statistics.
+
 <a name="user-stories"/>
+
 ### User Stories
 
 The following user stories were used to design this project:
@@ -123,7 +148,9 @@ The following user stories were used to design this project:
 **User Story 14:** As a user I would like to be able to edit my profile information.
 
 **User Story 15:** As a user I would like to be able to reset my password in case I forget it.
+
 <a name="wireframes"/>
+
 ### Mockups & Wireframes
 
 The following wireframe sketches were created to design the project layout options for:
@@ -137,7 +164,9 @@ The following wireframe sketches were created to design the project layout optio
 <a name="database"/>
 
 ## Database
+
 <a name="database-type"/>
+
 ### Database Type
 
 #### SQLite
@@ -149,7 +178,9 @@ SQLite is a simple, very lightweight database management system used for the pro
 Heroku's PostgreSQL relational database was used for the project to store the data for the deployed application.
 
 My database consists of the following tables: users, user profiles, tickets, comments, upvotes, donations, threads, posts, thread votes, post votes.
+
 <a name="database-design"/>
+
 ### Database Design
 
 Picture below presents the database schema outlining structure of each collection and relationship between each collection.
@@ -208,6 +239,8 @@ class Ticket(models.Model):
 <a name="features"/>
 
 ## Features
+
+<a name="existing-features"/>
 
 ### Existing Features
 
@@ -303,6 +336,8 @@ The project consists of various features presented below.
 
 - **Highcharts charts** - data dashboard uses Highcharts API to display analysis of tickets by type and status using a pie chart and stacked bar chart elements.
 
+<a name="features-left"/>
+
 ### Features left to implement
 
 List of features to be implemented in the future:
@@ -329,6 +364,8 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 
 ## Technologies used
 
+<a name="programming-languages"/>
+
 ### Programming languages
 
 - **HTML** - the project used HTML to define structure and layout of the web page;
@@ -339,6 +376,8 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 
 - **Python** - the project back-end functions are written using Python. Django and Python is used to build views functions;
 
+<a name="libraries"/>
+
 ### Libraries
 
 - [jQuery](https://code.jquery.com/jquery-3.4.1.min.js) - used to initialize elements of Bootstrap framework, to manage spinner overlay (fade out), back to top button (smooth scroll), read more / less button, reset filters button, navbar hide / show effect;
@@ -346,6 +385,8 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 - [Bootswatch](https://bootswatch.com/) - the project used Bootswatch "LUX" theme for setting styling for all pages;
 
 - [Font Awesome](https://fontawesome.com/v4.7.0/) - various Font Awesome icons were used for the project;
+
+<a name="frameworks"/>
 
 ### Frameworks & Extensions
 
@@ -359,11 +400,15 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 
 - [bootstrap-select](https://developer.snapappointments.com/bootstrap-select/examples/#styling) - jQuery plugin was used to style selectmenu;
 
+<a name="tech-database"/>
+
 ### Database
 
 - [Postgres](https://www.heroku.com/postgres) - a relational database management systems hosted on Heroku;
 
 - **SQLite** - a lightweight database management system used when running and testing app locally;
+
+<a name="API"/>
 
 ### API
 
@@ -371,15 +416,21 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 
 - [Stripe API](https://stripe.com) - Stripe was used to make secure payments when users upvote features.
 
+<a name="ver-control-system"/>
+
 ### Version-control System
 
 - **Git**- git was used as a version control system to add and commit changes made to the project in AWS Cloud9. All committed changes were then pushed to remote repository on GitHub;
 
 - [GitHub](https://github.com/) - GitHub was used as a remote repository to store the committed changes from the local repository;
 
+<a name="hosting"/>
+
 ### Hosting
 
 - [Heroku](https://www.heroku.com/) - Heroku was used as the hosting platform to deploy my app;
+
+<a name="tech-others"/>
 
 ### Other
 
@@ -395,7 +446,7 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 
 - [npm](https://getbootstrap.com/docs/4.0/getting-started/webpack/) - Bootstrap and Bootswatch theme installed as a Node.js module using npm to customize SCSS;
 
-- [Popper](https://popper.js.org/) - **jQuery** and **Popper** are Bootstrap's peerDependencies and had to be added to enable me to customize the SCSS;
+- [Popper](https://popper.js.org/) - **jQuery** and **Popper** are Bootstrap's peer dependencies and had to be added to enable me to customize the SCSS;
 
 - [Angrytools gradient maker](https://angrytools.com/gradient/image/) - was used to create a gradient image that was further processed in Dmesh software;
 
@@ -404,6 +455,8 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 <a name="testing"/>
 
 ## Testing
+
+<a name="code-validation"/>
 
 ### Code validation
 
@@ -451,9 +504,13 @@ blank line contains whitespace
 This issue apppeared when I added spaces between some blocks of code to make it more readable, which is allowed as per the following PEP8 rule:
 **"Extra blank lines may be used (sparingly) to separate groups of related functions."**
 
+<a name="travis"/>
+
 ### Travis Continuous Integration
 
 I have also used Travis CI for Continous Integration to automate testing of my code and resolve any issues as soon as they arose.
+
+<a name="auto-testing"/>
 
 ### Automated testing
 
@@ -473,11 +530,15 @@ Python code was tested using unittest framework and I was able to achieve **over
 
 To achieve 100% for all apps below that level I would need a bit more time and knowledge on testing Django apps. However, I believe I managed to achieve a great result given it was my first time testing a Django app.
 
+<a name="functionality-testing"/>
+
 ### Functionality testing
 
 All the features were tested manually throughout the application development process. I documented all tests in an Excel spreadsheet. The file below outlines all features and tests performed on them:
 
 [Testing documentation](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/testing/testing-documentation.pdf)
+
+<a name="responsiveness-testing"/>
 
 ### Responsiveness testing
 
@@ -505,9 +566,13 @@ Furthermore, [Responsinator](https://www.responsinator.com/) was used to test re
 
 The website is fully responsive and working well on mobile devices.
 
-### Peer-code-review & additional testig
+<a name="additional-testing"/>
+
+### Peer-code-review & additional testing
 
 Besides testing the app myself I asked my friends and family members to test its functionality for me. Additionally, the project was published on Code Institute Slack code-peer-review channel where other students and mentors are able to review the code and provide their feedback.
+
+<a name="us-testing"/>
 
 ### User stories testing
 
@@ -571,7 +636,9 @@ Besides testing the app myself I asked my friends and family members to test its
 
 - Solution: If user forgets their password they can click 'Forgot your password' link available on the sign in page. Process is desing in a way to provide a clear instructions every step of the way.
 
-### Interesting Bugs - Resolved
+<a name="resolved-bugs"/>
+
+### Interesting bugs - resolved
 
 Throught the process of development of this app I came accross a few interesting bugs. 
 
@@ -595,7 +662,9 @@ Throught the process of development of this app I came accross a few interesting
     
     I contacted tutor support at Code Institiute and Tim Nelson helped me to resolve it. The problem was that I placed `settings.STRIPE_PUBLISHABLE` in the `upvote` view context and it should have been placed in the `view_ticket` view context.
 
-### Unresolved Bugs
+<a name="unresolved-bugs"/>
+
+### Unresolved bugs
 
 ....
 
