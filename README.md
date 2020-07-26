@@ -50,17 +50,23 @@ Project consists of the following sections:
 
 ## Table of Contents
 
-- [Demo](#demo)
-- [UX](#ux)
-- [Database](#database)
-- [Features](#features)
-- [Technologies used](#technologies-used)
-- [Testing](#testing)
-- [AWS S3 Bucket](#S3)
-- [Version Control](#version-control)
-- [Running Code Locally](#run-code-locally)
-- [Deployment](#deployment)
-- [Credits](#credits)
+1. [Demo](#demo)
+2. [UX](#ux)
+    - [UX Design](#ux-design)
+    - [Target Audience](#target-audience)
+    - [User Stories](#user-stories)
+    - [Mockup & Wireframes](#wireframes)
+3. [Database](#database)
+    - [Database Type](#database-type)
+    - [Database Design](#database-design)
+4. [Features](#features)
+5. [Technologies used](#technologies-used)
+6. [Testing](#testing)
+7. [AWS S3 Bucket](#S3)
+8. [Version Control](#version-control)
+9. [Running Code Locally](#run-code-locally)
+10. [Deployment](#deployment)
+11. [Credits](#credits)
 
 <a name="demo"/>
 
@@ -71,19 +77,19 @@ Website demo is available [here](https://unicornattractor-issue-tracker.herokuap
 <a name="ux"/>
 
 ## UX
-
+<a name="ux-design"/>
 ### UX Design
 
 In this project I was aiming to achieve a simple and user friendly user design, while providing all required information. All sections are arranged in a logical order to provide intuitive user experience e.g. any content that users can review is placed under 'Explore' menu, while forms for creating new content are placed under 'Create' menu.
 
 In keeping with the unicorn theme I decided on blue (`#2e3190`), purple (`#5854a5`, `#bcb3bf`), pink (`#e89e93`, `#fcdcd7`) pallete of colors. Additionally yellow (`#fcd731`), green (`#63d37b`), red (`#ee5140`) colors were used for the data dashboard and back to top button.
-
+<a name="target-audience"/>
 ### Target Audience
 
 This app was created to serve users of the (fictional) sourcing and recruiting application called "Unicorn Attractor". This application enables these users to submit any tickets describing the existing bugs and issues that they are having, as well as suggest any new features to be implemented.
 
 Therefore, th main objective of the website is to provide a user with a tool that will enable them to submit tickets, upvote and donate for any features, comment tickets, create forum threads / posts, like threads / posts, review ticket statistics.
-
+<a name="user-stories"/>
 ### User Stories
 
 The following user stories were used to design this project:
@@ -117,7 +123,7 @@ The following user stories were used to design this project:
 **User Story 14:** As a user I would like to be able to edit my profile information.
 
 **User Story 15:** As a user I would like to be able to reset my password in case I forget it.
-
+<a name="wireframes"/>
 ### Mockups & Wireframes
 
 The following wireframe sketches were created to design the project layout options for:
@@ -131,7 +137,7 @@ The following wireframe sketches were created to design the project layout optio
 <a name="database"/>
 
 ## Database
-
+<a name="database-type"/>
 ### Database Type
 
 #### SQLite
@@ -143,7 +149,7 @@ SQLite is a simple, very lightweight database management system used for the pro
 Heroku's PostgreSQL relational database was used for the project to store the data for the deployed application.
 
 My database consists of the following tables: users, user profiles, tickets, comments, upvotes, donations, threads, posts, thread votes, post votes.
-
+<a name="database-design"/>
 ### Database Design
 
 Picture below presents the database schema outlining structure of each collection and relationship between each collection.
@@ -469,13 +475,13 @@ To achieve 100% for all apps below that level I would need a bit more time and k
 
 ### Functionality testing
 
-All the features were tested manually throughout the application development process. I documented all tests in a spreadsheet, the file below outlines all features and tests performed on them:
+All the features were tested manually throughout the application development process. I documented all tests in an Excel spreadsheet. The file below outlines all features and tests performed on them:
 
 [Testing documentation](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/testing/testing-documentation.pdf)
 
 ### Responsiveness testing
 
-This site was tested across multiple browsers (Google Chrome, Safari, Mozilla Firefox, Opera) and on multiple mobile devices (iPad Mini, Nvidia sShield Tablet K1, Huawei P20) to ensure compatibility and responsiveness.
+This site was tested across multiple browsers (Google Chrome, Safari, Mozilla Firefox, Opera) and on multiple mobile devices (iPad Mini, Nvidia Shield Tablet K1, Huawei P20) to ensure compatibility and responsiveness.
 
 Chrome developer tools were used to additionally inspect responsiveness for the following devices:
 
