@@ -1,8 +1,9 @@
 [![Build Status](https://travis-ci.org/JBroks/unicornattractor_issue_tracker.svg?branch=master)](https://travis-ci.org/JBroks/unicornattractor_issue_tracker)
 
-# Unicorn Attracktor Tracker - issue tracker application
+# Unicorn Attracktor Tracker - Issue Tracker Application
 
 ## Project Intro
+
 Stream Four Project: Full Stack Frameworks with Django - Milestone Project
 
 ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/gif/unicornattractor.gif "Gif")
@@ -10,6 +11,7 @@ Stream Four Project: Full Stack Frameworks with Django - Milestone Project
 This project is part of the 'Full Stack Frameworks with Django' module of the Code Institute Full Stack Software Development course.
 
 ## Project Scope
+
 To complete this module the task was to create an issue tracking application that allows users to submit their tickets.
 
 Users are allowed to submit two types of tickets i.e. bugs and features. In order to prioritize their tickets users are able to upvote them. The more upvotes a ticket has the faster it will be look after by a developer. However, the difference is that bugs can be upvoted for free, while user has to donate minimum €5 to upvote a feature. Users are also able to comment on tickets.
@@ -62,8 +64,8 @@ Project consists of the following sections:
 4. [Features](#features)
     - [Existing Features](#existing-features)
     - [Features Left To Implement](#features-left)
-5. [Technologies used](#technologies-used)
-    - [Programming languages](#programming-languages)
+5. [Technologies Used](#technologies-used)
+    - [Programming Languages](#programming-languages)
     - [Libraries](#libraries)
     - [Frameworks & Extensions](#frameworks)
     - [Database](#tech-database)
@@ -72,20 +74,21 @@ Project consists of the following sections:
     - [Hosting](#hosting)
     - [Other](#tech-other)
 6. [Testing](#testing)
-    - [Code validation](#code-validation)
+    - [Code Validation](#code-validation)
     - [Travis Continuous Integration](#travis)
-    - [Automated testing](#auto-testing)
-    - [Functionality testing](#functionality-testing)
-    - [Responsiveness testing](#responsiveness-testing)
-    - [Peer-code-review & additional testing](#additional-testing)
-    - [User stories testing](#us-testing)
-    - [Interesting bugs - resolved](#resolved-bugs)
-    - [Unresolved bugs](#unresolved-bugs)
-7. [AWS S3 Bucket](#S3)
-8. [Version Control](#version-control)
-9. [Running Code Locally](#run-code-locally)
-10. [Deployment](#deployment)
-11. [Credits](#credits)
+    - [Automated Testing](#auto-testing)
+    - [Functionality Testing](#functionality-testing)
+    - [Responsiveness Testing](#responsiveness-testing)
+    - [Peer-code-review & Additional Testing](#additional-testing)
+    - [User Stories Testing](#us-testing)
+    - [Interesting Bugs - Resolved](#resolved-bugs)
+    - [Unresolved Bugs](#unresolved-bugs)
+7. [Deployment Process](#deployment-process)
+    - [AWS S3 Bucket](#S3)
+    - [Version Control](#version-control)
+    - [Running Code Locally](#run-code-locally)
+    - [Deployment](#deployment)
+8. [Credits](#credits)
 
 <a name="demo"/>
 
@@ -111,7 +114,7 @@ In keeping with the unicorn theme I decided on blue (`#2e3190`), purple (`#5854a
 
 This app was created to serve users of the (fictional) sourcing and recruiting application called "Unicorn Attractor". This application enables these users to submit any tickets describing the existing bugs and issues that they are having, as well as suggest any new features to be implemented.
 
-Therefore, th main objective of the website is to provide a user with a tool that will enable them to submit tickets, upvote and donate for any features, comment tickets, create forum threads / posts, like threads / posts, review ticket statistics.
+Therefore, the main objective of the website is to provide a user with a tool that will enable them to submit tickets, upvote and donate for any features, comment tickets, create forum threads / posts, like threads / posts, review ticket statistics.
 
 <a name="user-stories"/>
 
@@ -246,7 +249,7 @@ class Ticket(models.Model):
 
 The project consists of various features presented below.
 
-#### Page loading
+#### Page Loading
 
 - **Spinner** - jQuery method `show()` and `hide()` was used to create spinner showing while page is loading;
 
@@ -338,7 +341,7 @@ The project consists of various features presented below.
 
 <a name="features-left"/>
 
-### Features left to implement
+### Features Left to Implement
 
 List of features to be implemented in the future:
 
@@ -358,15 +361,15 @@ List of features to be implemented in the future:
 
 - notification for users that the content that they added is being liked or upvoted.
 
-Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when I have more time.
+Additionally, I am planning to upgrade my app to Django v3 and Stripe v3 when I have more time.
 
 <a name="technologies-used"/>
 
-## Technologies used
+## Technologies Used
 
 <a name="programming-languages"/>
 
-### Programming languages
+### Programming Languages
 
 - **HTML** - the project used HTML to define structure and layout of the web page;
 
@@ -412,9 +415,9 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 
 ### API
 
-- [Highcharts](https://www.highcharts.com/) - Charting API used to create interactive charts for the data dashboard;
+- [Highcharts](https://www.highcharts.com/) - charting API used to create interactive charts for the data dashboard;
 
-- [Stripe API](https://stripe.com) - Stripe was used to make secure payments when users upvote features.
+- [Stripe API](https://stripe.com) - Stripe was used to make secure payments when users upvote features;
 
 <a name="ver-control-system"/>
 
@@ -430,7 +433,7 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 
 - [Heroku](https://www.heroku.com/) - Heroku was used as the hosting platform to deploy my app;
 
-<a name="tech-others"/>
+<a name="tech-other"/>
 
 ### Other
 
@@ -458,7 +461,7 @@ Additionally, to I am planning to upgrade my app to Django v3 and Stripe v3 when
 
 <a name="code-validation"/>
 
-### Code validation
+### Code Validation
 
 #### CSS
 
@@ -508,11 +511,11 @@ This issue apppeared when I added spaces between some blocks of code to make it 
 
 ### Travis Continuous Integration
 
-I have also used Travis CI for Continous Integration to automate testing of my code and resolve any issues as soon as they arose.
+I have also used Travis CI for Continuous Integration to automate testing of my code and resolve any issues as soon as they arose.
 
 <a name="auto-testing"/>
 
-### Automated testing
+### Automated Testing
 
 Python code was tested using unittest framework and I was able to achieve **overall coverage of 89%**, with the following breakdown for each app:
 
@@ -526,13 +529,13 @@ Python code was tested using unittest framework and I was able to achieve **over
 
 - **Search** - 95% coverage;
 
-- **Dashboard** - 100% coverage;
+- **Dashboard** - 100% coverage.
 
 To achieve 100% for all apps below that level I would need a bit more time and knowledge on testing Django apps. However, I believe I managed to achieve a great result given it was my first time testing a Django app.
 
 <a name="functionality-testing"/>
 
-### Functionality testing
+### Functionality Testing
 
 All the features were tested manually throughout the application development process. I documented all tests in an Excel spreadsheet. The file below outlines all features and tests performed on them:
 
@@ -540,7 +543,7 @@ All the features were tested manually throughout the application development pro
 
 <a name="responsiveness-testing"/>
 
-### Responsiveness testing
+### Responsiveness Testing
 
 This site was tested across multiple browsers (Google Chrome, Safari, Mozilla Firefox, Opera) and on multiple mobile devices (iPad Mini, Nvidia Shield Tablet K1, Huawei P20) to ensure compatibility and responsiveness.
 
@@ -568,13 +571,13 @@ The website is fully responsive and working well on mobile devices.
 
 <a name="additional-testing"/>
 
-### Peer-code-review & additional testing
+### Peer-code-review & Additional Testing
 
 Besides testing the app myself I asked my friends and family members to test its functionality for me. Additionally, the project was published on Code Institute Slack code-peer-review channel where other students and mentors are able to review the code and provide their feedback.
 
 <a name="us-testing"/>
 
-### User stories testing
+### User Stories Testing
 
 **User Story 1:**
 
@@ -638,7 +641,7 @@ Besides testing the app myself I asked my friends and family members to test its
 
 <a name="resolved-bugs"/>
 
-### Interesting bugs - resolved
+### Interesting Bugs - Resolved
 
 Throught the process of development of this app I came accross a few interesting bugs. 
 
@@ -664,15 +667,19 @@ Throught the process of development of this app I came accross a few interesting
 
 <a name="unresolved-bugs"/>
 
-### Unresolved bugs
+### Unresolved Bugs
 
-....
+No bugs left unresolved.
+
+<a name="deployment-process"/>
+
+## Deployment Process
 
 <a name="S3"/>
 
-## AWS S3 Bucket
+### AWS S3 Bucket
 
-### Setting Up S3 Bucket
+#### Setting Up S3 Bucket
 
 In order to set up S3 bucket I went through the following steps:
 
@@ -717,11 +724,13 @@ In order to set up S3 bucket I went through the following steps:
 
 8. In the **IAM** section I created a **New Policy** and a **New User** and attached these to the newly created group.
 
-### Adding S3 to Django
+#### Adding S3 to Django
 
 1. In my local workspace I installed `django-storages` and `boto3` using the following commands:
-    `$ sudo pip3 install django-storages`
-    `$ sudo pip3 install boto3`
+    ```
+    $ sudo pip3 install django-storages
+    $ sudo pip3 install boto3
+    ```
 
 2. In `settings.py` file I added `storages` to **INSTALLED_APPS** and updated it with the following S3 bucket details:
     ```python
@@ -740,7 +749,7 @@ In order to set up S3 bucket I went through the following steps:
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
     ```
 
-### Adding Media to S3
+#### Adding Media to S3
 
 1. I created a `custom_storages.py` file with classes to route to the relevant location settings for static and media files:
 
@@ -769,7 +778,7 @@ In order to set up S3 bucket I went through the following steps:
 
 <a name="version-control"/>
 
-## Version Control
+### Version Control
 
 The site was developed using AWS Cloud 9. To keep records of different versions of all project files git version control system was used. 
 
@@ -785,7 +794,7 @@ Using `$ git push` command all changes from the local repository were pushed to 
 
 <a name="run-code-locally"/>
 
-## Running Code Locally
+### Running Code Locally
 
 In order to clone my GitHub repository to your local one you should follow these steps:
 
@@ -831,7 +840,7 @@ In order to clone my GitHub repository to your local one you should follow these
 
 <a name="deployment"/>
 
-## Deployment
+### Deployment
 
 This project is hosted using Heroku, deployed directly from the `master` branch. 
 
