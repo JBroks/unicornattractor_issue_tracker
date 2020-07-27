@@ -89,6 +89,10 @@ Project consists of the following sections:
     - [Running Code Locally](#run-code-locally)
     - [Deployment](#deployment)
 8. [Credits](#credits)
+    - [Content](#content)
+    - [Media](#media)
+    - [Acknowledgements](#acknowledgements)
+    - [Disclaimer](#disclaimer)
 
 <a name="demo"/>
 
@@ -934,9 +938,13 @@ To deploy my project I followed these steps:
 
 ## Credits
 
+<a name="content"/>
+
 ### Content
 
 Description in the 'About Unicorn Attractor' section was sourced from [here](https://www.personio.com/product/applicant-sourcing/).
+
+<a name="media"/>
 
 ### Media
 
@@ -957,6 +965,8 @@ Gradient images were created using [gradient maker](https://angrytools.com/gradi
 Images for the 'About Unicorn Attractor' section were sourced from [here](https://www.personio.com/product/applicant-sourcing/).
 
 Google Play Store and Apple App Store badges were sourced from [here](https://www.stickpng.com/img/download/5a902dbf7f96951c82922875).
+
+<a name="acknowledgements"/>
 
 ### Acknowledgements
 
@@ -991,6 +1001,8 @@ When creating pagination for search results I reviewed [this](http://shopnilsaza
 To create mini charts for total figures cards I reviewed [this](https://css-tricks.com/how-to-make-charts-with-svg/) article.
 
 Many thanks to my mentor **Maranatha Ilesanmi** for support and advice throughout the project.
+
+<a name="disclaimer"/>
 
 ### Disclaimer
 
