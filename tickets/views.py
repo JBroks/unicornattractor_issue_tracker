@@ -102,8 +102,8 @@ def all_tickets(request):
     qs = Ticket.objects.all()
     
     # Query parameters
-    type_filter_query = request.GET.get('ticket-type')
-    status_filter_query = request.GET.get('ticket-status')
+    type_filter_query = request.GET.get('type')
+    status_filter_query = request.GET.get('status')
     
     # Filter queryset
     if type_filter_query and type_filter_query != 'Select...':

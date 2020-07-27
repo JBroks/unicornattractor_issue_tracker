@@ -22,7 +22,7 @@
           <!-- Ticket type select menu (BEGINNING) -->
           <div class="form-group col-md-6 col-sm-12">
             <label for="ticket-type">Ticket type</label>
-            <select class="form-control selectpicker" id="ticket-type" name="ticket-type" data-style="btn-primary">
+            <select class="form-control selectpicker" id="ticket-type" name="type" data-style="btn-primary">
             <option selected>Select...</option>
             {% for type in types_list %}
             <option value="{{ type }}">{{ type }}</option>
@@ -34,7 +34,7 @@
           <!-- Ticket status select menu (BEGINNING) -->
           <div class="form-group col-md-6 col-sm-12">
             <label for="ticket-status">Ticket status</label>
-            <select class="form-control selectpicker" id="ticket-status" name="ticket-status" data-style="btn-primary">
+            <select class="form-control selectpicker" id="ticket-status" name="status" data-style="btn-primary">
             <option selected>Select...</option>
             {% for status in status_list %}
             <option value="{{ status }}">{{ status }}</option>
@@ -153,16 +153,16 @@
           <nav aria-label="Table navigation">
             <ul class="pagination">
               {% if tickets.has_previous %}
-              <li class="page-item"><a class="page-link" href="?page={{ tickets.previous_page_number }}">&laquo;</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ tickets.previous_page_number }}{% if request.GET.type and request.GET.status %}&type={{ request.GET.type }}&status={{ request.GET.status }}{% endif %}">&laquo;</a></li>
               {% else %}
               <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
               {% endif %} {% for i in tickets.paginator.page_range %} {% if tickets.number == i %}
               <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
               </li>
               {% else %}
-              <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET.type and request.GET.status %}&type={{ request.GET.type }}&status={{ request.GET.status }}{% endif %}">{{ i }}</a></li>
               {% endif %} {% endfor %} {% if tickets.has_next %}
-              <li class="page-item"><a class="page-link" href="?page={{ tickets.next_page_number }}">&raquo;</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ tickets.next_page_number }}{% if request.GET.type and request.GET.status %}&type={{ request.GET.type }}&status={{ request.GET.status }}{% endif %}">&raquo;</a></li>
               {% else %}
               <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
               {% endif %}
