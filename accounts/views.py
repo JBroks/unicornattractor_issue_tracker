@@ -92,8 +92,11 @@ def user_profile(request, username):
     '''
     The user's profile page
     '''
-    user = User.objects.get(username=request.user.username)
-    
+    if request.user.is_authenticated:
+        user = User.objects.get(username=request.user.username)
+    else:
+        return redirect('login')
+        
     # Count all content submited by the user
     ticket_count = Ticket.objects.filter(user=request.user).count()
     comment_count = Comment.objects.filter(user=request.user).count()
