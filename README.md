@@ -529,7 +529,7 @@ Python code was tested using unittest framework and I was able to achieve **over
 
 - **Forum** - 94% coverage;
 
-- **Tickets** - 86% coverage;
+- **Tickets** - 85% coverage;
 
 - **Search** - 95% coverage;
 
@@ -698,6 +698,8 @@ $(function() {
 ```
 
 However, this solution causes a minor bug i.e. if user selects page 2 in one pill, it automatically selects the page 2 for all other tabs. I would probably need to inject a tag in the HTML.
+
+I also noticed a bug during responsiveness testing. The issue with a flexbox occurs only for the reset password templates and only while using the Safari browser. Given more time I will investingate and fix this issue.
 
 <a name="deployment-process"/>
 
