@@ -571,6 +571,8 @@ Chrome developer tools were used to additionally inspect responsiveness for the 
 
 Furthermore, [Responsinator](https://www.responsinator.com/) was used to test responsiveness of the final version of the project.
 
+I also used [Mobile-Firendly Test](https://search.google.com/test/mobile-friendly) to check if my website would pass as mobile friendly design. Page was evaluated as easy to use on mobile devices, thus mobile friendly.
+
 The website is fully responsive and working well on mobile devices.
 
 <a name="additional-testing"/>
@@ -659,7 +661,7 @@ Throught the process of development of this app I came accross a few interesting
     
     Ultimately I managed to fix that issue by adding one line in `settings.py` file:
     ```
-    X_FRAME_OPTIONS = 'ALLOW-FROM url'
+    X_FRAME_OPTIONS = 'ALLOW-FROM <selected page url>'
     ```
     When I was done testing and I created my gif file I removed that line from my `settings.py`, as it could cause security issues if left there pernamently.
 
@@ -670,6 +672,8 @@ Throught the process of development of this app I came accross a few interesting
     I contacted tutor support at Code Institiute and Tim Nelson helped me to resolve it. The problem was that I placed `settings.STRIPE_PUBLISHABLE` in the `upvote` view context and it should have been placed in the `view_ticket` view context.
 
 - **Filtered results pagination** - When testing features I noticed that pagination does not work for the filtered results. I resolved this bug using same process as for the search result pagination i.e. I used the same approach as per [this](http://shopnilsazal.github.io/django-pagination-with-basic-search/) tutorial.
+
+- **Responinator testing issue** - While testing the app on Responsinator I noticed it was showing a gap between the navbar and page content, so I conducted further checks (i.e. on [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly) and [Am I Responsive](http://ami.responsivedesign.is/#). Since it was working well on other online tools and actual devices I came to conclusion that it was an issue with the Responsinator tool rather than my app.
 
 <a name="unresolved-bugs"/>
 
