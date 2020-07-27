@@ -84,7 +84,7 @@
             <!-- Table body (BEGINNING) -->
             <tbody>
 
-              {% for ticket in tickets %}
+              {% if tickets_count > 0 %} {% for ticket in tickets %}
               <tr>
 
                 <!-- Column containnig font awesome icons indication ticket status (BEGINNING) -->
@@ -134,7 +134,10 @@
               </div>
               <!-- Delete Ticket Modal (END) -->
 
-              {% endfor %}
+              {% endfor %} {% else %}
+              <tr>
+                <td><span>No tickets found.</span></td>
+              </tr>{% endif %}
 
             </tbody>
             <!-- Table body (END) -->

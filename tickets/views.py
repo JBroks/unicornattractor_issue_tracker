@@ -120,8 +120,11 @@ def all_tickets(request):
     
     # Paginate tickets
     tickets = paginate(request, qs)
+    # Count tickets
+    tickets_count = qs.count()
     
     context = {'tickets': tickets,
+               'tickets_count': tickets_count,
                'types_list': types_list,
                'status_list': status_list}
 
