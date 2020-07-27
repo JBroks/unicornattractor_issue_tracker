@@ -113,8 +113,8 @@
                         </div>
                         <!-- Ticket card (END) -->
 
-                        <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (BEGINNING) -->
-                        {% if user.is_authenticated and user != ticket.user and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed" %} {% if has_voted is None %} {% if ticket.ticket_type == "Feature"%}
+                        <!-- Upvoting section - show if ticket is still open and if the user is authenticated (BEGINNING) -->
+                        {% if user.is_authenticated and ticket.ticket_status != "Closed" and ticket.ticket_status != "Completed" %} {% if has_voted is None %} {% if ticket.ticket_type == "Feature"%}
 
                         <!-- If user didn't upvote display the upvote & donate button (BEGINNING) -->
                         {% if has_donated is None %}
@@ -168,7 +168,7 @@
                         <!-- If user already upvoted and wants to remove their vote show downvote button (END) -->
 
                         {% endif %}
-                        <!-- Upvoting section - show if ticket is still open and if the ticket doesn't belong to authenticated user (END) -->
+                        <!-- Upvoting section - Upvoting section - show if ticket is still open and if the user is authenticated (END) -->
 
                         <!-- Upvote Ticket Modal (BEGINNING) -->
                         <div class="modal fade" id="upvoteModal" tabindex="-1" role="dialog" aria-labelledby="upvoteTicketModalLabel" aria-hidden="true">
