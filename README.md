@@ -669,6 +669,8 @@ Throught the process of development of this app I came accross a few interesting
     
     I contacted tutor support at Code Institiute and Tim Nelson helped me to resolve it. The problem was that I placed `settings.STRIPE_PUBLISHABLE` in the `upvote` view context and it should have been placed in the `view_ticket` view context.
 
+- **Filtered results pagination** - When testing features I noticed that pagination does not work for the filtered results. I resolved this bug using same process as for the search result pagination i.e. I used the same approach as per [this](http://shopnilsazal.github.io/django-pagination-with-basic-search/) tutorial.
+
 <a name="unresolved-bugs"/>
 
 ### Unresolved Bugs
