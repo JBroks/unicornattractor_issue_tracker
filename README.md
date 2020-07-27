@@ -679,7 +679,25 @@ Throught the process of development of this app I came accross a few interesting
 
 ### Unresolved Bugs
 
-No bugs left unresolved.
+Improved solution for the pills pagination issue has to be implemented. Currently the following javascript solutions was implemented:
+
+```javascript
+/**
+ * Function that keeps the selected pill active after page is changed
+ **/
+
+$(function() {
+  $('a[data-toggle="pill"]').on('click', function(e) {
+    window.localStorage.setItem('activePill', $(e.target).attr('href'));
+  });
+  var activePill = window.localStorage.getItem('activePill');
+  if (activePill) {
+    $('#pills-tab a[href="' + activePill + '"]').tab('show');
+  }
+});
+```
+
+However, this solution causes a minor bug i.e. if user selects page 2 in one pill, it automatically selects the page 2 for all other tabs. I would probably need to inject a tag in the HTML.
 
 <a name="deployment-process"/>
 
