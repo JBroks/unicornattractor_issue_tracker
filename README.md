@@ -950,6 +950,22 @@ To deploy my project I followed these steps:
 
     - I copied all of the `env.py` variables over to  Heroku's **Config Vars** section;
     
+    My `env.py` file structure:
+    
+    ```python
+    import os
+
+    os.environ.setdefault("SECRET_KEY", "<app-secret-key")
+    os.environ.setdefault("EMAIL_ADDRESS", "<admin-email-address>")
+    os.environ.setdefault("EMAIL_PASSWORD", "<admin-email-password>")
+    os.environ.setdefault("EMAIL_HOST_PASS", "<gmail-host-pass>")
+    os.environ.setdefault("DATABASE_URL", "<heroku-db-url>")
+    os.environ.setdefault("AWS_ACCESS_KEY_ID", "<aws-access-key-id>")
+    os.environ.setdefault("AWS_SECRET_ACCESS_KEY", "<aws-secret-access-key>")
+    os.environ.setdefault("STRIPE_PUBLISHABLE", "<stripe-publishable>")
+    os.environ.setdefault("STRIPE_SECRET", "<stripe-secret>")
+    ```
+    
     - Variables in the `env.py` file included the following:
 
 ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/settings-heroku.png "App settings")
