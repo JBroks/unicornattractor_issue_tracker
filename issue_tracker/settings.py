@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['d744010f6fbe48b2aa27987256b022c3.vfs.cloud9.us-east-1.amazonaws.com', "unicornattractor-issue-tracker.herokuapp.com"]
 
@@ -161,6 +161,7 @@ DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 # Override static and media URLs in production
 STATIC_URL = '/static/'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
     ]
