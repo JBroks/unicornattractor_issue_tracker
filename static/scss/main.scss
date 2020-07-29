@@ -890,13 +890,3 @@ span.vote-counter {
   }
 
 }
-
-/* Apply 100vh only on Safari browser as 100% doesn't work on it well */
-
-@media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
-    .templates-container,
-    .templates-container .content-container,
-    .full-height-safari {
-      height: 100vh;
-    }
-}
