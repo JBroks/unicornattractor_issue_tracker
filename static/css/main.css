@@ -7758,7 +7758,8 @@ main {
    Solution to issue with the white space between content and footer when not
    much content on the page */
 .templates-container,
-.templates-container .content-container, .full-height {
+.templates-container .content-container,
+.full-height {
   height: 100%; }
 
 #search-heading-section,
@@ -8344,5 +8345,11 @@ span.vote-counter {
     background-color: #63d37b;
     color: #ffffff;
     border: none; } }
+/* Apply 100vh only on Safari browser as 100% doesn't work on it well */
+@media screen and (min-color-index: 0) and (-webkit-min-device-pixel-ratio: 0) {
+  .templates-container,
+  .templates-container .content-container,
+  .full-height {
+    height: 100vh; } }
 
 /*# sourceMappingURL=main.css.map */

@@ -110,7 +110,8 @@ main {
    much content on the page */
 
 .templates-container,
-.templates-container .content-container, .full-height {
+.templates-container .content-container,
+.full-height {
   height: 100%;
 }
 
@@ -374,6 +375,7 @@ nav {
 #forum-heading-container::after {
   opacity: 0.3;
 }
+
 #dashboard-heading-container::after {
   opacity: 0.7;
 }
@@ -427,7 +429,7 @@ section.reset-password-section {
 #tickets-heading-container,
 #search-heading-container::after,
 #forum-heading-container::after,
-#dashboard-heading-container::after  {
+#dashboard-heading-container::after {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -445,7 +447,7 @@ section.reset-password-section {
 
 #thread-view-page,
 #view-ticket-page,
-#dashboard-page, 
+#dashboard-page,
 #dashboard-heading-container {
   border-top: solid 10px $color-pink;
 }
@@ -877,7 +879,7 @@ span.vote-counter {
 
 /* Solution to sticky hover on mobile devices found here:
    https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
-
+   
 @media (hover: hover) {
 
   #back-to-top-button:hover {
@@ -887,4 +889,14 @@ span.vote-counter {
     border: none;
   }
 
+}
+
+/* Apply 100vh only on Safari browser as 100% doesn't work on it well */
+
+@media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+    .templates-container,
+    .templates-container .content-container,
+    .full-height {
+      height: 100vh;
+    }
 }
