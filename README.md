@@ -673,7 +673,16 @@ Throught the process of development of this app I came accross a few interesting
 
 - **Filtered results pagination** - When testing features I noticed that pagination does not work for the filtered results. I resolved this bug using same process as for the search result pagination i.e. I used the same approach as per [this](http://shopnilsazal.github.io/django-pagination-with-basic-search/) tutorial.
 
-- **Responinator testing issue** - While testing the app on Responsinator I noticed it was showing a gap between the navbar and page content, so I conducted further checks (i.e. on [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly) and [Am I Responsive](http://ami.responsivedesign.is/#). Since it was working well on other online tools and actual devices I came to conclusion that it was an issue with the Responsinator tool rather than my app.
+- **Responsinator testing issue** - While testing the app on Responsinator I noticed it was showing a gap between the navbar and page content, so I conducted further checks (i.e. on [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly) and [Am I Responsive](http://ami.responsivedesign.is/#). Since it was working well on other online tools and actual devices I came to conclusion that it was an issue with the Responsinator tool rather than my app.
+
+- **Safari 100% height issue** - While testing my app on Safari browser I noticed a an issue with a flexbox, namely a child container was not taking 100% height of the parent container. After some investigation I found out that `height: 100%` doesn't work well on Safari so it is better to use `height: 100vh`. However, I only wanted to apply this solution for the Safari browser. [This](https://solvit.io/bcf61b6) article suggested the media query that will only apply a given css styling to Safari browser:
+
+    ```css
+    @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+        <css-styling>
+        }
+    }
+    ```
 
 <a name="unresolved-bugs"/>
 
@@ -698,8 +707,6 @@ $(function() {
 ```
 
 However, this solution causes a minor bug i.e. if user selects page 2 in one pill, it automatically selects the page 2 for all other tabs. I would probably need to inject a tag in the HTML.
-
-I also noticed a bug during responsiveness testing. The issue with a flexbox occurs only for the reset password templates and only while using the Safari browser. Given more time I will investingate and fix this issue.
 
 <a name="deployment-process"/>
 
