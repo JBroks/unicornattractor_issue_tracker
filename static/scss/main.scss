@@ -896,7 +896,7 @@ span.vote-counter {
 @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
     .templates-container,
     .templates-container .content-container,
-    .full-height {
+    .full-height-safari {
       height: 100vh;
     }
 }
