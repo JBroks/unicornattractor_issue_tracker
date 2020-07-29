@@ -110,12 +110,7 @@ main {
    much content on the page */
 
 .templates-container,
-.templates-container .content-container,
-#login-section,
-#login-section div,
-section.reset-password-section,
-#register-section, #view-ticket-page, #thread-view-page,
-#add-ticket-section, #add-thread-section, #edit-profile-section {
+.templates-container .content-container, .full-height {
   height: 100%;
 }
 
@@ -124,27 +119,6 @@ section.reset-password-section,
 #forum-heading-section,
 #dashboard-heading-section {
   height: 350px;
-}
-
-#search-heading-section div,
-#tickets-heading-container,
-#forum-heading-container,
-#dashboard-heading-container,
-#search-result-section .container-fluid,
-#forum-table-section .container-fluid,
-#table-section .container-fluid,
-#filter-section .container-fluid,
-#profile-page-content,
-div.reset-password-container,
-#dashboard-page, #register-section .container-fluid, 
-#register-section .container-fluid .row,
-#add-ticket-section .container-fluid, 
-#add-ticket-section .container-fluid .row,
-#add-thread-section .container-fluid, 
-#add-thread-section .container-fluid .row,
-#edit-profile-section .container-fluid, 
-#edit-profile-section .container-fluid .row {
-  height: 100%;
 }
 
 #filter-section {
@@ -205,6 +179,12 @@ nav {
 .navbar-hide {
   pointer-events: none;
   opacity: 0;
+}
+
+/* FONT SIZE */
+
+.page-heading-text {
+  font-size: 2.5rem;
 }
 
 /* TOAST MESSAGES */

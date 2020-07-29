@@ -7758,12 +7758,7 @@ main {
    Solution to issue with the white space between content and footer when not
    much content on the page */
 .templates-container,
-.templates-container .content-container,
-#login-section,
-#login-section div,
-section.reset-password-section,
-#register-section, #view-ticket-page, #thread-view-page,
-#add-ticket-section, #add-thread-section, #edit-profile-section {
+.templates-container .content-container, .full-height {
   height: 100%; }
 
 #search-heading-section,
@@ -7771,70 +7766,6 @@ section.reset-password-section,
 #forum-heading-section,
 #dashboard-heading-section {
   height: 350px; }
-
-#search-heading-section div,
-#tickets-heading-container,
-#forum-heading-container,
-#dashboard-heading-container,
-#search-result-section .container-fluid,
-#search-result-section .container-sm,
-#search-result-section .container-md,
-#search-result-section .container-lg,
-#search-result-section .container-xl,
-#forum-table-section .container-fluid,
-#forum-table-section .container-sm,
-#forum-table-section .container-md,
-#forum-table-section .container-lg,
-#forum-table-section .container-xl,
-#table-section .container-fluid,
-#table-section .container-sm,
-#table-section .container-md,
-#table-section .container-lg,
-#table-section .container-xl,
-#filter-section .container-fluid,
-#filter-section .container-sm,
-#filter-section .container-md,
-#filter-section .container-lg,
-#filter-section .container-xl,
-#profile-page-content,
-div.reset-password-container,
-#dashboard-page, #register-section .container-fluid, #register-section .container-sm, #register-section .container-md, #register-section .container-lg, #register-section .container-xl,
-#register-section .container-fluid .row,
-#register-section .container-sm .row,
-#register-section .container-md .row,
-#register-section .container-lg .row,
-#register-section .container-xl .row,
-#add-ticket-section .container-fluid,
-#add-ticket-section .container-sm,
-#add-ticket-section .container-md,
-#add-ticket-section .container-lg,
-#add-ticket-section .container-xl,
-#add-ticket-section .container-fluid .row,
-#add-ticket-section .container-sm .row,
-#add-ticket-section .container-md .row,
-#add-ticket-section .container-lg .row,
-#add-ticket-section .container-xl .row,
-#add-thread-section .container-fluid,
-#add-thread-section .container-sm,
-#add-thread-section .container-md,
-#add-thread-section .container-lg,
-#add-thread-section .container-xl,
-#add-thread-section .container-fluid .row,
-#add-thread-section .container-sm .row,
-#add-thread-section .container-md .row,
-#add-thread-section .container-lg .row,
-#add-thread-section .container-xl .row,
-#edit-profile-section .container-fluid,
-#edit-profile-section .container-sm,
-#edit-profile-section .container-md,
-#edit-profile-section .container-lg,
-#edit-profile-section .container-xl,
-#edit-profile-section .container-fluid .row,
-#edit-profile-section .container-sm .row,
-#edit-profile-section .container-md .row,
-#edit-profile-section .container-lg .row,
-#edit-profile-section .container-xl .row {
-  height: 100%; }
 
 #filter-section {
   height: 300px; }
@@ -7879,6 +7810,10 @@ nav {
 .navbar-hide {
   pointer-events: none;
   opacity: 0; }
+
+/* FONT SIZE */
+.page-heading-text {
+  font-size: 2.5rem; }
 
 /* TOAST MESSAGES */
 /* Toast message position */
