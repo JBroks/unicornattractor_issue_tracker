@@ -879,7 +879,7 @@ span.vote-counter {
 
 /* Solution to sticky hover on mobile devices found here:
    https://medium.com/@ferie/detect-a-touch-device-with-only-css-9f8e30fa1134 */
-   
+
 @media (hover: hover) {
 
   #back-to-top-button:hover {
@@ -889,4 +889,10 @@ span.vote-counter {
     border: none;
   }
 
+}
+
+@media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+    .reset-password-section {
+      height: 100vh;
+    }
 }

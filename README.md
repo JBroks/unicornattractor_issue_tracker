@@ -675,6 +675,16 @@ Throught the process of development of this app I came accross a few interesting
 
 - **Responsinator testing issue** - While testing the app on Responsinator I noticed it was showing a gap between the navbar and page content, so I conducted further checks (i.e. on [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly) and [Am I Responsive](http://ami.responsivedesign.is/#). Since it was working well on other online tools and actual devices I came to conclusion that it was an issue with the Responsinator tool rather than my app.
 
+- **Safari 100% height issue** - While testing my app on Safari browser I noticed an issue with the flexbox, namely a child container is not taking 100% height of the parent container. After some investigation I found out that `height: 100%` doesn't work well on Safari so it is better to use `height: 100vh`. However, I wanted only to apply this solution for the Safari browser. [This](https://solvit.io/bcf61b6) article suggests the media query that will only apply a given css styling to Safari browser:
+
+    ```css
+    @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+        <css-styling>
+        }
+    }
+    ```
+    I used it as a quick fix for the `class="reset-password-section"` only, however better solution has to be implemented in the future. [This](https://stackoverflow.com/questions/35137085/flexbox-code-working-on-all-browsers-except-safari-why) disucssion explains that the flexbox does not work well on Safari so it is a good starting point. Having more time to test the solution fully I will implement it to resolve the flexbox issue.
+    
 <a name="unresolved-bugs"/>
 
 ### Unresolved Bugs
@@ -698,16 +708,6 @@ Throught the process of development of this app I came accross a few interesting
     ```
 
 However, this solution causes a minor bug i.e. if user selects page 2 in one pill, it automatically selects the page 2 for all other tabs. I would probably need to inject a tag in the HTML.
-
-- **Safari 100% height issue** - While testing my app on Safari browser I noticed a an issue with a flexbox, namely a child container is not taking 100% height of the parent container. After some investigation I found out that `height: 100%` doesn't work well on Safari so it is better to use `height: 100vh`. However, I would like to only to apply this solution for the Safari browser. [This](https://solvit.io/bcf61b6) article suggests the media query that will only apply a given css styling to Safari browser:
-
-    ```css
-    @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
-        <css-styling>
-        }
-    }
-    ```
-    Having more time to test the solution fully I will implement it to resolve the safari issue.
     
 <a name="deployment-process"/>
 

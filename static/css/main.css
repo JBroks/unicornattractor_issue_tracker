@@ -8345,5 +8345,8 @@ span.vote-counter {
     background-color: #63d37b;
     color: #ffffff;
     border: none; } }
+@media screen and (min-color-index: 0) and (-webkit-min-device-pixel-ratio: 0) {
+  .reset-password-section {
+    height: 100vh; } }
 
 /*# sourceMappingURL=main.css.map */
