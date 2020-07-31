@@ -349,6 +349,8 @@ The project consists of various features presented below.
 
 List of features to be implemented in the future:
 
+- improvement to the registration and login system, to make username case insensitive;
+
 - additional filters by e.g. a user who added it, by date added;
 
 - adding sorting feature to tables;
