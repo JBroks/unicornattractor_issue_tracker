@@ -80,7 +80,7 @@
                                         {% if request.user == ticket.user %}
                                         <div class="col-auto">
                                             <div class="dropdown">
-                                                <button class="dropdown-toggle actions btn btn-link p-0 ellipsis-dropdown" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-h fa-2x" aria-hidden="true"></i></button>
+                                                <button class="dropdown-toggle actions btn btn-link p-0 pl-4 ellipsis-dropdown" type="button" id="dropdownMenuActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-h fa-2x" aria-hidden="true"></i></button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuActions">
                                                     <a class="dropdown-item text-dark" href="{% url 'edit_ticket' ticket.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                                                     <a class="dropdown-item text-danger" role="button" data-toggle="modal" data-target="#deleteModal{{ticket.id}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
