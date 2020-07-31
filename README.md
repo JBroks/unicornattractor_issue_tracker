@@ -543,7 +543,7 @@ To achieve 100% for all apps below that level I would need a bit more time and k
 
 All the features were tested manually throughout the application development process. I documented all tests in an Excel spreadsheet. The file below outlines all features and tests performed on them:
 
-[Testing documentation](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/testing-documentation.pdf)
+[Testing documentation](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/testing/testing-documentation.pdf)
 
 <a name="responsiveness-testing"/>
 
