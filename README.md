@@ -6,7 +6,7 @@
 
 Stream Four Project: Full Stack Frameworks with Django - Milestone Project
 
-![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/gif/unicornattractor.gif "Gif")
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/gif/unicornattractor.gif "Gif")
 
 This project is part of the 'Full Stack Frameworks with Django' module of the Code Institute Full Stack Software Development course.
 
@@ -162,11 +162,11 @@ The following user stories were used to design this project:
 
 The following wireframe sketches were created to design the project layout options for:
 
-- [large](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_large.pdf),
+- [large](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/wireframes/unicornAttractor_large.pdf),
 
-- [medium](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_medium.pdf), and 
+- [medium](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/wireframes/unicornAttractor_medium.pdf), and 
 
-- [mobile displays](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/wireframes/unicornAttractor_mobile.pdf).
+- [mobile displays](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/wireframes/unicornAttractor_mobile.pdf).
 
 <a name="database"/>
 
@@ -192,7 +192,7 @@ My database consists of the following tables: users, user profiles, tickets, com
 
 Picture below presents the database schema outlining structure of each collection and relationship between each collection.
 
-![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/database-design/db-schema.png "database-schema")
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/database-design/db-schema.png "database-schema")
 
 The main point of database schema preparation was to think through the structure of each Django model. Django model is then coverted into SQL code and creates the database tables and fields.
 
@@ -543,7 +543,7 @@ To achieve 100% for all apps below that level I would need a bit more time and k
 
 All the features were tested manually throughout the application development process. I documented all tests in an Excel spreadsheet. The file below outlines all features and tests performed on them:
 
-[Testing documentation](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/testing/testing-documentation.pdf)
+[Testing documentation](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/testing-documentation.pdf)
 
 <a name="responsiveness-testing"/>
 
@@ -667,7 +667,7 @@ Throught the process of development of this app I came accross a few interesting
 
 - **Stripe issue** - Initially I had an issue with Stripe, every time I was trying to uvote a feature my first payment was rejected and only the second one was accepted. In the console I was seeing this error:
 
-    ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/stripe-error.png "Stripe error")
+    ![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/other-images/stripe-error.png "Stripe error")
     
     I contacted tutor support at Code Institiute and Tim Nelson helped me to resolve it. The problem was that I placed `settings.STRIPE_PUBLISHABLE` in the `upvote` view context and it should have been placed in the `view_ticket` view context.
 
@@ -976,7 +976,7 @@ To deploy my project I followed these steps:
     
     - Variables in the `env.py` file included the following:
 
-![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/design/other-images/settings-heroku.png "App settings")
+![alt text](https://github.com/JBroks/unicornattractor_issue_tracker/blob/master/README_resources/other-images/settings-heroku.png "App settings")
    
 9. Deployment Automation:
 
