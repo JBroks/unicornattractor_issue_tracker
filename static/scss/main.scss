@@ -616,6 +616,16 @@ a.btn-rounded {
   line-height: 21px;
 }
 
+/* To make ellipsis-dropdown more visible for the user overwrite the color */
+
+.ellipsis-dropdown {
+  color: $color-green;
+}
+
+.ellipsis-dropdown:hover {
+  color: darken($color-green,15%);
+}
+
 /* TABLE */
 
 /* Remove top border for the first row in the table */
@@ -892,7 +902,7 @@ span.vote-counter {
 }
 
 @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
-    .reset-password-section {
-      height: 100vh;
-    }
+  .reset-password-section {
+    height: 100vh;
+  }
 }

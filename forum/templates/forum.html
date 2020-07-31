@@ -49,7 +49,7 @@
 
                                 <!-- Columns containnig action dropdown containing edit / view / delete thread actions (BEGINNING) -->
                                 <td class="dropdown">
-                                    <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions{{ thread.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                    <button class="dropdown-toggle actions btn btn-link" type="button" id="dropdownMenuActions{{ thread.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i></button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuActions{{ thread.id }}">
                                         <a class="dropdown-item" href="{% url 'view_thread' thread.id %}"><i class="fa fa-folder-open-o" aria-hidden="true"></i> View</a> {% if request.user == thread.user %}
                                         <a class="dropdown-item text-dark" href="{% url 'edit_thread' thread.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>

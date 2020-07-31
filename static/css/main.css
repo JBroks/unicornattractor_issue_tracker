@@ -8150,6 +8150,13 @@ a.btn-rounded {
 #search-btn {
   line-height: 21px; }
 
+/* To make ellipsis-dropdown more visible for the user overwrite the color */
+.ellipsis-dropdown {
+  color: #63d37b; }
+
+.ellipsis-dropdown:hover {
+  color: #33b64f; }
+
 /* TABLE */
 /* Remove top border for the first row in the table */
 .table tr:first-child td {
