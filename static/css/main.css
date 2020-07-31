@@ -8096,6 +8096,10 @@ textarea,
 #filter-section form {
   min-width: 70%; }
 
+/* Form error messages */
+.error-msg {
+  color: #ee5140; }
+
 /* PROFILE IMAGE */
 /* Set max size of profile images */
 .profile-image {
