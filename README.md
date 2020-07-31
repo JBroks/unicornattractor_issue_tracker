@@ -710,7 +710,9 @@ Throught the process of development of this app I came accross a few interesting
     ```
 
 However, this solution causes a minor bug i.e. if user selects page 2 in one pill, it automatically selects the page 2 for all other tabs. I would probably need to inject a tag in the HTML.
-    
+
+- **Anchor link to liked / disliked post** - When post is liked / disliked by a user the relevant template should add a like / dislike and show the same comment. That was achieved by adding an anchor element containing the post's id to the `href`. However, during testing I noticed it doesn't work properly when posts are paginated. This issue has to be address when I have more time.
+
 <a name="deployment-process"/>
 
 ## Deployment Process
