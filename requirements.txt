@@ -37,7 +37,7 @@ netifaces==0.10.4
 oauthlib==2.0.6
 parso==0.1.1
 pbr==5.4.4
-Pillow==7.0.0
+Pillow==8.1.1
 psycopg2-binary==2.8.4
 pytz==2019.3
 PyYAML==5.2
