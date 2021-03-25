@@ -40,7 +40,7 @@ pbr==5.4.4
 Pillow==7.0.0
 psycopg2-binary==2.8.4
 pytz==2019.3
-PyYAML==5.2
+PyYAML==5.4
 s3transfer==0.2.1
 SecretStorage==2.3.1
 six==1.13.0
